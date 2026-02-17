@@ -1,0 +1,72 @@
+/* Phase 7-B: ShellLayout — BottomNav 統一表示。opacity のみで active/inactive。 */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.iframe {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.bottomNav {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 480px;
+  padding: 4px 10px 8px;
+  background: rgba(250, 246, 255, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.9);
+  z-index: 30;
+  flex-shrink: 0;
+}
+
+.bottomNavInner {
+  border-radius: 999px;
+  background: radial-gradient(circle at 50% 0, #ffffff, rgba(242, 235, 255, 0.95));
+  box-shadow: 0 10px 20px rgba(60, 35, 110, 0.22);
+  padding: 6px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navItem {
+  flex: 1;
+  text-align: center;
+  font-size: 10px;
+  color: var(--text-main, #2f2640);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 4px 2px;
+  font-family: inherit;
+}
+
+.navIcon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* prefers-reduced-motion: BottomNav スコープのみ transition 無効 */
+@media (prefers-reduced-motion: reduce) {
+  .bottomNav,
+  .bottomNav .navIcon {
+    transition: none !important;
+  }
+}

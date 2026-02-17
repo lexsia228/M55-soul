@@ -1,0 +1,30 @@
+You are implementing M55 under strict SSOT constraints.
+
+ABSOLUTE RULES (NON-NEGOTIABLE):
+1) Background NoTouch:
+   - NEVER modify html/body background, global gradients, or page-wide background visuals.
+   - All visual styling must stay inside components/cards/surfaces.
+
+2) No Notifications:
+   - NEVER add bell icons, badges, unread markers, red dots, counters, notification UI, or wording implying notifications.
+
+3) No Ranking / No Scores / No Percent:
+   - NEVER render scores, %, gauges, rankings, "おすすめ/人気/最適/成功" style optimization language.
+   - If a numeric UI is present, only "Days Recorded" is allowed (no %).
+
+4) No Infinite Motion:
+   - NEVER apply infinite/loop animations.
+   - Reduce Motion must disable transitions/animations.
+
+5) A-plan Routing:
+   - Only Home / AI Chat / MyPage are navigable.
+   - Tarot and DTR must be quiet-disabled (opacity 0.30 + pointer-events none).
+   - No dead-end navigation, no error pages.
+
+6) File Discipline:
+   - Do not edit frozen SSOT artifacts.
+   - Keep changes minimal and explain each change briefly.
+
+OUTPUT REQUIREMENT:
+- Provide a short report: files changed + why + key diffs.
+- If you add JS/CSS, ensure it does not introduce banned words: badge, unread, notification, notif, infinite, spinner.
