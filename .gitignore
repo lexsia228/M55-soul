@@ -12,3 +12,5 @@ docs/archive/zips/**/*.7z
 docs/archive/zips/**/*.rar
 
 .env.local
+
+*.tsbuildinfo
