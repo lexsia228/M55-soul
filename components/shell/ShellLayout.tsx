@@ -1,6 +1,7 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import LegacyFrame from '../../src/components/legacy/LegacyFrame';
 import styles from './ShellLayout.module.css';
 
@@ -82,6 +83,20 @@ export default function ShellLayout({
 
   return (
     <div className={styles.wrapper}>
+      <header className={styles.header} aria-label="シェルヘッダー">
+        <SignedOut>
+          <SignInButton mode="modal">
+            <button type="button" className={styles.authButton} aria-label="サインイン">
+              サインイン
+            </button>
+          </SignInButton>
+        </SignedOut>
+        <SignedIn>
+          <span className={styles.userButtonWrap}>
+            <UserButton afterSignOutUrl="/" />
+          </span>
+        </SignedIn>
+      </header>
       {useDataBridge ? (
         <LegacyFrame src={iframeSrc} title={iframeTitle} {...iframeProps} />
       ) : (
