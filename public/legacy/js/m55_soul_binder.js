@@ -1,31 +1,42 @@
 /**
  * M55 SOUL BINDER (Legacy Receiver)
- * Listens for 'M55_SOUL_SYNC' from Parent (React)
+ * - Receives M55_SOUL_SYNC from parent
+ * - Security: strict event.origin check
+ * - Binds to window.M55_CURRENT_USER and (optional) window.M55_USER_PROFILE
  */
-(function() {
-  console.log("[M55 Legacy] Soul Binder Active");
-
-  window.addEventListener("message", function(event) {
+(function () {
+  window.addEventListener('message', function (event) {
     if (event.origin !== window.location.origin) return;
 
-    const data = event.data;
+    var data = event.data;
+    if (!data || data.type !== 'M55_SOUL_SYNC') return;
 
-    if (data && data.type === 'M55_SOUL_SYNC') {
-      const user = data.payload;
-      console.log("[M55 Legacy] Soul Synced:", user.user_name);
+    var payload = data.payload || {};
 
-      safeBind('user_name_display', user.user_name || 'Guest');
-      safeBind('user_plan_display', user.plan || 'FREE');
+    window.M55_CURRENT_USER = payload;
 
+    if (payload.profile) {
+      window.M55_USER_PROFILE = payload.profile;
+      try {
+        var evt = new CustomEvent('m55:profile_ready', { detail: payload.profile });
+        window.dispatchEvent(evt);
+      } catch (_) {}
+    }
+
+    try {
       document.body.classList.remove('plan-FREE', 'plan-STANDARD', 'plan-PREMIUM');
-      document.body.classList.add('plan-' + (user.plan || 'FREE'));
+      if (payload.plan) document.body.classList.add('plan-' + payload.plan);
+    } catch (_) {}
 
-      window.M55_CURRENT_USER = user;
+    function bindText(id, text) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = text == null ? '' : String(text);
+    }
+
+    bindText('user_name_display', payload.user_name || 'Guest');
+    bindText('user_plan_display', payload.plan || 'FREE');
+    if (payload.profile && payload.profile.birthDate) {
+      bindText('user_birth_display', payload.profile.birthDate);
     }
   });
-
-  function safeBind(id, text) {
-    const el = document.getElementById(id);
-    if (el) el.innerText = text;
-  }
 })();

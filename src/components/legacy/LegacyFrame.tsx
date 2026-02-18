@@ -3,6 +3,7 @@
 import { LegacyBridge } from './LegacyBridge';
 import { useSoulBridge } from '../../../hooks/useSoulBridge';
 import styles from '../../../components/shell/ShellLayout.module.css';
+import { SoulBirthGate } from '../soul/SoulBirthGate';
 
 type LegacyFrameProps = {
   src: string;
@@ -23,6 +24,7 @@ export default function LegacyFrame({
 
   return (
     <>
+      <SoulBirthGate />
       <iframe
         ref={iframeRef}
         className={className}
