@@ -51,7 +51,8 @@
     }
 
     .m55-chat-history{ display:flex; flex-direction:column; gap:var(--m55-chat-gap); padding:6px 2px 0; }
-    .m55-msg{ display:flex; width:100%; }
+    .m55-msg{ display:flex; width:100%; animation:m55-msg-appear 0.2s ease forwards; }
+    @keyframes m55-msg-appear{ from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:translateY(0); } }
     .m55-msg[data-role="assistant"]{ justify-content:flex-start; }
     .m55-msg[data-role="user"]{ justify-content:flex-end; }
     .m55-msg[data-role="system"]{ justify-content:center; }
@@ -62,7 +63,7 @@
       border:0.5px solid var(--m55-hairline);
       background: var(--m55-surface);
       color: var(--m55-text);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.08);
       white-space: pre-wrap; word-wrap: break-word;
       line-height:1.55; font-size:15px;
     }
@@ -75,7 +76,8 @@
 
     .m55-chat-composer{
       display:flex; gap:10px; align-items:flex-end;
-      padding:10px 12px; border-radius:16px;
+      padding:10px 12px calc(10px + env(safe-area-inset-bottom)) 12px;
+      border-radius:16px;
       background: var(--m55-surface);
       border:0.5px solid var(--m55-hairline);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
@@ -87,16 +89,20 @@
       background:transparent; color:var(--m55-text);
       font-size:15px; line-height:1.45; max-height:140px;
       padding:6px 2px;
+      min-height:44px;
+      box-sizing:border-box;
     }
     .m55-chat-input::placeholder{ color:var(--m55-text-sub); opacity:0.85; }
 
     .m55-chat-send{
       flex:0 0 auto;
+      min-width:44px; min-height:44px;
       border:0.5px solid var(--m55-hairline);
       background:transparent; color:var(--m55-text);
       padding:10px 12px; border-radius:14px;
       font-size:14px; line-height:1;
       cursor:pointer; user-select:none;
+      box-sizing:border-box;
     }
     .m55-chat-send:disabled{ opacity:0.35; cursor:default; }
     .m55-chat-send:active{ opacity:0.78; }
@@ -146,10 +152,21 @@
 @media (prefers-reduced-transparency: reduce){
   .m55-chat-header,
   .m55-chat-composer,
-  .chat-bubble{
+  .m55-bubble,
+  .m55-empty,
+  .m55-jump-latest{
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
     background: var(--m55-surface) !important;
+  }
+  .m55-msg[data-role="user"] .m55-bubble{ background: var(--m55-surface-2) !important; }
+}
+
+/* Accessibility: Disable transitions/animations when user prefers reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .m55-msg, .m55-bubble, .m55-chat-composer, .m55-chat-send{
+    transition: none !important;
+    animation: none !important;
   }
 }
 </style>
@@ -165,9 +182,9 @@
         </div>
 
   <template id="chat-bubble-template">
-    <div class="chat-row" data-role="">
-      <div class="chat-bubble" data-part="bubble">
-        <div class="chat-text" data-part="text"></div>
+    <div class="m55-msg" data-role="">
+      <div class="m55-bubble" data-part="bubble">
+        <div class="m55-bubble-text" data-part="text"></div>
       </div>
     </div>
   </template>

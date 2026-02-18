@@ -30,15 +30,16 @@
   font-size: 14px;
   font-family: inherit;
   color: var(--text-main, #2f2640);
-  background: rgb(255, 255, 255);
-  border: 1px solid rgba(60, 35, 110, 0.25);
+  background: transparent;
+  border: 1px solid rgba(60, 35, 110, 0.12);
   border-radius: 8px;
   cursor: pointer;
   box-sizing: border-box;
+  opacity: 0.88;
 }
 
 .authButton:hover {
-  background: rgb(248, 245, 255);
+  opacity: 1;
 }
 
 .userButtonWrap {

@@ -85,7 +85,7 @@ export default function ShellLayout({
     <div className={styles.wrapper}>
       <header className={styles.header} aria-label="シェルヘッダー">
         <SignedOut>
-          <SignInButton mode="modal">
+          <SignInButton mode="redirect">
             <button type="button" className={styles.authButton} aria-label="サインイン">
               サインイン
             </button>
