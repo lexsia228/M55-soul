@@ -1,7 +1,7 @@
 'use client';
 
-import { useRef } from 'react';
 import { LegacyBridge } from './LegacyBridge';
+import { useSoulBridge } from '../../../hooks/useSoulBridge';
 import styles from '../../../components/shell/ShellLayout.module.css';
 
 type LegacyFrameProps = {
@@ -19,7 +19,7 @@ export default function LegacyFrame({
   sandbox = 'allow-scripts allow-same-origin allow-forms',
   referrerPolicy = 'no-referrer',
 }: LegacyFrameProps) {
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const iframeRef = useSoulBridge();
 
   return (
     <>
