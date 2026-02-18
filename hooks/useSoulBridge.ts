@@ -21,7 +21,7 @@ export function useSoulBridge() {
     };
 
     const send = () => {
-      iframeRef.current?.contentWindow?.postMessage(message, '*');
+      iframeRef.current?.contentWindow?.postMessage(message, window.location.origin);
     };
 
     send();

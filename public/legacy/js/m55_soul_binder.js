@@ -6,6 +6,8 @@
   console.log("[M55 Legacy] Soul Binder Active");
 
   window.addEventListener("message", function(event) {
+    if (event.origin !== window.location.origin) return;
+
     const data = event.data;
 
     if (data && data.type === 'M55_SOUL_SYNC') {
