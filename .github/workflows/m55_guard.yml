@@ -11,6 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 5
-      - name: Run Guard Script
+          fetch-depth: 0
+      - name: Run M55 Guard
         run: bash scripts/m55_guard_turn13c.sh
