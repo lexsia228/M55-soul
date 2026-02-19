@@ -10,7 +10,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider localization={jaJP}>
+    <ClerkProvider localization={jaJP}
+  appearance={{
+    variables: { colorPrimary: '#ffffff' },
+    elements: {
+      card: 'bg-black/60 backdrop-blur-xl border border-white/10 shadow-none',
+      headerTitle: 'text-white/90 font-light',
+      headerSubtitle: 'text-white/45',
+      socialButtonsBlockButton: 'bg-white/5 border-white/10 hover:bg-white/10 text-white/80',
+      formButtonPrimary: 'bg-white/90 hover:bg-white text-black text-xs uppercase tracking-widest',
+      footerActionText: 'text-white/45',
+      footerActionLink: 'text-white/80 hover:text-white',
+      identityPreviewText: 'text-white/90',
+      identityPreviewEditButton: 'text-white/45 hover:text-white'
+    }
+  }}
+>
       <html lang="ja">
         <body>{children}</body>
       </html>
