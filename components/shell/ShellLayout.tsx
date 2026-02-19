@@ -4,13 +4,15 @@ import { usePathname, useRouter } from 'next/navigation';
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import LegacyFrame from '../../src/components/legacy/LegacyFrame';
 import styles from './ShellLayout.module.css';
+import { useSoulBridge } from '../../hooks/useSoulBridge';
+import { SoulBirthGate } from '../../src/components/soul/SoulBirthGate';
 
 type TabId = '/home' | '/tarot' | '/ai-chat' | '/dtr' | '/my';
 
 const TABS: { href: TabId; label: string; svg: React.ReactNode }[] = [
   {
     href: '/home',
-    label: 'ホーム',
+    label: '繝帙・繝',
     svg: (
       <svg className={styles.navIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
         <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
@@ -20,7 +22,7 @@ const TABS: { href: TabId; label: string; svg: React.ReactNode }[] = [
   },
   {
     href: '/tarot',
-    label: 'タロット',
+    label: '繧ｿ繝ｭ繝・ヨ',
     svg: (
       <svg className={styles.navIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
         <rect x="5" y="3" width="14" height="18" rx="2" ry="2" />
@@ -32,7 +34,7 @@ const TABS: { href: TabId; label: string; svg: React.ReactNode }[] = [
   },
   {
     href: '/ai-chat',
-    label: 'AIチャット',
+    label: 'AI繝√Ε繝・ヨ',
     svg: (
       <svg className={styles.navIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -41,7 +43,7 @@ const TABS: { href: TabId; label: string; svg: React.ReactNode }[] = [
   },
   {
     href: '/dtr',
-    label: '鑑定',
+    label: '髑大ｮ・,
     svg: (
       <svg className={styles.navIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -53,7 +55,7 @@ const TABS: { href: TabId; label: string; svg: React.ReactNode }[] = [
   },
   {
     href: '/my',
-    label: 'マイページ',
+    label: '繝槭う繝壹・繧ｸ',
     svg: (
       <svg className={styles.navIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -81,13 +83,15 @@ export default function ShellLayout({
     referrerPolicy: 'no-referrer' as const,
   };
 
-  return (
+  const iframeRef = useSoulBridge();
+
+  return 
     <div className={styles.wrapper}>
-      <header className={styles.header} aria-label="シェルヘッダー">
+      <header className={styles.header} aria-label="繧ｷ繧ｧ繝ｫ繝倥ャ繝繝ｼ">
         <SignedOut>
           <SignInButton mode="redirect">
-            <button type="button" className={styles.authButton} aria-label="サインイン">
-              サインイン
+            <button type="button" className={styles.authButton} aria-label="繧ｵ繧､繝ｳ繧､繝ｳ">
+              繧ｵ繧､繝ｳ繧､繝ｳ
             </button>
           </SignInButton>
         </SignedOut>
@@ -100,9 +104,10 @@ export default function ShellLayout({
       {useDataBridge ? (
         <LegacyFrame src={iframeSrc} title={iframeTitle} {...iframeProps} />
       ) : (
-        <iframe src={iframeSrc} title={iframeTitle} {...iframeProps} />
+        <SoulBirthGate />
+        <iframe ref={iframeRef} src={iframeSrc} title={iframeTitle} {...iframeProps} />
       )}
-      <nav className={styles.bottomNav} aria-label="ボトムナビ">
+      <nav className={styles.bottomNav} aria-label="繝懊ヨ繝繝翫ン">
         <div className={styles.bottomNavInner}>
           {TABS.map((tab) => {
             const isActive = pathname === tab.href;
