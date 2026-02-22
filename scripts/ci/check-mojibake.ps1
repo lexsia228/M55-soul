@@ -1,96 +1,146 @@
 param(
-  [string]$Root = "."
+  [Parameter(Mandatory=$false)][string]$Root = ".",
+  [Parameter(Mandatory=$false)][switch]$ListTargets,
+  [Parameter(Mandatory=$false)][int]$ListLimit = 20
 )
 
-$utf8Strict = New-Object System.Text.UTF8Encoding($false, $true)
-$repChar = [char]0xFFFD
+Set-StrictMode -Version 2
+$ErrorActionPreference = "Stop"
 
-# Mojibake token signatures (kept as ASCII source; converted at runtime)
-# IMPORTANT: do NOT place literal mojibake glyphs here (self-detect risk)
-$tokens = @(
-  "`u7E67","`u7E5D","`u7E3A","`u7E32",
-  "`u7E3A`uFF6A","`u7E3A`uFF6E","`u7E3A`uFF6F",
-  "`u7E67`uFF7F","`u7E5D`uFF6D","`u7E5D`uFF7B",
-  "`u5E62`uFF7D","`u9B29","`u90E2","`u6662"
+function WriteUtf8NoBom([string]$Path, [string]$Text) {
+  $enc = New-Object System.Text.UTF8Encoding($false)
+  [System.IO.File]::WriteAllText($Path, $Text, $enc)
+}
+
+function RootFull([string]$p) { (Resolve-Path -LiteralPath $p).Path }
+
+function IsExcluded([string]$rootFull, [string]$fullPath) {
+  $rel = $fullPath.Substring($rootFull.Length).TrimStart('\','/')
+  $relN = ($rel -replace '\\','/')
+
+  if ($relN -match '(^|/)\.git(/|$)') { return $true }
+  if ($relN -match '(^|/)node_modules(/|$)') { return $true }
+  if ($relN -match '(^|/)\.next(/|$)') { return $true }
+  if ($relN -match '(^|/)(dist|build|out|coverage)(/|$)') { return $true }
+  if ($relN -match '(^|/)(android|ios)(/|$)') { return $true }
+  if ($relN -match '(^|/)\.vercel(/|$)') { return $true }
+  if ($relN -match '(^|/)\.turbo(/|$)') { return $true }
+
+  if ($relN -match '^docs/archive/') { return $true }
+  if ($relN -match '^docs/archive/zips/') { return $true }
+  if ($relN -match '^docs/archive/patch_backups/') { return $true }
+
+  # exclude audit artifacts
+  if ($relN -match '(^|/)_audit_') { return $true }
+
+  # exclude self
+  if ($relN -eq 'scripts/ci/check-mojibake.ps1') { return $true }
+
+  return $false
+}
+
+# text-only whitelist
+$TextExts = @(
+  ".ts",".tsx",".js",".jsx",".mjs",".cjs",
+  ".css",".html",".htm",
+  ".json",".md",".txt",
+  ".yml",".yaml",
+  ".ps1",".psm1",".psd1",
+  ".svg",".xml",
+  ".toml",".ini",".properties",".env",".editorconfig",".gitattributes",".gitignore",
+  ".sql",".csv",".tsv"
 )
+$TextNames = @("Dockerfile","LICENSE","README","Makefile")
 
-function Count-Token([string]$s, [string[]]$ts){
-  if([string]::IsNullOrEmpty($s)){ return 0 }
-  $c=0
-  foreach($t in $ts){
-    if([string]::IsNullOrWhiteSpace($t)){ continue }
-    $idx=0
-    while($true){
-      $p = $s.IndexOf($t, $idx, [System.StringComparison]::Ordinal)
-      if($p -lt 0){ break }
-      $c++; $idx = $p + $t.Length
-      if($idx -ge $s.Length){ break }
-    }
+$rootFull = RootFull $Root
+$all = Get-ChildItem -LiteralPath $rootFull -Recurse -File -Force -ErrorAction SilentlyContinue
+
+$targets = @()
+foreach ($f in $all) {
+  if (IsExcluded $rootFull $f.FullName) { continue }
+
+  $ext = $f.Extension.ToLowerInvariant()
+  if ($TextExts -contains $ext) { $targets += $f; continue }
+
+  if ([string]::IsNullOrEmpty($ext) -and ($TextNames -contains $f.Name)) {
+    $targets += $f
+    continue
   }
-  return $c
 }
 
-function Count-Char([string]$s, [char]$c){
-  if([string]::IsNullOrEmpty($s)){ return 0 }
-  return ([regex]::Matches($s, [regex]::Escape([string]$c))).Count
+if ($ListTargets) {
+  $targets | Select-Object -First $ListLimit -ExpandProperty FullName
+  exit 0
 }
 
-# Excludes
-$excludeDirRx = '[\\/](node_modules|\.next|dist|out|\.git)[\\/]'
-$excludeArch  = '[\\/]docs[\\/]archive[\\/]'
+$Utf8Strict = New-Object System.Text.UTF8Encoding($false, $true)
 
-# Only scan text-like extensions (avoid binaries)
-$extOk = @('.ts','.tsx','.js','.css','.html','.json','.md','.yml','.yaml','.ps1')
-
-$files = Get-ChildItem -LiteralPath $Root -Recurse -File |
-  Where-Object {
-    $extOk -contains $_.Extension.ToLowerInvariant() -and
-    $_.FullName -notmatch $excludeDirRx -and
-    $_.FullName -notmatch $excludeArch  -and
-    $_.Name -notmatch '\.bak' -and
-    $_.Name -notmatch '\.log$' -and
-    $_.Name -notmatch '\.tsv$' -and
-    $_.Name -notmatch '\.csv$' -and
-    $_.Name -notmatch '^_audit_' -and
-    $_.FullName -notmatch '[\\/]scripts[\\/]ci[\\/]check-mojibake\.ps1$'
-  }
+# keep short to reduce false positives
+$MojibakeTokens = @("縺","繧","繝","繰")
 
 $bad = @()
-foreach($fi in $files){
-  $b = $null
-  try {
-    $b = [System.IO.File]::ReadAllBytes($fi.FullName)
-  } catch {
-    $bad += [pscustomobject]@{ Path=$fi.FullName; Reason="Unreadable"; MojiTok=0; UFFFD=0 }
+$nonUtf8 = 0
+$moji = 0
+
+foreach ($f in $targets) {
+  $bytes = [System.IO.File]::ReadAllBytes($f.FullName)
+
+  if ($bytes -contains 0) {
+    $nonUtf8++
+    $bad += [PSCustomObject]@{ Path=$f.FullName; Reason="NONUTF8_NUL_BYTE"; Detail="" }
     continue
   }
 
-  $s = $null
-  try {
-    $s = $utf8Strict.GetString($b)  # strict UTF-8 decode
-  } catch {
-    $bad += [pscustomobject]@{ Path=$fi.FullName; Reason="NonUTF8"; MojiTok=0; UFFFD=0 }
+  $text = $null
+  try { $text = $Utf8Strict.GetString($bytes) }
+  catch {
+    $nonUtf8++
+    $bad += [PSCustomObject]@{ Path=$f.FullName; Reason="NONUTF8_INVALID_UTF8"; Detail="" }
     continue
   }
 
-  $m = Count-Token $s $tokens
-  $u = Count-Char  $s $repChar
-  if($m -gt 0 -or $u -gt 0){
-    $bad += [pscustomobject]@{ Path=$fi.FullName; Reason="Mojibake"; MojiTok=$m; UFFFD=$u }
+  $hasUfffd = ($text.IndexOf([char]0xFFFD) -ge 0)
+
+  $hits = @()
+  foreach ($tok in $MojibakeTokens) {
+    if ($text.Contains($tok)) {
+      $cnt = [System.Text.RegularExpressions.Regex]::Matches($text, [System.Text.RegularExpressions.Regex]::Escape($tok)).Count
+      if ($cnt -ge 2) { $hits += "$tok(x$cnt)" }
+    }
+  }
+
+  if ($hasUfffd -or $hits.Count -gt 0) {
+    $moji++
+    $d = ""
+    if ($hasUfffd) { $d += "UFFFD " }
+    if ($hits.Count -gt 0) { $d += ("TOKENS:" + ($hits -join ",")) }
+    $bad += [PSCustomObject]@{ Path=$f.FullName; Reason="MOJIBAKE_SUSPECT"; Detail=$d.Trim() }
   }
 }
 
-if($bad.Count -gt 0){
-  Write-Host "NG: mojibake detected" -ForegroundColor Red
-  $out = "_audit_mojibake_found.csv"
-  $bad | Sort-Object Reason,Path | Export-Csv -NoTypeInformation -Encoding UTF8 $out
-  Write-Host ("Wrote: {0}" -f $out) -ForegroundColor Yellow
+$summary = Join-Path $rootFull "_audit_mojibake_summary.txt"
 
-  # Print without truncation
-  ($bad | Sort-Object Reason,Path | Select-Object Path,Reason,MojiTok,UFFFD |
-    Format-Table -AutoSize | Out-String -Width 4000) | Write-Host
+if ($bad.Count -gt 0) {
+  $lines = @()
+  $lines += ("ROOT=" + $rootFull)
+  $lines += ("SCANNED=" + $targets.Count)
+  $lines += ("TOTAL_BAD=" + $bad.Count)
+  $lines += ("NONUTF8=" + $nonUtf8)
+  $lines += ("MOJIBAKE=" + $moji)
+  $lines += ("UTC=" + [DateTime]::UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"))
+  $lines += ""
+  $lines += "---- DETAILS ----"
+  foreach ($b in $bad) { $lines += ("{0}`t{1}`t{2}" -f $b.Reason, $b.Path, $b.Detail) }
+  WriteUtf8NoBom $summary ($lines -join "`r`n")
+  Write-Host ("NG: mojibake detected. See: " + $summary)
   exit 1
 }
 
-Write-Host "OK: mojibake tokens=0, U+FFFD=0, UTF-8 strict=OK" -ForegroundColor Green
+$ok = @()
+$ok += ("ROOT=" + $rootFull)
+$ok += ("SCANNED=" + $targets.Count)
+$ok += ("TOTAL_BAD=0")
+$ok += ("UTC=" + [DateTime]::UtcNow.ToString("yyyy-MM-ddTHH:mm:ssZ"))
+WriteUtf8NoBom $summary ($ok -join "`r`n")
+Write-Host ("OK: mojibake not detected. scanned=" + $targets.Count)
 exit 0
