@@ -75,9 +75,6 @@ if ($ListTargets) {
 
 $Utf8Strict = New-Object System.Text.UTF8Encoding($false, $true)
 
-# keep short to reduce false positives
-$MojibakeTokens = @("縺","繧","繝","繰")
-
 $bad = @()
 $nonUtf8 = 0
 $moji = 0
@@ -85,6 +82,7 @@ $moji = 0
 foreach ($f in $targets) {
   $bytes = [System.IO.File]::ReadAllBytes($f.FullName)
 
+  # NUL => treat as non-text
   if ($bytes -contains 0) {
     $nonUtf8++
     $bad += [PSCustomObject]@{ Path=$f.FullName; Reason="NONUTF8_NUL_BYTE"; Detail="" }
@@ -99,22 +97,10 @@ foreach ($f in $targets) {
     continue
   }
 
-  $hasUfffd = ($text.IndexOf([char]0xFFFD) -ge 0)
-
-  $hits = @()
-  foreach ($tok in $MojibakeTokens) {
-    if ($text.Contains($tok)) {
-      $cnt = [System.Text.RegularExpressions.Regex]::Matches($text, [System.Text.RegularExpressions.Regex]::Escape($tok)).Count
-      if ($cnt -ge 2) { $hits += "$tok(x$cnt)" }
-    }
-  }
-
-  if ($hasUfffd -or $hits.Count -gt 0) {
+  # mojibake signal: U+FFFD replacement char
+  if ($text.IndexOf([char]0xFFFD) -ge 0) {
     $moji++
-    $d = ""
-    if ($hasUfffd) { $d += "UFFFD " }
-    if ($hits.Count -gt 0) { $d += ("TOKENS:" + ($hits -join ",")) }
-    $bad += [PSCustomObject]@{ Path=$f.FullName; Reason="MOJIBAKE_SUSPECT"; Detail=$d.Trim() }
+    $bad += [PSCustomObject]@{ Path=$f.FullName; Reason="MOJIBAKE_UFFFD"; Detail="UFFFD" }
   }
 }
 
