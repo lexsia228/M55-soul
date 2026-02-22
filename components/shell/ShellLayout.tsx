@@ -12,7 +12,7 @@ type TabId = '/home' | '/tarot' | '/ai-chat' | '/dtr' | '/my';
 const TABS: { href: TabId; label: string; svg: React.ReactNode }[] = [
   {
     href: '/home',
-    label: '繝帙・繝',
+    label: '\u30db\u30fc\u30e0',
     svg: (
       <svg className={styles.navIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
         <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
@@ -22,7 +22,7 @@ const TABS: { href: TabId; label: string; svg: React.ReactNode }[] = [
   },
   {
     href: '/tarot',
-    label: '繧ｿ繝ｭ繝・ヨ',
+    label: '\u30bf\u30ed\u30c3\u30c8',
     svg: (
       <svg className={styles.navIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
         <rect x="5" y="3" width="14" height="18" rx="2" ry="2" />
@@ -34,7 +34,7 @@ const TABS: { href: TabId; label: string; svg: React.ReactNode }[] = [
   },
   {
     href: '/ai-chat',
-    label: 'AI繝√Ε繝・ヨ',
+    label: 'AI\u30c1\u30e3\u30c3\u30c8',
     svg: (
       <svg className={styles.navIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -43,7 +43,7 @@ const TABS: { href: TabId; label: string; svg: React.ReactNode }[] = [
   },
   {
     href: '/dtr',
-    label: '髑大ｮ・,
+    label: '\u30d7\u30ec\u30df\u30a2\u30e0\u9451\u5b9a',
     svg: (
       <svg className={styles.navIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -55,7 +55,7 @@ const TABS: { href: TabId; label: string; svg: React.ReactNode }[] = [
   },
   {
     href: '/my',
-    label: '繝槭う繝壹・繧ｸ',
+    label: '\u30de\u30a4\u30da\u30fc\u30b8',
     svg: (
       <svg className={styles.navIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -85,13 +85,12 @@ export default function ShellLayout({
 
   const iframeRef = useSoulBridge();
 
-  return 
+  return (
     <div className={styles.wrapper}>
-      <header className={styles.header} aria-label="繧ｷ繧ｧ繝ｫ繝倥ャ繝繝ｼ">
+      <header className={styles.header} aria-label="上部バー">
         <SignedOut>
           <SignInButton mode="redirect">
-            <button type="button" className={styles.authButton} aria-label="繧ｵ繧､繝ｳ繧､繝ｳ">
-              繧ｵ繧､繝ｳ繧､繝ｳ
+            <button type="button" className={styles.authButton} aria-label="ログイン">
             </button>
           </SignInButton>
         </SignedOut>
@@ -101,13 +100,17 @@ export default function ShellLayout({
           </span>
         </SignedIn>
       </header>
-      {useDataBridge ? (
+            <main className={styles.main}>
+{useDataBridge ? (
         <LegacyFrame src={iframeSrc} title={iframeTitle} {...iframeProps} />
       ) : (
-        <SoulBirthGate />
-        <iframe ref={iframeRef} src={iframeSrc} title={iframeTitle} {...iframeProps} />
+        <>
+          <SoulBirthGate />
+          <iframe ref={iframeRef} src={iframeSrc} title={iframeTitle} {...iframeProps} />
+        </>
       )}
-      <nav className={styles.bottomNav} aria-label="繝懊ヨ繝繝翫ン">
+            </main>
+<nav className={styles.bottomNav} aria-label="下部ナビゲーション">
         <div className={styles.bottomNavInner}>
           {TABS.map((tab) => {
             const isActive = pathname === tab.href;
