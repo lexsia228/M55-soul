@@ -34,3 +34,5 @@ _audit_*.txt
 # patch backup dirs
 docs/archive/patch_backups/
 docs/archive/patch_baks/
+
+_audit_*.csv
