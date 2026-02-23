@@ -3,9 +3,8 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>M55 HOME (iframe / BottomNav 縺ｪ縺・</title>
+  <title>M55 HOME (iframe / BottomNav なし)</title>
   <link rel="stylesheet" href="m55_home_shell.css"/>
-    <script src="/legacy/js/m55_soul_binder.js"></script>
 </head>
 <body>
   <div class="app-shell">
@@ -20,21 +19,21 @@
 
     <main class="home-main">
       <div class="top-tabs">
-        <div class="top-tab">譛ｬ雉ｪ</div>
-        <div class="top-tab">逶ｸ諤ｧ</div>
-        <div class="top-tab active">莉頑律</div>
-        <div class="top-tab">騾ｱ髢・/div>
-        <div class="top-tab">AI繧ｫ繝ｬ繝ｳ繝繝ｼ</div>
+        <div class="top-tab">本質</div>
+        <div class="top-tab">相性</div>
+        <div class="top-tab active">今日</div>
+        <div class="top-tab">週間</div>
+        <div class="top-tab">AIカレンダー</div>
       </div>
 
-      <!-- AI隕ｳ貂ｬ繝｡繝ｼ繧ｿ繝ｼ -->
+      <!-- AI観測メーター -->
       <section class="card card-hero meter-card">
         <div class="card-header">
           <div>
-            <div class="section-label">AI隕ｳ貂ｬ</div>
+            <div class="section-label">AI観測</div>
             <div class="card-title"></div>
           </div>
-          <div class="pill">隕ｳ貂ｬ荳ｭ</div>
+          <div class="pill">観測中</div>
         </div>
         <div class="te-slot">
           <div class="dots">
@@ -43,250 +42,250 @@
             <div class="dot"></div>
           </div>
         </div>
-        <div class="meter-bar" role="img" aria-label="AI隕ｳ貂ｬ繝｡繝ｼ繧ｿ繝ｼ">
+        <div class="meter-bar" role="img" aria-label="AI観測メーター">
           <div class="meter-breath-layer"></div>
         </div>
         <div class="meter-days-display">
           <span id="meter-days-count">--</span> Days Recorded
         </div>
         <div class="meter-values" data-visual="hidden">
-          <span class="meter-chip">遏ｭ譛滂ｼ夊ご縺｡</span>
-          <span class="meter-chip">髟ｷ譛滂ｼ壽ｷｱ縺ｾ繧・/span>
+          <span class="meter-chip">短期：育ち</span>
+          <span class="meter-chip">長期：深まり</span>
         </div>
         <div class="meter-labels" data-visual="hidden">
-          <span>闃ｽ蜷ｹ縺・竊・閧ｲ縺｡ 竊・貔・∩</span>
-          <span>遨阪ｂ繧・竊・豺ｱ縺ｾ繧・竊・邨先匕</span>
+          <span>芽吹き → 育ち → 澄み</span>
+          <span>積もり → 深まり → 結晶</span>
         </div>
       </section>
 
-      <!-- 莉頑律縺ｮ豕｢ -->
+      <!-- 今日の波 -->
       <section class="card card-hero">
         <div class="card-header">
           <div>
             <div class="section-label">TODAY</div>
-            <div class="card-title">莉頑律縺ｮ豕｢</div>
+            <div class="card-title">今日の波</div>
           </div>
-          <div class="card-sub">譛ｬ譌･縺ｮ蠢・・繧ｳ繝ｳ繝・ぅ繧ｷ繝ｧ繝ｳ</div>
+          <div class="card-sub">本日の心のコンディション</div>
         </div>
         <div class="today-card-main-text">
-          莉頑律縺ｯ縲√＞縺､繧ゅｈ繧雁ｰ代＠縺縺大ｿ・′縺ｲ繧峨″繧・☆縺・ｵ√ｌ縺ｧ縺吶・br/>
-          閾ｪ蛻・・繝壹・繧ｹ繧貞､ｧ蛻・↓縺励↑縺後ｉ縲∝ｰ上＆縺ｪ荳豁ｩ繧偵≠縺偵※縺上□縺輔＞縲・
+          今日は、いつもより少しだけ心がひらきやすい流れです。<br/>
+          自分のペースを大切にしながら、小さな一歩をあげてください。
         </div>
         <div class="today-footer">
-          <span class="card-sub">繝・う繝ｪ繝ｼ隧ｳ邏ｰ縺ｯ縲御ｻ頑律縲阪ち繝悶°繧・/span>
-          <span class="link-soft">莉頑律縺ｮ縺上ｏ縺励＞隱ｭ縺ｿ縺ｸ</span>
+          <span class="card-sub">デイリー詳細は「今日」タブから</span>
+          <span class="link-soft">今日のくわしい読みへ</span>
         </div>
       </section>
 
-      <!-- DTR 螻･豁ｴ -->
+      <!-- DTR 履歴 -->
       <section class="card card-shelf dtr-history">
         <div class="shelf-header">
           <div>
             <div class="section-label">HISTORY</div>
-            <div class="card-title">DTR 螻･豁ｴ</div>
+            <div class="card-title">DTR 履歴</div>
           </div>
         </div>
         <div class="shelf-row">
           <article class="dtr-card">
             <div class="dtr-image-accent"></div>
-            <div class="dtr-title">10/12 縺ｮ險倬鹸</div>
-            <div class="dtr-caption">譛ｬ譌･蛻・・隕ｳ貂ｬ</div>
+            <div class="dtr-title">10/12 の記録</div>
+            <div class="dtr-caption">本日分の観測</div>
           </article>
           <article class="dtr-card">
             <div class="dtr-image-accent"></div>
-            <div class="dtr-title">10/11 縺ｮ荳区嶌縺・/div>
-            <div class="dtr-caption">蜑肴律蛻・/div>
+            <div class="dtr-title">10/11 の下書き</div>
+            <div class="dtr-caption">前日分</div>
           </article>
           <article class="dtr-card">
             <div class="dtr-image-accent"></div>
-            <div class="dtr-title">10/10 縺ｮ險ｭ險医Γ繝｢</div>
-            <div class="dtr-caption">險ｭ險医Γ繝｢菫晏ｭ・/div>
+            <div class="dtr-title">10/10 の設計メモ</div>
+            <div class="dtr-caption">設計メモ保存</div>
           </article>
           <article class="dtr-card">
             <div class="dtr-image-accent"></div>
-            <div class="dtr-title">10/9 縺ｮ險倬鹸</div>
-            <div class="dtr-caption">險倬鹸</div>
+            <div class="dtr-title">10/9 の記録</div>
+            <div class="dtr-caption">記録</div>
           </article>
           <article class="dtr-card">
             <div class="dtr-image-accent"></div>
-            <div class="dtr-title">10/8 縺ｮ荳区嶌縺・/div>
-            <div class="dtr-caption">荳区嶌縺・/div>
+            <div class="dtr-title">10/8 の下書き</div>
+            <div class="dtr-caption">下書き</div>
           </article>
           <article class="dtr-card">
             <div class="dtr-image-accent"></div>
-            <div class="dtr-title">10/7 縺ｮ險ｭ險医Γ繝｢</div>
-            <div class="dtr-caption">險ｭ險医Γ繝｢</div>
+            <div class="dtr-title">10/7 の設計メモ</div>
+            <div class="dtr-caption">設計メモ</div>
           </article>
           <article class="dtr-card">
             <div class="dtr-image-accent"></div>
-            <div class="dtr-title">10/6 縺ｮ險倬鹸</div>
-            <div class="dtr-caption">險倬鹸</div>
+            <div class="dtr-title">10/6 の記録</div>
+            <div class="dtr-caption">記録</div>
           </article>
           <article class="dtr-card">
             <div class="dtr-image-accent"></div>
-            <div class="dtr-title">10/5 縺ｮ繝｡繝｢</div>
-            <div class="dtr-caption">繝｡繝｢</div>
+            <div class="dtr-title">10/5 のメモ</div>
+            <div class="dtr-caption">メモ</div>
           </article>
           <article class="dtr-card">
             <div class="dtr-image-accent"></div>
-            <div class="dtr-title">10/4 縺ｮ險倬鹸</div>
-            <div class="dtr-caption">險倬鹸</div>
+            <div class="dtr-title">10/4 の記録</div>
+            <div class="dtr-caption">記録</div>
           </article>
           <article class="dtr-card">
             <div class="dtr-image-accent"></div>
-            <div class="dtr-title">10/3 縺ｮ荳区嶌縺・/div>
-            <div class="dtr-caption">荳区嶌縺・/div>
+            <div class="dtr-title">10/3 の下書き</div>
+            <div class="dtr-caption">下書き</div>
           </article>
         </div>
       </section>
 
-      <!-- 豈取律縺ｮ繝溘ル隱ｭ縺ｿ -->
+      <!-- 毎日のミニ読み -->
       <section class="card">
         <div class="card-header">
           <div>
             <div class="section-label">DAILY MINI</div>
-            <div class="card-title">豈取律縺ｮ繝溘ル隱ｭ縺ｿ</div>
+            <div class="card-title">毎日のミニ読み</div>
           </div>
         </div>
         <div class="mini-lines">
-          莉頑律縺ｯ縲梧ｰ玲戟縺｡繧定ｨ闡峨↓縺励※縺ｿ繧九阪′繝・・繝槭・譌･縺ｧ縺吶・br/>
-          豺ｱ蜻ｼ蜷ｸ繧偵・縺ｨ縺､縺翫＞縺ｦ縺九ｉ縲√ｆ縺｣縺上ｊ縺ｨ莨昴∴縺ｦ縺ｿ縺ｦ縺上□縺輔＞縲・
+          今日は「気持ちを言葉にしてみる」がテーマの日です。<br/>
+          深呼吸をひとつおいてから、ゆっくりと伝えてみてください。
         </div>
         <div class="mini-blur-block"></div>
       </section>
 
-      <!-- 莉頑怦縺ｮAI繧ｫ繝ｬ繝ｳ繝繝ｼ隕∫ｴ・-->
+      <!-- 今月のAIカレンダー要約 -->
       <section class="card">
         <div class="card-header">
           <div>
             <div class="section-label">AI CALENDAR</div>
-            <div class="card-title">莉頑怦縺ｮAI繧ｫ繝ｬ繝ｳ繝繝ｼ</div>
+            <div class="card-title">今月のAIカレンダー</div>
           </div>
-          <div class="card-sub">譛ｬ譌･・・0譛・2譌･</div>
+          <div class="card-sub">本日：10月12日</div>
         </div>
         <div class="calendar-row">
           <div class="calendar-pill">
-            <span class="calendar-icon">笘・・/span>
-            <span>22譌･・壼ｿ・→陦悟虚縺後◎繧阪＞繧・☆縺・律</span>
+            <span class="calendar-icon">☀️</span>
+            <span>22日：心と行動がそろいやすい日</span>
           </div>
           <div class="calendar-pill">
-            <span class="calendar-icon">猪</span>
-            <span>12譌･・壽ｰ玲戟縺｡縺碁壹＞繧・☆縺・律</span>
+            <span class="calendar-icon">💖</span>
+            <span>12日：気持ちが通いやすい日</span>
           </div>
           <div class="calendar-pill">
-            <span class="calendar-icon">腸</span>
-            <span>27譌･・壼ｾｪ迺ｰ縺後せ繝繝ｼ繧ｺ縺ｫ縺ｪ繧翫ｄ縺吶＞譌･</span>
+            <span class="calendar-icon">💰</span>
+            <span>27日：循環がスムーズになりやすい日</span>
           </div>
           <div class="calendar-pill">
-            <span class="calendar-icon">硯</span>
-            <span>5譌･・壽ｷｱ蜻ｼ蜷ｸ縺ｫ蜷代＞縺ｦ縺・ｋ譌･</span>
+            <span class="calendar-icon">🌥</span>
+            <span>5日：深呼吸に向いている日</span>
           </div>
         </div>
-        <div class="calendar-note">縺上ｏ縺励＞繧ｫ繝ｬ繝ｳ繝繝ｼ縺ｨ寵縺ｵ縺溘ｊ縺ｮ驥阪↑繧頑律縺ｯ縲窟I繧ｫ繝ｬ繝ｳ繝繝ｼ縲阪ち繝悶°繧峨・/div>
+        <div class="calendar-note">くわしいカレンダーと💞ふたりの重なり日は「AIカレンダー」タブから。</div>
       </section>
 
-      <!-- 騾ｱ髢薙き繝ｼ繝・-->
+      <!-- 週間カード -->
       <section class="weekly-card">
         <div class="weekly-glass-top"></div>
         <div class="weekly-breath-layer"></div>
         <div class="weekly-content">
           <div class="section-label">WEEKLY</div>
-          <div class="weekly-key">莉企ｱ縺ｯ縲√梧紛縺医↑縺後ｉ騾ｲ繧縲阪ち繧､繝溘Φ繧ｰ縺ｧ縺吶・/div>
+          <div class="weekly-key">今週は、「整えながら進む」タイミングです。</div>
           <div class="weekly-lines">
-            蠢・ｼ夊・蛻・・繝壹・繧ｹ繧貞ｮ医ｋ縺ｨ縲∝ｮ牙ｿ・─縺梧綾繧翫ｄ縺吶＞騾ｱ縲・br/>
-            諱区・・壻ｸ險縺昴∴繧九□縺代〒縲∬ｷ晞屬縺後ｄ縺輔＠縺冗ｸｮ縺ｾ繧翫◎縺・〒縺吶・br/>
-            縺企≡・壼ｰ上＆縺ｪ謨ｴ逅・′縲∵ｬ｡縺ｮ豬√ｌ縺ｮ貅門ｙ縺ｫ縺ｪ縺｣縺ｦ縺・″縺ｾ縺吶・
+            心：自分のペースを守ると、安心感が戻りやすい週。<br/>
+            恋愛：一言そえるだけで、距離がやさしく縮まりそうです。<br/>
+            お金：小さな整理が、次の流れの準備になっていきます。
           </div>
-          <div class="weekly-cta">騾ｱ髢薙・繝ｼ繧ｸ縺ｧ縲∽ｻ企ｱ縺ｮ迚ｩ隱槭ｒ髱吶°縺ｫ隱ｭ繧</div>
+          <div class="weekly-cta">週間ページで、今週の物語を静かに読む</div>
         </div>
       </section>
 
-      <!-- Prime DTR繝ｩ繝ｳ繧ｭ繝ｳ繧ｰ -->
+      <!-- Prime DTRランキング -->
       <section class="card card-hero">
         <div class="prime-header-row">
           <div>
             <div class="section-label">PRIME</div>
             <div class="card-title">Premium DTR</div>
           </div>
-          <div class="card-sub">AI縺碁撕縺九↓譖ｴ譁ｰ</div>
+          <div class="card-sub">AIが静かに更新</div>
         </div>
         <div class="prime-tabs">
-          <div class="prime-tab active">邱丞粋</div>
-          <div class="prime-tab">蜃ｺ莨壹＞</div>
-          <div class="prime-tab">迚・昴＞</div>
-          <div class="prime-tab">莠ｺ逕・/div>
-          <div class="prime-tab">蠕ｩ邵・/div>
-          <div class="prime-tab">荳榊ｫ</div>
+          <div class="prime-tab active">総合</div>
+          <div class="prime-tab">出会い</div>
+          <div class="prime-tab">片思い</div>
+          <div class="prime-tab">人生</div>
+          <div class="prime-tab">復縁</div>
+          <div class="prime-tab">不倫</div>
         </div>
         <div class="prime-list">
           <div class="prime-item">
             <div class="prime-rank">1</div>
             <div class="prime-thumb"></div>
             <div class="prime-texts">
-              <div class="prime-title">縺薙・1蟷ｴ縺ｮ縲悟ｿ・・闊ｪ霍｡縲咲ｷ上∪縺ｨ繧・/div>
-              <div class="prime-tagline">豌励▼縺九↑縺九▲縺溷､牙喧繧偵・撕縺九↓險闡峨↓縺励∪縺吶・/div>
+              <div class="prime-title">この1年の「心の航跡」総まとめ</div>
+              <div class="prime-tagline">気づかなかった変化を、静かに言葉にします。</div>
             </div>
           </div>
           <div class="prime-item">
             <div class="prime-rank">2</div>
             <div class="prime-thumb"></div>
             <div class="prime-texts">
-              <div class="prime-title">縺ゅ・莠ｺ縺ｨ縺ｮ霍晞屬縺瑚ｿ代▼縺上→縺・/div>
-              <div class="prime-tagline">莠御ｺｺ縺ｮ蜻ｼ蜷ｸ縺ｮ驥阪↑繧頑婿縺縺代↓繝輔か繝ｼ繧ｫ繧ｹ縺励◆荳蜀翫・/div>
+              <div class="prime-title">あの人との距離が近づくとき</div>
+              <div class="prime-tagline">二人の呼吸の重なり方だけにフォーカスした一冊。</div>
             </div>
           </div>
           <div class="prime-item">
             <div class="prime-rank">3</div>
             <div class="prime-thumb"></div>
             <div class="prime-texts">
-              <div class="prime-title">莉穂ｺ九→蠢・・繝舌Λ繝ｳ繧ｹ繝弱・繝・/div>
-              <div class="prime-tagline">鬆大ｼｵ繧頑婿繧偵∝ｰ代＠縺縺第沐繧峨°縺乗紛縺医ｋ縺溘ａ縺ｫ縲・/div>
+              <div class="prime-title">仕事と心のバランスノート</div>
+              <div class="prime-tagline">頑張り方を、少しだけ柔らかく整えるために。</div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 縲・・＆繧薙↓縺翫☆縺吶ａ -->
+      <!-- 〇〇さんにおすすめ -->
       <section class="card card-shelf">
         <div class="card-header">
           <div>
             <div class="section-label">FOR YOU</div>
-            <div class="card-title">縲・・＆繧薙↓縺翫☆縺吶ａ</div>
+            <div class="card-title">〇〇さんにおすすめ</div>
           </div>
         </div>
         <div class="picks-row">
           <article class="pick-card">
-            <div class="pick-tag">譛霑代・蠢・Ο繧ｰ縺九ｉ</div>
-            <div class="pick-title">縲檎夢繧後′貅懊∪繧句燕縲阪↓豌励▼縺上◆繧√・荳蜀・/div>
-            <div class="pick-caption">縺薙％謨ｰ譌･縺ｮAI繝√Ε繝・ヨ縺ｨ繧ｫ繝ｬ繝ｳ繝繝ｼ縺九ｉ縲∝ｿ・・繧ｯ繧ｻ繧偵◎縺｣縺ｨ縺ｾ縺ｨ繧√∪縺励◆縲・/div>
+            <div class="pick-tag">最近の心ログから</div>
+            <div class="pick-title">「疲れが溜まる前」に気づくための一冊</div>
+            <div class="pick-caption">ここ数日のAIチャットとカレンダーから、心のクセをそっとまとめました。</div>
           </article>
           <article class="pick-card">
-            <div class="pick-tag">繧医￥逋ｻ蝣ｴ縺吶ｋ縺ゅ・莠ｺ</div>
-            <div class="pick-title">莠御ｺｺ縺ｮ霍晞屬縺後⊇縺ｩ縺代ｋ繧ｿ繧､繝溘Φ繧ｰ</div>
-            <div class="pick-caption">繝｡繝・そ繝ｼ繧ｸ繧・ｿ・・蜍輔″縺ｮ驥阪↑繧頑婿縺九ｉ縲∽ｻ翫・蜻ｼ蜷ｸ繧帝撕縺九↓隕ｳ貂ｬ縺励※縺・∪縺吶・/div>
+            <div class="pick-tag">よく登場するあの人</div>
+            <div class="pick-title">二人の距離がほどけるタイミング</div>
+            <div class="pick-caption">メッセージや心の動きの重なり方から、今の呼吸を静かに観測しています。</div>
           </article>
         </div>
       </section>
 
-      <!-- 蛻晏ｿ・・髄縺第｣・-->
+      <!-- 初心者向け棚 -->
       <section class="card card-shelf">
         <div class="card-header">
           <div>
             <div class="section-label">BEGINNER</div>
-            <div class="card-title">縺ｯ縺倥ａ縺ｦ縺ｮ譁ｹ縺ｫ</div>
+            <div class="card-title">はじめての方に</div>
           </div>
-          <div class="card-sub">菴惹ｾ｡譬ｼ縺ｮ菴馴ｨ泥TR</div>
+          <div class="card-sub">低価格の体験DTR</div>
         </div>
         <div class="shelf-row">
           <article class="dtr-card">
             <div class="dtr-image-accent"></div>
-            <div class="dtr-title">縺ｾ縺壹・縲梧悽雉ｪ縲阪°繧・/div>
-            <div class="dtr-caption">縺ゅ↑縺溘・髱咏噪縺ｪ險ｭ險亥峙縺縺代ｒ縲√℃繧・▲縺ｨ縺ｾ縺ｨ繧√◆蜈･髢繝ｬ繝昴・繝医・/div>
+            <div class="dtr-title">まずは「本質」から</div>
+            <div class="dtr-caption">あなたの静的な設計図だけを、ぎゅっとまとめた入門レポート。</div>
           </article>
           <article class="dtr-card">
             <div class="dtr-image-accent"></div>
-            <div class="dtr-title">1蟷ｴ蠕後・縺ゅ↑縺・/div>
-            <div class="dtr-caption">莉翫・蠢・Ο繧ｰ繧偵ｂ縺ｨ縺ｫ縲・蟷ｴ蠕後・繝・・繝槭ｒ繧・＆縺励￥蜈亥叙繧翫＠縺ｾ縺吶・/div>
+            <div class="dtr-title">1年後のあなた</div>
+            <div class="dtr-caption">今の心ログをもとに、1年後のテーマをやさしく先取りします。</div>
           </article>
         </div>
       </section>
