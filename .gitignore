@@ -38,4 +38,20 @@ _unjibake_*
 
 # ---- platform ----
 .DS_Store
-Thumbs.db
+Thumbs.db# === local secrets ===
+# === next build outputs ===
+# === deps ===
+# === generated native wrappers (do not commit in Phase6) ===
+android/
+ios/
+fastlane/
+# === local patch backups / audits ===
+docs/archive/patch_baks/
+_audit_*.tsv
+_audit_*.csv
+_audit_*.txt
+_moji_*.log
+_mojibake_*.log
+_patch_*.log
+_repair_*.log
+_unjibake*.log
