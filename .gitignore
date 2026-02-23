@@ -1,38 +1,4 @@
-node_modules
-.next
-out
-.DS_Store
-android
-ios
-
-# Archive Zips (Local Only - avoid GitHub 100MB limit)
-docs/archive/zips/**/*.zip
-docs/archive/zips/**/*.ZIP
-docs/archive/zips/**/*.7z
-docs/archive/zips/**/*.rar
-
-.env.local
-
-*.tsbuildinfo
-# --- Local patch artifacts (never commit) ---
-**/*.bak
-**/*.bak_*
-**/*.bak.*
-_*.log
-_audit_*.tsv
-_audit_*.txt
-docs/archive/patch_backups/
-docs/archive/patch_baks/
-# --- Local patch artifacts (never commit) ---
-**/*.bak
-**/*.bak_*
-**/*.bak.*
-_*.log
-_audit_*.tsv
-_audit_*.txt
-
-# patch backup dirs
-docs/archive/patch_backups/
-docs/archive/patch_baks/
-
-_audit_*.csv
+# Local backup artifacts
+*.bak
+*.wip.bak
+*.wip

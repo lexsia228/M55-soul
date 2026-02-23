@@ -1,14 +1,20 @@
 import { readFileSync } from "node:fs";
 import { execSync } from "node:child_process";
 
+// Mojibake signatures + replacement char + C1 controls
 const BAD = /[\uFFFD\u0080-\u009F]|縺|繧|繝|縲|邵ｺ|隴鯉ｽ|驕擾ｽ/g;
 
 function listFiles() {
-  const out = execSync(
-    'git ls-files "public/legacy/*.html" "public/legacy/docs/**/*.html"',
-    { encoding: "utf8" }
-  ).trim();
-  return out ? out.split(/\r?\n/).filter(Boolean) : [];
+  // List tracked files under public/legacy (robust: includes nested dirs)
+  const out = execSync('git ls-files "public/legacy"', { encoding: "utf8" }).trim();
+  if (!out) return [];
+  return out
+    .split(/\r?\n/)
+    .filter(Boolean)
+    .filter((p) => {
+      const x = p.toLowerCase();
+      return x.endsWith(".html") || x.endsWith(".htm");
+    });
 }
 
 function decodeUtf8Strict(bytes) {
@@ -17,7 +23,7 @@ function decodeUtf8Strict(bytes) {
 }
 
 function hasBom(bytes) {
-  return bytes.length >= 3 && bytes[0] === 0xEF && bytes[1] === 0xBB && bytes[2] === 0xBF;
+  return bytes.length >= 3 && bytes[0] === 0xef && bytes[1] === 0xbb && bytes[2] === 0xbf;
 }
 
 const files = listFiles();
