@@ -2,3 +2,40 @@
 *.bak
 *.wip.bak
 *.wip
+
+# ---- dependencies / build ----
+node_modules/
+.next/
+out/
+dist/
+coverage/
+tsconfig.tsbuildinfo
+
+# ---- env (NEVER COMMIT) ----
+.env.local
+.env.*.local
+
+# ---- logs / audits / temp ----
+*.log
+*.tsv
+*.csv
+*.txt
+
+# ---- our generated audit artifacts (prefix) ----
+_audit_*
+_moji_*
+_mojibake_*
+_patch_*
+_repair_*
+_ufd_*
+_unjibake_*
+
+# ---- backups ----
+*.bak
+*.bak_*
+*.wip.bak
+*.bak_*.bak_*
+
+# ---- platform ----
+.DS_Store
+Thumbs.db
