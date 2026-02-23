@@ -1,17 +1,17 @@
 import { readFileSync } from "node:fs";
 import { execSync } from "node:child_process";
 
-const PATTERN = /[\uFFFD\u0080-\u009F]|縺|繧|繝|縲|邵ｺ|隴鯉ｽ|驕擾ｽ/g;
+const BAD = /[\uFFFD\u0080-\u009F]|縺|繧|繝|縲|邵ｺ|隴鯉ｽ|驕擾ｽ/g;
 
 function listFiles() {
-  // tracked files only (prevents scanning node_modules etc.)
-  const out = execSync('git ls-files "public/legacy/*.html" "public/legacy/docs/**/*.html"', { encoding: "utf8" }).trim();
-  if (!out) return [];
-  return out.split(/\r?\n/).filter(Boolean);
+  const out = execSync(
+    'git ls-files "public/legacy/*.html" "public/legacy/docs/**/*.html"',
+    { encoding: "utf8" }
+  ).trim();
+  return out ? out.split(/\r?\n/).filter(Boolean) : [];
 }
 
 function decodeUtf8Strict(bytes) {
-  // Fatal UTF-8 decode: invalid bytes => throw
   const td = new TextDecoder("utf-8", { fatal: true });
   return td.decode(bytes);
 }
@@ -21,35 +21,35 @@ function hasBom(bytes) {
 }
 
 const files = listFiles();
-let bad = 0;
+let badCount = 0;
 
 for (const f of files) {
   const bytes = readFileSync(f);
 
   if (hasBom(bytes)) {
     console.error(`BOM DETECTED: ${f}`);
-    bad++;
+    badCount++;
     continue;
   }
 
   let text = "";
   try {
     text = decodeUtf8Strict(bytes);
-  } catch (e) {
+  } catch {
     console.error(`INVALID UTF-8: ${f}`);
-    bad++;
+    badCount++;
     continue;
   }
 
-  const m = text.match(PATTERN);
+  const m = text.match(BAD);
   if (m && m.length) {
-    console.error(`MOJIBAKE SIGNATURE: ${f}  hits=${m.length}`);
-    bad++;
+    console.error(`MOJIBAKE SIGNATURE: ${f} hits=${m.length}`);
+    badCount++;
   }
 }
 
-if (bad) {
-  console.error(`\nFAILED: encoding_guard found ${bad} bad file(s).`);
+if (badCount) {
+  console.error(`\nFAILED: encoding_guard found ${badCount} bad file(s).`);
   process.exit(1);
 } else {
   console.log("OK: encoding_guard passed.");
