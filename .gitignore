@@ -55,3 +55,35 @@ _mojibake_*.log
 _patch_*.log
 _repair_*.log
 _unjibake*.log
+# Local secrets
+.env.local
+
+# Tool outputs / audit logs (repo root)
+_audit_*.tsv
+_audit_*.csv
+_audit_*.txt
+_moji_*.log
+_mojibake_*.log
+_patch_*.log
+_repair_*.log
+_ufd_*.log
+_unjibake*.log
+
+# Backups created by scripts/editors
+*.wip.bak
+*.bak
+*.bak_*
+*.tsbuildinfo
+
+# Build outputs
+.next/
+out/
+node_modules/
+
+# Platform build dirs (if not tracked)
+android/
+ios/
+fastlane/
+
+# Patch backups archive (local-only)
+docs/archive/patch_baks/
