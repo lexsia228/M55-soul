@@ -87,3 +87,6 @@ fastlane/
 
 # Patch backups archive (local-only)
 docs/archive/patch_baks/
+
+# clerk configuration (can include secrets)
+/.clerk/
