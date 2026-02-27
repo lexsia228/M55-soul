@@ -36,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/legal/tokushoho" style={{ textDecoration: 'underline', color: 'inherit' }}>特定商取引法</a>
               <a href="/legal/terms" style={{ textDecoration: 'underline', color: 'inherit' }}>利用規約</a>
               <a href="/legal/privacy" style={{ textDecoration: 'underline', color: 'inherit' }}>プライバシーポリシー</a>
+              <a href="/legal/refund" style={{ textDecoration: 'underline', color: 'inherit' }}>返金・キャンセル</a>
               <a href="/support" style={{ textDecoration: 'underline', color: 'inherit' }}>サポート</a>
               <span>© 2026 M55 Project</span>
             </div>

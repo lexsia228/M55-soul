@@ -115,6 +115,7 @@ export default function ShellLayout({
         <Link href="/legal/tokushoho">特定商取引法</Link>
         <Link href="/legal/terms">利用規約</Link>
         <Link href="/legal/privacy">プライバシー</Link>
+        <Link href="/legal/refund">返金・キャンセル</Link>
         <Link href="/support">サポート</Link>
       </div>
 <nav className={styles.bottomNav} aria-label="下部ナビゲーション">
