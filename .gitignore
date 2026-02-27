@@ -90,3 +90,8 @@ docs/archive/patch_baks/
 
 # clerk configuration (can include secrets)
 /.clerk/
+
+# local backups
+*.bundle
+projectA_backup_*
+
