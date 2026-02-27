@@ -69,6 +69,22 @@
   display: block;
 }
 
+.legalLinks {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding: 6px 10px;
+  font-size: 10px;
+  opacity: 0.72;
+}
+
+.legalLinks a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 .bottomNav {
   position: relative;
   margin: 0 auto;

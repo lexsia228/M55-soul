@@ -5,7 +5,7 @@
  */
 const nextConfig = {
  // output: 'export',
-  trailingSlash: true,
+  trailingSlash: false, // /legal/privacy 等の直アクセスを確実に。true だと /privacy/ へのリダイレクトで一部環境で 404 の報告あり
   reactStrictMode: true,
   images: { unoptimized: true }
 };

@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "guard:clerk": "node .github/scripts/guard_clerk_await.mjs",
     "dev": "node scripts/audit_gate.mjs --fast && next dev",
     "audit": "node scripts/audit_gate.mjs",
     "build": "next build",
@@ -26,7 +27,8 @@
     "@supabase/supabase-js": "^2.97.0",
     "next": "^15.1.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "stripe": "^20.4.0"
   },
   "devDependencies": {
     "@capacitor/android": "^6.0.0",

@@ -1,6 +1,11 @@
-import { clerkMiddleware } from '@clerk/nextjs/server';
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
-export default clerkMiddleware();
+/** /legal/* と /support は常に公開（ログイン不要・Stripe 審査必須） */
+const isPublicRoute = createRouteMatcher(['/legal(.*)', '/support']);
+
+export default clerkMiddleware(async (auth, req) => {
+  if (isPublicRoute(req)) return; // 法務・サポートは認証不要で通過
+});
 
 export const config = {
   matcher: [

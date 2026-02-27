@@ -13,7 +13,7 @@ function mustEnv(name: string): string {
 
 export async function POST() {
   try {
-    const { userId } = auth();
+    const { userId } = await auth();
     if (!userId) {
       return NextResponse.json({ ok: false, stage: "auth", error: "UNAUTHENTICATED" }, { status: 401 });
     }

@@ -27,7 +27,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   }}
 >
       <html lang="ja">
-        <body>{children}</body>
+        <body style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', margin: 0, padding: 0 }}>
+          <div style={{ flex: '1 0 auto' }}>
+            {children}
+          </div>
+          <footer style={{ flexShrink: 0, padding: '16px 12px', borderTop: '1px solid rgba(0,0,0,0.10)', textAlign: 'center', fontSize: 11, opacity: 0.65 }}>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+              <a href="/legal/tokushoho" style={{ textDecoration: 'underline', color: 'inherit' }}>特定商取引法</a>
+              <a href="/legal/terms" style={{ textDecoration: 'underline', color: 'inherit' }}>利用規約</a>
+              <a href="/legal/privacy" style={{ textDecoration: 'underline', color: 'inherit' }}>プライバシーポリシー</a>
+              <a href="/support" style={{ textDecoration: 'underline', color: 'inherit' }}>サポート</a>
+              <span>© 2026 M55 Project</span>
+            </div>
+          </footer>
+        </body>
       </html>
     </ClerkProvider>
   );

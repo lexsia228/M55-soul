@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import LegacyFrame from '../../src/components/legacy/LegacyFrame';
@@ -110,6 +111,12 @@ export default function ShellLayout({
         </>
       )}
             </main>
+      <div className={styles.legalLinks} aria-label="法務リンク">
+        <Link href="/legal/tokushoho">特定商取引法</Link>
+        <Link href="/legal/terms">利用規約</Link>
+        <Link href="/legal/privacy">プライバシー</Link>
+        <Link href="/support">サポート</Link>
+      </div>
 <nav className={styles.bottomNav} aria-label="下部ナビゲーション">
         <div className={styles.bottomNavInner}>
           {TABS.map((tab) => {

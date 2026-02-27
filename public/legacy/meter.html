@@ -125,37 +125,6 @@
       gap: 8px;
     }
 
-    .icon-button {
-      position: relative;
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      box-shadow: var(--shadow-min);
-      background: radial-gradient(circle at 30% 0%, #ffffff, #f1e8ff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .icon-count {
-      position: absolute;
-      top: -2px;
-      right: -2px;
-      min-width: 14px;
-      height: 14px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #ff6b9c, #ffc46a);
-      border: 2px solid #f8f3ff;
-      font-size: 9px;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
     /* ダミー上タブ（HOMEと同じスタイルで見た目だけ合わせ） */
     .top-tabs {
       padding: 0 12px 4px;
@@ -664,12 +633,7 @@ body::before, body::after, html::before, html::after {
         <div class="app-logo-orb"></div>
         <div class="app-logo-text">M55</div>
       </div>
-      <div class="header-right">
-        <button class="icon-button" aria-label="通知">
-          🔔
-          <span class="icon-count">3</span>
-        </button>
-      </div>
+      <div class="header-right"></div>
     </header>
 
     <!-- 上タブ（見た目だけ揃えておく） -->

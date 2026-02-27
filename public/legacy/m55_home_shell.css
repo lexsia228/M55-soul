@@ -124,21 +124,6 @@ body { overflow-y: auto; }
   gap: 8px;
 }
 
-.icon-button {
-  position: relative;
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: var(--shadow-min);
-  background: radial-gradient(circle at 30% 0%, #ffffff, #f1e8ff);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  cursor: pointer;
-}
-
 /* === 上部タブ === */
 .top-tabs {
   padding: 0 12px 4px;
