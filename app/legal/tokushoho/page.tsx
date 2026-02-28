@@ -7,6 +7,16 @@ export default function TokushohoPage() {
       <p style={{marginTop: 12, lineHeight: 1.7}}>
         This page is under preparation.
       </p>
-    </main>
+          <section style={{ marginTop: 24 }}>
+        <h2>販売価格</h2>
+        <ul>
+          <li>Free：¥0 / 月</li>
+          <li>Standard：¥680 / 月</li>
+          <li>Premium：¥1,980 / 月</li>
+        </ul>
+        <p>単品商品（DTR等）の販売価格は、各商品ページまたは購入画面に表示します。</p>
+      </section>
+</main>
   );
 }
+
