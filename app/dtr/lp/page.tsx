@@ -1,33 +1,52 @@
-'use client';
+import Link from "next/link";
 
-import Link from 'next/link';
-import PurchaseButton from '../../../components/PurchaseButton';
-import styles from './lp.module.css';
+export const metadata = {
+  title: "DTR | M55",
+};
 
-/**
- * DTR Core Static V1 ランチE��ングペ�Eジ
- * - 購入ボタン: PurchaseButton (productId: DTR_CORE_STATIC_V1)
- * - 価格表示: 購入画面に表示�E�税込�E� EStripe Checkout 画面で税込価格を表示する設訁E */
 export default function DtrLpPage() {
   return (
-    <main className={styles.page}>
-      <div className={styles.inner}>
-        <h1 className={styles.title}>DTR Core Static V1</h1>
-        <p className={styles.desc}>
-          M55鑑定コアコンチE��チE�E静的版です、E        </p>
-        <div className={styles.price}>
-          <span className={styles.priceLabel}>価格</span>
-          <span className={styles.priceValue}>購入画面に表示�E�税込�E�E/span>
-        </div>
-        <div className={styles.actions}>
-          <PurchaseButton productId="DTR_CORE_STATIC_V1" className={styles.btn}>
-            購入する
-          </PurchaseButton>
-        </div>
-        <p className={styles.legal}>
-          <Link href="/legal/tokushoho">特定商取引法に基づく表訁E/Link>
+    <main style={{ maxWidth: 860, margin: "0 auto", padding: "24px 16px 56px" }}>
+      <h1 style={{ fontSize: 22, fontWeight: 600, margin: "0 0 12px" }}>DTR</h1>
+
+      <p style={{ margin: "0 0 16px", lineHeight: 1.7 }}>
+        本サービスはユーザー入力に基づく情報整理のレポートであり、医療・法律・投資等の助言ではありません。
+      </p>
+
+      <section style={{ margin: "0 0 18px" }}>
+        <h2 style={{ fontSize: 16, fontWeight: 600, margin: "0 0 8px" }}>価格</h2>
+        <ul style={{ margin: 0, paddingLeft: 18, lineHeight: 1.7 }}>
+          <li>¥1,000（税込）</li>
+          <li>提供：購入後に閲覧可能</li>
+          <li>支払い：カード（Link対応）</li>
+        </ul>
+      </section>
+
+      <section style={{ margin: "0 0 18px" }}>
+        <p style={{ margin: "0 0 8px", lineHeight: 1.7 }}>
+          返金：原則不可（詳細は <Link href="/legal/refund">/legal/refund</Link>）
         </p>
-      </div>
+        <p style={{ margin: 0, lineHeight: 1.7 }}>
+          サポート：<Link href="/support">/support</Link>
+        </p>
+      </section>
+
+      <section style={{ margin: "0 0 22px" }}>
+        <h2 style={{ fontSize: 14, fontWeight: 600, margin: "0 0 8px" }}>準備中</h2>
+        <p style={{ margin: 0, lineHeight: 1.7 }}>
+          PayPay / コンビニ / Apple Pay / Google Pay（表示のみ。リンク無し。購入導線ゼロ）
+        </p>
+      </section>
+
+      <hr style={{ opacity: 0.25, margin: "18px 0" }} />
+
+      <nav aria-label="Legal links" style={{ display: "flex", flexWrap: "wrap", gap: 12, lineHeight: 1.7 }}>
+        <Link href="/legal/tokushoho">特商法</Link>
+        <Link href="/legal/privacy">プライバシー</Link>
+        <Link href="/legal/terms">利用規約</Link>
+        <Link href="/legal/refund">返金</Link>
+        <Link href="/support">サポート</Link>
+      </nav>
     </main>
   );
 }
