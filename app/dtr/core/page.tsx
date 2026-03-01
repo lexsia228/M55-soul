@@ -4,10 +4,7 @@ import styles from './core.module.css';
 import { getSupabaseAdmin } from '../../../lib/supabaseAdmin';
 
 /**
- * DTR Core コンテンツ（保護ページ）
- * Defense in Depth: supabaseAdmin で entitlements を直接確認。public スキーマ。
- * 権利がない場合は /dtr/lp へリダイレクト。
- */
+ * DTR Core コンチE��チE��保護ペ�Eジ�E�E * Defense in Depth: supabaseAdmin で entitlements を直接確認。public スキーマ、E * 権利がなぁE��合�E /dtr/lp へリダイレクト、E */
 export default async function DtrCorePage() {
   const { userId } = await auth();
   if (!userId) {
@@ -38,7 +35,7 @@ export default async function DtrCorePage() {
     <main className={styles.page}>
       <div className={styles.inner}>
         <h1 className={styles.title}>DTR Core</h1>
-        <p className={styles.desc}>M55鑑定コアコンテンツ（保護コンテンツ）</p>
+        <p className={styles.desc}>M55鑑定コアコンチE��チE��保護コンチE��チE��E/p>
       </div>
     </main>
   );

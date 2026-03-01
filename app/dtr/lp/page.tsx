@@ -5,21 +5,19 @@ import PurchaseButton from '../../../components/PurchaseButton';
 import styles from './lp.module.css';
 
 /**
- * DTR Core Static V1 ランディングページ
+ * DTR Core Static V1 ランチE��ングペ�Eジ
  * - 購入ボタン: PurchaseButton (productId: DTR_CORE_STATIC_V1)
- * - 価格表示: 購入画面に表示（税込）— Stripe Checkout 画面で税込価格を表示する設計
- */
+ * - 価格表示: 購入画面に表示�E�税込�E� EStripe Checkout 画面で税込価格を表示する設訁E */
 export default function DtrLpPage() {
   return (
     <main className={styles.page}>
       <div className={styles.inner}>
         <h1 className={styles.title}>DTR Core Static V1</h1>
         <p className={styles.desc}>
-          M55鑑定コアコンテンツの静的版です。
-        </p>
+          M55鑑定コアコンチE��チE�E静的版です、E        </p>
         <div className={styles.price}>
           <span className={styles.priceLabel}>価格</span>
-          <span className={styles.priceValue}>購入画面に表示（税込）</span>
+          <span className={styles.priceValue}>購入画面に表示�E�税込�E�E/span>
         </div>
         <div className={styles.actions}>
           <PurchaseButton productId="DTR_CORE_STATIC_V1" className={styles.btn}>
@@ -27,7 +25,7 @@ export default function DtrLpPage() {
           </PurchaseButton>
         </div>
         <p className={styles.legal}>
-          <Link href="/legal/tokushoho">特定商取引法に基づく表記</Link>
+          <Link href="/legal/tokushoho">特定商取引法に基づく表訁E/Link>
         </p>
       </div>
     </main>
