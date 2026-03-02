@@ -5,6 +5,7 @@ export const metadata = { title: "特定商取引法 | M55" };
 export default function TokushohoPage() {
   return (
     <main style={{ maxWidth: 860, margin: "0 auto", padding: "24px 16px 56px", lineHeight: 1.8 }}>
+      <p style={{ margin: "0 0 10px" }}><Link href="/">M55 Home</Link></p>
       <h1 style={{ fontSize: 20, fontWeight: 700, margin: "0 0 12px" }}>特定商取引法に基づく表記</h1>
 
       <section style={{ margin: "0 0 18px" }}>
@@ -14,7 +15,7 @@ export default function TokushohoPage() {
 
       <section style={{ margin: "0 0 18px" }}>
         <h2 style={{ fontSize: 14, fontWeight: 700, margin: "0 0 6px" }}>お問い合わせ</h2>
-        <p style={{ margin: 0 }}>メール：lexsia228@gmail.com（サポートページ参照）</p>
+        <p style={{ margin: 0 }}>サポート：<Link href="/support">/support</Link></p>
       </section>
 
       <section style={{ margin: "0 0 18px" }}>
@@ -37,23 +38,13 @@ export default function TokushohoPage() {
 
       <section style={{ margin: "0 0 18px" }}>
         <h2 style={{ fontSize: 14, fontWeight: 700, margin: "0 0 6px" }}>返品・キャンセル</h2>
-        <p style={{ margin: 0 }}>デジタル提供の性質上、原則として購入後のキャンセル・返金はできません。詳細：/legal/refund</p>
+        <p style={{ margin: 0 }}>デジタル提供の性質上、原則として購入後のキャンセル・返金はできません。詳細：<Link href="/legal/refund">/legal/refund</Link></p>
       </section>
 
       <section style={{ margin: "0 0 18px" }}>
         <h2 style={{ fontSize: 14, fontWeight: 700, margin: "0 0 6px" }}>動作環境</h2>
         <p style={{ margin: 0 }}>最新の主要ブラウザ（Chrome / Safari / Edge）</p>
       </section>
-
-      <nav style={{ display: "flex", flexWrap: "wrap", gap: 12, fontSize: 12, marginTop: 18 }}>
-        <Link href="/legal/tokushoho">特定商取引法</Link>
-        <Link href="/legal/terms">利用規約</Link>
-        <Link href="/legal/privacy">プライバシーポリシー</Link>
-        <Link href="/legal/refund">返金・キャンセル</Link>
-        <Link href="/support">サポート</Link>
-              <a href="/">M55 Home</a>
-      </nav>
-      <p style={{ margin: "12px 0 0", fontSize: 12, opacity: 0.7 }}>© 2026 M55 Project</p>
     </main>
   );
 }

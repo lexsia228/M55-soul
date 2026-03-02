@@ -5,6 +5,7 @@ export const metadata = { title: "プライバシーポリシー | M55" };
 export default function PrivacyPage() {
   return (
     <main style={{ maxWidth: 860, margin: "0 auto", padding: "24px 16px 56px", lineHeight: 1.8 }}>
+      <p style={{ margin: "0 0 10px" }}><Link href="/">M55 Home</Link></p>
       <h1 style={{ fontSize: 20, fontWeight: 700, margin: "0 0 12px" }}>プライバシーポリシー</h1>
 
       <p style={{ margin: "0 0 14px" }}>
@@ -31,17 +32,7 @@ export default function PrivacyPage() {
       </p>
 
       <h2 style={{ fontSize: 14, fontWeight: 700, margin: "18px 0 6px" }}>お問い合わせ</h2>
-      <p style={{ margin: 0 }}>サポート：/support</p>
-
-      <nav style={{ display: "flex", flexWrap: "wrap", gap: 12, fontSize: 12, marginTop: 18 }}>
-        <Link href="/legal/tokushoho">特定商取引法</Link>
-        <Link href="/legal/terms">利用規約</Link>
-        <Link href="/legal/privacy">プライバシーポリシー</Link>
-        <Link href="/legal/refund">返金・キャンセル</Link>
-        <Link href="/support">サポート</Link>
-              <a href="/">M55 Home</a>
-      </nav>
-      <p style={{ margin: "12px 0 0", fontSize: 12, opacity: 0.7 }}>© 2026 M55 Project</p>
+      <p style={{ margin: 0 }}>サポート：<Link href="/support">/support</Link></p>
     </main>
   );
 }

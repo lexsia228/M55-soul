@@ -5,6 +5,10 @@ export const metadata = { title: "Pricing | M55" };
 export default function PricingPage() {
   return (
     <main style={{ maxWidth: 860, margin: "0 auto", padding: "24px 16px 56px" }}>
+      <p style={{ margin: "0 0 10px" }}>
+        <Link href="/">M55 Home</Link>
+      </p>
+
       <h1 style={{ fontSize: 22, fontWeight: 600, margin: "0 0 12px" }}>Pricing</h1>
 
       <p style={{ margin: "0 0 16px", lineHeight: 1.7 }}>
@@ -23,18 +27,6 @@ export default function PricingPage() {
       <p style={{ margin: "0 0 18px" }}>
         外部確認用ページ：<Link href="/dtr/lp">/dtr/lp</Link>
       </p>
-
-      <hr style={{ opacity: 0.25, margin: "18px 0" }} />
-
-      <nav style={{ display: "flex", flexWrap: "wrap", gap: 12, lineHeight: 1.7 }}>
-        <Link href="/legal/tokushoho">特定商取引法</Link>
-        <Link href="/legal/terms">利用規約</Link>
-        <Link href="/legal/privacy">プライバシーポリシー</Link>
-        <Link href="/legal/refund">返金・キャンセル</Link>
-        <Link href="/support">サポート</Link>
-      </nav>
-
-      <p style={{ margin: "12px 0 0", fontSize: 12, opacity: 0.7 }}>© 2026 M55 Project</p>
     </main>
   );
 }

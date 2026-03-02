@@ -5,6 +5,7 @@ export const metadata = { title: "利用規約 | M55" };
 export default function TermsPage() {
   return (
     <main style={{ maxWidth: 860, margin: "0 auto", padding: "24px 16px 56px", lineHeight: 1.8 }}>
+      <p style={{ margin: "0 0 10px" }}><Link href="/">M55 Home</Link></p>
       <h1 style={{ fontSize: 20, fontWeight: 700, margin: "0 0 12px" }}>利用規約</h1>
 
       <p style={{ margin: "0 0 14px" }}>
@@ -20,7 +21,7 @@ export default function TermsPage() {
 
       <h2 style={{ fontSize: 14, fontWeight: 700, margin: "18px 0 6px" }}>料金・返金</h2>
       <p style={{ margin: 0 }}>
-        料金は商品ページおよび決済画面に表示します。返金・キャンセルは /legal/refund を参照してください。
+        料金は商品ページおよび決済画面に表示します。返金・キャンセルは <Link href="/legal/refund">/legal/refund</Link> を参照してください。
       </p>
 
       <h2 style={{ fontSize: 14, fontWeight: 700, margin: "18px 0 6px" }}>免責</h2>
@@ -29,17 +30,7 @@ export default function TermsPage() {
       </p>
 
       <h2 style={{ fontSize: 14, fontWeight: 700, margin: "18px 0 6px" }}>お問い合わせ</h2>
-      <p style={{ margin: 0 }}>サポート：/support</p>
-
-      <nav style={{ display: "flex", flexWrap: "wrap", gap: 12, fontSize: 12, marginTop: 18 }}>
-        <Link href="/legal/tokushoho">特定商取引法</Link>
-        <Link href="/legal/terms">利用規約</Link>
-        <Link href="/legal/privacy">プライバシーポリシー</Link>
-        <Link href="/legal/refund">返金・キャンセル</Link>
-        <Link href="/support">サポート</Link>
-              <a href="/">M55 Home</a>
-      </nav>
-      <p style={{ margin: "12px 0 0", fontSize: 12, opacity: 0.7 }}>© 2026 M55 Project</p>
+      <p style={{ margin: 0 }}>サポート：<Link href="/support">/support</Link></p>
     </main>
   );
 }

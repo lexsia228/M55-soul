@@ -1,3 +1,4 @@
+import { SiteFooter } from "./_components/SiteFooter";
 import type { Metadata } from 'next';
 import { ClerkProvider } from '@clerk/nextjs';
 import { jaJP } from '@clerk/localizations';
@@ -53,7 +54,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
         <div style={{ maxWidth: 860, margin: "10px auto 0", opacity: 0.7 }}>© 2026 M55 Project</div>
       </footer>
-</body>
+        <SiteFooter />
+      </body>
       </html>
     </ClerkProvider>
   );
