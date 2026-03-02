@@ -1,23 +1,58 @@
-﻿export const metadata = { title: "Specified Commercial Transaction Act" };
+import Link from "next/link";
+
+export const metadata = { title: "特定商取引法 | M55" };
 
 export default function TokushohoPage() {
   return (
-    <main style={{maxWidth: 860, margin: "0 auto", padding: "24px 16px"}}>
-      <h1 style={{fontSize: 20, fontWeight: 600}}>Specified Commercial Transaction Act</h1>
-      <p style={{marginTop: 12, lineHeight: 1.7}}>
-        This page is under preparation.
-      </p>
-          <section style={{ marginTop: 24 }}>
-        <h2>販売価格</h2>
-        <ul>
-          <li>Free：¥0 / 月</li>
-          <li>Standard：¥680 / 月</li>
-          <li>Premium：¥1,980 / 月</li>
-        </ul>
-        <p>単品商品（DTR等）の販売価格は、各商品ページまたは購入画面に表示します。</p>
+    <main style={{ maxWidth: 860, margin: "0 auto", padding: "24px 16px 56px", lineHeight: 1.8 }}>
+      <h1 style={{ fontSize: 20, fontWeight: 700, margin: "0 0 12px" }}>特定商取引法に基づく表記</h1>
+
+      <section style={{ margin: "0 0 18px" }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, margin: "0 0 6px" }}>販売事業者</h2>
+        <p style={{ margin: 0 }}>M55 Project</p>
       </section>
-</main>
+
+      <section style={{ margin: "0 0 18px" }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, margin: "0 0 6px" }}>お問い合わせ</h2>
+        <p style={{ margin: 0 }}>メール：lexsia228@gmail.com（サポートページ参照）</p>
+      </section>
+
+      <section style={{ margin: "0 0 18px" }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, margin: "0 0 6px" }}>販売価格</h2>
+        <ul style={{ margin: 0, paddingLeft: 18 }}>
+          <li>DTR Core Static V1：¥1,000（税込）</li>
+        </ul>
+        <p style={{ margin: "6px 0 0" }}>※ 価格の最終表示は商品ページ（/dtr/lp）および決済画面の表示に従います。</p>
+      </section>
+
+      <section style={{ margin: "0 0 18px" }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, margin: "0 0 6px" }}>支払方法・支払時期</h2>
+        <p style={{ margin: 0 }}>クレジットカード（Stripe）／決済確定時に課金されます。</p>
+      </section>
+
+      <section style={{ margin: "0 0 18px" }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, margin: "0 0 6px" }}>提供時期</h2>
+        <p style={{ margin: 0 }}>決済完了後、当該コンテンツを閲覧できます。</p>
+      </section>
+
+      <section style={{ margin: "0 0 18px" }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, margin: "0 0 6px" }}>返品・キャンセル</h2>
+        <p style={{ margin: 0 }}>デジタル提供の性質上、原則として購入後のキャンセル・返金はできません。詳細：/legal/refund</p>
+      </section>
+
+      <section style={{ margin: "0 0 18px" }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, margin: "0 0 6px" }}>動作環境</h2>
+        <p style={{ margin: 0 }}>最新の主要ブラウザ（Chrome / Safari / Edge）</p>
+      </section>
+
+      <nav style={{ display: "flex", flexWrap: "wrap", gap: 12, fontSize: 12, marginTop: 18 }}>
+        <Link href="/legal/tokushoho">特定商取引法</Link>
+        <Link href="/legal/terms">利用規約</Link>
+        <Link href="/legal/privacy">プライバシーポリシー</Link>
+        <Link href="/legal/refund">返金・キャンセル</Link>
+        <Link href="/support">サポート</Link>
+      </nav>
+      <p style={{ margin: "12px 0 0", fontSize: 12, opacity: 0.7 }}>© 2026 M55 Project</p>
+    </main>
   );
 }
-
-

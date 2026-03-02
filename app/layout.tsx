@@ -41,7 +41,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <span>© 2026 M55 Project</span>
             </div>
           </footer>
-        </body>
+              <footer data-m55-global-footer="v1" style={{ borderTop: "1px solid rgba(0,0,0,0.12)", marginTop: 24, padding: "16px 16px 24px", fontSize: 12, background: "#fff" }}>
+        <div style={{ maxWidth: 860, margin: "0 auto", display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center" }}>
+          <a href="/">M55 Home</a>
+          <a href="/dtr/lp">Product</a>
+          <a href="/legal/tokushoho">Tokushoho</a>
+          <a href="/legal/terms">Terms</a>
+          <a href="/legal/privacy">Privacy</a>
+          <a href="/legal/refund">Refund</a>
+          <a href="/support">Support</a>
+        </div>
+        <div style={{ maxWidth: 860, margin: "10px auto 0", opacity: 0.7 }}>© 2026 M55 Project</div>
+      </footer>
+</body>
       </html>
     </ClerkProvider>
   );
