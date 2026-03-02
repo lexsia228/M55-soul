@@ -39,6 +39,7 @@ export default function PrivacyPage() {
         <Link href="/legal/privacy">プライバシーポリシー</Link>
         <Link href="/legal/refund">返金・キャンセル</Link>
         <Link href="/support">サポート</Link>
+              <a href="/">M55 Home</a>
       </nav>
       <p style={{ margin: "12px 0 0", fontSize: 12, opacity: 0.7 }}>© 2026 M55 Project</p>
     </main>
