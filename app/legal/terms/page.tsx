@@ -1,36 +1,64 @@
 import Link from "next/link";
 
-export const metadata = { title: "利用規約 | M55" };
+export const metadata = {
+  title: "利用規約 | M55",
+};
 
 export default function TermsPage() {
   return (
-    <main style={{ maxWidth: 860, margin: "0 auto", padding: "24px 16px 56px", lineHeight: 1.8 }}>
-      <p style={{ margin: "0 0 10px" }}><Link href="/">M55 Home</Link></p>
-      <h1 style={{ fontSize: 20, fontWeight: 700, margin: "0 0 12px" }}>利用規約</h1>
+    <main style={{
+      maxWidth: 860,
+      margin: "0 auto",
+      padding: "24px 16px 56px",
+      lineHeight: 1.7,
+    }}>
+      <h1 style={{
+        fontSize: 22,
+        fontWeight: 600,
+        margin: "0 0 12px",
+      }}>
+        利用規約
+      </h1>
 
-      <p style={{ margin: "0 0 14px" }}>
-        本サービスはユーザー入力に基づく情報整理のレポートを提供します。医療・法律・投資等の助言ではありません。
+      <p style={{
+        margin: "0 0 16px",
+        opacity: 0.9,
+      }}>
+        本規約は、M55 Project（以下「当社」）が提供するデジタルコンテンツ（レポート）の閲覧サービス（以下「本サービス」）の利用条件を定めるものです。
       </p>
 
-      <h2 style={{ fontSize: 14, fontWeight: 700, margin: "18px 0 6px" }}>禁止事項</h2>
-      <ul style={{ margin: 0, paddingLeft: 18 }}>
-        <li>法令または公序良俗に反する行為</li>
-        <li>不正アクセス、スクレイピング、過度な負荷を与える行為</li>
-        <li>第三者の権利侵害（著作権・プライバシー等）</li>
-      </ul>
+      <section style={{ margin: "0 0 16px" }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, margin: "0 0 8px" }}>提供内容</h2>
+        <ul style={{ margin: 0, paddingLeft: 18 }}>
+          <li>本サービスは、ユーザー入力に基づく情報整理のレポートを提供します。</li>
+          <li>決済完了後、ウェブ上で閲覧可能です（物理配送はありません）。</li>
+        </ul>
+      </section>
 
-      <h2 style={{ fontSize: 14, fontWeight: 700, margin: "18px 0 6px" }}>料金・返金</h2>
-      <p style={{ margin: 0 }}>
-        料金は商品ページおよび決済画面に表示します。返金・キャンセルは <Link href="/legal/refund">/legal/refund</Link> を参照してください。
+      <section style={{ margin: "0 0 16px" }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, margin: "0 0 8px" }}>禁止事項</h2>
+        <ul style={{ margin: 0, paddingLeft: 18 }}>
+          <li>不正アクセス、またはこれを助長する行為</li>
+          <li>本サービスの運営を妨げる行為</li>
+          <li>法令または公序良俗に反する行為</li>
+        </ul>
+      </section>
+
+      <section style={{ margin: "0 0 16px" }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, margin: "0 0 8px" }}>免責・責任制限</h2>
+        <p style={{ margin: 0 }}>本サービスはユーザー入力に基づく情報整理のレポートであり、医療・法律・投資等の助言ではありません。</p>
+      </section>
+
+      <section style={{ margin: "0 0 16px" }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, margin: "0 0 8px" }}>返金・問い合わせ</h2>
+        <p style={{ margin: 0 }}>
+          返金条件は <Link href="/legal/refund">/legal/refund</Link> を、サポート窓口は <Link href="/support">/support</Link> を参照してください。
+        </p>
+      </section>
+
+      <p style={{ margin: 0, fontSize: 12, opacity: 0.75 }}>
+        本規約は、必要に応じて改定することがあります。改定後の内容は当サイト上に掲載した時点で効力を生じます。
       </p>
-
-      <h2 style={{ fontSize: 14, fontWeight: 700, margin: "18px 0 6px" }}>免責</h2>
-      <p style={{ margin: 0 }}>
-        本サービスの利用により生じた損害について、当方に故意または重過失がある場合を除き、当方は責任を負いません。
-      </p>
-
-      <h2 style={{ fontSize: 14, fontWeight: 700, margin: "18px 0 6px" }}>お問い合わせ</h2>
-      <p style={{ margin: 0 }}>サポート：<Link href="/support">/support</Link></p>
     </main>
   );
 }
