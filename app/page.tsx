@@ -1,74 +1,50 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
+﻿import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: 'M55',
-  description: 'M55 デジタルコンテンツサービス',
+  title: "M55",
+  description: "オンラインで提供するデジタルコンテンツ（レポート）を販売しています。",
 };
 
-/**
- * トップページ（Stripe審査向け）
- * 料金はSSRで直書き。誇張・未来予告・演出は禁止。
- */
-export default function RootPage() {
+export default function HomePage() {
   return (
-    <main style={{ maxWidth: 640, margin: '0 auto', padding: '32px 16px 48px', fontFamily: 'inherit' }}>
-      <h1 style={{ fontSize: '1.5rem', fontWeight: 600, marginBottom: 24 }}>M55</h1>
+    <main style={{ maxWidth: 860, margin: "0 auto", padding: "24px 16px 56px", lineHeight: 1.7 }}>
+      <h1 style={{ fontSize: 24, fontWeight: 700, margin: "0 0 8px" }}>M55</h1>
 
-      <section style={{ marginBottom: 28 }}>
-        <h2 style={{ fontSize: '0.875rem', fontWeight: 600, marginBottom: 8 }}>サービスについて</h2>
-        <p style={{ fontSize: '0.875rem', lineHeight: 1.6, margin: 0 }}>
-          デジタルコンテンツの保存・再訪を提供します。心の記録を一定期間保持し、いつでも参照できます。
+      <p style={{ margin: "0 0 18px", opacity: 0.9 }}>
+        オンラインで提供するデジタルコンテンツ（レポート）を販売しています。決済完了後、ウェブ上で閲覧できます。
+      </p>
+
+      <section style={{ border: "1px solid rgba(0,0,0,0.12)", borderRadius: 12, padding: 16, margin: "0 0 18px" }}>
+        <h2 style={{ fontSize: 16, fontWeight: 700, margin: "0 0 6px" }}>商品</h2>
+        <p style={{ margin: "0 0 6px" }}><strong>DTR Core Static V1</strong></p>
+        <ul style={{ margin: 0, paddingLeft: 18 }}>
+          <li>価格：<strong>¥1,000（税込）</strong></li>
+          <li>提供：決済完了後に閲覧可能（物理配送なし）</li>
+        </ul>
+        <p style={{ margin: "12px 0 0" }}>
+          <Link href="/dtr/lp">商品ページへ（/dtr/lp）</Link>
         </p>
       </section>
 
-      <section style={{ marginBottom: 28 }}>
-        <h2 style={{ fontSize: '0.875rem', fontWeight: 600, marginBottom: 12 }}>料金</h2>
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.875rem' }}>
-          <thead>
-            <tr style={{ borderBottom: '1px solid rgba(0,0,0,0.12)' }}>
-              <th style={{ textAlign: 'left', padding: '8px 0' }}>プラン</th>
-              <th style={{ textAlign: 'left', padding: '8px 0' }}>料金</th>
-              <th style={{ textAlign: 'left', padding: '8px 0' }}>保持期間</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr style={{ borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
-              <td style={{ padding: '8px 0' }}>Free</td>
-              <td style={{ padding: '8px 0' }}>¥0</td>
-              <td style={{ padding: '8px 0' }}>7日</td>
-            </tr>
-            <tr style={{ borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
-              <td style={{ padding: '8px 0' }}>Standard</td>
-              <td style={{ padding: '8px 0' }}>¥680</td>
-              <td style={{ padding: '8px 0' }}>30日</td>
-            </tr>
-            <tr style={{ borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
-              <td style={{ padding: '8px 0' }}>Premium</td>
-              <td style={{ padding: '8px 0' }}>¥1,980</td>
-              <td style={{ padding: '8px 0' }}>90日＋月次DTR</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section style={{ marginBottom: 28 }}>
-        <h2 style={{ fontSize: '0.875rem', fontWeight: 600, marginBottom: 8 }}>提供タイミング</h2>
-        <p style={{ fontSize: '0.875rem', lineHeight: 1.6, margin: 0 }}>
-          決済完了後、すぐにご利用可能です。
+      <section style={{ margin: "0 0 18px" }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, margin: "0 0 6px" }}>サポート</h2>
+        <p style={{ margin: 0 }}>
+          お問い合わせは <Link href="/support">/support</Link> に集約しています。
         </p>
       </section>
 
-      <section style={{ marginBottom: 28 }}>
-        <h2 style={{ fontSize: '0.875rem', fontWeight: 600, marginBottom: 8 }}>返金・キャンセル</h2>
-        <p style={{ fontSize: '0.875rem', lineHeight: 1.6, margin: 0 }}>
-          <Link href="/legal/refund" style={{ textDecoration: 'underline' }}>返金・キャンセルについて</Link>
-          をご確認ください。
+      <section style={{ margin: "0 0 18px" }}>
+        <h2 style={{ fontSize: 14, fontWeight: 700, margin: "0 0 6px" }}>返金・キャンセル</h2>
+        <p style={{ margin: 0 }}>
+          条件は <Link href="/legal/refund">/legal/refund</Link> を参照してください。
         </p>
       </section>
 
-      <p style={{ marginTop: 32 }}>
-        <Link href="/home" style={{ textDecoration: 'underline', fontSize: '0.875rem' }}>アプリへ進む</Link>
+      <p style={{ margin: 0, fontSize: 12, opacity: 0.7 }}>
+        法務情報：<Link href="/legal/tokushoho">特商法</Link> / <Link href="/legal/terms">利用規約</Link> /{" "}
+        <Link href="/legal/privacy">プライバシー</Link> / <Link href="/legal/refund">返金</Link> /{" "}
+        <Link href="/support">サポート</Link>
       </p>
     </main>
   );
