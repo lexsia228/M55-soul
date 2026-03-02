@@ -17,6 +17,9 @@ export default function SupportPage() {
         <p style={{ margin: 0, opacity: 0.9 }}>
           メール：lexsia228@gmail.com
         </p>
+        <p style={{ margin: "6px 0 0", opacity: 0.9 }}>
+          電話：070-9010-2828
+        </p>
       </section>
 
       <section style={{ margin: "0 0 18px" }}>
