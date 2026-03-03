@@ -95,3 +95,7 @@ docs/archive/patch_baks/
 *.bundle
 projectA_backup_*
 
+# ZIP commit prevention (m55-web)
+docs/archive/zips/*.zip
+docs/archive/zips/**/*.zip
+
