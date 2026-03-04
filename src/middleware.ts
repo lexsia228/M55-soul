@@ -18,7 +18,7 @@ export function middleware(req: NextRequest) {
 
   const res = NextResponse.next();
 
-  // Vary: append (do not overwrite)
+  // Vary: append
   const vary = res.headers.get("Vary");
   res.headers.set("Vary", vary ? `${vary}, x-m55-proto` : "x-m55-proto");
 
