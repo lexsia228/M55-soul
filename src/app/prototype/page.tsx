@@ -1,4 +1,7 @@
-﻿export default function PrototypeHub() {
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+export default function PrototypeHub() {
   return (
     <main style={{ padding: 24, fontFamily: "system-ui" }}>
       <h1>Prototype Hub</h1>
