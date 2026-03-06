@@ -66,3 +66,15 @@ Canonical runbook:
 SSOT 優先順位ルール（2026-03-05）:
 - 2026-03-05 Prototype Gate Postmortem が最上位。古い資料は上書き禁止。
 - 矛盾する古い指示は docs/audit/sources/ に参考として収録し、差分は History/Appendix 扱いでのみ追記する。
+
+## M55 JP Revenue Acceleration (SSOT)
+- Source of truth:
+  - docs/ssot/M55_WEB_JP_REVENUE_ACCELERATION_SSOT_v1_2026-03-06.md
+  - docs/ssot/POST_REVIEW_UI_SWITCH_SSOT_v1.md
+- Hard constraints:
+  - Do NOT edit storefront pages: /, /dtr/lp, /support, /legal/* (frozen).
+  - /prototype is header-gated (no URL injection). Match /prototype/:path*.
+  - Entitlements are DB-SSOT. On error/missing/expired => Silent Free (no pressure).
+  - /api/me/entitlements must be non-cacheable (private/no-store) and dynamic.
+  - Stripe webhook: Node runtime, signature verify, idempotent by event_id, no secrets in logs.
+  - Forbidden terms must not appear in any public HTML (and keep isolated UI safe too).

@@ -1,3 +1,23 @@
+﻿## 2026-03-06 Checkpoint: JP Revenue Acceleration SSOT registered
+- Canonical doc: `docs/ssot/M55_WEB_JP_REVENUE_ACCELERATION_SSOT_v1_2026-03-06.md`
+- Scope: Phase 1 (isolated UI only). Storefront (`/`, `/dtr/lp`, `/support`, `/legal/*`) remains frozen.
+- Guards: Prototype entry gate=`302 -> /` (token/headers), entitlement decision gate=Silent Free, DB is SSOT, no forbidden terms in public HTML.
+
+## 2026-03-06 Checkpoint: Post-Review Harvest Strategy (Finalized)
+- **Policy**: "Done is better than perfect." Activate monetization post-review via Phase 1 (isolated UI only; storefront unchanged). [cite: 2026-02-28]
+- **Ingest**: `01_BIZ_Monetization_Logic_v1.0` (hash: `80C83F...`) integrated via secure manifest (index+sha256; no raw vault committed).
+- **Logic**: Prototype *entry* gate = `302 -> /` (token/headers); Entitlement *decision* gate = Silent Free (no errors/no pressure).
+- **Structure**: `ai_meter_detail` is adopted as the connection hub for DTR shelving + subscription value (30d/90d retention comparison shown in isolated UI only).
+
+
+
+
+
+## 2026-03-06 Checkpoint: Monetization Implementation Plan Web v1 registered
+- Canonical doc: `docs/ssot/M55_MONETIZATION_IMPLEMENTATION_PLAN_WEB_v1.md`
+- Scope: Next.js + Supabase + Clerk + Stripe での収益化実装。Post-Review UI Switch に従属。
+- Key: DB/entitlements SSOT、productId/rightsKey 正規化、Stripe Webhook 唯一の真実化、禁止語彙0 CI。
+
 ## 2026-03-05 Checkpoint: /prototype Isolation Hub Postmortem as SSOT Seed
 - Canonical runbook frozen at: `docs/audit/M55_Prototype_Gate_Postmortem_2026-03-05_v1.0.md`
 - Operational directive frozen at: `docs/audit/M55_Prototype_Gate_Master_Usage_2026-03-05.md`
