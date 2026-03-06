@@ -1,3 +1,9 @@
+## 2026-03-06 Checkpoint: Task 2 guard and observability aligned
+- Task 2 remains isolated to `/prototype/hub` only; storefront/public routes remain frozen.
+- Annual/value-difference UI is approved as display-only comparison (0/30/90 retention), with annual purchase disabled or feature-flagged until annual entitlement semantics are defined.
+- Observability is required for webhook settlement failures; at minimum, structured `console.error` logging must capture event type, invoice id, user resolution, and DB persistence failure point.
+- Database migration application/verification must use official Supabase migration flow (`supabase db push` / local migration verification), not ad-hoc schema changes.
+
 ## 2026-03-06 Checkpoint: Phase 1 foundation verified
 - Latest preview for `521c1b4` is Ready.
 - Local `/prototype` token-gated access verified with `HTTP/1.1 200 OK`.
