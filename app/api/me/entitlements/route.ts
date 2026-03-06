@@ -27,11 +27,13 @@ export async function GET() {
       db.from('entitlement_rights').select('right_key, right_value, expires_at').eq('user_id', userId),
     ]);
 
-    const tier = subRes.data?.status === 'active' ? (subRes.data.tier as string) : 'free';
+    const sub = subRes.data as unknown as { status?: string | null; tier?: string | null } | null;
+    const tier = sub?.status === 'active' && sub?.tier ? sub.tier : 'free';
     const dtrRights: string[] = [];
 
-    for (const r of rightsRes.data ?? []) {
-      const key = r.right_key as string;
+    const rightsRows = (rightsRes.data ?? []) as Array<{ right_key?: string; expires_at?: string | null }>;
+    for (const r of rightsRows) {
+      const key = r.right_key ?? '';
       const exp = r.expires_at ? new Date(r.expires_at).getTime() : null;
       if (exp !== null && exp < Date.now()) continue;
       if (key.startsWith('m55_p:')) dtrRights.push(key);
