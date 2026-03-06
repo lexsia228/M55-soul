@@ -1,4 +1,9 @@
-﻿## 2026-03-06 Checkpoint: JP Revenue Acceleration SSOT registered
+## 2026-03-06 Checkpoint: Automation operating system imported
+- Added automation guardrails/workflows/scripts for asset extraction and SSOT enforcement.
+- Added retrospective and checkpoint template for reusable team operations.
+- Previous 2026-03-05 ingest artifacts remain canonical; no raw re-import of yesterday bundles.
+
+## 2026-03-06 Checkpoint: JP Revenue Acceleration SSOT registered
 - Canonical doc: `docs/ssot/M55_WEB_JP_REVENUE_ACCELERATION_SSOT_v1_2026-03-06.md`
 - Scope: Phase 1 (isolated UI only). Storefront (`/`, `/dtr/lp`, `/support`, `/legal/*`) remains frozen.
 - Guards: Prototype entry gate=`302 -> /` (token/headers), entitlement decision gate=Silent Free, DB is SSOT, no forbidden terms in public HTML.
