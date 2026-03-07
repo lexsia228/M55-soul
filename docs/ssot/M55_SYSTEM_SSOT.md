@@ -1,3 +1,9 @@
+## 2026-03-07 Checkpoint: Relationship reflection pivot
+- Relationship reflection SSOT triad registered as canonical law for product direction.
+- Canonical docs: `M55_RELATIONSHIP_REFLECTION_SYSTEM_SSOT_v1_2026-03-07.md`, `M55_USER_DATA_AND_MARKETING_BOUNDARY_SSOT_v1_2026-03-07.md`, `M55_DAILY_DIGEST_AND_HABIT_LOOP_SSOT_v1_2026-03-07.md`.
+- Product pivot: non-divinatory relationship reflection, daily check-in signals, weekly light summary, DTR as paid deep layer. Legacy tarot references remain for interaction quality only, not as semantic engine.
+- Storefront, webhook, assets, migrations, analytics code unchanged.
+
 ## 2026-03-07 Checkpoint: Team current-position checkpoint formalized
 - Team-shared current position is now formalized in `docs/audit/M55_TEAM_CHECKPOINT_2026-03-07_CURRENT_POSITION.md`.
 - Real Step5 contracts and real bottom-nav SVG assets are imported and frozen for web identity.
