@@ -8,6 +8,14 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 const PRODUCT_ID_FROM_META = 'DTR_CORE_STATIC_V1';
+const STRIPE_PRICE_PREMIUM_MONTHLY = 'STRIPE_PRICE_PREMIUM_MONTHLY';
+
+/**
+ * Payment-failure state machine (conservative):
+ * - Do NOT immediately revoke access on a single failed renewal.
+ * - Use grace period / dunning / Stripe retry before any entitlement revoke.
+ * - invoice.payment_failed handling (if added) must not revoke on first failure.
+ */
 
 export async function POST(req: NextRequest) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -49,20 +57,34 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ received: true }, { status: 200 });
   }
 
-  const { error: insertErr } = await db.from('stripe_events').insert({ event_id: event.id });
+  const stripe = getStripe();
+  let res: NextResponse;
 
+  if (event.type === 'invoice.paid') {
+    res = await handleInvoicePaid(stripe, event, db);
+  } else if (event.type === 'checkout.session.completed') {
+    res = await handleCheckoutCompleted(stripe, event, db);
+  } else {
+    res = NextResponse.json({ received: true }, { status: 200 });
+  }
+
+  if (res.status !== 200) {
+    return res;
+  }
+
+  const { error: insertErr } = await db.from('stripe_events').insert({ event_id: event.id });
   if (insertErr) {
     if (insertErr.code === '23505') {
       return NextResponse.json({ received: true }, { status: 200 });
     }
-    console.error('[webhook] stripe_events insert failed:', insertErr);
+    console.error('[webhook] event_id=', event.id, 'event_type=', event.type, 'failure=stripe_events_insert', insertErr);
     return NextResponse.json({ error: 'Idempotency failed' }, { status: 500 });
   }
 
-  if (event.type !== 'checkout.session.completed') {
-    return NextResponse.json({ received: true }, { status: 200 });
-  }
+  return res;
+}
 
+async function handleCheckoutCompleted(stripe: Stripe, event: Stripe.Event, db: any): Promise<NextResponse> {
   const session = event.data.object as Stripe.Checkout.Session;
   const userId = session.client_reference_id ?? null;
   const productId = (session.metadata?.productId as string) ?? PRODUCT_ID_FROM_META;
@@ -70,6 +92,11 @@ export async function POST(req: NextRequest) {
   if (!userId) {
     console.error('[webhook] checkout.session.completed without client_reference_id');
     return NextResponse.json({ received: true }, { status: 200 });
+  }
+
+  if (session.subscription && typeof session.subscription === 'string') {
+    const subErr = await upsertSubscriptionMapping(stripe, db, userId, session.subscription, session.customer as string);
+    if (subErr) return subErr;
   }
 
   const { error: upsertErr } = await db
@@ -90,4 +117,172 @@ export async function POST(req: NextRequest) {
   }
 
   return NextResponse.json({ received: true }, { status: 200 });
+}
+
+async function upsertSubscriptionMapping(
+  stripe: Stripe,
+  db: any,
+  userId: string,
+  subscriptionId: string,
+  customerId: string
+): Promise<NextResponse | null> {
+  try {
+    const sub = (await stripe.subscriptions.retrieve(subscriptionId)) as Stripe.Subscription;
+    const priceId = sub.items.data[0]?.price?.id;
+    const premiumPriceId = process.env[STRIPE_PRICE_PREMIUM_MONTHLY];
+    const tier = premiumPriceId && priceId === premiumPriceId ? 'premium' : 'standard';
+
+    const { error } = await db
+      .from('subscriptions')
+      .upsert(
+        {
+          user_id: userId,
+          tier,
+          status: sub.status === 'active' ? 'active' : sub.status,
+          current_period_end: (() => {
+            const cpe = (sub as unknown as { current_period_end?: number }).current_period_end;
+            return cpe ? new Date(cpe * 1000).toISOString() : null;
+          })(),
+          stripe_customer_id: customerId,
+          stripe_subscription_id: subscriptionId,
+          updated_at: new Date().toISOString(),
+        },
+        { onConflict: 'user_id' }
+      );
+
+    if (error) {
+      console.error('[webhook] subscriptions upsert failed:', error);
+      return NextResponse.json({ error: 'Processing failed' }, { status: 500 });
+    }
+  } catch (e) {
+    console.error('[webhook] subscription fetch failed:', e);
+    return NextResponse.json({ error: 'Processing failed' }, { status: 500 });
+  }
+  return null;
+}
+
+function hasSufficientPaymentData(invoice: Record<string, unknown>): boolean {
+  if (invoice.paid_out_of_band !== undefined) return true;
+  const payments = (invoice as { payments?: { data?: unknown[] } }).payments;
+  if (payments && typeof payments === 'object' && Array.isArray(payments.data)) return true;
+  const inv = invoice as { payment_intent?: string; charge?: string };
+  return !!(inv.payment_intent || inv.charge);
+}
+
+function isOutOfBandInvoice(invoice: Record<string, unknown>): boolean {
+  if (invoice.paid_out_of_band === true) return true;
+
+  const payments = (invoice as { payments?: { data?: Array<{ payment?: { charge?: string; payment_intent?: string } }> } })
+    .payments;
+  if (payments && typeof payments === 'object' && Array.isArray(payments.data)) {
+    const hasStripePayment = payments.data.some((p) => {
+      const pmt = p?.payment;
+      return !!(pmt?.charge || pmt?.payment_intent);
+    });
+    if (!hasStripePayment) return true;
+    return false;
+  }
+
+  return false;
+}
+
+const OK_200 = () => NextResponse.json({ received: true }, { status: 200 });
+
+async function handleInvoicePaid(stripe: Stripe, event: Stripe.Event, db: any): Promise<NextResponse> {
+  let invoice = event.data.object as Stripe.Invoice;
+  let inv = invoice as unknown as Record<string, unknown>;
+
+  if (!hasSufficientPaymentData(inv)) {
+    try {
+      const fetched = await stripe.invoices.retrieve(invoice.id, { expand: ['payments'] });
+      invoice = fetched as Stripe.Invoice;
+      inv = fetched as unknown as Record<string, unknown>;
+    } catch (e) {
+      console.error('[webhook] event_type=invoice.paid invoice_id=', invoice.id, 'failure=invoice_fetch', e);
+      return NextResponse.json({ error: 'Processing failed' }, { status: 500 });
+    }
+  }
+
+  if (isOutOfBandInvoice(inv)) return OK_200();
+
+  const premiumPriceId = process.env[STRIPE_PRICE_PREMIUM_MONTHLY];
+  if (!premiumPriceId) return OK_200();
+
+  const isPremium =
+    invoice.lines?.data?.some((l) => {
+      const li = l as { price?: { id?: string }; price_id?: string };
+      return li.price?.id === premiumPriceId || li.price_id === premiumPriceId;
+    }) ?? false;
+  if (!isPremium) return OK_200();
+
+  const invSub = (invoice as unknown as { subscription?: string | { id?: string } }).subscription;
+  const subscriptionId = typeof invSub === 'string' ? invSub : invSub?.id;
+  if (!subscriptionId) return OK_200();
+
+  const { data: existing } = await db.from('invoice_dtr_grants').select('invoice_id').eq('invoice_id', invoice.id).maybeSingle();
+  if (existing) return OK_200();
+
+  let sub: Stripe.Subscription;
+  try {
+    sub = (await stripe.subscriptions.retrieve(subscriptionId)) as Stripe.Subscription;
+  } catch (e) {
+    console.error('[webhook] event_type=invoice.paid invoice_id=', invoice.id, 'failure=subscription_fetch', e);
+    return NextResponse.json({ error: 'Processing failed' }, { status: 500 });
+  }
+
+  let userId: string | null =
+    (sub.metadata?.user_id as string) ?? null;
+  if (!userId) {
+    const { data: subRow } = await db
+      .from('subscriptions')
+      .select('user_id')
+      .eq('stripe_subscription_id', subscriptionId)
+      .maybeSingle();
+    userId = (subRow as { user_id?: string } | null)?.user_id ?? null;
+  }
+  if (!userId) {
+    console.error('[webhook] event_type=invoice.paid invoice_id=', invoice.id, 'failure=user_resolution subscription_id=', subscriptionId);
+    return NextResponse.json({ error: 'Processing failed' }, { status: 500 });
+  }
+
+  const invPeriod = invoice as unknown as { period_end?: number; period_start?: number };
+  const subPeriod = sub as unknown as { current_period_end?: number; current_period_start?: number };
+  const periodTs = invPeriod.period_end ?? invPeriod.period_start ?? subPeriod.current_period_end ?? subPeriod.current_period_start;
+  if (!periodTs) {
+    console.error('[webhook] event_type=invoice.paid invoice_id=', invoice.id, 'user_id=', userId, 'failure=period_derivation');
+    return NextResponse.json({ error: 'Processing failed' }, { status: 500 });
+  }
+  const monthKey = new Date(periodTs * 1000).toISOString().slice(0, 7);
+  const rightKey = `m55_p:month:${monthKey}`;
+
+  const { error: upsertErr } = await db
+    .from('entitlement_rights')
+    .upsert(
+      {
+        user_id: userId,
+        right_key: rightKey,
+        right_value: '1',
+        source: `invoice:${invoice.id}`,
+        updated_at: new Date().toISOString(),
+      },
+      { onConflict: 'user_id,right_key' }
+    );
+
+  if (upsertErr) {
+    console.error('[webhook] event_type=invoice.paid invoice_id=', invoice.id, 'user_id=', userId, 'failure=entitlement_rights_upsert', upsertErr);
+    return NextResponse.json({ error: 'Processing failed' }, { status: 500 });
+  }
+
+  const { error: insertGrantErr } = await db.from('invoice_dtr_grants').insert({
+    invoice_id: invoice.id,
+    user_id: userId,
+  });
+
+  if (insertGrantErr) {
+    if (insertGrantErr.code === '23505') return OK_200();
+    console.error('[webhook] event_type=invoice.paid invoice_id=', invoice.id, 'user_id=', userId, 'failure=invoice_dtr_grants_insert', insertGrantErr);
+    return NextResponse.json({ error: 'Processing failed' }, { status: 500 });
+  }
+
+  return OK_200();
 }
