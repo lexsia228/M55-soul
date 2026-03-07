@@ -1,3 +1,9 @@
+## 2026-03-07 Checkpoint: Team current-position checkpoint formalized
+- Team-shared current position is now formalized in `docs/audit/M55_TEAM_CHECKPOINT_2026-03-07_CURRENT_POSITION.md`.
+- Real Step5 contracts and real bottom-nav SVG assets are imported and frozen for web identity.
+- Web prototype identity remains primary: AI chat, Tarot, ai_meter, Today, Weekly, Prime/DTR, and My remain first-class surfaces.
+- Webhook Task 1 remains a separate implementation/review lane; do not mix unfinished webhook code with docs-only or UI-asset commits.
+
 ## 2026-03-06 Checkpoint: Task 2 guard and observability aligned
 - Task 2 remains isolated to `/prototype/hub` only; storefront/public routes remain frozen.
 - Annual/value-difference UI is approved as display-only comparison (0/30/90 retention), with annual purchase disabled or feature-flagged until annual entitlement semantics are defined.
