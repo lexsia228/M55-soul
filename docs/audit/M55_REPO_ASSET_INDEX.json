@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-09-05T22:53:40.444578+00:00",
-  "count": 707,
+  "generated_at_utc": "2026-09-06T22:52:54.224580+00:00",
+  "count": 709,
   "records": [
     {
       "path": "docs/ssot/CHECKPOINT_2026-03-02.md",
@@ -93,9 +93,19 @@
       "bytes": 2471
     },
     {
+      "path": "docs/ssot/M55_CREATOR_COMPLIANCE_AND_PAYOUT_AUTOMATION_SSOT.md",
+      "category": "ssot",
+      "bytes": 39573
+    },
+    {
+      "path": "docs/ssot/M55_CREATOR_REVENUE_E2C2E_SSOT.md",
+      "category": "ssot",
+      "bytes": 34628
+    },
+    {
       "path": "docs/ssot/M55_CURRENT_STATE.md",
       "category": "ssot",
-      "bytes": 102787
+      "bytes": 104600
     },
     {
       "path": "docs/ssot/M55_DAILY_DIGEST_AND_HABIT_LOOP_SSOT_v1_2026-03-07.md",
@@ -105,7 +115,7 @@
     {
       "path": "docs/ssot/M55_DECISION_LOG.md",
       "category": "ssot",
-      "bytes": 55808
+      "bytes": 69606
     },
     {
       "path": "docs/ssot/M55_DEPRECATION_MAP_20260330.md",
@@ -200,7 +210,7 @@
     {
       "path": "docs/ssot/M55_EXECUTION_STATE.json",
       "category": "ssot",
-      "bytes": 35410
+      "bytes": 37474
     },
     {
       "path": "docs/ssot/M55_FRESH_ADDITIONAL_REPLY_500_PAYMENT_SMOKE_R_2026-05-25.md",
@@ -225,7 +235,7 @@
     {
       "path": "docs/ssot/M55_GPT_COLD_START_ACCEPTANCE.md",
       "category": "ssot",
-      "bytes": 12819
+      "bytes": 14320
     },
     {
       "path": "docs/ssot/M55_HEADER_VISUAL_FREEZE_v1.md",
@@ -235,7 +245,7 @@
     {
       "path": "docs/ssot/M55_HIGH_COST_EVIDENCE_LEDGER.md",
       "category": "ssot",
-      "bytes": 11980
+      "bytes": 12942
     },
     {
       "path": "docs/ssot/M55_HOME_CLUSTER_SSOT_FREEZE_v2.md",
@@ -3055,7 +3065,7 @@
     {
       "path": "docs/ssot/M55_ROADMAP.md",
       "category": "ssot",
-      "bytes": 22207
+      "bytes": 38275
     },
     {
       "path": "docs/ssot/M55_SAFARI_MCP_AI_BROWSER_QUALITY_SSOT.md",
@@ -3170,7 +3180,7 @@
     {
       "path": "docs/ssot/README.md",
       "category": "ssot",
-      "bytes": 3071
+      "bytes": 3219
     },
     {
       "path": "docs/ssot/SOURCES_USED__PROJECT_B_v8.md",

@@ -1,7 +1,7 @@
 # M55_REPO_ASSET_INDEX
 
-Generated: 2026-09-05T22:53:40.447329+00:00
-Total records: 707
+Generated: 2026-09-06T22:52:54.227492+00:00
+Total records: 709
 
 - [ssot] `docs/ssot/CHECKPOINT_2026-03-02.md` (1717 bytes)
 - [ssot] `docs/ssot/DESKTOP_PACK_SCAN_REPORT_2026-02-26.md` (3948 bytes)
@@ -21,9 +21,11 @@ Total records: 707
 - [ssot] `docs/ssot/M55_COMMERCIAL_QUALITY_CONTRACT.md` (14810 bytes)
 - [ssot] `docs/ssot/M55_CONTROL_TOWER_OPERATIONS_MAP.md` (5138 bytes)
 - [ssot] `docs/ssot/M55_COPY_AND_CLAIMS.md` (2471 bytes)
-- [ssot] `docs/ssot/M55_CURRENT_STATE.md` (102787 bytes)
+- [ssot] `docs/ssot/M55_CREATOR_COMPLIANCE_AND_PAYOUT_AUTOMATION_SSOT.md` (39573 bytes)
+- [ssot] `docs/ssot/M55_CREATOR_REVENUE_E2C2E_SSOT.md` (34628 bytes)
+- [ssot] `docs/ssot/M55_CURRENT_STATE.md` (104600 bytes)
 - [ssot] `docs/ssot/M55_DAILY_DIGEST_AND_HABIT_LOOP_SSOT_v1_2026-03-07.md` (4728 bytes)
-- [ssot] `docs/ssot/M55_DECISION_LOG.md` (55808 bytes)
+- [ssot] `docs/ssot/M55_DECISION_LOG.md` (69606 bytes)
 - [ssot] `docs/ssot/M55_DEPRECATION_MAP_20260330.md` (6382 bytes)
 - [ssot] `docs/ssot/M55_DIVINATION_RESULT_PARITY_P0_CLOSEOUT_2026-05-26.md` (8508 bytes)
 - [ssot] `docs/ssot/M55_DTR_BASE_PREVIEW_GREEN_CHECKPOINT_2026-05-12.md` (3141 bytes)
@@ -42,14 +44,14 @@ Total records: 707
 - [ssot] `docs/ssot/M55_ENVIRONMENT_IDENTITY_REGISTRY_2026-05-18.md` (149864 bytes)
 - [ssot] `docs/ssot/M55_ENVIRONMENT_MATRIX.md` (3019 bytes)
 - [ssot] `docs/ssot/M55_EVIDENCE_REGISTRY_PROTOCOL_2026-05-16.md` (8821 bytes)
-- [ssot] `docs/ssot/M55_EXECUTION_STATE.json` (35410 bytes)
+- [ssot] `docs/ssot/M55_EXECUTION_STATE.json` (37474 bytes)
 - [ssot] `docs/ssot/M55_FRESH_ADDITIONAL_REPLY_500_PAYMENT_SMOKE_R_2026-05-25.md` (8330 bytes)
 - [ssot] `docs/ssot/M55_FRESH_ADDITIONAL_REPLY_500_PRECHECKOUT_FAIL_DIAGNOSTIC_R_2026-05-24.md` (7679 bytes)
 - [ssot] `docs/ssot/M55_FRESH_ADDITIONAL_REPLY_PURCHASED_TICKET_CONSUME_R_2026-05-25.md` (6692 bytes)
 - [ssot] `docs/ssot/M55_FRESH_INCLUDED_REPLY_CONSUME_SQL_R_2026-05-24.md` (5550 bytes)
-- [ssot] `docs/ssot/M55_GPT_COLD_START_ACCEPTANCE.md` (12819 bytes)
+- [ssot] `docs/ssot/M55_GPT_COLD_START_ACCEPTANCE.md` (14320 bytes)
 - [ssot] `docs/ssot/M55_HEADER_VISUAL_FREEZE_v1.md` (1825 bytes)
-- [ssot] `docs/ssot/M55_HIGH_COST_EVIDENCE_LEDGER.md` (11980 bytes)
+- [ssot] `docs/ssot/M55_HIGH_COST_EVIDENCE_LEDGER.md` (12942 bytes)
 - [ssot] `docs/ssot/M55_HOME_CLUSTER_SSOT_FREEZE_v2.md` (11332 bytes)
 - [ssot] `docs/ssot/M55_HOME_MAIN_VISUAL_ART_BRIEF_v1.md` (5307 bytes)
 - [ssot] `docs/ssot/M55_HOME_POSTER_LAYOUT_SSOT_v1.md` (5927 bytes)
@@ -613,7 +615,7 @@ Total records: 707
 - [ssot] `docs/ssot/M55_REPLY_WALLET_UNSAFE_ARCHIVE_SQL_REJECTION_v1.md` (5889 bytes)
 - [ssot] `docs/ssot/M55_REPORT_CORRECTION_AND_REPLY_CREDIT_POLICY_v1.md` (30133 bytes)
 - [ssot] `docs/ssot/M55_REPRODUCIBILITY_APPENDIX_v1.md` (5018 bytes)
-- [ssot] `docs/ssot/M55_ROADMAP.md` (22207 bytes)
+- [ssot] `docs/ssot/M55_ROADMAP.md` (38275 bytes)
 - [ssot] `docs/ssot/M55_SAFARI_MCP_AI_BROWSER_QUALITY_SSOT.md` (9096 bytes)
 - [ssot] `docs/ssot/M55_SELF_FUNNEL_CONTRACT.md` (4516 bytes)
 - [ssot] `docs/ssot/M55_STRIPE_ADDITIONAL_REPLY_PRICE_ENV_CORRECTION_PLANNING_2026-05-24.md` (9366 bytes)
@@ -636,7 +638,7 @@ Total records: 707
 - [ssot] `docs/ssot/POST_REVIEW_UI_SWITCH_SSOT_v1.md` (3410 bytes)
 - [ssot] `docs/ssot/PRICING_WALLET_SEPARATION__EXTRACT_v1_DESKTOP_PACK_2026-02-01.md` (2813 bytes)
 - [ssot] `docs/ssot/PROJECT_B_SSOT_FREEZE.md` (1259 bytes)
-- [ssot] `docs/ssot/README.md` (3071 bytes)
+- [ssot] `docs/ssot/README.md` (3219 bytes)
 - [ssot] `docs/ssot/SOURCES_USED__PROJECT_B_v8.md` (1523 bytes)
 - [ssot] `docs/ssot/SSOT_INDEX.md` (627 bytes)
 - [ssot] `docs/ssot/STRIPE_DASHBOARD_SUBMISSION_CHECKLIST__MIN_PII_v1.md` (2262 bytes)
