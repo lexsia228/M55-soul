@@ -587,6 +587,47 @@ Does **not** change Creator Revenue CURRENT/NEXT · does **not** authorize Strip
 
 ---
 
+## N-b. Japan mature-market operational precedent freeze (Human-approved 2026-09-07)
+
+This is a **durable operating baseline** built from dated public evidence. It is **not** a legal safe harbor and does not mean another company's operation legally binds Stripe, tax authorities, JFTC, or M55. Its purpose is to prevent M55 from treating standard affiliate / multi-party payout mechanics as a new invention and repeatedly reopening broad research.
+
+Frozen classifications:
+
+`JAPAN_MATURE_AFFILIATE_OPERATIONAL_PRECEDENT = GREEN`
+
+`JAPAN_STRIPE_CONNECT_PLATFORM_PRECEDENT = GREEN`
+
+`DEVELOPMENT_BLOCKED_BY_GENERAL_LEGAL_TAX_RESEARCH = FALSE`
+
+`PAID_PROFESSIONAL_CONSULTATION_REQUIRED_NOW = FALSE`
+
+`NO_BROAD_DOMESTIC_AFFILIATE_RESEARCH_REPLAY = TRUE`
+
+`NO_BROAD_LEGAL_TAX_RESEARCH_REPLAY = TRUE`
+
+Dated evidence baseline used for this freeze:
+
+- Stripe official Japan/customer material shows Connect in live Japanese multi-party businesses including Adastria / dot-C, INFORICH / ShareSPOT, Kurashi no Market, and Toyota / Mechacomi. The common reusable pattern is platform-controlled multi-party funds flow, seller/partner onboarding/KYC, revenue splitting or payout, refund/cancellation handling, and provider-managed payment infrastructure.
+- A8.net publicly documents `未確定` affiliate results that are later confirmed or cancelled by the advertiser; confirmed rewards are paid on a later aggregated schedule. A8.net also publicly states that its affiliate performance rewards are not subject to withholding by A8.
+- MoshiMo Affiliate publicly documents per-result approval, in principle within 30 days, followed by confirmed reward handling and later aggregated payment.
+- JFTC official guidance remains the mandatory-law boundary: if the Freelance Act applies to the actual M55 relationship, transaction terms and a specific payment due date must be disclosed and payment must meet the applicable statutory deadline.
+- Current Stripe Connect documentation recommends modern controller/property or Accounts v2-style configuration rather than relying on legacy Standard/Express/Custom labels alone; exact M55 account configuration remains an account-specific A item.
+
+Reusable M55 operating baseline:
+
+- approved Creator lane, direct single-tier attribution only
+- purchase/result first enters internal pending/review state
+- objective eligibility / refund / chargeback / self-referral / circular-referral / fraud checks precede `PAYABLE`
+- monthly/periodic aggregation rather than one payout per purchase
+- append-only commission/accounting history with explicit adjustments
+- Creator-visible status and reason codes
+- provider-hosted/embedded onboarding preferred; M55 does not store full bank details
+- no recruitment commission, no MLM tree, no guaranteed-income claims
+
+**External-wait boundary:** Stripe A-D and any bounded mandatory-law/tax implementation check may change provider configuration, liability handling, fee parameters, payout controls, or activation conditions. They do **not** reopen the frozen Creator acquisition/economics/anti-MLM/state-machine architecture unless they produce a direct invalidator.
+
+**Development policy:** waiting for Stripe or other external responses is **not** a reason to stop provider-independent Creator Revenue development. Actual cash activation, live connected-account creation, live payout, and unresolved tax withholding execution remain fail-closed until their exact owning gate is satisfied.
+
 ## F. Stripe boundary
 
 Existing customer purchase rail remains existing Stripe checkout/webhook authority.

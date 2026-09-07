@@ -886,6 +886,43 @@ Until R2-B2 closure + R2 Final Human acceptance: `stripePayoutProviderStatus = U
 
 ---
 
+## AR-b. Stripe A-D response impact matrix (Human-approved 2026-09-07)
+
+Stripe A-D have already been sent. They are **WAITING / NO REPLAY**. Their replies are bounded as follows:
+
+| Item | What the answer may change | What it does **not** change absent a real invalidator |
+|---|---|---|
+| **A — connected-account/configuration model** | exact Accounts/controller configuration, Dashboard/onboarding surface, API adapter, required capabilities | direct single-tier referral, Founding economics, commission lifecycle, append-only ledger |
+| **B — negative-balance/loss responsibility** | R8 reserve/recovery/reconciliation behavior, risk controls, provider liability settings | earned-rate schedule, attribution rules, Creator acquisition model |
+| **C — M55WEB formal account review/supportability** | GREEN → provider final-selection packet may proceed; conditional → satisfy named condition before activation; unsupported/blocked → **REAL_INVALIDATOR** and Human provider-architecture review | no broad replay if Stripe simply asks for ordinary verification/KYC/business evidence |
+| **D — applicable Connect pricing** | exact provider cost inputs, payout threshold/cadence economics, unit-economics monitoring | no retroactive reduction of already promised compliant Creator rate windows; only actual non-positive contribution or another Human-approved future-cohort change can alter future economics |
+
+Current public Stripe documentation already establishes that:
+
+- modern connected-account behavior is configured by controller / Accounts v2 properties, including fee and loss responsibility;
+- for indirect charges such as destination charges or separate charges and transfers, platform-side balance/fee responsibility is materially relevant;
+- Connect pricing depends on who controls pricing/fees and the chosen account configuration.
+
+Therefore the support response is an **account-specific confirmation**, not permission to reopen broad Stripe research.
+
+Research / consultation policy:
+
+`NO_BROAD_STRIPE_RESEARCH_REPLAY = TRUE`
+
+`NO_BROAD_LEGAL_TAX_RESEARCH_REPLAY = TRUE`
+
+`PAID_PROFESSIONAL_CONSULTATION_REQUIRED_NOW = FALSE`
+
+A paid lawyer/tax-adviser consultation is **not a standing gate**. Escalate only if final implementation facts create a direct conflict, an official mandatory requirement cannot be mapped to the mature affiliate baseline, or the actual Stripe/account response introduces a genuine unresolved legal/tax/provider condition.
+
+Tax safety boundary remains fail-closed:
+
+- never hardcode a universal `10.21%` rule;
+- never assume "affiliate" automatically proves no withholding for every recipient/activity;
+- before actual payout activation, the R8 tax implementation must represent the final recipient/activity classification or block the affected payout path rather than guess.
+
+Rows in §AS are **implementation/activation owners**, not authorization for another broad research program.
+
 ## AS. Explicit unresolved blockers
 
 Do **not** disguise unresolved questions as decisions:

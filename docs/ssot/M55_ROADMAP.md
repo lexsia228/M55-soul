@@ -116,6 +116,24 @@ Dated external evidence from Stripe support — do not paraphrase into stronger 
 
 Principle: **R2-B2 CLASSIFIES · R6/R8 IMPLEMENT**
 
+### 2026-09-07 external-dependency non-blocking policy (Human-approved)
+
+Canonical R2→R8 stage order remains unchanged. This policy changes **waiting behavior**, not stage labels.
+
+`EXTERNAL_WAIT_DOES_NOT_STOP_PROVIDER_INDEPENDENT_DEVELOPMENT = TRUE`
+
+`ACTUAL_CASH_ACTIVATION_REQUIRES_R2_B2_CLOSURE = TRUE`
+
+`NO_BROAD_CREATOR_REVENUE_RESEARCH_REPLAY = TRUE`
+
+While Stripe A-D are waiting, bounded Creator Revenue work may continue inside the current `REVENUE_SAFETY_E2E` authority when it does not choose unresolved provider, tax, legal-due-date, or live-payout semantics. Examples include pure machine contracts, approved-Creator participation state, direct single-tier attribution contracts, objective review/reason-code contracts, provider-independent observability, and implementation planning.
+
+This does **not** classify R3-R8 as complete, does **not** authorize live connected accounts or payouts, and does **not** allow financial semantics to be guessed.
+
+Domestic mature-market operational precedent is now a reusable baseline: affiliate pending→review→confirmed/cancelled→aggregated-payment patterns and Japanese Stripe Connect multi-party payout patterns are **not** to be re-researched as if novel. Reopen only on a direct invalidator.
+
+The only pending external Stripe items are the already-sent A-D account-specific confirmations. Broad legal/tax/professional consultation is not a standing development blocker; bounded activation-time verification remains fail-closed where required.
+
 ### Parallel non-Stripe quality lane (Human-approved 2026-09-06)
 
 `PARALLEL_NON_STRIPE_QUALITY_LANE = SELF_PREMIUM_PUBLICATION_QUALITY_CLOSURE`

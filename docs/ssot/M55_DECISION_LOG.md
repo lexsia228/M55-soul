@@ -927,3 +927,43 @@ The authorized **NEXT** action is baseline/control-plane implementation on the e
 | Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` per `M55_EXECUTION_STATE.json` — **not modified** in this gate |
 | Research prohibition | no broad Stripe/competitor research replay · no implementation based solely on partial P0 confirmation |
 | R2-B2 closure | **NOT CLOSED** — residual account/legal/tax classification remains before R2 Final Human acceptance |
+
+### 2026-09-07 — Domestic mature-market precedent freeze / external-wait non-blocking policy
+
+**Status:** Human-approved durable Creator Revenue decision.
+
+| Decision | Value |
+|---|---|
+| Domestic mature affiliate operating pattern | **REUSE AS BASELINE** — do not treat pending→review→confirm/cancel→aggregate pay as a new invention |
+| Japan Stripe Connect multi-party precedent | **GREEN as operating precedent** — multiple Stripe official Japan customer cases exist |
+| Broad affiliate/Stripe research replay | **PROHIBITED** absent direct invalidator |
+| Broad legal/tax research replay | **PROHIBITED** absent direct invalidator |
+| Paid lawyer/tax adviser consultation now | **NOT REQUIRED** |
+| Stripe A-D | **ALREADY SENT / WAITING** — account-specific confirmation only |
+| Development while waiting | **CONTINUES** for provider-independent work inside current execution authority |
+| Live connected account / payout activation | **FAIL-CLOSED** until exact provider/account/tax owners are satisfied |
+| Provider | **UNSELECTED** until R2-B2 + Human final provider decision |
+| Creator cash infrastructure | **NOT IMPLEMENTED** |
+
+Frozen no-regression architecture preserved:
+
+- 50% days 0–180 → 40% days 181–365 → 30% day 366+
+- Founding cohort 20
+- direct single-tier only; no recruitment commission / MLM
+- internal pending/review before PAYABLE
+- objective refund/chargeback/fraud/self/circular handling
+- append-only commission ledger / adjustment model
+- machine-first normal operation; Human for ambiguous/material exceptions
+- no escrow claim
+- provider-hosted onboarding preferred; M55 should not store full Creator bank details
+
+**Stripe-response change boundary:**
+
+- A changes exact Connect configuration only.
+- B changes negative-balance/recovery implementation only.
+- C can be a true provider hard invalidator if Stripe explicitly does not support the M55 account/business model.
+- D changes provider cost/unit-economics inputs; it does not retroactively rewrite frozen Creator economics.
+- Only a direct provider/legal/security/economic invalidator or explicit Human decision may reopen frozen architecture.
+
+Operational precedent is supporting evidence, **not** a legal safe harbor or claim that another company's operation binds M55's regulators/providers.
+
