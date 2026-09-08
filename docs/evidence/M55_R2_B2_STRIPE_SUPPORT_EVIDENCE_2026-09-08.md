@@ -1,9 +1,13 @@
 # M55 R2-B2 Stripe Support Primary Evidence — 2026-09-08
 
-**Evidence class:** `STRIPE_SUPPORT_PRIMARY_EVIDENCE`  
-**Source:** Stripe Support (account-specific response)  
-**Received:** 2026-09-08  
-**Classification gate:** R2-B2 `EXTERNAL_SUPPORTABILITY_CONFIRMATION`  
+**Evidence class:** `STRIPE_SUPPORT_PRIMARY_EVIDENCE`
+
+**Source:** Stripe Support (account-specific response)
+
+**Received:** 2026-09-08
+
+**Classification gate:** R2-B2 `EXTERNAL_SUPPORTABILITY_CONFIRMATION`
+
 **Authority:** supporting primary evidence for durable SSOT classification — does **not** modify `M55_EXECUTION_STATE.json` CURRENT/NEXT
 
 ## Evidence handling rules
