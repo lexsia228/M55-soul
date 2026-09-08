@@ -967,3 +967,21 @@ Frozen no-regression architecture preserved:
 
 Operational precedent is supporting evidence, **not** a legal safe harbor or claim that another company's operation binds M55's regulators/providers.
 
+### 2026-09-08 — R2-B2 Stripe A/B/D durable evidence freeze (Human-directed)
+
+**Status:** docs/governance only · local review required · no commit · no push · no runtime/Stripe/DB/Clerk/env mutation · `M55_EXECUTION_STATE.json` unchanged
+
+| Decision | Value |
+|---|---|
+| Primary evidence | `docs/evidence/M55_R2_B2_STRIPE_SUPPORT_EVIDENCE_2026-09-08.md` |
+| A account configuration | `R2_B2_STRIPE_A_ACCOUNT_CONFIGURATION = CLOSED_GREEN` · `STRIPE_ACCOUNT_API = ACCOUNTS_V2` · `STRIPE_CONNECTED_ACCOUNT_DASHBOARD = EXPRESS` · fees/losses = application |
+| B negative balance | `R2_B2_STRIPE_B_NEGATIVE_BALANCE_RESPONSIBILITY = CLOSED_GREEN_PLATFORM_RESPONSIBLE` |
+| C account supportability | `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY = WAITING_STRIPE_INTERNAL_SPECIALIST_REVIEW` · `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` |
+| D pricing model | `R2_B2_STRIPE_D_PRICING_MODEL = CLOSED_FOR_PRICING_MODEL` · `STRIPE_CONNECT_PRICING_OWNER = PLATFORM` · `R8_ACTUAL_BILLING_RECONCILIATION_REQUIRED = TRUE` |
+| Residual Stripe | `R2_B2_STRIPE_RESIDUAL_CONFIRMATION = C_ONLY` · `NO_ADDITIONAL_STRIPE_QUESTION_NOW = TRUE` |
+| Connect flow | `SEPARATE_CHARGES_AND_TRANSFERS = CONFIRMED_M55_CONNECT_FLOW` |
+| Provider selection | `stripePayoutProviderStatus = UNSELECTED` — final selection requires C resolution + R2 Final Human acceptance |
+| Japan legal/tax | `JAPAN_LEGAL_30_DAY_PAYMENT_COMPATIBILITY = OPEN` — not falsely closed |
+| Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` — **not modified** |
+| R2-B2 closure | **NOT CLOSED** — C waiting + Japan legal/tax classification remain |
+| API syntax boundary | semantic configuration only — R8 must use then-current Accounts v2 schema |

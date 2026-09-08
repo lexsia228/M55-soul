@@ -273,7 +273,7 @@ Preserve:
 - `stripePayoutProviderStatus = UNSELECTED`
 - `R2_B2_CORE_STRIPE_ARCHITECTURE_FEASIBLE = TRUE`
 - `STRIPE_CONNECT = VALIDATED_LEADING_PROVIDER_CANDIDATE`
-- `SEPARATE_CHARGES_AND_TRANSFERS = STRIPE_SUPPORTED_M55_FLOW_CANDIDATE`
+- `SEPARATE_CHARGES_AND_TRANSFERS = CONFIRMED_M55_CONNECT_FLOW`
 
 Do **not** assert:
 
@@ -284,9 +284,8 @@ Do **not** assert:
 - escrow
 - M55WEB fully approved
 - Creator payout activated
-- final account model frozen
-- final negative-balance liability frozen
-- final pricing model frozen
+- final Accounts v2 API field syntax frozen (semantic configuration classified 2026-09-08)
+- final unit-cost pricing formula frozen (pricing model classified 2026-09-08; R8 billing reconciliation remains)
 
 Final provider/flow selection requires remaining R2-B2 confirmation + R2 Final Human acceptance.
 
@@ -864,19 +863,28 @@ Normal financial reconciliation must **not** create proportional Human workload.
 
 ### Residual confirmation required (`R2_B2_STRIPE_RESIDUAL_CONFIRMATION`)
 
-Before payout implementation and before provider final selection, R2-B2 must still confirm:
+Stripe A/B/D closed 2026-09-08. Primary evidence: `docs/evidence/M55_R2_B2_STRIPE_SUPPORT_EVIDENCE_2026-09-08.md`
 
-- **A.** Current recommended connected-account implementation model — Stripe said "Express"; exact configuration remains OPEN
-- **B.** Negative-balance / losses responsibility — who bears Creator connected-account negative balances
-- **C.** M55WEB formal account review — process/timing/evidence for specialist supportability review
-- **D.** M55WEB Connect pricing model — account-specific applicable pricing model
+**Closed (do not reopen):**
+
+| Classification | Status |
+|---|---|
+| `R2_B2_STRIPE_A_ACCOUNT_CONFIGURATION` | **CLOSED_GREEN** — Accounts v2 · Express Dashboard · fees/losses = application (semantic; not frozen API syntax) |
+| `R2_B2_STRIPE_B_NEGATIVE_BALANCE_RESPONSIBILITY` | **CLOSED_GREEN_PLATFORM_RESPONSIBLE** |
+| `R2_B2_STRIPE_D_PRICING_MODEL` | **CLOSED_FOR_PRICING_MODEL** — platform-managed · ¥200/mo active · 0.25%+¥250 payout |
+
+**Still waiting:**
+
+- **C.** M55WEB formal account review — `WAITING_STRIPE_INTERNAL_SPECIALIST_REVIEW` · `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED`
 
 Plus remaining Japan legal/tax classification:
 
 - Japan legal/payment-deadline compatibility (`JAPAN_LEGAL_30_DAY_PAYMENT_COMPATIBILITY = OPEN`)
 - Japan tax/withholding classification sufficient for R2 closure
 
-`R2_B2_STRIPE_RESIDUAL_CONFIRMATION = A_D_ONLY`
+`R2_B2_STRIPE_RESIDUAL_CONFIRMATION = C_ONLY`
+
+`NO_ADDITIONAL_STRIPE_QUESTION_NOW = TRUE`
 
 `NO_BROAD_STRIPE_RESEARCH_REPLAY = TRUE`
 
@@ -886,16 +894,16 @@ Until R2-B2 closure + R2 Final Human acceptance: `stripePayoutProviderStatus = U
 
 ---
 
-## AR-b. Stripe A-D response impact matrix (Human-approved 2026-09-07)
+## AR-b. Stripe A-D response impact matrix (Human-approved 2026-09-07; A/B/D received 2026-09-08)
 
-Stripe A-D have already been sent. They are **WAITING / NO REPLAY**. Their replies are bounded as follows:
+Stripe A-D have been sent. **A/B/D responses received and classified 2026-09-08.** **C is WAITING.** They are bounded as follows:
 
 | Item | What the answer may change | What it does **not** change absent a real invalidator |
 |---|---|---|
-| **A — connected-account/configuration model** | exact Accounts/controller configuration, Dashboard/onboarding surface, API adapter, required capabilities | direct single-tier referral, Founding economics, commission lifecycle, append-only ledger |
-| **B — negative-balance/loss responsibility** | R8 reserve/recovery/reconciliation behavior, risk controls, provider liability settings | earned-rate schedule, attribution rules, Creator acquisition model |
-| **C — M55WEB formal account review/supportability** | GREEN → provider final-selection packet may proceed; conditional → satisfy named condition before activation; unsupported/blocked → **REAL_INVALIDATOR** and Human provider-architecture review | no broad replay if Stripe simply asks for ordinary verification/KYC/business evidence |
-| **D — applicable Connect pricing** | exact provider cost inputs, payout threshold/cadence economics, unit-economics monitoring | no retroactive reduction of already promised compliant Creator rate windows; only actual non-positive contribution or another Human-approved future-cohort change can alter future economics |
+| **A — connected-account/configuration model** | **CLOSED_GREEN** — Accounts v2 · Express Dashboard · fees/losses = application · `SEPARATE_CHARGES_AND_TRANSFERS = CONFIRMED_M55_CONNECT_FLOW` | direct single-tier referral, Founding economics, commission lifecycle, append-only ledger |
+| **B — negative-balance/loss responsibility** | **CLOSED_GREEN_PLATFORM_RESPONSIBLE** — R8 reserve/recovery/reconciliation, risk controls, post-payout negative adjustment | earned-rate schedule, attribution rules, Creator acquisition model |
+| **C — M55WEB formal account review/supportability** | **WAITING_STRIPE_INTERNAL_SPECIALIST_REVIEW** — `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` | no additional Stripe question now; unsupported/blocked would be **REAL_INVALIDATOR** |
+| **D — applicable Connect pricing** | **CLOSED_FOR_PRICING_MODEL** — platform-managed · ¥200/mo active · 0.25%+¥250 payout · `R8_ACTUAL_BILLING_RECONCILIATION_REQUIRED = TRUE` | no retroactive reduction of already promised compliant Creator rate windows |
 
 Current public Stripe documentation already establishes that:
 
@@ -938,8 +946,8 @@ Do **not** disguise unresolved questions as decisions:
 | post-payout reserve amount/policy | R8 |
 | cross-border creator support | R2-B2 |
 | Japan tax/withholding classification | R2-B2 (classify) · R8 (implement) |
-| negative-balance recovery model | R2-B2 (classify) · R8 (implement) |
-| final Connect configuration | R2-B2 |
+| negative-balance recovery model | R2-B2 **CLOSED_GREEN_PLATFORM_RESPONSIBLE** (2026-09-08) · R8 (implement) |
+| final Connect configuration | R2-B2 **CLOSED_GREEN** (2026-09-08) — semantic only; R8 maps to Accounts v2 API |
 
 **R2-B2 CLASSIFIES · R6/R8 IMPLEMENT** — do not solve rounding in R2-B2; do not implement negative-balance/tax runtime in R2-B2.
 
