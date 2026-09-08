@@ -349,11 +349,12 @@ Future decision record minimum:
 
 No silent commission disappearance.
 
-Creator-facing dashboard must eventually distinguish:
+Creator-facing dashboard must eventually distinguish the two frozen dimensions from §U rather than collapse them into one status:
 
-`PENDING` · `HOLD` · `PAYABLE` · `PAYOUT_PROCESSING` · `PAID/POSTED` · `REVERSED/CANCELED`
+- **Commission:** `COMMISSION_PENDING_COMPLIANCE_REVIEW` · `COMMISSION_HOLD` · `COMMISSION_PAYABLE` · `COMMISSION_REVERSED` · `COMMISSION_ADJUSTED`
+- **Payout:** `PAYOUT_NOT_READY` · `PAYOUT_BLOCKED_KYC` · `PAYOUT_BLOCKED_PROVIDER` · `PAYOUT_BLOCKED_SECURITY` · `PAYOUT_QUEUED` · `PAYOUT_PROCESSING` · `PAYOUT_POSTED` · `PAYOUT_FAILED` · `PAYOUT_RETURNED`
 
-with understandable reason/status where legally/product-safe.
+with understandable reason/status where legally/product-safe. `PAID`, `VESTED`, `CANCELED`, `HOLD_REVIEW`, and `PAYOUT_REQUESTED` are not canonical M55 state values.
 
 ---
 
@@ -780,9 +781,9 @@ R7 is **not** cosmetic. Minimum trust contract:
 
 **PERFORMANCE:** unique visits · valid Free completions · eligible paid conversions · conversion rate · attributed sales
 
-**EARNINGS:** estimated commission · `PENDING` · `HOLD` · `PAYABLE` · `POSTED` · adjustments
+**EARNINGS:** estimated commission plus canonical commission state (`COMMISSION_PENDING_COMPLIANCE_REVIEW` · `COMMISSION_HOLD` · `COMMISSION_PAYABLE` · `COMMISSION_REVERSED` · `COMMISSION_ADJUSTED`)
 
-**PAYOUT:** next eligible payout/release · blocked reason · payout batch status · failed/returned resolution path
+**PAYOUT:** canonical payout state (`PAYOUT_NOT_READY` · `PAYOUT_BLOCKED_KYC` · `PAYOUT_BLOCKED_PROVIDER` · `PAYOUT_BLOCKED_SECURITY` · `PAYOUT_QUEUED` · `PAYOUT_PROCESSING` · `PAYOUT_POSTED` · `PAYOUT_FAILED` · `PAYOUT_RETURNED`) · next eligible payout/release · blocked reason · batch resolution path
 
 **COMPLIANCE:** registered content · compliance state · required correction · appeal/discrepancy state
 
@@ -875,7 +876,7 @@ Stripe A/B/D closed 2026-09-08. Primary evidence: `docs/evidence/M55_R2_B2_STRIP
 
 **Non-blocking support follow-up (C only):**
 
-- **C.** M55WEB account supportability — `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY = NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP` · `STRIPE_SUPPORT_FOLLOWUP = PENDING_NO_ACTION_REQUIRED` · `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` (informational only; not a development blocker)
+- **C.** M55WEB account supportability — `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY = NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP` · `STRIPE_SUPPORT_FOLLOWUP = COMPLETED_NO_ACTION_REQUIRED` · `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` (informational only; not a development blocker)
 
 Plus remaining Japan legal/tax classification:
 
@@ -898,13 +899,13 @@ Until R2-B2 closure + R2 Final Human acceptance: `stripePayoutProviderStatus = U
 
 ## AR-b. Stripe A-D response impact matrix (Human-approved 2026-09-07; A/B/D received 2026-09-08)
 
-Stripe A-D have been sent. **A/B/D responses received and classified 2026-09-08.** **C is a non-blocking support follow-up** (`STRIPE_SUPPORT_FOLLOWUP = PENDING_NO_ACTION_REQUIRED`). They are bounded as follows:
+Stripe A-D have been sent. **A/B/D responses received and classified 2026-09-08.** **C support follow-up is completed with no M55 action required now** (`STRIPE_SUPPORT_FOLLOWUP = COMPLETED_NO_ACTION_REQUIRED`). They are bounded as follows:
 
 | Item | What the answer may change | What it does **not** change absent a real invalidator |
 |---|---|---|
 | **A — connected-account/configuration model** | **CLOSED_GREEN** — Accounts v2 · Express Dashboard · fees/losses = application · `SEPARATE_CHARGES_AND_TRANSFERS = CONFIRMED_M55_CONNECT_FLOW` | direct single-tier referral, Founding economics, commission lifecycle, append-only ledger |
 | **B — negative-balance/loss responsibility** | **CLOSED_GREEN_PLATFORM_RESPONSIBLE** — R8 reserve/recovery/reconciliation, risk controls, post-payout negative adjustment | earned-rate schedule, attribution rules, Creator acquisition model |
-| **C — M55WEB formal account review/supportability** | **NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP** — `STRIPE_SUPPORT_FOLLOWUP = PENDING_NO_ACTION_REQUIRED` · `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` (informational only) | no additional Stripe question now; no M55 action required for follow-up; unsupported/blocked would be **REAL_INVALIDATOR** |
+| **C — M55WEB formal account review/supportability** | **NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP** — support follow-up completed · `STRIPE_SUPPORT_FOLLOWUP = COMPLETED_NO_ACTION_REQUIRED` · `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` (informational only) | M55 cannot directly request account review; Stripe contacts M55 if more information is required; unsupported/blocked would be **REAL_INVALIDATOR** |
 | **D — applicable Connect pricing** | **CLOSED_FOR_PRICING_MODEL** — platform-managed · ¥200/mo active · 0.25%+¥250 payout · `R8_ACTUAL_BILLING_RECONCILIATION_REQUIRED = TRUE` | no retroactive reduction of already promised compliant Creator rate windows |
 
 Current public Stripe documentation already establishes that:
