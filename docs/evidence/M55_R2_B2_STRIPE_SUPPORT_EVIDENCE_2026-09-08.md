@@ -78,11 +78,13 @@
 
 ### `STRIPE_SUPPORT_PRIMARY_EVIDENCE`
 
-**Stripe Support material facts (dated 2026-09-08 — preserve verbatim semantics):**
+**Stripe Support material facts (dated 2026-09-08 — latest C answer supersedes the earlier wait instruction):**
 
-- Account review has been escalated/reconfirmed with Stripe's internal specialist team.
-- Stripe Support said it would reconfirm item 3 with its internal specialist team and asked M55 to wait for that support-side follow-up.
-- No final account approval has been received yet.
+- Earlier on 2026-09-08, Stripe Support said it would reconfirm item 3 with its internal specialist team and asked M55 to wait for that support-side follow-up.
+- In the later Stripe Support reply at 17:47 JST, Stripe confirmed that account reviews are conducted from time to time by Stripe specialist teams.
+- M55 cannot directly request an account review.
+- If Stripe's specialist team determines that additional information is required, Stripe will email M55 and request it.
+- No final or permanent account-approval certificate was issued. Future account/risk review and future Stripe contact remain possible.
 
 | Token | Value |
 |---|---|
@@ -94,7 +96,7 @@
 
 | Token | Value |
 |---|---|
-| `STRIPE_SUPPORT_FOLLOWUP` | `PENDING_NO_ACTION_REQUIRED` |
+| `STRIPE_SUPPORT_FOLLOWUP` | `COMPLETED_NO_ACTION_REQUIRED` |
 | `M55_ACTION_REQUIRED_FOR_STRIPE_FOLLOWUP` | `FALSE` |
 | `DEVELOPMENT_BLOCKED_BY_STRIPE_SUPPORT_FOLLOWUP` | `FALSE` |
 | `NO_ADDITIONAL_STRIPE_QUESTION_NOW` | `TRUE` |
@@ -102,9 +104,10 @@
 
 **Policy:**
 
-- Support-side follow-up may still arrive; this is **not** a development wait gate and requires **no** additional Human question or action now.
-- Do not reopen Stripe support questioning for C while follow-up is pending.
-- Do **not** claim Stripe has issued final account approval.
+- The requested Stripe support-side follow-up is **completed**. There is no current M55 action and no additional Stripe question required now.
+- M55 cannot directly request the account review; Stripe's specialist team performs reviews on its own cadence.
+- If additional information is required, Stripe will contact M55; M55 must respond then.
+- Do **not** claim Stripe has issued final or permanent account approval.
 - Do **not** claim Stripe will never contact M55 again or that future account/risk review cannot occur.
 - Production cash activation remains fail-closed against then-current Stripe account/capability/requirements state.
 
@@ -143,7 +146,7 @@
 | `R2_B2_STRIPE_A_ACCOUNT_CONFIGURATION` | `CLOSED_GREEN` |
 | `R2_B2_STRIPE_B_NEGATIVE_BALANCE_RESPONSIBILITY` | `CLOSED_GREEN_PLATFORM_RESPONSIBLE` |
 | `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY` | `NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP` |
-| `STRIPE_SUPPORT_FOLLOWUP` | `PENDING_NO_ACTION_REQUIRED` |
+| `STRIPE_SUPPORT_FOLLOWUP` | `COMPLETED_NO_ACTION_REQUIRED` |
 | `DEVELOPMENT_BLOCKED_BY_STRIPE_SUPPORT_FOLLOWUP` | `FALSE` |
 | `R2_B2_STRIPE_D_PRICING_MODEL` | `CLOSED_FOR_PRICING_MODEL` |
 | `R2_B2_STRIPE_RESIDUAL_CONFIRMATION` | `C_ONLY_NON_BLOCKING` |
@@ -158,7 +161,7 @@
 | `STRIPE_CONNECT` | `VALIDATED_LEADING_PROVIDER_CANDIDATE` |
 | `stripePayoutProviderStatus` | `UNSELECTED` |
 
-`stripePayoutProviderStatus` remains `UNSELECTED`. Final provider selection does **not** depend solely on receiving a future support follow-up email; R2 Final Human acceptance and then-current account/capability/requirements state at activation time remain the governing boundaries.
+`stripePayoutProviderStatus` remains `UNSELECTED`. Final provider selection does **not** depend on any further support-side follow-up; R2 Final Human acceptance and then-current account/capability/requirements state at activation time remain the governing boundaries.
 
 ## Japan legal / tax boundary (not closed by this evidence)
 

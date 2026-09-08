@@ -57,7 +57,7 @@ Sole executable CURRENT/NEXT remains `docs/ssot/M55_EXECUTION_STATE.json`. Curre
 | **R2-C** `M55_TWO_LANE_REWARD_CONTRACT` | General User non-cash / Approved Creator cash split | **INTERNAL TWO-LANE CONTRACT FROZEN** |
 | **R2-D** `FOUNDING_CREATOR_ECONOMICS` | 50/40/30 · cohort 20 · machine-first compliance · 30-day review · corrected stop-loss | **INTERNAL ECONOMICS FROZEN** |
 | **R2-E** `GENERAL_USER_VIRAL_VALUE_DESIGN` | `FREE_COMPLETION_DIGITAL_UNLOCK` v1 · Pair mutual artifact deferred | **INTERNAL LAUNCH MVP FROZEN** |
-| **R2-B2** `EXTERNAL_SUPPORTABILITY_CONFIRMATION` | account-specific Stripe + Japan legal/tax confirmation | **ACTIVE** — **STRIPE A/B/D CLOSED** · **STRIPE C NON-BLOCKING FOLLOWUP** · **JAPAN LEGAL/TAX OPEN** · P0-1 `GREEN_WITH_CONDITION` · P0-2 `GREEN` · P0-3 `GREEN` · **NOT CLOSED** |
+| **R2-B2** `EXTERNAL_SUPPORTABILITY_CONFIRMATION` | account-specific Stripe + Japan legal/tax confirmation | **ACTIVE** — **STRIPE A/B/D CLOSED** · **STRIPE C FOLLOW-UP COMPLETED / NO ACTION REQUIRED** · **JAPAN LEGAL/TAX OPEN** · P0-1 `GREEN_WITH_CONDITION` · P0-2 `GREEN` · P0-3 `GREEN` · **NOT CLOSED** |
 
 Compliance/payout automation annex: `docs/ssot/M55_CREATOR_COMPLIANCE_AND_PAYOUT_AUTOMATION_SSOT.md`
 
@@ -106,7 +106,7 @@ Primary evidence: `docs/evidence/M55_R2_B2_STRIPE_SUPPORT_EVIDENCE_2026-09-08.md
 | `STRIPE_LOSSES_RESPONSIBILITY` | **APPLICATION** |
 | `R2_B2_STRIPE_B_NEGATIVE_BALANCE_RESPONSIBILITY` | **CLOSED_GREEN_PLATFORM_RESPONSIBLE** |
 | `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY` | **NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP** |
-| `STRIPE_SUPPORT_FOLLOWUP` | **PENDING_NO_ACTION_REQUIRED** |
+| `STRIPE_SUPPORT_FOLLOWUP` | **COMPLETED_NO_ACTION_REQUIRED** |
 | `DEVELOPMENT_BLOCKED_BY_STRIPE_SUPPORT_FOLLOWUP` | **FALSE** |
 | `M55_ACCOUNT_FINAL_STRIPE_APPROVAL` | **NOT_YET_CONFIRMED** — informational only; not a development blocker |
 | `R2_B2_STRIPE_D_PRICING_MODEL` | **CLOSED_FOR_PRICING_MODEL** |
@@ -115,7 +115,7 @@ Primary evidence: `docs/evidence/M55_R2_B2_STRIPE_SUPPORT_EVIDENCE_2026-09-08.md
 
 **Residual Stripe confirmation (`R2_B2_STRIPE_RESIDUAL_CONFIRMATION`):**
 
-- **C only — non-blocking.** Stripe support-side follow-up may still arrive; `STRIPE_SUPPORT_FOLLOWUP = PENDING_NO_ACTION_REQUIRED` · `M55_ACTION_REQUIRED_FOR_STRIPE_FOLLOWUP = FALSE` · `DEVELOPMENT_BLOCKED_BY_STRIPE_SUPPORT_FOLLOWUP = FALSE`
+- **C only — non-blocking account-review boundary.** Requested support-side follow-up is complete; `STRIPE_SUPPORT_FOLLOWUP = COMPLETED_NO_ACTION_REQUIRED` · M55 cannot directly request account review · Stripe contacts M55 if more information is required · `M55_ACTION_REQUIRED_FOR_STRIPE_FOLLOWUP = FALSE` · `DEVELOPMENT_BLOCKED_BY_STRIPE_SUPPORT_FOLLOWUP = FALSE`
 - `R2_B2_STRIPE_RESIDUAL_CONFIRMATION = C_ONLY_NON_BLOCKING`
 - `NO_ADDITIONAL_STRIPE_QUESTION_NOW = TRUE`
 - A/B/D closed — do not reopen Stripe support questioning for A/B/D
@@ -146,13 +146,13 @@ Canonical R2→R8 stage order remains unchanged. This policy changes **waiting b
 
 `NO_BROAD_CREATOR_REVENUE_RESEARCH_REPLAY = TRUE`
 
-While Stripe C support follow-up may still arrive (non-blocking; A/B/D closed 2026-09-08), bounded Creator Revenue work may continue inside the current `REVENUE_SAFETY_E2E` authority when it does not choose unresolved provider, tax, legal-due-date, or live-payout semantics. Examples include pure machine contracts, approved-Creator participation state, direct single-tier attribution contracts, objective review/reason-code contracts, provider-independent observability, and implementation planning.
+With Stripe C support follow-up completed and no current M55 action required (future Stripe account/risk review remains possible; A/B/D closed 2026-09-08), bounded Creator Revenue work may continue inside the current `REVENUE_SAFETY_E2E` authority when it does not choose unresolved provider, tax, legal-due-date, or live-payout semantics. Examples include pure machine contracts, approved-Creator participation state, direct single-tier attribution contracts, objective review/reason-code contracts, provider-independent observability, and implementation planning.
 
 This does **not** classify R3-R8 as complete, does **not** authorize live connected accounts or payouts, and does **not** allow financial semantics to be guessed.
 
 Domestic mature-market operational precedent is now a reusable baseline: affiliate pending→review→confirmed/cancelled→aggregated-payment patterns and Japanese Stripe Connect multi-party payout patterns are **not** to be re-researched as if novel. Reopen only on a direct invalidator.
 
-The only non-blocking external Stripe item is C (support-side follow-up may still arrive; no M55 action required now). A/B/D closed 2026-09-08. Broad legal/tax/professional consultation is not a standing development blocker; bounded activation-time verification remains fail-closed where required.
+Stripe C support-side follow-up is completed with no M55 action required now; future Stripe account/risk review or information requests remain possible. A/B/D closed 2026-09-08. Broad legal/tax/professional consultation is not a standing development blocker; bounded activation-time verification remains fail-closed where required.
 
 ### Parallel non-Stripe quality lane (Human-approved 2026-09-06)
 
@@ -254,7 +254,7 @@ Nothing may have `OWNER = UNKNOWN`. Unresolved semantics name their owning futur
 | Customer privacy | R7 | **NOT_IMPLEMENTED** | no PII in dashboard audit | anonymous references only |
 | Actionable payout-block UX | R7 · R3 | **NOT_IMPLEMENTED** | 6-question block UX acceptance | `CREATOR_PAYOUT_BLOCK_REASON_MUST_BE_ACTIONABLE` |
 | Creator export | R7 | **NOT_IMPLEMENTED** | machine-readable reconciliation export | tax doc format = legal confirmation |
-| Stripe-hosted onboarding | R8 · R2-B2 | **ACCOUNTS_V2 + EXPRESS DASHBOARD CLASSIFIED / NOT_IMPLEMENTED** | hosted/embedded onboarding proof | provider UNSELECTED · C non-blocking follow-up |
+| Stripe-hosted onboarding | R8 · R2-B2 | **ACCOUNTS_V2 + EXPRESS DASHBOARD CLASSIFIED / NOT_IMPLEMENTED** | hosted/embedded onboarding proof | provider UNSELECTED · C follow-up completed/no action required |
 | KYC separation | R8 · R7 | **NOT_IMPLEMENTED** | PAYABLE + PAYOUT_BLOCKED_KYC UX proof | KYC failure ≠ erase commission |
 | Payout batching | R8 | **NOT_IMPLEMENTED** | batch statement + never 1:1 purchase:payout | aggregation required |
 | Destination security hold | R8 | **NOT_IMPLEMENTED** | 5-day default hold + accrual continues proof | `PAYOUT_DESTINATION_CHANGE_SECURITY_HOLD` |
@@ -264,7 +264,7 @@ Nothing may have `OWNER = UNKNOWN`. Unresolved semantics name their owning futur
 | Failed/returned payout | R8 | **NOT_IMPLEMENTED** | PAYOUT_FAILED/RETURNED lifecycle proof | preserve PAYABLE economics |
 | Negative-balance handling | R8 · R2-B2 | **R2-B2 CLOSED_GREEN_PLATFORM_RESPONSIBLE / R8 NOT_IMPLEMENTED** | R8 reserve/recovery/reconciliation evidence | R8 implements · no assumed auto-debit |
 | Tax/withholding | R2-B2 · R8 | **R2-B2 LEGAL/TAX CLASSIFICATION OPEN / R8 NOT_IMPLEMENTED** | legal/tax confirmation | R2-B2 classifies · R8 implements · no universal 10.21% freeze |
-| Provider supportability | R2-B2 | **STRIPE A/B/D CLOSED / C NON-BLOCKING FOLLOWUP / JAPAN LEGAL-TAX OPEN** | P0 + A/B/D evidence + Japan legal/tax classification | provider UNSELECTED |
+| Provider supportability | R2-B2 | **STRIPE A/B/D CLOSED / C FOLLOW-UP COMPLETED-NO-ACTION / JAPAN LEGAL-TAX OPEN** | P0 + A/B/D evidence + Japan legal/tax classification | provider UNSELECTED |
 | No Human-per-payout operation | R2 (frozen) · R8 | **FROZEN / NOT_IMPLEMENTED** | machine-first ops observability | `HUMAN_DOES_NOT_APPROVE_EVERY_PAYOUT` |
 | High-trust founding exception review | R5 · R7 · R3 | **NOT_IMPLEMENTED** | AUTO_HOLD → evidence → appeal flow proof | `FOUNDING_CREATOR_EXCEPTION_REVIEW_MUST_BE_HIGH_TRUST` |
 | Transparency as acquisition asset | R3 · R7 | **NOT_IMPLEMENTED** | factual launch copy audit | no guarantee/escrow claims |

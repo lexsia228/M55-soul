@@ -1041,3 +1041,29 @@ Operational precedent is supporting evidence, **not** a legal safe harbor or cla
 | Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` — **not modified** |
 | R2-B2 closure | **NOT CLOSED** — Japan legal/tax classification remain; Stripe C follow-up is non-blocking |
 | Prohibited claims | no final Stripe approval claim · no claim Stripe will never contact M55 again · no one-time approval certificate |
+
+### 2026-09-08 — R2-B2 Stripe C support-follow-up completion (Human-directed; Gmail primary evidence verified)
+
+**Status:** docs/governance only · remote docs branch update authorized by Human · no runtime/Stripe/DB/Clerk/env/Production mutation · `M55_EXECUTION_STATE.json` unchanged
+
+The earlier same-day `PENDING_NO_ACTION_REQUIRED` record above is retained as historical evidence. The later Stripe Support reply at 17:47 JST supersedes the wait instruction for **current state**.
+
+| Decision | Value |
+|---|---|
+| Stripe C classification family | `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY = NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP` |
+| Support follow-up | `STRIPE_SUPPORT_FOLLOWUP = COMPLETED_NO_ACTION_REQUIRED` |
+| Account review requestability | M55 **cannot directly request** an account review |
+| Stripe review operation | Stripe specialist teams conduct account reviews on their own cadence |
+| Additional-information path | If more information is required, Stripe contacts M55 by email; M55 responds then |
+| M55 action now | `M55_ACTION_REQUIRED_FOR_STRIPE_FOLLOWUP = FALSE` |
+| Development block | `DEVELOPMENT_BLOCKED_BY_STRIPE_SUPPORT_FOLLOWUP = FALSE` |
+| Additional Stripe question now | `NO_ADDITIONAL_STRIPE_QUESTION_NOW = TRUE` |
+| Final approval | `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` — no final/permanent approval certificate claimed |
+| Future review/contact | **POSSIBLE** — completion of this support follow-up does not mean Stripe will never review or contact M55 again |
+| Provider selection | `stripePayoutProviderStatus = UNSELECTED` |
+| Japan legal/tax | remains **OPEN**; not closed by Stripe C |
+| Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` — **not modified** |
+| R2-B2 closure | **NOT CLOSED** — Japan legal/tax classification remains open |
+| Cash activation | fail-closed against then-current Stripe account/capability/requirements state |
+| State-machine canonicalization | Compliance SSOT §U remains authoritative: commission and payout are orthogonal; `COMMISSION_HOLD_REVIEW`, `PAYOUT_REQUESTED`, `VESTED`, `CANCELED`, and `PAID` are not canonical persisted M55 state values |
+

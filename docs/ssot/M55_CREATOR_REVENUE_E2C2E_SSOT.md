@@ -65,24 +65,25 @@ A frozen decision may be reopened only by a real invalidator such as:
 
 ## B. Safe distribution loop
 
-Normative conceptual flow:
+Normative conceptual flow uses the frozen §U **two-field orthogonal state model**:
 
 `SHARE_READY`
 → `DIRECT_ATTRIBUTION_RECORDED`
 → `ELIGIBLE_PURCHASE_CONFIRMED`
-→ `COMMISSION_PENDING_COMPLIANCE_REVIEW`
-→ optional `COMMISSION_HOLD_REVIEW`
-→ `COMMISSION_PAYABLE`
-→ `PAYOUT_REQUESTED`
-→ `PAYOUT_PROCESSING`
-→ `PAYOUT_POSTED`
+→ commission state `COMMISSION_PENDING_COMPLIANCE_REVIEW`
+→ optional commission state `COMMISSION_HOLD`
+→ commission state `COMMISSION_PAYABLE`
+
+Payout readiness is a **separate dimension**, not a continuation of the commission state machine. Once a commission is `COMMISSION_PAYABLE`, payout state may independently move through `PAYOUT_NOT_READY` / an applicable `PAYOUT_BLOCKED_*` state → `PAYOUT_QUEUED` → `PAYOUT_PROCESSING` → `PAYOUT_POSTED`.
 
 Exceptional paths:
 
-- `PURCHASE_REFUNDED` → `COMMISSION_REVERSED` / `CANCELED`
-- `CHARGEBACK` → `COMMISSION_REVERSED` / `NEGATIVE_ADJUSTMENT` as contract permits
-- `FRAUD_FLAG` → `HOLD` → `REVIEW` → `RELEASE` / `DECLINE` / `PARTNERSHIP_PAUSE`
-- `PAYOUT_FAILED` / `RETURNED` → reconciliation, not silent success
+- `PURCHASE_REFUNDED` → canonical commission transition to `COMMISSION_REVERSED` or an append-only `COMMISSION_ADJUSTED` record as contract permits
+- `CHARGEBACK` → `COMMISSION_REVERSED` or `COMMISSION_ADJUSTED` as contract permits
+- `FRAUD_FLAG` → `COMMISSION_HOLD` → review → `COMMISSION_PAYABLE` / `COMMISSION_REVERSED` / `COMMISSION_ADJUSTED` as policy permits
+- `PAYOUT_FAILED` / `PAYOUT_RETURNED` → payout reconciliation, not silent success
+
+Non-canonical synonyms such as `COMMISSION_HOLD_REVIEW`, `PAYOUT_REQUESTED`, `VESTED`, `CANCELED`, and `PAID` must not be persisted as M55 state values.
 
 ---
 
@@ -163,9 +164,9 @@ Do **not** rewrite historical commission facts. Corrections use immutable adjust
 At eligible Stripe-confirmed purchase:
 
 - create idempotent internal commission event
-- status initially `COMMISSION_PENDING_COMPLIANCE_REVIEW` (family alias: `COMMISSION_PENDING`)
+- canonical `commission_state` initially `COMMISSION_PENDING_COMPLIANCE_REVIEW`
 
-`COMMISSION_PENDING` / `PENDING` does **not** mean money has been paid or irrevocably earned.
+A creator-facing label such as “pending” does **not** create a second persisted state and does **not** mean money has been paid or irrevocably earned.
 
 Only after:
 
@@ -175,9 +176,9 @@ Only after:
 - attribution checks
 - chargeback state as defined by policy
 
-may it become: `COMMISSION_PAYABLE` / `PAYABLE` / `VESTED`.
+may the canonical commission state become `COMMISSION_PAYABLE`. A creator-facing “PAYABLE” label may describe that state, but `VESTED` is not a canonical persisted state.
 
-Only `PAYABLE` amounts may enter payout execution.
+Only records with `commission_state = COMMISSION_PAYABLE` may enter payout execution.
 
 Do **not** call this:
 
@@ -552,7 +553,7 @@ Primary evidence: `docs/evidence/M55_R2_B2_STRIPE_SUPPORT_EVIDENCE_2026-09-08.md
 | `STRIPE_FEES_RESPONSIBILITY` | **APPLICATION** | Platform bears Connect fees |
 | `STRIPE_LOSSES_RESPONSIBILITY` | **APPLICATION** | Platform bears payment losses |
 | `R2_B2_STRIPE_B_NEGATIVE_BALANCE_RESPONSIBILITY` | **CLOSED_GREEN_PLATFORM_RESPONSIBLE** | M55 platform bears connected-account negative balances |
-| `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY` | **NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP** | Support-side follow-up may still arrive; `STRIPE_SUPPORT_FOLLOWUP = PENDING_NO_ACTION_REQUIRED` · `M55_ACTION_REQUIRED_FOR_STRIPE_FOLLOWUP = FALSE` · `DEVELOPMENT_BLOCKED_BY_STRIPE_SUPPORT_FOLLOWUP = FALSE` · `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` (informational only) |
+| `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY` | **NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP** | Support-side follow-up may still arrive; `STRIPE_SUPPORT_FOLLOWUP = COMPLETED_NO_ACTION_REQUIRED` · `M55_ACTION_REQUIRED_FOR_STRIPE_FOLLOWUP = FALSE` · `DEVELOPMENT_BLOCKED_BY_STRIPE_SUPPORT_FOLLOWUP = FALSE` · `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` (informational only) |
 | `R2_B2_STRIPE_D_PRICING_MODEL` | **CLOSED_FOR_PRICING_MODEL** | Platform-managed pricing · ¥200/mo active account · 0.25%+¥250 payout · charges debited from platform balance |
 | `STRIPE_CONNECT_PRICING_OWNER` | **PLATFORM** | Platform-managed Connect pricing model |
 | `R8_ACTUAL_BILLING_RECONCILIATION_REQUIRED` | **TRUE** | Reconcile Dashboard/contract/invoice at R8 before payout activation — no invented unit-cost formula |
@@ -677,7 +678,7 @@ Current external evidence as of 2026-09-08 (Stripe support A/B/D response — pr
 
 - `R2_B2_STRIPE_A_ACCOUNT_CONFIGURATION = CLOSED_GREEN` — Accounts v2 · Express Dashboard · fees/losses = application
 - `R2_B2_STRIPE_B_NEGATIVE_BALANCE_RESPONSIBILITY = CLOSED_GREEN_PLATFORM_RESPONSIBLE`
-- `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY = NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP` · `STRIPE_SUPPORT_FOLLOWUP = PENDING_NO_ACTION_REQUIRED` · `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` (informational only; not a development blocker)
+- `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY = NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP` · `STRIPE_SUPPORT_FOLLOWUP = COMPLETED_NO_ACTION_REQUIRED` · `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` (informational only; not a development blocker)
 - `R2_B2_STRIPE_D_PRICING_MODEL = CLOSED_FOR_PRICING_MODEL` · `STRIPE_CONNECT_PRICING_OWNER = PLATFORM` · `R8_ACTUAL_BILLING_RECONCILIATION_REQUIRED = TRUE`
 - `SEPARATE_CHARGES_AND_TRANSFERS = CONFIRMED_M55_CONNECT_FLOW`
 - `R2_B2_STRIPE_RESIDUAL_CONFIRMATION = C_ONLY_NON_BLOCKING` · `NO_ADDITIONAL_STRIPE_QUESTION_NOW = TRUE` · `DEVELOPMENT_BLOCKED_BY_STRIPE_SUPPORT_FOLLOWUP = FALSE`
