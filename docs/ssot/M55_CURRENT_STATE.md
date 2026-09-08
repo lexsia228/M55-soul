@@ -22,12 +22,12 @@ Human-approved durable overlay. When this section conflicts with older narrative
 | SOLE EXECUTABLE AUTHORITY | `docs/ssot/M55_EXECUTION_STATE.json` |
 | CURRENT / NEXT | `REVENUE_SAFETY_E2E` |
 | ACTIVE MACRO | **CREATOR REVENUE R2** |
-| R2-B2 | **STRIPE A/B/D CLOSED** · **STRIPE C WAITING** · **JAPAN LEGAL/TAX OPEN** |
+| R2-B2 | **STRIPE A/B/D CLOSED** · **STRIPE C NON-BLOCKING FOLLOWUP** · **JAPAN LEGAL/TAX OPEN** |
 | PARALLEL QUALITY LANE | **SELF PREMIUM PUBLICATION CLOSURE** — non-Stripe · does not replace CURRENT/NEXT |
 | CREATOR CASH | **NOT IMPLEMENTED** |
 | PAYOUT PROVIDER | **UNSELECTED** |
 | DOMESTIC CREATOR REVENUE PRECEDENT | **GREEN / REUSE** — mature Japan affiliate lifecycle + Japan Stripe Connect multi-party operating precedent; no broad replay absent invalidator |
-| EXTERNAL WAIT POLICY | Stripe C **WAITING** (internal specialist review) · A/B/D **CLOSED** · provider-independent development **CONTINUES** · paid professional consultation **NOT REQUIRED NOW** · actual cash activation remains fail-closed |
+| EXTERNAL WAIT POLICY | Stripe C **NON-BLOCKING** support follow-up may still arrive (`STRIPE_SUPPORT_FOLLOWUP = PENDING_NO_ACTION_REQUIRED`) · **no M55 action required now** · A/B/D **CLOSED** · provider-independent development **CONTINUES** · paid professional consultation **NOT REQUIRED NOW** · actual cash activation remains fail-closed |
 | PAIR PREMIUM | commerce switch **ACTIVATED** · control-plane decision **CLOSED GREEN** · real-payment E2E **not GREEN** · fulfillment + owned-report revisit E2E **not GREEN** unless separately proven |
 
 All older `CURRENT` narrative sections below are **historical mirrors** when they conflict with this overlay or `M55_EXECUTION_STATE.json`.

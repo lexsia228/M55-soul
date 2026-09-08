@@ -498,7 +498,7 @@ Prohibited claims:
 | **R2-C** `M55_TWO_LANE_REWARD_CONTRACT` | General User non-cash / Approved Creator cash split | **INTERNAL TWO-LANE CONTRACT FROZEN** |
 | **R2-D** `FOUNDING_CREATOR_ECONOMICS` | 50% days 0–180 · 40% days 181–365 · 30% day 366+ · no conversion cliffs · cohort **20** · no extra launch cash bonus · machine-first compliance architecture · 30-day review model · corrected stop-loss principles | **INTERNAL ECONOMICS FROZEN** — actual Human absolute cash-exposure budget / provider costs / legal deadlines remain external |
 | **R2-E** `GENERAL_USER_VIRAL_VALUE_DESIGN` | `GENERAL_USER_PRIMARY_V1 = FREE_COMPLETION_DIGITAL_UNLOCK` · Pair mutual artifact deferred | **INTERNAL LAUNCH MVP FROZEN** |
-| **R2-B2** `EXTERNAL_SUPPORTABILITY_CONFIRMATION` | account-specific Stripe/provider + Japan legal/tax confirmation | **ACTIVE** — **STRIPE A/B/D CLOSED** · **STRIPE C WAITING** · **JAPAN LEGAL/TAX OPEN** · P0-1 `GREEN_WITH_CONDITION` · P0-2 `GREEN` · P0-3 `GREEN` · **NOT CLOSED** |
+| **R2-B2** `EXTERNAL_SUPPORTABILITY_CONFIRMATION` | account-specific Stripe/provider + Japan legal/tax confirmation | **ACTIVE** — **STRIPE A/B/D CLOSED** · **STRIPE C NON-BLOCKING FOLLOWUP** · **JAPAN LEGAL/TAX OPEN** · P0-1 `GREEN_WITH_CONDITION` · P0-2 `GREEN` · P0-3 `GREEN` · **NOT CLOSED** |
 
 Machine-first compliance / payout detail: `docs/ssot/M55_CREATOR_COMPLIANCE_AND_PAYOUT_AUTOMATION_SSOT.md`
 
@@ -536,7 +536,7 @@ Dated external evidence from Stripe support — do not paraphrase into stronger 
 | `R2_B2_CORE_STRIPE_ARCHITECTURE_FEASIBLE` | **TRUE** | Core Stripe Connect affiliate architecture is feasible as leading candidate |
 | `STRIPE_CONNECT` | **VALIDATED_LEADING_PROVIDER_CANDIDATE** | Not final selection |
 | `SEPARATE_CHARGES_AND_TRANSFERS` | **CONFIRMED_M55_CONNECT_FLOW** | Stripe support confirmed M55 uses Separate Charges and Transfers |
-| `stripePayoutProviderStatus` | **UNSELECTED** | Final selection requires C resolution + R2 Final Human acceptance |
+| `stripePayoutProviderStatus` | **UNSELECTED** | Final selection remains UNSELECTED until R2 Final Human acceptance; Stripe support follow-up is non-blocking and does not gate provider-independent development |
 
 ### R2-B2 Stripe A/B/D evidence (2026-09-08)
 
@@ -550,14 +550,15 @@ Primary evidence: `docs/evidence/M55_R2_B2_STRIPE_SUPPORT_EVIDENCE_2026-09-08.md
 | `STRIPE_FEES_RESPONSIBILITY` | **APPLICATION** | Platform bears Connect fees |
 | `STRIPE_LOSSES_RESPONSIBILITY` | **APPLICATION** | Platform bears payment losses |
 | `R2_B2_STRIPE_B_NEGATIVE_BALANCE_RESPONSIBILITY` | **CLOSED_GREEN_PLATFORM_RESPONSIBLE** | M55 platform bears connected-account negative balances |
-| `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY` | **WAITING_STRIPE_INTERNAL_SPECIALIST_REVIEW** | Escalated to Stripe internal specialist team; `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` |
+| `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY` | **NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP** | Support-side follow-up may still arrive; `STRIPE_SUPPORT_FOLLOWUP = PENDING_NO_ACTION_REQUIRED` · `M55_ACTION_REQUIRED_FOR_STRIPE_FOLLOWUP = FALSE` · `DEVELOPMENT_BLOCKED_BY_STRIPE_SUPPORT_FOLLOWUP = FALSE` · `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` (informational only) |
 | `R2_B2_STRIPE_D_PRICING_MODEL` | **CLOSED_FOR_PRICING_MODEL** | Platform-managed pricing · ¥200/mo active account · 0.25%+¥250 payout · charges debited from platform balance |
 | `STRIPE_CONNECT_PRICING_OWNER` | **PLATFORM** | Platform-managed Connect pricing model |
 | `R8_ACTUAL_BILLING_RECONCILIATION_REQUIRED` | **TRUE** | Reconcile Dashboard/contract/invoice at R8 before payout activation — no invented unit-cost formula |
 
 **Residual Stripe confirmation (`R2_B2_STRIPE_RESIDUAL_CONFIRMATION`):**
 
-- **C only.** M55WEB formal account review — escalated to Stripe internal specialist team; no final approval yet
+- **C only — non-blocking.** Stripe support-side follow-up may still arrive; no final approval certificate received; not a development wait gate
+- `R2_B2_STRIPE_RESIDUAL_CONFIRMATION = C_ONLY_NON_BLOCKING`
 - `NO_ADDITIONAL_STRIPE_QUESTION_NOW = TRUE`
 - A/B/D are **CLOSED** — do not reopen Stripe support questioning for A/B/D
 
@@ -640,7 +641,7 @@ Reusable M55 operating baseline:
 - provider-hosted/embedded onboarding preferred; M55 does not store full bank details
 - no recruitment commission, no MLM tree, no guaranteed-income claims
 
-**External-wait boundary:** Stripe C waiting (A/B/D closed 2026-09-08) and any bounded mandatory-law/tax implementation check may change provider configuration, liability handling, fee parameters, payout controls, or activation conditions. They do **not** reopen the frozen Creator acquisition/economics/anti-MLM/state-machine architecture unless they produce a direct invalidator.
+**External-wait boundary:** Stripe C non-blocking support follow-up (A/B/D closed 2026-09-08) and any bounded mandatory-law/tax implementation check may change provider configuration, liability handling, fee parameters, payout controls, or activation conditions. They do **not** reopen the frozen Creator acquisition/economics/anti-MLM/state-machine architecture unless they produce a direct invalidator.
 
 **Development policy:** waiting for Stripe or other external responses is **not** a reason to stop provider-independent Creator Revenue development. Actual cash activation, live connected-account creation, live payout, and unresolved tax withholding execution remain fail-closed until their exact owning gate is satisfied.
 
@@ -674,10 +675,10 @@ Current external evidence as of 2026-09-08 (Stripe support A/B/D response — pr
 
 - `R2_B2_STRIPE_A_ACCOUNT_CONFIGURATION = CLOSED_GREEN` — Accounts v2 · Express Dashboard · fees/losses = application
 - `R2_B2_STRIPE_B_NEGATIVE_BALANCE_RESPONSIBILITY = CLOSED_GREEN_PLATFORM_RESPONSIBLE`
-- `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY = WAITING_STRIPE_INTERNAL_SPECIALIST_REVIEW` · `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED`
+- `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY = NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP` · `STRIPE_SUPPORT_FOLLOWUP = PENDING_NO_ACTION_REQUIRED` · `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` (informational only; not a development blocker)
 - `R2_B2_STRIPE_D_PRICING_MODEL = CLOSED_FOR_PRICING_MODEL` · `STRIPE_CONNECT_PRICING_OWNER = PLATFORM` · `R8_ACTUAL_BILLING_RECONCILIATION_REQUIRED = TRUE`
 - `SEPARATE_CHARGES_AND_TRANSFERS = CONFIRMED_M55_CONNECT_FLOW`
-- `R2_B2_STRIPE_RESIDUAL_CONFIRMATION = C_ONLY` · `NO_ADDITIONAL_STRIPE_QUESTION_NOW = TRUE`
+- `R2_B2_STRIPE_RESIDUAL_CONFIRMATION = C_ONLY_NON_BLOCKING` · `NO_ADDITIONAL_STRIPE_QUESTION_NOW = TRUE` · `DEVELOPMENT_BLOCKED_BY_STRIPE_SUPPORT_FOLLOWUP = FALSE`
 
 Current external evidence as of 2026-09-06 (Stripe support P0 response — still applicable):
 
