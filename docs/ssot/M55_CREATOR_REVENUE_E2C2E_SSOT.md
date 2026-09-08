@@ -498,7 +498,7 @@ Prohibited claims:
 | **R2-C** `M55_TWO_LANE_REWARD_CONTRACT` | General User non-cash / Approved Creator cash split | **INTERNAL TWO-LANE CONTRACT FROZEN** |
 | **R2-D** `FOUNDING_CREATOR_ECONOMICS` | 50% days 0–180 · 40% days 181–365 · 30% day 366+ · no conversion cliffs · cohort **20** · no extra launch cash bonus · machine-first compliance architecture · 30-day review model · corrected stop-loss principles | **INTERNAL ECONOMICS FROZEN** — actual Human absolute cash-exposure budget / provider costs / legal deadlines remain external |
 | **R2-E** `GENERAL_USER_VIRAL_VALUE_DESIGN` | `GENERAL_USER_PRIMARY_V1 = FREE_COMPLETION_DIGITAL_UNLOCK` · Pair mutual artifact deferred | **INTERNAL LAUNCH MVP FROZEN** |
-| **R2-B2** `EXTERNAL_SUPPORTABILITY_CONFIRMATION` | account-specific Stripe/provider + Japan legal/tax confirmation | **ACTIVE** — **CORE STRIPE FEASIBILITY CONFIRMED** / **RESIDUAL CLASSIFICATION OPEN** · P0-1 `GREEN_WITH_CONDITION` · P0-2 `GREEN` · P0-3 `GREEN` · **NOT CLOSED** |
+| **R2-B2** `EXTERNAL_SUPPORTABILITY_CONFIRMATION` | account-specific Stripe/provider + Japan legal/tax confirmation | **ACTIVE** — **STRIPE A/B/D CLOSED** · **STRIPE C WAITING** · **JAPAN LEGAL/TAX OPEN** · P0-1 `GREEN_WITH_CONDITION` · P0-2 `GREEN` · P0-3 `GREEN` · **NOT CLOSED** |
 
 Machine-first compliance / payout detail: `docs/ssot/M55_CREATOR_COMPLIANCE_AND_PAYOUT_AUTOMATION_SSOT.md`
 
@@ -535,15 +535,31 @@ Dated external evidence from Stripe support — do not paraphrase into stronger 
 | `R2_B2_STRIPE_P0_3_30_DAY_TRANSFER_MODEL` | **GREEN** | Purchase → ~30-day internal review → commission PAYABLE → later Creator transfer allowed for Japan platform + Japan connected account |
 | `R2_B2_CORE_STRIPE_ARCHITECTURE_FEASIBLE` | **TRUE** | Core Stripe Connect affiliate architecture is feasible as leading candidate |
 | `STRIPE_CONNECT` | **VALIDATED_LEADING_PROVIDER_CANDIDATE** | Not final selection |
-| `SEPARATE_CHARGES_AND_TRANSFERS` | **STRIPE_SUPPORTED_M55_FLOW_CANDIDATE** | Stripe support recommended this flow |
-| `stripePayoutProviderStatus` | **UNSELECTED** | Final selection requires remaining R2-B2 confirmation + R2 Final Human acceptance |
+| `SEPARATE_CHARGES_AND_TRANSFERS` | **CONFIRMED_M55_CONNECT_FLOW** | Stripe support confirmed M55 uses Separate Charges and Transfers |
+| `stripePayoutProviderStatus` | **UNSELECTED** | Final selection requires C resolution + R2 Final Human acceptance |
+
+### R2-B2 Stripe A/B/D evidence (2026-09-08)
+
+Primary evidence: `docs/evidence/M55_R2_B2_STRIPE_SUPPORT_EVIDENCE_2026-09-08.md`
+
+| Classification | Status | Meaning |
+|---|---|---|
+| `R2_B2_STRIPE_A_ACCOUNT_CONFIGURATION` | **CLOSED_GREEN** | Accounts v2 · Express Dashboard · fees payer = application · losses.payments = application · semantic only — not frozen API syntax |
+| `STRIPE_ACCOUNT_API` | **ACCOUNTS_V2** | New Connect implementation should use Accounts v2 |
+| `STRIPE_CONNECTED_ACCOUNT_DASHBOARD` | **EXPRESS** | Express Dashboard for connected accounts |
+| `STRIPE_FEES_RESPONSIBILITY` | **APPLICATION** | Platform bears Connect fees |
+| `STRIPE_LOSSES_RESPONSIBILITY` | **APPLICATION** | Platform bears payment losses |
+| `R2_B2_STRIPE_B_NEGATIVE_BALANCE_RESPONSIBILITY` | **CLOSED_GREEN_PLATFORM_RESPONSIBLE** | M55 platform bears connected-account negative balances |
+| `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY` | **WAITING_STRIPE_INTERNAL_SPECIALIST_REVIEW** | Escalated to Stripe internal specialist team; `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` |
+| `R2_B2_STRIPE_D_PRICING_MODEL` | **CLOSED_FOR_PRICING_MODEL** | Platform-managed pricing · ¥200/mo active account · 0.25%+¥250 payout · charges debited from platform balance |
+| `STRIPE_CONNECT_PRICING_OWNER` | **PLATFORM** | Platform-managed Connect pricing model |
+| `R8_ACTUAL_BILLING_RECONCILIATION_REQUIRED` | **TRUE** | Reconcile Dashboard/contract/invoice at R8 before payout activation — no invented unit-cost formula |
 
 **Residual Stripe confirmation (`R2_B2_STRIPE_RESIDUAL_CONFIRMATION`):**
 
-- **A.** Connected-account implementation model — Stripe support said "Express"; legacy Express account type vs current Stripe account/configuration model with Express dashboard remains OPEN
-- **B.** Negative-balance / losses responsibility — account/model-specific classification of who bears Creator connected-account negative balances; no Japan bank auto-debit assumption
-- **C.** M55WEB formal account review — exact process/timing/evidence for specialist supportability review
-- **D.** M55WEB Connect pricing model — account-specific classification of applicable Connect pricing model
+- **C only.** M55WEB formal account review — escalated to Stripe internal specialist team; no final approval yet
+- `NO_ADDITIONAL_STRIPE_QUESTION_NOW = TRUE`
+- A/B/D are **CLOSED** — do not reopen Stripe support questioning for A/B/D
 
 **30-day review separation:**
 
@@ -587,6 +603,47 @@ Does **not** change Creator Revenue CURRENT/NEXT · does **not** authorize Strip
 
 ---
 
+## N-b. Japan mature-market operational precedent freeze (Human-approved 2026-09-07)
+
+This is a **durable operating baseline** built from dated public evidence. It is **not** a legal safe harbor and does not mean another company's operation legally binds Stripe, tax authorities, JFTC, or M55. Its purpose is to prevent M55 from treating standard affiliate / multi-party payout mechanics as a new invention and repeatedly reopening broad research.
+
+Frozen classifications:
+
+`JAPAN_MATURE_AFFILIATE_OPERATIONAL_PRECEDENT = GREEN`
+
+`JAPAN_STRIPE_CONNECT_PLATFORM_PRECEDENT = GREEN`
+
+`DEVELOPMENT_BLOCKED_BY_GENERAL_LEGAL_TAX_RESEARCH = FALSE`
+
+`PAID_PROFESSIONAL_CONSULTATION_REQUIRED_NOW = FALSE`
+
+`NO_BROAD_DOMESTIC_AFFILIATE_RESEARCH_REPLAY = TRUE`
+
+`NO_BROAD_LEGAL_TAX_RESEARCH_REPLAY = TRUE`
+
+Dated evidence baseline used for this freeze:
+
+- Stripe official Japan/customer material shows Connect in live Japanese multi-party businesses including Adastria / dot-C, INFORICH / ShareSPOT, Kurashi no Market, and Toyota / Mechacomi. The common reusable pattern is platform-controlled multi-party funds flow, seller/partner onboarding/KYC, revenue splitting or payout, refund/cancellation handling, and provider-managed payment infrastructure.
+- A8.net publicly documents `未確定` affiliate results that are later confirmed or cancelled by the advertiser; confirmed rewards are paid on a later aggregated schedule. A8.net also publicly states that its affiliate performance rewards are not subject to withholding by A8.
+- MoshiMo Affiliate publicly documents per-result approval, in principle within 30 days, followed by confirmed reward handling and later aggregated payment.
+- JFTC official guidance remains the mandatory-law boundary: if the Freelance Act applies to the actual M55 relationship, transaction terms and a specific payment due date must be disclosed and payment must meet the applicable statutory deadline.
+- Current Stripe Connect documentation recommends modern controller/property or Accounts v2-style configuration rather than relying on legacy Standard/Express/Custom labels alone; exact M55 account configuration remains an account-specific A item.
+
+Reusable M55 operating baseline:
+
+- approved Creator lane, direct single-tier attribution only
+- purchase/result first enters internal pending/review state
+- objective eligibility / refund / chargeback / self-referral / circular-referral / fraud checks precede `PAYABLE`
+- monthly/periodic aggregation rather than one payout per purchase
+- append-only commission/accounting history with explicit adjustments
+- Creator-visible status and reason codes
+- provider-hosted/embedded onboarding preferred; M55 does not store full bank details
+- no recruitment commission, no MLM tree, no guaranteed-income claims
+
+**External-wait boundary:** Stripe C waiting (A/B/D closed 2026-09-08) and any bounded mandatory-law/tax implementation check may change provider configuration, liability handling, fee parameters, payout controls, or activation conditions. They do **not** reopen the frozen Creator acquisition/economics/anti-MLM/state-machine architecture unless they produce a direct invalidator.
+
+**Development policy:** waiting for Stripe or other external responses is **not** a reason to stop provider-independent Creator Revenue development. Actual cash activation, live connected-account creation, live payout, and unresolved tax withholding execution remain fail-closed until their exact owning gate is satisfied.
+
 ## F. Stripe boundary
 
 Existing customer purchase rail remains existing Stripe checkout/webhook authority.
@@ -610,17 +667,24 @@ Do **not** assert:
 - Stripe provides M55 "escrow"
 - M55WEB is fully approved
 - Creator payout is activated
-- final account model is frozen
-- final negative-balance liability is frozen
-- final pricing model is frozen
+- final Accounts v2 API field syntax is frozen (semantic configuration classified 2026-09-08; implementation-time schema mapping remains R8)
+- final unit-cost pricing formula is frozen (pricing model classified 2026-09-08; actual billing reconciliation remains R8)
 
-Current external evidence as of 2026-09-06 (Stripe support P0 response — dated external evidence):
+Current external evidence as of 2026-09-08 (Stripe support A/B/D response — primary evidence: `docs/evidence/M55_R2_B2_STRIPE_SUPPORT_EVIDENCE_2026-09-08.md`):
+
+- `R2_B2_STRIPE_A_ACCOUNT_CONFIGURATION = CLOSED_GREEN` — Accounts v2 · Express Dashboard · fees/losses = application
+- `R2_B2_STRIPE_B_NEGATIVE_BALANCE_RESPONSIBILITY = CLOSED_GREEN_PLATFORM_RESPONSIBLE`
+- `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY = WAITING_STRIPE_INTERNAL_SPECIALIST_REVIEW` · `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED`
+- `R2_B2_STRIPE_D_PRICING_MODEL = CLOSED_FOR_PRICING_MODEL` · `STRIPE_CONNECT_PRICING_OWNER = PLATFORM` · `R8_ACTUAL_BILLING_RECONCILIATION_REQUIRED = TRUE`
+- `SEPARATE_CHARGES_AND_TRANSFERS = CONFIRMED_M55_CONNECT_FLOW`
+- `R2_B2_STRIPE_RESIDUAL_CONFIRMATION = C_ONLY` · `NO_ADDITIONAL_STRIPE_QUESTION_NOW = TRUE`
+
+Current external evidence as of 2026-09-06 (Stripe support P0 response — still applicable):
 
 - `R2_B2_STRIPE_P0_1_BUSINESS_CLASSIFICATION = GREEN_WITH_CONDITION` — described business does not appear to fall under Japan prohibited "Psychic services and fortune tellers"; `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED`
 - `R2_B2_STRIPE_P0_2_JP_CREATOR_COMMISSION = GREEN` — Japan platform → Japan resident Creator connected account → affiliate commission supported in principle
 - `R2_B2_STRIPE_P0_3_30_DAY_TRANSFER_MODEL = GREEN` — ~30-day review → PAYABLE → later transfer allowed for Japan platform + Japan connected account
-- Stripe support recommended `SEPARATE_CHARGES_AND_TRANSFERS` and used `EXPRESS_CONNECTED_ACCOUNT` wording
-- `R2_B2_CORE_STRIPE_ARCHITECTURE_FEASIBLE = TRUE` · `STRIPE_CONNECT = VALIDATED_LEADING_PROVIDER_CANDIDATE` · `SEPARATE_CHARGES_AND_TRANSFERS = STRIPE_SUPPORTED_M55_FLOW_CANDIDATE`
+- `R2_B2_CORE_STRIPE_ARCHITECTURE_FEASIBLE = TRUE` · `STRIPE_CONNECT = VALIDATED_LEADING_PROVIDER_CANDIDATE`
 - `stripePayoutProviderStatus = UNSELECTED`
 
 Prior external evidence as of 2026-09-05 (still applicable where not superseded):

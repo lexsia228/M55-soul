@@ -57,7 +57,7 @@ Sole executable CURRENT/NEXT remains `docs/ssot/M55_EXECUTION_STATE.json`. Curre
 | **R2-C** `M55_TWO_LANE_REWARD_CONTRACT` | General User non-cash / Approved Creator cash split | **INTERNAL TWO-LANE CONTRACT FROZEN** |
 | **R2-D** `FOUNDING_CREATOR_ECONOMICS` | 50/40/30 · cohort 20 · machine-first compliance · 30-day review · corrected stop-loss | **INTERNAL ECONOMICS FROZEN** |
 | **R2-E** `GENERAL_USER_VIRAL_VALUE_DESIGN` | `FREE_COMPLETION_DIGITAL_UNLOCK` v1 · Pair mutual artifact deferred | **INTERNAL LAUNCH MVP FROZEN** |
-| **R2-B2** `EXTERNAL_SUPPORTABILITY_CONFIRMATION` | account-specific Stripe + Japan legal/tax confirmation | **ACTIVE** — **CORE STRIPE FEASIBILITY CONFIRMED** / **RESIDUAL CLASSIFICATION OPEN** · P0-1 `GREEN_WITH_CONDITION` · P0-2 `GREEN` · P0-3 `GREEN` · **NOT CLOSED** |
+| **R2-B2** `EXTERNAL_SUPPORTABILITY_CONFIRMATION` | account-specific Stripe + Japan legal/tax confirmation | **ACTIVE** — **STRIPE A/B/D CLOSED** · **STRIPE C WAITING** · **JAPAN LEGAL/TAX OPEN** · P0-1 `GREEN_WITH_CONDITION` · P0-2 `GREEN` · P0-3 `GREEN` · **NOT CLOSED** |
 
 Compliance/payout automation annex: `docs/ssot/M55_CREATOR_COMPLIANCE_AND_PAYOUT_AUTOMATION_SSOT.md`
 
@@ -90,15 +90,32 @@ Dated external evidence from Stripe support — do not paraphrase into stronger 
 | `R2_B2_STRIPE_P0_3_30_DAY_TRANSFER_MODEL` | **GREEN** | Purchase → ~30-day internal review → commission PAYABLE → later Creator transfer allowed for Japan platform + Japan connected account |
 | `R2_B2_CORE_STRIPE_ARCHITECTURE_FEASIBLE` | **TRUE** | Core Stripe Connect affiliate architecture is feasible as leading candidate |
 | `STRIPE_CONNECT` | **VALIDATED_LEADING_PROVIDER_CANDIDATE** | Not final selection |
-| `SEPARATE_CHARGES_AND_TRANSFERS` | **STRIPE_SUPPORTED_M55_FLOW_CANDIDATE** | Stripe support recommended this flow; not final account approval |
-| `stripePayoutProviderStatus` | **UNSELECTED** | Final selection requires remaining R2-B2 confirmation + R2 Final Human acceptance |
+| `SEPARATE_CHARGES_AND_TRANSFERS` | **CONFIRMED_M55_CONNECT_FLOW** | Stripe support confirmed M55 uses Separate Charges and Transfers |
+| `stripePayoutProviderStatus` | **UNSELECTED** | Final selection requires C resolution + R2 Final Human acceptance |
+
+### R2-B2 Stripe A/B/D evidence (2026-09-08)
+
+Primary evidence: `docs/evidence/M55_R2_B2_STRIPE_SUPPORT_EVIDENCE_2026-09-08.md`
+
+| Classification | Status |
+|---|---|
+| `R2_B2_STRIPE_A_ACCOUNT_CONFIGURATION` | **CLOSED_GREEN** |
+| `STRIPE_ACCOUNT_API` | **ACCOUNTS_V2** |
+| `STRIPE_CONNECTED_ACCOUNT_DASHBOARD` | **EXPRESS** |
+| `STRIPE_FEES_RESPONSIBILITY` | **APPLICATION** |
+| `STRIPE_LOSSES_RESPONSIBILITY` | **APPLICATION** |
+| `R2_B2_STRIPE_B_NEGATIVE_BALANCE_RESPONSIBILITY` | **CLOSED_GREEN_PLATFORM_RESPONSIBLE** |
+| `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY` | **WAITING_STRIPE_INTERNAL_SPECIALIST_REVIEW** |
+| `M55_ACCOUNT_FINAL_STRIPE_APPROVAL` | **NOT_YET_CONFIRMED** |
+| `R2_B2_STRIPE_D_PRICING_MODEL` | **CLOSED_FOR_PRICING_MODEL** |
+| `STRIPE_CONNECT_PRICING_OWNER` | **PLATFORM** |
+| `R8_ACTUAL_BILLING_RECONCILIATION_REQUIRED` | **TRUE** |
 
 **Residual Stripe confirmation (`R2_B2_STRIPE_RESIDUAL_CONFIRMATION`):**
 
-- **A.** Current recommended connected-account implementation model — Stripe support said "Express"; exact legacy vs current configuration model remains OPEN until Stripe clarifies
-- **B.** Negative-balance / losses responsibility — who bears Creator connected-account negative balances; no Japan bank auto-debit assumption
-- **C.** M55WEB formal account review — exact process/timing/evidence for specialist supportability review
-- **D.** M55WEB Connect pricing model — which Connect pricing model applies to this account
+- **C only** — M55WEB formal account review waiting on Stripe internal specialist team
+- `NO_ADDITIONAL_STRIPE_QUESTION_NOW = TRUE`
+- A/B/D closed — do not reopen Stripe support questioning for A/B/D
 
 **30-day review separation:**
 
@@ -115,6 +132,24 @@ Dated external evidence from Stripe support — do not paraphrase into stronger 
 | Rounding | — | R6: deterministic financial calculation rule — **do not solve in R2-B2** |
 
 Principle: **R2-B2 CLASSIFIES · R6/R8 IMPLEMENT**
+
+### 2026-09-07 external-dependency non-blocking policy (Human-approved)
+
+Canonical R2→R8 stage order remains unchanged. This policy changes **waiting behavior**, not stage labels.
+
+`EXTERNAL_WAIT_DOES_NOT_STOP_PROVIDER_INDEPENDENT_DEVELOPMENT = TRUE`
+
+`ACTUAL_CASH_ACTIVATION_REQUIRES_R2_B2_CLOSURE = TRUE`
+
+`NO_BROAD_CREATOR_REVENUE_RESEARCH_REPLAY = TRUE`
+
+While Stripe C is waiting (A/B/D closed 2026-09-08), bounded Creator Revenue work may continue inside the current `REVENUE_SAFETY_E2E` authority when it does not choose unresolved provider, tax, legal-due-date, or live-payout semantics. Examples include pure machine contracts, approved-Creator participation state, direct single-tier attribution contracts, objective review/reason-code contracts, provider-independent observability, and implementation planning.
+
+This does **not** classify R3-R8 as complete, does **not** authorize live connected accounts or payouts, and does **not** allow financial semantics to be guessed.
+
+Domestic mature-market operational precedent is now a reusable baseline: affiliate pending→review→confirmed/cancelled→aggregated-payment patterns and Japanese Stripe Connect multi-party payout patterns are **not** to be re-researched as if novel. Reopen only on a direct invalidator.
+
+The only pending external Stripe item is C (account supportability — internal specialist review). A/B/D closed 2026-09-08. Broad legal/tax/professional consultation is not a standing development blocker; bounded activation-time verification remains fail-closed where required.
 
 ### Parallel non-Stripe quality lane (Human-approved 2026-09-06)
 
@@ -216,7 +251,7 @@ Nothing may have `OWNER = UNKNOWN`. Unresolved semantics name their owning futur
 | Customer privacy | R7 | **NOT_IMPLEMENTED** | no PII in dashboard audit | anonymous references only |
 | Actionable payout-block UX | R7 · R3 | **NOT_IMPLEMENTED** | 6-question block UX acceptance | `CREATOR_PAYOUT_BLOCK_REASON_MUST_BE_ACTIONABLE` |
 | Creator export | R7 | **NOT_IMPLEMENTED** | machine-readable reconciliation export | tax doc format = legal confirmation |
-| Stripe-hosted onboarding | R8 · R2-B2 | **STRIPE CONNECT DIRECTION SUPPORTED / EXACT ACCOUNT CONFIG OPEN / NOT_IMPLEMENTED** | hosted/embedded onboarding proof | provider UNSELECTED · Express vs current config OPEN |
+| Stripe-hosted onboarding | R8 · R2-B2 | **ACCOUNTS_V2 + EXPRESS DASHBOARD CLASSIFIED / NOT_IMPLEMENTED** | hosted/embedded onboarding proof | provider UNSELECTED · C waiting |
 | KYC separation | R8 · R7 | **NOT_IMPLEMENTED** | PAYABLE + PAYOUT_BLOCKED_KYC UX proof | KYC failure ≠ erase commission |
 | Payout batching | R8 | **NOT_IMPLEMENTED** | batch statement + never 1:1 purchase:payout | aggregation required |
 | Destination security hold | R8 | **NOT_IMPLEMENTED** | 5-day default hold + accrual continues proof | `PAYOUT_DESTINATION_CHANGE_SECURITY_HOLD` |
@@ -224,9 +259,9 @@ Nothing may have `OWNER = UNKNOWN`. Unresolved semantics name their owning futur
 | Idempotency | R6 · R8 | **NOT_IMPLEMENTED** | duplicate webhook/retry tests | `PAYOUT_INSTRUCTION_IDEMPOTENCY` |
 | Webhook replay/dead-letter | R8 | **NOT_IMPLEMENTED** | replay-safe financial result proof | no silent event loss |
 | Failed/returned payout | R8 | **NOT_IMPLEMENTED** | PAYOUT_FAILED/RETURNED lifecycle proof | preserve PAYABLE economics |
-| Negative-balance handling | R8 · R2-B2 | **R2-B2 EXTERNAL CLASSIFICATION OPEN / R8 NOT_IMPLEMENTED** | Japan recovery model evidence | R2-B2 classifies · R8 implements · no assumed auto-debit |
+| Negative-balance handling | R8 · R2-B2 | **R2-B2 CLOSED_GREEN_PLATFORM_RESPONSIBLE / R8 NOT_IMPLEMENTED** | R8 reserve/recovery/reconciliation evidence | R8 implements · no assumed auto-debit |
 | Tax/withholding | R2-B2 · R8 | **R2-B2 LEGAL/TAX CLASSIFICATION OPEN / R8 NOT_IMPLEMENTED** | legal/tax confirmation | R2-B2 classifies · R8 implements · no universal 10.21% freeze |
-| Provider supportability | R2-B2 | **PARTIAL GREEN / CORE FEASIBILITY CONFIRMED / RESIDUAL ACCOUNT CONFIRMATION OPEN** | P0 evidence + residual A–D account confirmation | provider UNSELECTED |
+| Provider supportability | R2-B2 | **STRIPE A/B/D CLOSED / C WAITING / JAPAN LEGAL-TAX OPEN** | P0 + A/B/D evidence + C resolution | provider UNSELECTED |
 | No Human-per-payout operation | R2 (frozen) · R8 | **FROZEN / NOT_IMPLEMENTED** | machine-first ops observability | `HUMAN_DOES_NOT_APPROVE_EVERY_PAYOUT` |
 | High-trust founding exception review | R5 · R7 · R3 | **NOT_IMPLEMENTED** | AUTO_HOLD → evidence → appeal flow proof | `FOUNDING_CREATOR_EXCEPTION_REVIEW_MUST_BE_HIGH_TRUST` |
 | Transparency as acquisition asset | R3 · R7 | **NOT_IMPLEMENTED** | factual launch copy audit | no guarantee/escrow claims |

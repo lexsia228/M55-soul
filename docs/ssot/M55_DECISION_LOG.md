@@ -927,3 +927,61 @@ The authorized **NEXT** action is baseline/control-plane implementation on the e
 | Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` per `M55_EXECUTION_STATE.json` — **not modified** in this gate |
 | Research prohibition | no broad Stripe/competitor research replay · no implementation based solely on partial P0 confirmation |
 | R2-B2 closure | **NOT CLOSED** — residual account/legal/tax classification remains before R2 Final Human acceptance |
+
+### 2026-09-07 — Domestic mature-market precedent freeze / external-wait non-blocking policy
+
+**Status:** Human-approved durable Creator Revenue decision.
+
+| Decision | Value |
+|---|---|
+| Domestic mature affiliate operating pattern | **REUSE AS BASELINE** — do not treat pending→review→confirm/cancel→aggregate pay as a new invention |
+| Japan Stripe Connect multi-party precedent | **GREEN as operating precedent** — multiple Stripe official Japan customer cases exist |
+| Broad affiliate/Stripe research replay | **PROHIBITED** absent direct invalidator |
+| Broad legal/tax research replay | **PROHIBITED** absent direct invalidator |
+| Paid lawyer/tax adviser consultation now | **NOT REQUIRED** |
+| Stripe A-D | **ALREADY SENT / WAITING** — account-specific confirmation only |
+| Development while waiting | **CONTINUES** for provider-independent work inside current execution authority |
+| Live connected account / payout activation | **FAIL-CLOSED** until exact provider/account/tax owners are satisfied |
+| Provider | **UNSELECTED** until R2-B2 + Human final provider decision |
+| Creator cash infrastructure | **NOT IMPLEMENTED** |
+
+Frozen no-regression architecture preserved:
+
+- 50% days 0–180 → 40% days 181–365 → 30% day 366+
+- Founding cohort 20
+- direct single-tier only; no recruitment commission / MLM
+- internal pending/review before PAYABLE
+- objective refund/chargeback/fraud/self/circular handling
+- append-only commission ledger / adjustment model
+- machine-first normal operation; Human for ambiguous/material exceptions
+- no escrow claim
+- provider-hosted onboarding preferred; M55 should not store full Creator bank details
+
+**Stripe-response change boundary:**
+
+- A changes exact Connect configuration only.
+- B changes negative-balance/recovery implementation only.
+- C can be a true provider hard invalidator if Stripe explicitly does not support the M55 account/business model.
+- D changes provider cost/unit-economics inputs; it does not retroactively rewrite frozen Creator economics.
+- Only a direct provider/legal/security/economic invalidator or explicit Human decision may reopen frozen architecture.
+
+Operational precedent is supporting evidence, **not** a legal safe harbor or claim that another company's operation binds M55's regulators/providers.
+
+### 2026-09-08 — R2-B2 Stripe A/B/D durable evidence freeze (Human-directed)
+
+**Status:** docs/governance only · local review required · no commit · no push · no runtime/Stripe/DB/Clerk/env mutation · `M55_EXECUTION_STATE.json` unchanged
+
+| Decision | Value |
+|---|---|
+| Primary evidence | `docs/evidence/M55_R2_B2_STRIPE_SUPPORT_EVIDENCE_2026-09-08.md` |
+| A account configuration | `R2_B2_STRIPE_A_ACCOUNT_CONFIGURATION = CLOSED_GREEN` · `STRIPE_ACCOUNT_API = ACCOUNTS_V2` · `STRIPE_CONNECTED_ACCOUNT_DASHBOARD = EXPRESS` · fees/losses = application |
+| B negative balance | `R2_B2_STRIPE_B_NEGATIVE_BALANCE_RESPONSIBILITY = CLOSED_GREEN_PLATFORM_RESPONSIBLE` |
+| C account supportability | `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY = WAITING_STRIPE_INTERNAL_SPECIALIST_REVIEW` · `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` |
+| D pricing model | `R2_B2_STRIPE_D_PRICING_MODEL = CLOSED_FOR_PRICING_MODEL` · `STRIPE_CONNECT_PRICING_OWNER = PLATFORM` · `R8_ACTUAL_BILLING_RECONCILIATION_REQUIRED = TRUE` |
+| Residual Stripe | `R2_B2_STRIPE_RESIDUAL_CONFIRMATION = C_ONLY` · `NO_ADDITIONAL_STRIPE_QUESTION_NOW = TRUE` |
+| Connect flow | `SEPARATE_CHARGES_AND_TRANSFERS = CONFIRMED_M55_CONNECT_FLOW` |
+| Provider selection | `stripePayoutProviderStatus = UNSELECTED` — final selection requires C resolution + R2 Final Human acceptance |
+| Japan legal/tax | `JAPAN_LEGAL_30_DAY_PAYMENT_COMPATIBILITY = OPEN` — not falsely closed |
+| Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` — **not modified** |
+| R2-B2 closure | **NOT CLOSED** — C waiting + Japan legal/tax classification remain |
+| API syntax boundary | semantic configuration only — R8 must use then-current Accounts v2 schema |
