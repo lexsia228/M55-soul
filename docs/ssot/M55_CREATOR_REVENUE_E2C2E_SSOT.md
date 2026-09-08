@@ -8,6 +8,8 @@ Sole executable CURRENT/NEXT authority remains `docs/ssot/M55_EXECUTION_STATE.js
 
 Machine-first compliance / payout architecture annex: `docs/ssot/M55_CREATOR_COMPLIANCE_AND_PAYOUT_AUTOMATION_SSOT.md`
 
+Parallel multi-agent operating model: `docs/ssot/M55_MULTI_AGENT_PARALLEL_OPERATING_MODEL_SSOT.md` — mandatory process reference whenever Creator Revenue runs concurrently with UIUX or other AI lanes; does not change R1→R8 order or implementation authority.
+
 **Trust / ledger / payout control detail lives in the annex.** This parent SSOT retains economics, lane contracts, and roadmap authority only.
 
 `CREATOR_EARNINGS_TRANSPARENCY = REQUIRED`

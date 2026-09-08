@@ -15,10 +15,19 @@ Machine truth: `lib/m55/contracts/m55CommercialFunnelContract.ts`
 | E+ | `M55_CONTROL_TOWER_OPERATIONS_MAP.md` | GitHub / Vercel / Clerk / Supabase / Stripe ops map · boot cross-reference |
 | E++ | `M55_HIGH_COST_EVIDENCE_LEDGER.md` | Closed high-cost test evidence · rerun prohibition · invalidation rules |
 | E+++ | `M55_CREATOR_REVENUE_E2C2E_SSOT.md` | Creator Revenue / E2C2E staged roadmap contract · anti-MLM · ledger lifecycle · Stripe boundary |
+| E++++ | `M55_MULTI_AGENT_PARALLEL_OPERATING_MODEL_SSOT.md` | Human-approved parallel AI operating model · lane ownership · workspace isolation · Grok read-only audit · fresh-chat recovery |
 | — | `M55_SAFARI_MCP_AI_BROWSER_QUALITY_SSOT.md` | Safari MCP canonical actual-browser observation adapter · subordinate to commercial quality contract |
 | — | `docs/runbooks/M55_SAFARI_MCP_LOCAL_READINESS_RUNBOOK.md` | Subordinate STP/MCP local readiness steps · not authority |
 | — | `M55_PRODUCT_TRUTH.md` | Human-readable product truth (references machine contract) |
 | Entry | `AGENTS.md` | Read order and agent rules |
+
+## Multi-agent parallel operating model
+
+When two or more ChatGPT/Cursor/Codex/Grok roles operate concurrently, read `M55_MULTI_AGENT_PARALLEL_OPERATING_MODEL_SSOT.md`.
+
+That SSOT is process authority for role separation, one-lane/one-mutation-owner, one-Bot/one-controller, isolated workspaces, evidence-class separation, Grok read-only red-team usage, cross-lane sync, and fresh-chat recovery.
+
+It does **not** override `M55_EXECUTION_STATE.json`, does **not** reorder roadmap gates, and does **not** authorize mutation by itself.
 
 ## Worktree registry
 

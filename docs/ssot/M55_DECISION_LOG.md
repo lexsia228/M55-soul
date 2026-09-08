@@ -18,6 +18,7 @@ Status: **Decisions authority (Tier E)**
 | SSOT merge 後に新 GPT スレッドへ移行 | 会話ログを authority にしない |
 | 共有 commercial quality control plane を導入する | 固定ビューポート単発 gate では responsive 欠陥を再現できない。`lib/commercialQuality/**` を repository-independent engine、`lib/m55/commercialUx/qualityControl/**` を M55 adapter として分離し、既存 authority は参照のみ |
 | canonical baseline は candidate → human-approved の二段のみ | 機械生成物が自己承認で canonical に昇格する経路を構造的に閉じる |
+| Multi-agent parallel operating modelをSSOT化する | 新ChatGPTでもHumanの再説明なしに、Control Tower / lane owner / Cursor / Codex / Grok / Humanの役割、workspace分離、read-only red-team、cross-lane syncを復元するため |
 
 ## REJECTED
 
@@ -60,6 +61,42 @@ Machine authority: `M55_ACCESSIBILITY_DEFERRALS` in `lib/m55/commercialUx/qualit
 | Runtime「保存版」vs SSOT「プレミアムレポート」 | **RESOLVED 2026-08-04** — Human: `保存版` = INTERNAL_ONLY; public Premium terminology canonical; WT-018 local implementation authorized |
 
 ## Human-approved policy decisions (dated)
+
+
+### 2026-09-08 — Multi-agent parallel operating model SSOT
+
+**Status:** Human-approved **durable operating model**.
+
+Canonical process authority:
+
+`docs/ssot/M55_MULTI_AGENT_PARALLEL_OPERATING_MODEL_SSOT.md`
+
+Frozen decisions:
+
+| Rule | Value |
+|---|---|
+| One lane / one mutation owner | **REQUIRED** |
+| One Grok Bot / one controlling ChatGPT | **REQUIRED** |
+| Read-only auditors implement code | **PROHIBITED by default** |
+| Parallel agents reorder roadmap | **PROHIBITED** |
+| Parallel mutation workspaces | **SEPARATE / ISOLATED** |
+| Local-only branch visible to Grok cloud | **NO — use screenshots/patch/artifacts until pushed** |
+| Grok output | **SUPPORTING EVIDENCE ONLY** until primary adjudication |
+| New chat recovery | **AGENTS → EXECUTION_STATE → SSOT README → multi-agent SSOT → lane SSOT → fresh dynamic facts** |
+| Human must re-explain method in every new chat | **NO** |
+| Dynamic SHA/branch/worktree facts | **FRESH OBSERVATION REQUIRED** |
+
+First-adoption role topology (dated context, not timeless dynamic authority):
+
+- Control-Tower ChatGPT = cross-lane integration / Creator Revenue control
+- UIUX ChatGPT = bounded UIUX lane owner
+- Cursor = UIUX implementer
+- Codex Sol = high-cost UIUX review/judgment
+- Grok Revenue Auditor = Creator Revenue read-only red-team
+- Grok UIUX Auditor = UIUX read-only red-team
+- Human = final approval where required
+
+This decision does **not** change `M55_EXECUTION_STATE.json`, `CURRENT`, `NEXT`, Creator Revenue R1→R8 order, provider selection, or Production mutation authority.
 
 ### 2026-08-04 — Premium public terminology (WT-018)
 
