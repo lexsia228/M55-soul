@@ -1,7 +1,7 @@
 # M55_REPO_ASSET_INDEX
 
-Generated: 2026-09-07T23:28:55.851891+00:00
-Total records: 709
+Generated: 2026-09-08T23:22:47.021404+00:00
+Total records: 710
 
 - [ssot] `docs/ssot/CHECKPOINT_2026-03-02.md` (1717 bytes)
 - [ssot] `docs/ssot/DESKTOP_PACK_SCAN_REPORT_2026-02-26.md` (3948 bytes)
@@ -21,11 +21,11 @@ Total records: 709
 - [ssot] `docs/ssot/M55_COMMERCIAL_QUALITY_CONTRACT.md` (14810 bytes)
 - [ssot] `docs/ssot/M55_CONTROL_TOWER_OPERATIONS_MAP.md` (5138 bytes)
 - [ssot] `docs/ssot/M55_COPY_AND_CLAIMS.md` (2471 bytes)
-- [ssot] `docs/ssot/M55_CREATOR_COMPLIANCE_AND_PAYOUT_AUTOMATION_SSOT.md` (39573 bytes)
-- [ssot] `docs/ssot/M55_CREATOR_REVENUE_E2C2E_SSOT.md` (34628 bytes)
-- [ssot] `docs/ssot/M55_CURRENT_STATE.md` (104600 bytes)
+- [ssot] `docs/ssot/M55_CREATOR_COMPLIANCE_AND_PAYOUT_AUTOMATION_SSOT.md` (44236 bytes)
+- [ssot] `docs/ssot/M55_CREATOR_REVENUE_E2C2E_SSOT.md` (41788 bytes)
+- [ssot] `docs/ssot/M55_CURRENT_STATE.md` (105300 bytes)
 - [ssot] `docs/ssot/M55_DAILY_DIGEST_AND_HABIT_LOOP_SSOT_v1_2026-03-07.md` (4728 bytes)
-- [ssot] `docs/ssot/M55_DECISION_LOG.md` (69606 bytes)
+- [ssot] `docs/ssot/M55_DECISION_LOG.md` (79215 bytes)
 - [ssot] `docs/ssot/M55_DEPRECATION_MAP_20260330.md` (6382 bytes)
 - [ssot] `docs/ssot/M55_DIVINATION_RESULT_PARITY_P0_CLOSEOUT_2026-05-26.md` (8508 bytes)
 - [ssot] `docs/ssot/M55_DTR_BASE_PREVIEW_GREEN_CHECKPOINT_2026-05-12.md` (3141 bytes)
@@ -60,6 +60,7 @@ Total records: 709
 - [ssot] `docs/ssot/M55_METHOD_AND_AUTHORITY_SSOT_v1.md` (7269 bytes)
 - [ssot] `docs/ssot/M55_MONETIZATION_IMPLEMENTATION_PLAN_WEB_v1.md` (7244 bytes)
 - [ssot] `docs/ssot/M55_MONETIZATION_SSOT_FULL_FREEZE_v1_0.md` (8954 bytes)
+- [ssot] `docs/ssot/M55_MULTI_AGENT_PARALLEL_OPERATING_MODEL_SSOT.md` (14073 bytes)
 - [ssot] `docs/ssot/M55_PAID_DTR_PRODUCT_COPY_MASTER_v1.md` (26051 bytes)
 - [ssot] `docs/ssot/M55_PAIR_FUNNEL_CONTRACT.md` (2953 bytes)
 - [ssot] `docs/ssot/M55_PHASE2_INTEGRATED_DEVELOPMENT_SSOT_2026-03-03.md` (7657 bytes)
@@ -615,7 +616,7 @@ Total records: 709
 - [ssot] `docs/ssot/M55_REPLY_WALLET_UNSAFE_ARCHIVE_SQL_REJECTION_v1.md` (5889 bytes)
 - [ssot] `docs/ssot/M55_REPORT_CORRECTION_AND_REPLY_CREDIT_POLICY_v1.md` (30133 bytes)
 - [ssot] `docs/ssot/M55_REPRODUCIBILITY_APPENDIX_v1.md` (5018 bytes)
-- [ssot] `docs/ssot/M55_ROADMAP.md` (38275 bytes)
+- [ssot] `docs/ssot/M55_ROADMAP.md` (41133 bytes)
 - [ssot] `docs/ssot/M55_SAFARI_MCP_AI_BROWSER_QUALITY_SSOT.md` (9096 bytes)
 - [ssot] `docs/ssot/M55_SELF_FUNNEL_CONTRACT.md` (4516 bytes)
 - [ssot] `docs/ssot/M55_STRIPE_ADDITIONAL_REPLY_PRICE_ENV_CORRECTION_PLANNING_2026-05-24.md` (9366 bytes)
@@ -638,7 +639,7 @@ Total records: 709
 - [ssot] `docs/ssot/POST_REVIEW_UI_SWITCH_SSOT_v1.md` (3410 bytes)
 - [ssot] `docs/ssot/PRICING_WALLET_SEPARATION__EXTRACT_v1_DESKTOP_PACK_2026-02-01.md` (2813 bytes)
 - [ssot] `docs/ssot/PROJECT_B_SSOT_FREEZE.md` (1259 bytes)
-- [ssot] `docs/ssot/README.md` (3219 bytes)
+- [ssot] `docs/ssot/README.md` (3949 bytes)
 - [ssot] `docs/ssot/SOURCES_USED__PROJECT_B_v8.md` (1523 bytes)
 - [ssot] `docs/ssot/SSOT_INDEX.md` (627 bytes)
 - [ssot] `docs/ssot/STRIPE_DASHBOARD_SUBMISSION_CHECKLIST__MIN_PII_v1.md` (2262 bytes)

@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-09-07T23:28:55.849155+00:00",
-  "count": 709,
+  "generated_at_utc": "2026-09-08T23:22:47.019238+00:00",
+  "count": 710,
   "records": [
     {
       "path": "docs/ssot/CHECKPOINT_2026-03-02.md",
@@ -95,17 +95,17 @@
     {
       "path": "docs/ssot/M55_CREATOR_COMPLIANCE_AND_PAYOUT_AUTOMATION_SSOT.md",
       "category": "ssot",
-      "bytes": 39573
+      "bytes": 44236
     },
     {
       "path": "docs/ssot/M55_CREATOR_REVENUE_E2C2E_SSOT.md",
       "category": "ssot",
-      "bytes": 34628
+      "bytes": 41788
     },
     {
       "path": "docs/ssot/M55_CURRENT_STATE.md",
       "category": "ssot",
-      "bytes": 104600
+      "bytes": 105300
     },
     {
       "path": "docs/ssot/M55_DAILY_DIGEST_AND_HABIT_LOOP_SSOT_v1_2026-03-07.md",
@@ -115,7 +115,7 @@
     {
       "path": "docs/ssot/M55_DECISION_LOG.md",
       "category": "ssot",
-      "bytes": 69606
+      "bytes": 79215
     },
     {
       "path": "docs/ssot/M55_DEPRECATION_MAP_20260330.md",
@@ -286,6 +286,11 @@
       "path": "docs/ssot/M55_MONETIZATION_SSOT_FULL_FREEZE_v1_0.md",
       "category": "ssot",
       "bytes": 8954
+    },
+    {
+      "path": "docs/ssot/M55_MULTI_AGENT_PARALLEL_OPERATING_MODEL_SSOT.md",
+      "category": "ssot",
+      "bytes": 14073
     },
     {
       "path": "docs/ssot/M55_PAID_DTR_PRODUCT_COPY_MASTER_v1.md",
@@ -3065,7 +3070,7 @@
     {
       "path": "docs/ssot/M55_ROADMAP.md",
       "category": "ssot",
-      "bytes": 38275
+      "bytes": 41133
     },
     {
       "path": "docs/ssot/M55_SAFARI_MCP_AI_BROWSER_QUALITY_SSOT.md",
@@ -3180,7 +3185,7 @@
     {
       "path": "docs/ssot/README.md",
       "category": "ssot",
-      "bytes": 3219
+      "bytes": 3949
     },
     {
       "path": "docs/ssot/SOURCES_USED__PROJECT_B_v8.md",
