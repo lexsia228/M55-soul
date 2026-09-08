@@ -873,16 +873,18 @@ Stripe A/B/D closed 2026-09-08. Primary evidence: `docs/evidence/M55_R2_B2_STRIP
 | `R2_B2_STRIPE_B_NEGATIVE_BALANCE_RESPONSIBILITY` | **CLOSED_GREEN_PLATFORM_RESPONSIBLE** |
 | `R2_B2_STRIPE_D_PRICING_MODEL` | **CLOSED_FOR_PRICING_MODEL** — platform-managed · ¥200/mo active · 0.25%+¥250 payout |
 
-**Still waiting:**
+**Non-blocking support follow-up (C only):**
 
-- **C.** M55WEB formal account review — `WAITING_STRIPE_INTERNAL_SPECIALIST_REVIEW` · `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED`
+- **C.** M55WEB account supportability — `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY = NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP` · `STRIPE_SUPPORT_FOLLOWUP = PENDING_NO_ACTION_REQUIRED` · `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` (informational only; not a development blocker)
 
 Plus remaining Japan legal/tax classification:
 
 - Japan legal/payment-deadline compatibility (`JAPAN_LEGAL_30_DAY_PAYMENT_COMPATIBILITY = OPEN`)
 - Japan tax/withholding classification sufficient for R2 closure
 
-`R2_B2_STRIPE_RESIDUAL_CONFIRMATION = C_ONLY`
+`R2_B2_STRIPE_RESIDUAL_CONFIRMATION = C_ONLY_NON_BLOCKING`
+
+`DEVELOPMENT_BLOCKED_BY_STRIPE_SUPPORT_FOLLOWUP = FALSE`
 
 `NO_ADDITIONAL_STRIPE_QUESTION_NOW = TRUE`
 
@@ -896,13 +898,13 @@ Until R2-B2 closure + R2 Final Human acceptance: `stripePayoutProviderStatus = U
 
 ## AR-b. Stripe A-D response impact matrix (Human-approved 2026-09-07; A/B/D received 2026-09-08)
 
-Stripe A-D have been sent. **A/B/D responses received and classified 2026-09-08.** **C is WAITING.** They are bounded as follows:
+Stripe A-D have been sent. **A/B/D responses received and classified 2026-09-08.** **C is a non-blocking support follow-up** (`STRIPE_SUPPORT_FOLLOWUP = PENDING_NO_ACTION_REQUIRED`). They are bounded as follows:
 
 | Item | What the answer may change | What it does **not** change absent a real invalidator |
 |---|---|---|
 | **A — connected-account/configuration model** | **CLOSED_GREEN** — Accounts v2 · Express Dashboard · fees/losses = application · `SEPARATE_CHARGES_AND_TRANSFERS = CONFIRMED_M55_CONNECT_FLOW` | direct single-tier referral, Founding economics, commission lifecycle, append-only ledger |
 | **B — negative-balance/loss responsibility** | **CLOSED_GREEN_PLATFORM_RESPONSIBLE** — R8 reserve/recovery/reconciliation, risk controls, post-payout negative adjustment | earned-rate schedule, attribution rules, Creator acquisition model |
-| **C — M55WEB formal account review/supportability** | **WAITING_STRIPE_INTERNAL_SPECIALIST_REVIEW** — `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` | no additional Stripe question now; unsupported/blocked would be **REAL_INVALIDATOR** |
+| **C — M55WEB formal account review/supportability** | **NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP** — `STRIPE_SUPPORT_FOLLOWUP = PENDING_NO_ACTION_REQUIRED` · `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` (informational only) | no additional Stripe question now; no M55 action required for follow-up; unsupported/blocked would be **REAL_INVALIDATOR** |
 | **D — applicable Connect pricing** | **CLOSED_FOR_PRICING_MODEL** — platform-managed · ¥200/mo active · 0.25%+¥250 payout · `R8_ACTUAL_BILLING_RECONCILIATION_REQUIRED = TRUE` | no retroactive reduction of already promised compliant Creator rate windows |
 
 Current public Stripe documentation already establishes that:

@@ -985,3 +985,22 @@ Operational precedent is supporting evidence, **not** a legal safe harbor or cla
 | Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` — **not modified** |
 | R2-B2 closure | **NOT CLOSED** — C waiting + Japan legal/tax classification remain |
 | API syntax boundary | semantic configuration only — R8 must use then-current Accounts v2 schema |
+
+### 2026-09-08 — R2-B2 Stripe C non-blocking semantic correction (Human-directed)
+
+**Status:** docs/governance only · local review required · no commit · no push · no runtime/Stripe/DB/Clerk/env mutation · `M55_EXECUTION_STATE.json` unchanged
+
+| Decision | Value |
+|---|---|
+| Correction scope | control-plane interpretation only — historical Stripe primary evidence preserved |
+| C account supportability | `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY = NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP` |
+| Support follow-up | `STRIPE_SUPPORT_FOLLOWUP = PENDING_NO_ACTION_REQUIRED` |
+| M55 action | `M55_ACTION_REQUIRED_FOR_STRIPE_FOLLOWUP = FALSE` |
+| Development block | `DEVELOPMENT_BLOCKED_BY_STRIPE_SUPPORT_FOLLOWUP = FALSE` |
+| Residual Stripe | `R2_B2_STRIPE_RESIDUAL_CONFIRMATION = C_ONLY_NON_BLOCKING` · `NO_ADDITIONAL_STRIPE_QUESTION_NOW = TRUE` |
+| Final approval | `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED` — informational only; **not** a development blocker |
+| Provider selection | `stripePayoutProviderStatus = UNSELECTED` — final selection does **not** depend solely on receiving a future support follow-up email |
+| Japan legal/tax | `JAPAN_LEGAL_30_DAY_PAYMENT_COMPATIBILITY = OPEN` — not falsely closed |
+| Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` — **not modified** |
+| R2-B2 closure | **NOT CLOSED** — Japan legal/tax classification remain; Stripe C follow-up is non-blocking |
+| Prohibited claims | no final Stripe approval claim · no claim Stripe will never contact M55 again · no one-time approval certificate |

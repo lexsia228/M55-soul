@@ -76,21 +76,37 @@
 
 ## C — M55WEB account supportability
 
-**Classification:** `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY = WAITING_STRIPE_INTERNAL_SPECIALIST_REVIEW`
+### `STRIPE_SUPPORT_PRIMARY_EVIDENCE`
+
+**Stripe Support material facts (dated 2026-09-08 — preserve verbatim semantics):**
+
+- Account review has been escalated/reconfirmed with Stripe's internal specialist team.
+- Stripe Support said it would reconfirm item 3 with its internal specialist team and asked M55 to wait for that support-side follow-up.
+- No final account approval has been received yet.
 
 | Token | Value |
 |---|---|
 | `M55_ACCOUNT_FINAL_STRIPE_APPROVAL` | `NOT_YET_CONFIRMED` |
 
-**Stripe Support material fact:**
+### `CURRENT_CONTROL_PLANE_INTERPRETATION`
 
-- Account review has been escalated/reconfirmed with Stripe's internal specialist team.
-- No final account approval has been received yet.
+**Classification:** `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY = NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP`
+
+| Token | Value |
+|---|---|
+| `STRIPE_SUPPORT_FOLLOWUP` | `PENDING_NO_ACTION_REQUIRED` |
+| `M55_ACTION_REQUIRED_FOR_STRIPE_FOLLOWUP` | `FALSE` |
+| `DEVELOPMENT_BLOCKED_BY_STRIPE_SUPPORT_FOLLOWUP` | `FALSE` |
+| `NO_ADDITIONAL_STRIPE_QUESTION_NOW` | `TRUE` |
+| `M55_ACCOUNT_FINAL_STRIPE_APPROVAL` | `NOT_YET_CONFIRMED` — informational only; **not** a development blocker |
 
 **Policy:**
 
-- `NO_ADDITIONAL_STRIPE_QUESTION_NOW = TRUE`
-- Do not reopen Stripe support questioning for C while waiting.
+- Support-side follow-up may still arrive; this is **not** a development wait gate and requires **no** additional Human question or action now.
+- Do not reopen Stripe support questioning for C while follow-up is pending.
+- Do **not** claim Stripe has issued final account approval.
+- Do **not** claim Stripe will never contact M55 again or that future account/risk review cannot occur.
+- Production cash activation remains fail-closed against then-current Stripe account/capability/requirements state.
 
 ## D — Connect pricing model
 
@@ -126,9 +142,11 @@
 |---|---|
 | `R2_B2_STRIPE_A_ACCOUNT_CONFIGURATION` | `CLOSED_GREEN` |
 | `R2_B2_STRIPE_B_NEGATIVE_BALANCE_RESPONSIBILITY` | `CLOSED_GREEN_PLATFORM_RESPONSIBLE` |
-| `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY` | `WAITING_STRIPE_INTERNAL_SPECIALIST_REVIEW` |
+| `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY` | `NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP` |
+| `STRIPE_SUPPORT_FOLLOWUP` | `PENDING_NO_ACTION_REQUIRED` |
+| `DEVELOPMENT_BLOCKED_BY_STRIPE_SUPPORT_FOLLOWUP` | `FALSE` |
 | `R2_B2_STRIPE_D_PRICING_MODEL` | `CLOSED_FOR_PRICING_MODEL` |
-| `R2_B2_STRIPE_RESIDUAL_CONFIRMATION` | `C_ONLY` |
+| `R2_B2_STRIPE_RESIDUAL_CONFIRMATION` | `C_ONLY_NON_BLOCKING` |
 | `NO_ADDITIONAL_STRIPE_QUESTION_NOW` | `TRUE` |
 | `NO_BROAD_STRIPE_RESEARCH_REPLAY` | `TRUE` |
 
@@ -140,7 +158,7 @@
 | `STRIPE_CONNECT` | `VALIDATED_LEADING_PROVIDER_CANDIDATE` |
 | `stripePayoutProviderStatus` | `UNSELECTED` |
 
-Provider final selection remains prohibited until C is resolved + R2 Final Human decision.
+`stripePayoutProviderStatus` remains `UNSELECTED`. Final provider selection does **not** depend solely on receiving a future support follow-up email; R2 Final Human acceptance and then-current account/capability/requirements state at activation time remain the governing boundaries.
 
 ## Japan legal / tax boundary (not closed by this evidence)
 
