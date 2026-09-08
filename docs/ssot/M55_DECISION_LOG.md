@@ -1067,3 +1067,31 @@ The earlier same-day `PENDING_NO_ACTION_REQUIRED` record above is retained as hi
 | Cash activation | fail-closed against then-current Stripe account/capability/requirements state |
 | State-machine canonicalization | Compliance SSOT §U remains authoritative: commission and payout are orthogonal; `COMMISSION_HOLD_REVIEW`, `PAYOUT_REQUESTED`, `VESTED`, `CANCELED`, and `PAID` are not canonical persisted M55 state values |
 
+### 2026-09-09 — Affiliate-first Stripe reverse-design + tax/legal fail-closed approval (Human-approved)
+
+**Status:** architecture/SSOT decision · docs-only · no runtime/Stripe/DB/Clerk/env/Production mutation · `M55_EXECUTION_STATE.json` unchanged
+
+| Decision | Value |
+|---|---|
+| Creator Program v1 | `AFFILIATE_FIRST` |
+| Creator action | share Creator-specific M55 URL/direct link; Creator chooses whether, when, where and how to introduce M55 within mandatory compliance boundaries |
+| M55 mandatory work order | **NONE in Affiliate v1** — no mandatory deliverable, post count, posting schedule, or creative-production order |
+| M55 mandatory safeguards | M55 terms · Stripe rules · Japanese law · advertising disclosure · prohibited claims · anti-fraud/anti-self-referral |
+| Sponsored Creator | separate future contract/classification; must not be silently mixed into Affiliate v1 |
+| Customer charge | M55 platform charge |
+| Attribution / commission calculation / compliance / ledger | M55-owned |
+| Stripe target flow | Accounts v2 + Express Dashboard + Separate Charges and Transfers; transfer only after `COMMISSION_PAYABLE` |
+| KYC / bank details / payout rail | Stripe-owned where supported; M55 avoids storing full bank details |
+| Connect billing fact | observed M55 configuration bills Connect fees to M55 platform balance; Creator fee pass-through is a separate M55 legal/economic decision |
+| Payout batching | `PAYOUT_BATCHING_REQUIRED = TRUE` |
+| Creator payout request | early trigger / timing preference only; **not** commission approval |
+| Economic payout threshold | **UNRESOLVED** |
+| Legal deadline | `LEGAL_PAYMENT_DEADLINE_OVERRIDES_ECONOMIC_THRESHOLD = TRUE_IF_APPLICABLE` |
+| Payout-cost objective | `M55_PAYOUT_COST_PASS_THROUGH_OBJECTIVE = HUMAN_APPROVED` |
+| Creator fee implementation | `NOT_AUTHORIZED_PENDING_LEGAL_CLASSIFICATION` |
+| Freelance Act guard | if applicable, do not deduct bank-transfer fees from remuneration |
+| Withholding guard | no universal withholding percentage; classify recipient/contract facts before implementation |
+| Invoice/consumption-tax guard | Creator tax/invoice status and M55 accounting treatment must be versioned and re-verifiable |
+| High-earner Creator | high sales volume alone does not reduce earned rate or cancel valid commission; scale raises tax/KYC/fraud/reconciliation controls |
+| Cash activation | requires R2-B2 legal/tax classification closure + explicit Human acceptance + then-current Stripe verification |
+| Roadmap | R2→R8 order unchanged; no R6–R8 runtime pulled into R2 |

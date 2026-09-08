@@ -795,7 +795,7 @@ R7 is **not** cosmetic. Minimum trust contract:
 
 Every posted payout batch must be explainable.
 
-Future statement minimum: batch ID · covered commission IDs/count · gross eligible commission · adjustments · withholding/tax deductions if legally required · provider fees if creator-borne under final contract · net payout · currency · payout date · provider payout reference · status
+Future statement minimum: batch ID · covered commission IDs/count · gross eligible commission · adjustments · withholding/tax deductions if legally required · any legally approved and pre-disclosed payout/service fee only when the exact Creator relationship permits it · net payout · currency · payout date · provider payout reference · status
 
 Commercial commission rate must remain distinguishable from tax or other legally required payout deductions.
 
@@ -1108,3 +1108,20 @@ Customer PII remains hidden. **Trust surface — not cosmetic analytics.**
 Stripe/provider account integration · hosted onboarding · KYC readiness · `payouts_enabled`/equivalent · provider requirements sync · commission/payout state separation · payout batching · threshold/cadence · payout instruction idempotency · provider transfer IDs · payout processing · posted · failed · returned · re-onboarding · destination-change security hold · account-takeover controls · provider webhook processing · dead-letter/replay · negative balance handling · refund/chargeback post-payout reconciliation · payout statement. **No bank account details stored directly by M55 unless later unavoidable and explicitly approved.**
 
 Do **not** pull R6–R8 runtime implementation into R2.
+
+---
+
+## BA. Affiliate-first Stripe / tax / legal override (Human-approved 2026-09-09)
+
+Normative detailed authority: `docs/ssot/M55_CREATOR_AFFILIATE_STRIPE_TAX_LEGAL_SSOT.md`.
+
+- `CREATOR_PROGRAM_V1 = AFFILIATE_FIRST`.
+- Affiliate v1 has no M55-mandated post count, posting schedule, creative deliverable, or recruitment commission.
+- M55 may require compliance with M55 terms, Stripe rules, Japanese law, ad-disclosure rules, approved claims, anti-fraud rules, and prohibited-claims rules. Those safeguards do not by themselves authorize M55 to invent a sponsored-content work order.
+- Commission validity and payout readiness remain orthogonal.
+- Creator payout preference may accelerate or batch payout, but does not approve the commission itself.
+- `LEGAL_PAYMENT_DEADLINE_OVERRIDES_ECONOMIC_THRESHOLD = TRUE_IF_APPLICABLE`.
+- `M55_PAYOUT_COST_PASS_THROUGH_OBJECTIVE = HUMAN_APPROVED`, but no Creator fee deduction/pass-through implementation is authorized until the exact Affiliate relationship and fee mechanics are legally classified.
+- If the Freelance Act applies to a payment, bank-transfer-fee deduction from remuneration is prohibited under current JFTC guidance.
+- No universal withholding rate may be hard-coded; tax treatment must be classified by recipient/contract facts.
+- High Creator volume alone must not reduce an already-earned commission rate or erase valid commission; scale may increase KYC, tax verification, fraud review, reconciliation, and observability.

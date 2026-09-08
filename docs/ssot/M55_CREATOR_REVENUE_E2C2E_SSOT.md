@@ -8,6 +8,8 @@ Sole executable CURRENT/NEXT authority remains `docs/ssot/M55_EXECUTION_STATE.js
 
 Machine-first compliance / payout architecture annex: `docs/ssot/M55_CREATOR_COMPLIANCE_AND_PAYOUT_AUTOMATION_SSOT.md`
 
+Affiliate-first Stripe / payout / Japan tax-legal annex: `docs/ssot/M55_CREATOR_AFFILIATE_STRIPE_TAX_LEGAL_SSOT.md`
+
 Parallel multi-agent operating model: `docs/ssot/M55_MULTI_AGENT_PARALLEL_OPERATING_MODEL_SSOT.md` — mandatory process reference whenever Creator Revenue runs concurrently with UIUX or other AI lanes; does not change R1→R8 order or implementation authority.
 
 **Trust / ledger / payout control detail lives in the annex.** This parent SSOT retains economics, lane contracts, and roadmap authority only.
@@ -25,6 +27,22 @@ Parallel multi-agent operating model: `docs/ssot/M55_MULTI_AGENT_PARALLEL_OPERAT
 `FOUNDING_CREATOR_EXCEPTION_REVIEW_MUST_BE_HIGH_TRUST = TRUE`
 
 `EARNINGS_TRANSPARENCY_IS_A_CREATOR_ACQUISITION_ASSET = TRUE`
+
+`CREATOR_PROGRAM_V1 = AFFILIATE_FIRST`
+
+`AFFILIATE_V1_MANDATORY_DELIVERABLE = NONE`
+
+`AFFILIATE_V1_MANDATORY_POSTING_SCHEDULE = NONE`
+
+`STRIPE_CONNECT_CHARGE_THEN_TRANSFER = REQUIRED`
+
+`PAYOUT_BATCHING_REQUIRED = TRUE`
+
+`LEGAL_PAYMENT_DEADLINE_OVERRIDES_ECONOMIC_THRESHOLD = TRUE_IF_APPLICABLE`
+
+`M55_PAYOUT_COST_PASS_THROUGH_OBJECTIVE = HUMAN_APPROVED`
+
+`CREATOR_FEE_DEDUCTION_IMPLEMENTATION = NOT_AUTHORIZED_PENDING_LEGAL_CLASSIFICATION`
 
 Zero-omission traceability matrix and canonical development order: `docs/ssot/M55_ROADMAP.md`
 
