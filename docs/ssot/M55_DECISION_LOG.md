@@ -1300,3 +1300,42 @@ Control-Tower disposition:
 No `REAL_INVALIDATOR`.
 
 This docs closure does not authorize payout runtime, tax recovery, provider mutation, or cash activation.
+
+### 2026-09-09 — PR #187 final multi-agent adjudication
+
+**Status:** FINAL MULTI-AGENT REVIEW COMPLETE · evidence-only closure · no runtime/provider/DB/env mutation · `M55_EXECUTION_STATE.json` unchanged
+
+Pinned final reviewed authority:
+- PR #187 substantive audited HEAD: `c5bbc4cd32dc25d332dceb3592f6fe62084f932a`
+- main: `3af92982f1e08cf8531978ff4cfeca1e7bf2a2d8`
+
+Independent review results:
+
+| Reviewer | Result | Material outcome |
+|---|---|---|
+| Codex exact-diff review | `GREEN_WITH_NONBLOCKING_FINDINGS` | P0=0 · P1=0 · one P2 late-withholding correction |
+| Control Tower | P2 accepted and patched | separate tax-correction event · immutable original commission/payout · no automatic clawback/offset without explicit authority |
+| Codex closure review | `GREEN_CLOSURE` | P2-01 closed · no new P0/P1/P2 |
+| Grok dual final red-team | `GREEN_WITH_NONBLOCKING_FINDINGS` | no YELLOW/RED · `REAL INVALIDATOR = NONE` |
+| GitHub CI / Vercel | GREEN at substantive audited HEAD | required guards + Vercel succeeded |
+
+Grok low/info adjudication:
+
+| Finding | Control-Tower disposition |
+|---|---|
+| MF-01 Codex reviewed older SHA before closure | `CLOSED_BY_CODEX_CLOSURE_REVIEW` |
+| MF-02 remittance day-10 not tokenized while withholding classification OPEN | `DEFER_TO_OWNING_GATE` — preserve dated NTA evidence; do not freeze a mutable statutory date as timeless business constant |
+| MF-03 A8 “no withholding” reader-risk | `REJECT_FALSE_POSITIVE` — benchmark legal safe-harbor is already prohibited and M55 withholding classification remains explicitly OPEN |
+| MF-IP-01 legacy “copy patterns” shorthand watchpoint | `REJECT_FALSE_POSITIVE` for current authority — explicit no-copy / independent-authorship / multi-source synthesis contracts control implementation |
+| MF-IP-02 targeted IP check prospective | `DEFER_TO_OWNING_GATE` — execute only when a distinctive vendor-like technical/UI surface is actually proposed |
+
+Final Control-Tower classification:
+
+`GREEN_MULTI_AGENT_REVIEW_COMPLETE`
+
+`REAL_INVALIDATOR = NONE`
+
+No additional full Grok/Codex rerun is required merely to record these audit artifacts, because the final commit is evidence/adjudication-only and does not alter financial/runtime semantics.
+
+Merge remains a separate Human-authorized action.
+
