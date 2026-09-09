@@ -3,10 +3,12 @@
  * OG remains fixed at 1200×630 via opengraph-image; this module serves selected aspects only.
  */
 import { ImageResponse } from 'next/og';
+import { CANONICAL_PRODUCTION_ORIGIN } from '../freeResult/privacySafeShareCardV1';
 import type { ShareCandidateVariant } from './m55NarrativeSpecV1';
 import { buildPairSharePresentationV1, type PairSharePresentationV1 } from './pairSharePresentationV1';
 import { parsePublicCardDisplayV1, posterHeroLinesJa } from './publicCardDisplayV1';
 import type { PublicShareSpecV1 } from './publicShareSpecV1';
+import { resolvePublicShareArtworkPathsFromToken } from './resolvePublicShareArtworkV1';
 
 export const SHARE_EXPORT_ASPECTS = ['1:1', '4:5', '9:16'] as const;
 export type ShareExportAspectRatio = (typeof SHARE_EXPORT_ASPECTS)[number];
@@ -75,9 +77,55 @@ export function buildPublicShareImageExportModel(
   };
 }
 
-function artBandHeight(aspect: ShareExportAspectRatio, totalHeight: number): number {
-  const ratio = aspect === '9:16' ? 0.4 : aspect === '4:5' ? 0.36 : 0.34;
+export function exportArtBandHeight(
+  aspect: ShareExportAspectRatio,
+  totalHeight: number,
+  variant: ShareCandidateVariant,
+): number {
+  const isPoster = variant === 'hidden_spec' || variant === 'premium_takeaway';
+  if (isPoster) {
+    const ratio = aspect === '9:16' ? 0.4 : aspect === '4:5' ? 0.36 : 0.34;
+    return Math.round(totalHeight * ratio);
+  }
+  if (variant === 'manual') {
+    const ratio = aspect === '1:1' ? 0.34 : aspect === '9:16' ? 0.36 : 0.34;
+    return Math.round(totalHeight * ratio);
+  }
+  const ratio = aspect === '1:1' ? 0.22 : aspect === '9:16' ? 0.26 : 0.28;
   return Math.round(totalHeight * ratio);
+}
+
+function isManualVariant(variant: ShareCandidateVariant): boolean {
+  return variant === 'manual';
+}
+
+function isSelfEditorialVariant(variant: ShareCandidateVariant): boolean {
+  return variant === 'manual' || variant === 'seen_vs_actual';
+}
+
+export function shareExportArtOrigin(): string {
+  if (process.env.M55_E2E_CLEAN_CAPTURE === '1') {
+    const port = process.env.PORT || '3000';
+    return `http://127.0.0.1:${port}`;
+  }
+  return CANONICAL_PRODUCTION_ORIGIN;
+}
+
+export function resolveExportArtUrls(
+  spec: PublicShareSpecV1,
+  artUrl: string | readonly string[] | null,
+): readonly string[] {
+  const paths = resolvePublicShareArtworkPathsFromToken(spec.token);
+  const origin = shareExportArtOrigin();
+  if (paths.length > 0) {
+    return paths.map((path) => `${origin}${path}`);
+  }
+  const explicit = normalizeArtUrls(artUrl);
+  if (explicit.length === 0) return [];
+  if (origin !== CANONICAL_PRODUCTION_ORIGIN) {
+    return explicit.map((url) => url.replace(CANONICAL_PRODUCTION_ORIGIN, origin));
+  }
+  return explicit;
 }
 
 function variantPalette(variant: ShareCandidateVariant): {
@@ -126,15 +174,37 @@ export function renderPublicShareExportImage(
   const { width, height } = model.dimensions;
   const display = model.display;
   const palette = variantPalette(spec.variant);
-  const artUrls = normalizeArtUrls(artUrl);
-  const artHeight = artUrls.length > 0 ? artBandHeight(aspect, height) : 0;
+  const artUrls = resolveExportArtUrls(spec, artUrl);
+  const artHeight =
+    artUrls.length > 0 ? exportArtBandHeight(aspect, height, spec.variant) : 0;
   const pairPresentation = model.pairPresentation;
   const padX = scaleFont(height, 56);
-  const padY = scaleFont(height, 48);
+  const isManual = isManualVariant(spec.variant);
+  const isSelfEditorial = isSelfEditorialVariant(spec.variant);
+  const padY =
+    artUrls.length > 0 && isManual
+      ? scaleFont(height, 20)
+      : artUrls.length > 0 && isSelfEditorial
+        ? scaleFont(height, 18)
+        : scaleFont(height, 48);
+  const contentGap = scaleFont(
+    height,
+    isManual ? 10 : isSelfEditorial ? 8 : 16,
+  );
+  const manualHeadlineSize = scaleFont(height, 38);
+  const manualRowSize = scaleFont(height, 21);
+  const manualRowGap = scaleFont(height, 6);
+  const manualBrandSize = scaleFont(height, 24);
+  const manualCueSize = scaleFont(height, 18);
+  const manualCtaSize = scaleFont(height, 22);
+  const manualHeroOverlayPad = scaleFont(height, 16);
+  const manualHeroHeadlinePad = scaleFont(height, 72);
   const headlineSize = scaleFont(height, 34);
   const bodySize = scaleFont(height, 24);
   const labelSize = scaleFont(height, 20);
   const brandSize = scaleFont(height, 26);
+  const mirrorPaneBg = 'rgba(255,255,255,0.72)';
+  const mirrorPaneBorder = 'rgba(28,24,48,0.08)';
 
   const isPoster = spec.variant === 'hidden_spec' || spec.variant === 'premium_takeaway';
   const isMirror = spec.variant === 'seen_vs_actual';
@@ -154,7 +224,55 @@ export function renderPublicShareExportImage(
           fontFamily: 'sans-serif',
         }}
       >
-        {artUrls.length === 2 ? (
+        {isManual && artUrls.length === 1 ? (
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              width,
+              height: artHeight + manualHeroHeadlinePad,
+              backgroundImage: `url(${artUrls[0]})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                flex: 1,
+                justifyContent: 'flex-end',
+                padding: `${manualHeroOverlayPad}px ${padX}px`,
+                background:
+                  'linear-gradient(180deg, rgba(28,24,48,0.08) 0%, rgba(28,24,48,0.72) 62%, rgba(28,24,48,0.9) 100%)',
+                gap: scaleFont(height, 6),
+              }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  fontSize: manualBrandSize,
+                  letterSpacing: '0.22em',
+                  fontWeight: 700,
+                  color: '#fffaf1',
+                }}
+              >
+                M55
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  fontSize: manualHeadlineSize,
+                  fontWeight: 700,
+                  lineHeight: 1.18,
+                  color: '#fffaf1',
+                }}
+              >
+                {spec.headline}
+              </div>
+            </div>
+          </div>
+        ) : artUrls.length === 2 ? (
           <div
             style={{
               display: 'flex',
@@ -179,24 +297,36 @@ export function renderPublicShareExportImage(
             />
           </div>
         ) : artUrls.length === 1 ? (
-          <img
-            src={artUrls[0]}
-            width={width}
-            height={artHeight}
-            alt=""
-            style={{ width, height: artHeight, objectFit: 'cover' }}
-          />
+          <div
+            style={{
+              display: 'flex',
+              width,
+              height: artHeight,
+              overflow: 'hidden',
+            }}
+          >
+            <img
+              src={artUrls[0]}
+              width={width}
+              height={artHeight}
+              alt=""
+              style={{ width, height: artHeight, objectFit: 'cover' }}
+            />
+          </div>
         ) : null}
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-between',
-            flex: 1,
-            padding: `${padY}px ${padX}px`,
-            gap: scaleFont(height, 16),
+            justifyContent: isSelfEditorial ? 'flex-start' : 'space-between',
+            flex: isManual ? 0 : 1,
+            padding: isManual
+              ? `${scaleFont(height, 14)}px ${padX}px ${scaleFont(height, 24)}px`
+              : `${padY}px ${padX}px ${isManual ? scaleFont(height, 28) : padY}px`,
+            gap: contentGap,
           }}
         >
+          {!isManual ? (
           <div
             style={{
               display: 'flex',
@@ -207,6 +337,174 @@ export function renderPublicShareExportImage(
           >
             M55
           </div>
+          ) : null}
+          {isManual ? (
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: contentGap,
+              }}
+            >
+              {artUrls.length === 0 ? (
+                <>
+                  <div
+                    style={{
+                      display: 'flex',
+                      fontSize: manualBrandSize,
+                      letterSpacing: '0.22em',
+                      fontWeight: 700,
+                    }}
+                  >
+                    M55
+                  </div>
+                  <div
+                    style={{
+                      display: 'flex',
+                      fontSize: manualHeadlineSize,
+                      fontWeight: 700,
+                      lineHeight: 1.18,
+                    }}
+                  >
+                    {spec.headline}
+                  </div>
+                </>
+              ) : null}
+              {display.rows.length > 0 ? (
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: manualRowGap,
+                    padding: `${scaleFont(height, 8)}px ${scaleFont(height, 10)}px`,
+                    borderRadius: scaleFont(height, 10),
+                    background: 'rgba(255,255,255,0.62)',
+                    border: `1px solid ${mirrorPaneBorder}`,
+                  }}
+                >
+                  {display.rows.map((row) => (
+                    <div
+                      key={row.label}
+                      style={{
+                        display: 'flex',
+                        fontSize: manualRowSize,
+                        lineHeight: 1.28,
+                      }}
+                    >
+                      {row.label}　{row.body}
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+              {display.cueJa ? (
+                <div
+                  style={{
+                    display: 'flex',
+                    fontSize: manualCueSize,
+                    lineHeight: 1.32,
+                    color: palette.muted,
+                  }}
+                >
+                  {display.cueJa}
+                </div>
+              ) : null}
+              <div style={{ display: 'flex', fontSize: manualCtaSize, color: palette.muted }}>
+                <span>{display.cta || 'あなたはどう出る？'}</span>
+              </div>
+            </div>
+          ) : isSelfEditorial ? (
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: contentGap,
+              }}
+            >
+              <div style={{ display: 'flex', fontSize: headlineSize, fontWeight: 700, lineHeight: 1.2 }}>
+                {spec.headline}
+              </div>
+              {isMirror && display.seenJa && display.actualJa ? (
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: scaleFont(height, 8),
+                    width: '100%',
+                  }}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: scaleFont(height, 6),
+                      padding: `${scaleFont(height, 10)}px ${scaleFont(height, 12)}px`,
+                      borderRadius: scaleFont(height, 10),
+                      background: mirrorPaneBg,
+                      border: `1px solid ${mirrorPaneBorder}`,
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: 'flex',
+                        fontSize: labelSize,
+                        letterSpacing: '0.08em',
+                        color: palette.muted,
+                      }}
+                    >
+                      外から見えやすい動き
+                    </div>
+                    <div style={{ display: 'flex', fontSize: bodySize, fontWeight: 700, lineHeight: 1.4 }}>
+                      「{display.seenJa}」
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      display: 'flex',
+                      fontSize: labelSize,
+                      justifyContent: 'center',
+                      color: palette.muted,
+                    }}
+                  >
+                    vs
+                  </div>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: scaleFont(height, 6),
+                      padding: `${scaleFont(height, 10)}px ${scaleFont(height, 12)}px`,
+                      borderRadius: scaleFont(height, 10),
+                      background: mirrorPaneBg,
+                      border: `1px solid ${mirrorPaneBorder}`,
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: 'flex',
+                        fontSize: labelSize,
+                        letterSpacing: '0.08em',
+                        color: palette.muted,
+                      }}
+                    >
+                      自分に出やすい傾向
+                    </div>
+                    <div style={{ display: 'flex', fontSize: bodySize, fontWeight: 700, lineHeight: 1.4 }}>
+                      「{display.actualJa}」
+                    </div>
+                  </div>
+                </div>
+              ) : null}
+              {display.cueJa ? (
+                <div style={{ display: 'flex', fontSize: labelSize, lineHeight: 1.35, color: palette.muted }}>
+                  {display.cueJa}
+                </div>
+              ) : null}
+              <div style={{ display: 'flex', fontSize: bodySize, color: palette.muted }}>
+                <span>{display.cta || 'あなたはどう出る？'}</span>
+              </div>
+            </div>
+          ) : (
+            <>
           <div
             style={{
               display: 'flex',
@@ -253,26 +551,6 @@ export function renderPublicShareExportImage(
                 {display.supportJa}
               </div>
             ) : null}
-            {isMirror && display.seenJa && display.actualJa ? (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: scaleFont(height, 10) }}>
-                <div style={{ display: 'flex', fontSize: bodySize, fontWeight: 700, lineHeight: 1.4 }}>
-                  「{display.seenJa}」
-                </div>
-                <div style={{ display: 'flex', fontSize: labelSize }}>vs</div>
-                <div style={{ display: 'flex', fontSize: bodySize, fontWeight: 700, lineHeight: 1.4 }}>
-                  「{display.actualJa}」
-                </div>
-              </div>
-            ) : null}
-            {spec.variant === 'manual' && display.rows.length > 0 ? (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: scaleFont(height, 8) }}>
-                {display.rows.map((row) => (
-                  <div key={row.label} style={{ display: 'flex', fontSize: labelSize, lineHeight: 1.35 }}>
-                    {row.label}　{row.body}
-                  </div>
-                ))}
-              </div>
-            ) : null}
             {isPair && pairPresentation ? (
               <div
                 style={{
@@ -304,6 +582,8 @@ export function renderPublicShareExportImage(
           <div style={{ display: 'flex', fontSize: bodySize, color: palette.muted }}>
             <span>{pairPresentation?.ctaJa || display.cta || 'あなたはどう出る？'}</span>
           </div>
+            </>
+          )}
         </div>
       </div>
     ),

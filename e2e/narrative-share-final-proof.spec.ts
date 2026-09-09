@@ -97,6 +97,99 @@ async function seedPair(
   );
 }
 
+const SELF_SHARE_CARD_IDS = [
+  'm55-share-card-manual',
+  'm55-share-card-seen_vs_actual',
+  'm55-share-card-hidden_spec',
+] as const;
+
+async function assertSelfPreviewNoTextCollision(
+  shareCard: ReturnType<Page['getByTestId']>,
+  aspect: '1:1' | '4:5' | '9:16',
+  prefix: string,
+) {
+  const collisions = await shareCard.evaluate((card) => {
+    function rect(el: Element | null) {
+      if (!el) return null;
+      const box = el.getBoundingClientRect();
+      return { top: box.top, bottom: box.bottom, left: box.left, right: box.right };
+    }
+    function intersects(
+      a: { top: number; bottom: number; left: number; right: number },
+      b: { top: number; bottom: number; left: number; right: number },
+    ) {
+      return a.left < b.right - 1 && a.right > b.left + 1 && a.top < b.bottom - 1 && a.bottom > b.top + 1;
+    }
+    const headline = rect(card.querySelector('h3'));
+    const seenPane = rect(card.querySelector('[data-side="seen"]'));
+    const actualPane = rect(card.querySelector('[data-side="actual"]'));
+    const cue = rect(card.querySelector('.cue'));
+    const cta = rect(card.querySelector('.cta'));
+    const targets = [
+      ['headline', headline],
+      ['seen', seenPane],
+      ['actual', actualPane],
+      ['cue', cue],
+      ['cta', cta],
+    ].filter((entry): entry is [string, NonNullable<ReturnType<typeof rect>>] => Boolean(entry[1]));
+    const hits: string[] = [];
+    for (let i = 0; i < targets.length; i += 1) {
+      for (let j = i + 1; j < targets.length; j += 1) {
+        const [aId, aRect] = targets[i]!;
+        const [bId, bRect] = targets[j]!;
+        if (intersects(aRect, bRect)) hits.push(`${aId}|${bId}`);
+      }
+    }
+    return hits;
+  });
+  expect(collisions, `${prefix} ${aspect} text collision`).toEqual([]);
+}
+
+async function assertSelfAspectGeometry(
+  page: Page,
+  shareCard: ReturnType<Page['getByTestId']>,
+  aspect: '1:1' | '4:5' | '9:16',
+  prefix: string,
+) {
+  const aspectToken = aspect.replace(':', '-');
+  await page.getByTestId(`m55-share-aspect-${aspectToken}`).click();
+  await expect(shareCard).toHaveAttribute('data-share-aspect', aspect);
+  const boxes = await shareCard.evaluate((card) => {
+    const rect = (el: Element) => ({
+      clientWidth: el.clientWidth,
+      scrollWidth: el.scrollWidth,
+    });
+    const text = Array.from(card.querySelectorAll('p,h3,dt,dd,span'))
+      .filter((element) => element.textContent?.trim())
+      .map(rect);
+    return {
+      text,
+      widthOk: card.scrollWidth <= card.clientWidth + 1,
+      heightOk: card.scrollHeight <= card.clientHeight + 1,
+    };
+  });
+  for (const item of boxes.text) {
+    expect(item.scrollWidth <= item.clientWidth + 1, `${prefix} ${aspect} text horizontal fit`).toBe(true);
+  }
+  expect(boxes.widthOk, `${prefix} ${aspect} outer horizontal geometry`).toBe(true);
+  expect(boxes.heightOk, `${prefix} ${aspect} outer vertical geometry`).toBe(true);
+}
+
+async function assertSelfShareSelectedState(
+  page: Page,
+  selectedId: (typeof SELF_SHARE_CARD_IDS)[number],
+) {
+  await expect(page.getByTestId(selectedId)).toHaveAttribute('aria-pressed', 'true');
+  for (const id of SELF_SHARE_CARD_IDS) {
+    if (id !== selectedId) {
+      await expect(page.getByTestId(id)).toHaveAttribute('aria-pressed', 'false');
+    }
+  }
+  await expect(page.getByTestId('m55-share-card-selected-marker')).toHaveCount(1);
+  await expect(page.getByTestId('m55-share-card-selected-marker')).toBeVisible();
+  await expect(page.getByTestId('m55-share-card-selected-marker')).toContainText('選択中');
+}
+
 test.describe('Narrative share current-head final proof', () => {
   test.describe.configure({ timeout: 120_000 });
 
@@ -120,6 +213,68 @@ test.describe('Narrative share current-head final proof', () => {
     await context.close();
   });
 
+  test('Personal Free share remediation 320/390/1440 selected-state and aspect containment', async ({
+    browser,
+  }) => {
+    const viewports = [
+      { width: 320, height: 700 },
+      { width: 390, height: 844 },
+      { width: 1440, height: 900 },
+    ] as const;
+
+    for (const viewport of viewports) {
+      const context = await cleanContext(browser);
+      await seedPersonalP1(context);
+      const page = await context.newPage();
+      await page.setViewportSize(viewport);
+      await page.goto('/core');
+      await expect(page.getByTestId('m55-core-essence')).toHaveAttribute('data-m55-ux-phase', 'RESULT', {
+        timeout: 20_000,
+      });
+
+      const share = page.getByTestId('m55-free-result-share');
+      await share.scrollIntoViewIfNeeded();
+      await expect(share).toBeVisible();
+      for (const id of SELF_SHARE_CARD_IDS) {
+        await expect(page.getByTestId(id)).toBeVisible();
+      }
+
+      const overflow = await page.evaluate(
+        () => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
+      );
+      expect(overflow, `horizontal overflow at ${viewport.width}`).toBe(false);
+
+      for (const id of SELF_SHARE_CARD_IDS) {
+        await expect(page.getByTestId(id)).toHaveAttribute('aria-pressed', 'false');
+      }
+      const recommended = page.getByTestId('m55-share-card-recommended');
+      if (await recommended.count()) {
+        const recommendedCard = recommended.locator('xpath=ancestor::button[1]');
+        await expect(recommendedCard).toHaveAttribute('aria-pressed', 'false');
+      }
+
+      await page.getByTestId('m55-share-card-seen_vs_actual').click();
+      await assertSelfShareSelectedState(page, 'm55-share-card-seen_vs_actual');
+
+      const preview = page.getByTestId('m55-narrative-share-card');
+      for (const aspect of ['1:1', '4:5', '9:16'] as const) {
+        await assertSelfAspectGeometry(page, preview, aspect, `share-${viewport.width}`);
+        if (viewport.width === 320) {
+          await assertSelfPreviewNoTextCollision(preview, aspect, `share-${viewport.width}`);
+        }
+      }
+
+      if (viewport.width === 390) {
+        for (const id of SELF_SHARE_CARD_IDS) {
+          await page.getByTestId(id).click();
+          await assertSelfShareSelectedState(page, id);
+        }
+      }
+
+      await context.close();
+    }
+  });
+
   test('Personal Free 390/430 hierarchy, A/B/C, actions, sticky, image save, viewer C', async ({
     browser,
   }) => {
@@ -138,9 +293,16 @@ test.describe('Narrative share current-head final proof', () => {
       animations: 'disabled',
     });
     const manual = page.getByTestId('m55-personal-manual');
+    const manualDetails = manual.locator('xpath=ancestor::details[1]');
+    const manualSummary = manualDetails.locator(':scope > summary');
+    await manualSummary.scrollIntoViewIfNeeded();
+    await manualSummary.click();
+    await expect(manualDetails).toHaveAttribute('open', '');
+    await expect(manual).toBeVisible();
     await manual.scrollIntoViewIfNeeded();
     const manualText = await manual.innerText();
     expect(manualText).not.toMatch(/候補を並べてから閉じる|土台では|今回の答えでは|側に寄っています|一句置く/);
+    expect(manualText.length).toBeGreaterThan(0);
     await manual.screenshot({ path: join(OUT, 'personal-manual-390.png'), animations: 'disabled' });
 
     await page.getByTestId('m55-free-to-paid-bridge').scrollIntoViewIfNeeded();
@@ -166,9 +328,11 @@ test.describe('Narrative share current-head final proof', () => {
       { id: 'm55-share-card-seen_vs_actual', file: 'personal-card-b-390.png', hit: /人から見える私/ },
       { id: 'm55-share-card-hidden_spec', file: 'personal-card-c-390.png', hit: /人に聞くのは、/ },
     ] as const;
+
     let cPath = '';
     for (const card of cards) {
       await page.getByTestId(card.id).click();
+      await assertSelfShareSelectedState(page, card.id);
       const preview = page.getByTestId('m55-narrative-share-card');
       await expect(preview).toContainText(card.hit);
       if (card.id === 'm55-share-card-hidden_spec') {
@@ -176,6 +340,9 @@ test.describe('Narrative share current-head final proof', () => {
         await expect(preview).toContainText('決めてもらいたいからではない');
         await expect(preview).toContainText('最後に自分で決めるための材料を集めている');
         cPath = (await page.getByTestId('m55-share-preview-url').getAttribute('data-share-path')) ?? '';
+        await assertSelfAspectGeometry(page, preview, '1:1', 'personal-self');
+        await assertSelfAspectGeometry(page, preview, '4:5', 'personal-self');
+        await assertSelfAspectGeometry(page, preview, '9:16', 'personal-self');
       }
       await preview.screenshot({ path: join(OUT, card.file), animations: 'disabled' });
     }
