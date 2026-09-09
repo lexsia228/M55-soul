@@ -12,6 +12,8 @@ Parent Creator Revenue authority: `docs/ssot/M55_CREATOR_REVENUE_E2C2E_SSOT.md`
 
 Tax/legal fail-closed authority: `docs/ssot/M55_CREATOR_AFFILIATE_STRIPE_TAX_LEGAL_SSOT.md`
 
+Benchmark composition evidence: `docs/evidence/M55_CREATOR_AFFILIATE_BENCHMARK_COMPOSITION_EVIDENCE_2026-09-09.md`
+
 Compliance/payout state authority: `docs/ssot/M55_CREATOR_COMPLIANCE_AND_PAYOUT_AUTOMATION_SSOT.md`
 
 ---
@@ -723,5 +725,9 @@ At implementation time:
 - use current Stripe M55 account evidence over generic vendor claims.
 
 `BENCHMARK_FREEZE_DATE = 2026-09-09`
+
+`BENCHMARK_COMPOSITION_EVIDENCE_REQUIRED_FOR_MONEY_SURFACES = TRUE`
+
+`BENCHMARK_SOURCE_TO_M55_TRACEABILITY_REQUIRED = TRUE`
 
 `BROAD_BENCHMARK_RESEARCH_REOPEN_REQUIRES_REAL_INVALIDATOR = TRUE`

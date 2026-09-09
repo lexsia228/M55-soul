@@ -1146,3 +1146,19 @@ The earlier same-day `PENDING_NO_ACTION_REQUIRED` record above is retained as hi
 | Legal/tax | benchmark commercial use is not legal safe harbor; tax/legal fail-closed SSOT remains authoritative |
 | Research loop | broad competitor sweep is CLOSED after this freeze absent a real invalidator |
 | Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` |
+
+### 2026-09-09 — Benchmark composition evidence freeze (Human-approved)
+
+**Status:** evidence/governance only · no runtime/Stripe/DB/Clerk/env/Production mutation · `M55_EXECUTION_STATE.json` unchanged
+
+| Decision | Value |
+|---|---|
+| Evidence artifact | `docs/evidence/M55_CREATOR_AFFILIATE_BENCHMARK_COMPOSITION_EVIDENCE_2026-09-09.md` |
+| Purpose | preserve which vendor/service pattern informed each M55 money/affiliate surface, exact source URLs, verification date, adopted delta, rejected delta, and unresolved owner gate |
+| Money-surface standard | `BENCHMARK_COMPOSITION_EVIDENCE_REQUIRED_FOR_MONEY_SURFACES = TRUE` |
+| Traceability | `BENCHMARK_SOURCE_TO_M55_TRACEABILITY_REQUIRED = TRUE` |
+| Core Six | FirstPromoter · Rewardful · Shopify Collabs · A8.net · ValueCommerce · 開運メーカー |
+| Stripe M55-specific evidence | existing Kuriyama/Stripe Support evidence remains primary for M55 account configuration/pricing responsibility; generic benchmark vendors do not override it |
+| Legal/tax boundary | benchmark precedent is operational evidence only; tax/legal SSOT controls law/tax classification |
+| Runtime dependency | no affiliate SaaS dependency added |
+| Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` |
