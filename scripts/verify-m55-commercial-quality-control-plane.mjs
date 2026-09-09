@@ -50,6 +50,11 @@ const ADAPTER_FILES = [
   'lib/m55/commercialUx/qualityControl/m55JapaneseComprehensionFrozenBaseline.ts',
   'lib/m55/commercialUx/qualityControl/m55JapaneseComprehensionSourceCoverage.ts',
   'lib/m55/commercialUx/qualityControl/m55JapaneseComprehensionClosureSourceAuthority.ts',
+  'lib/m55/commercialUx/qualityControl/m55CopyRoleRegistry.ts',
+  'lib/m55/commercialUx/qualityControl/m55EditorialCommercialPolicy.ts',
+  'lib/m55/commercialUx/qualityControl/m55EditorialGoldenCorpus.ts',
+  'lib/m55/commercialUx/qualityControl/m55EditorialCommercialPolicy.test.ts',
+  'docs/ssot/M55_EDITORIAL_COMMERCIAL_AUTOMATION_SSOT.md',
 ];
 const BROWSER_FILES = [
   'e2e/helpers/commercialQualityRunner.ts',
@@ -1063,6 +1068,54 @@ function checkJapaneseComprehensionBaseline() {
   }
 }
 
+function checkEditorialAutomationFoundation() {
+  const policyPath = 'lib/m55/commercialUx/qualityControl/m55EditorialCommercialPolicy.ts';
+  const goldenPath = 'lib/m55/commercialUx/qualityControl/m55EditorialGoldenCorpus.ts';
+  const ssotPath = 'docs/ssot/M55_EDITORIAL_COMMERCIAL_AUTOMATION_SSOT.md';
+
+  for (const rel of [policyPath, goldenPath, ssotPath]) {
+    if (!existsSync(join(ROOT, rel))) {
+      fail('editorial.foundation', `required editorial foundation artifact absent: ${rel}`);
+    }
+  }
+
+  const policy = read(policyPath);
+  const golden = read(goldenPath);
+  const ssot = read(ssotPath);
+
+  for (const family of [
+    'relationship_termination_ambiguity',
+    'mind_reading',
+    'deterministic_claim',
+  ]) {
+    if (!policy.includes(family)) {
+      fail('editorial.policy.categories', `policy must register risk family: ${family}`);
+    }
+  }
+  if (!policy.includes('recipient_misinterpretation_risk')) {
+    fail('editorial.policy.category', 'policy must register recipient_misinterpretation_risk');
+  }
+  if (!policy.includes('PENDING_PRODUCT_REMEDIATION')) {
+    fail('editorial.policy.enforcement', 'policy must declare PENDING_PRODUCT_REMEDIATION migration state');
+  }
+  if (!golden.includes('pair.share.R3.tempo_mismatch.relationship_conclusion.partner')) {
+    fail('editorial.golden.fixture', 'golden corpus must include R3 tempo_mismatch partner fixture');
+  }
+  if (!ssot.includes('AI may not grant Human approval')) {
+    fail('editorial.ssot.human', 'editorial SSOT must retain Human approval non-substitution');
+  }
+  if (/openai|grok|anthropic|fetch\s*\(\s*['"]https?:\/\//i.test(policy)) {
+    fail('editorial.policy.external_api', 'editorial policy must not introduce external API dependencies');
+  }
+  if (policy.includes('second verifier framework') || policy.includes('duplicate approval system')) {
+    fail('editorial.policy.duplicate', 'editorial policy must not declare duplicate frameworks');
+  }
+  const approvalSrc = read('lib/commercialQuality/approvalPack.ts');
+  if (!approvalSrc.includes('humanApprovalRecorded: false')) {
+    fail('editorial.approval.non_substitution', 'approval pack must retain humanApprovalRecorded: false');
+  }
+}
+
 function main() {
   console.log('M55 commercial quality control plane verifier');
   console.log(`root: ${ROOT}`);
@@ -1077,6 +1130,7 @@ function main() {
   checkDurablePolicy();
   checkSafariMcpGovernance();
   checkJapaneseComprehensionBaseline();
+  checkEditorialAutomationFoundation();
   if (EMIT_CANDIDATE_PACK && FAILURES.length === 0) emitCandidatePack();
 
   console.log('--- report ---');

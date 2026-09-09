@@ -11,6 +11,10 @@ import type {
   ContentIntegritySeverity,
 } from './contentIntegrityTypes';
 import { CONTENT_INTEGRITY_SEEN_VS_ACTUAL_REGRESSION_V1 } from './contentIntegrityTypes';
+import {
+  editorialEnforcementStateSummary,
+  isEditorialFindingEnforced,
+} from '../m55/commercialUx/qualityControl/m55EditorialCommercialPolicy';
 import { checkSemanticIntegrityCorpus, checkSemanticIntegrityItem } from './contentIntegritySemanticChecks';
 
 const BRACKET_PAIRS: ReadonlyArray<readonly [string, string]> = [
@@ -245,15 +249,20 @@ export function runContentIntegrityAudit(
     brokenItemIds.add(f.itemId);
   }
 
+  const enforcedFindings = findings.filter((f) => isEditorialFindingEnforced(f));
+  const shadowFindingsPendingRemediation = findings.filter((f) => !isEditorialFindingEnforced(f));
+
   const bySeverity: Record<ContentIntegritySeverity, number> = { P0: 0, P1: 0, P2: 0 };
-  for (const f of findings) {
+  for (const f of enforcedFindings) {
     bySeverity[f.severity] += 1;
   }
 
   return {
     corpusItemCount: corpus.length,
     brokenItemCount: brokenItemIds.size,
-    findings,
+    findings: enforcedFindings,
     findingsBySeverity: bySeverity,
+    shadowFindingsPendingRemediation,
+    editorialEnforcementState: editorialEnforcementStateSummary(),
   };
 }

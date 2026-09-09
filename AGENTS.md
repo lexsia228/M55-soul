@@ -83,6 +83,7 @@ Cursor bootstrap: `.cursor/rules/m55-control-tower.mdc` (always apply). **Do not
 10. `docs/ssot/M55_COMMERCIAL_FUNNEL_SSOT.md`
 10. `docs/ssot/M55_COMMERCIAL_QUALITY_CONTRACT.md` — **mandatory before any user-visible implementation or review**
 11. `docs/ssot/M55_UX_BENCHMARK_STACK.md` — **mandatory before any user-visible implementation or review**
+11a. `docs/ssot/M55_EDITORIAL_COMMERCIAL_AUTOMATION_SSOT.md` — **mandatory for editorial automation / automated content construction work** (subordinate to items 1–11 and lane/copy/visual authority; not executable NEXT)
 12. `docs/ssot/M55_SAFARI_MCP_AI_BROWSER_QUALITY_SSOT.md` — **mandatory before any Safari MCP actual-browser gate or ACTUAL-BROWSER GREEN claim**
 13. `docs/ssot/M55_CREATOR_REVENUE_E2C2E_SSOT.md` — **mandatory while Creator Revenue program is active**; reconstruct creator roadmap stage, direct-only anti-MLM rules, provider implementation status, and R1 no-replay state
 14. Active lane contract (`M55_SELF_FUNNEL_CONTRACT.md` or `M55_PAIR_FUNNEL_CONTRACT.md`)
