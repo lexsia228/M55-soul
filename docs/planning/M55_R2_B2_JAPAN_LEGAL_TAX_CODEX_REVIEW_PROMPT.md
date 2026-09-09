@@ -21,3 +21,16 @@ Return:
 
 Do not patch.
 End: END_R2B2_JAPAN_LEGAL_TAX_CODEX_REVIEW
+
+## Mandatory sole-proprietor correction checks
+
+Human fact:
+`M55_OPERATOR_FORM = SOLE_PROPRIETOR`
+
+Check:
+1. no stale "M55 is a company/corporation payer" assumption remains;
+2. NTA No.2793 individual-payer/no-salary-payer branch is not overclaimed;
+3. JFTC no-employee vs employee ordering-business distinction is accurately scoped;
+4. unknown employee/payroll facts remain explicit;
+5. A8/ValueCommerce/Amazon are evidence of ordinary affiliate operations only, never legal authority;
+6. the packet no longer makes phone consultation the default.

@@ -1,8 +1,22 @@
-# M55 R2-B2 — JFTC / NTA Human Consultation Packet — 2026-09-10
+# M55 R2-B2 — Evidence-First Fact Check + Conditional JFTC / NTA Consultation Packet — 2026-09-10
 
-Status: READY FOR HUMAN CALLS / NO PROVIDER OR CASH MUTATION
+Status: **PHONE NOT DEFAULT** / FIRST CONFIRM TWO M55 FACTS / NO PROVIDER OR CASH MUTATION
 
-Use this packet verbatim where practical. Record date/time, office, answer summary, caveats, and whether the responder treated the answer as general guidance or fact-specific.
+Human correction: M55 is a **sole proprietor**, not a corporation.
+
+### Step 0 — answer these first
+
+A. Does M55 currently use any "employee" under the JFTC definition (generally 20+ scheduled hours/week and expected 31+ days, subject to JFTC details)?
+
+`M55_USES_EMPLOYEES_FOR_FREELANCE_ACT = YES / NO / UNCLEAR`
+
+B. Is M55 currently a payer of salaries/wages for NTA source-withholding purposes?
+
+`M55_IS_SALARY_PAYER_FOR_WITHHOLDING = YES / NO / UNCLEAR`
+
+If **A=NO and B=NO**, do not call by default. Control Tower should first close the public-rule mapping from JFTC Q2/Q9 and NTA No.2793.
+
+If either is YES/UNCLEAR, use the bounded calls below. Record date/time, office, answer summary, caveats, and whether the responder treated the answer as general guidance or fact-specific.
 
 ## A. JFTC — Freelance Act fact-pattern consultation
 
@@ -13,7 +27,7 @@ Current official Kanto/Tokyo consultation:
 
 ### Facts to state
 
-M55 is a Japanese digital-content/report seller.
+M55 is a Japanese **sole proprietor** operating a digital-content/report business.
 
 Affiliate Creator v1:
 - participation is approval-based and free;
@@ -80,7 +94,7 @@ Current official tax consultation:
 
 ### Facts to state
 
-M55 is a Japanese company selling digital reports.
+M55 is a Japanese **sole proprietor** selling digital reports.
 
 For a Japan-resident individual Affiliate Creator:
 - no employment relationship;
@@ -137,3 +151,20 @@ Do not:
 - close R2-B2 before the answers are adjudicated.
 
 After both consultations, return the notes to Control Tower for SSOT freeze and explicit R2 final Human decision.
+
+## D. Competitor precedent to mention only if useful
+
+Do not ask regulators "A8 does this, so may M55 do it?" as a safe-harbor argument.
+
+If useful for explaining the commercial model, state only:
+
+- mature Japan affiliate networks commonly use outcome approval before commission payment;
+- thresholds/carry-over and scheduled batch payout are ordinary market patterns;
+- Creator payout/report screens are ordinary market infrastructure.
+
+Examples:
+- A8.net: approval/confirmation -> later scheduled payout; threshold/carry-over options.
+- ValueCommerce: advertiser approval -> later payout; invoice-aware payment report.
+- Amazon Associates Japan: minimum payout + carry-over.
+
+The legal question remains M55's exact statutory branch, not competitor permission.

@@ -5,7 +5,7 @@ Status: PRIMARY-SOURCE EVIDENCE / NOT YET R2-B2 CLOSED
 Repository authority: main @ `228bf19abc0a9a26dec751618b0d8836d0da3e65`
 Current executable gate remains `REVENUE_SAFETY_E2E`.
 
-Purpose: reduce the remaining R2-B2 Japan legal/tax questions to the smallest fact-pattern-specific confirmations required before R2 final Human acceptance.
+Purpose: reduce the remaining R2-B2 Japan legal/tax questions to the smallest evidence-backed fact matrix required before R2 final Human acceptance. Human correction 2026-09-10: **M55 operator is a sole proprietor, not a corporation.**
 
 ## 1. What is already closed
 
@@ -173,3 +173,122 @@ Do not close R2-B2 from inference alone.
 `R2_B2_STRIPE_RESEARCH_REPLAY = PROHIBITED_ABSENT_INVALIDATOR`
 
 After the two bounded confirmations, Control Tower should update the SSOT and request explicit Human R2 final acceptance.
+
+## 10. M55 operator-form correction — sole proprietor
+
+`M55_OPERATOR_FORM = SOLE_PROPRIETOR`
+
+The previous draft used company/corporation wording as a generic payer description. That is corrected.
+
+For Japanese source-withholding and Freelance Act analysis, two factual switches now control most of the residual risk:
+
+1. `M55_USES_EMPLOYEES_FOR_FREELANCE_ACT = UNKNOWN_PENDING_HUMAN_FACT_CONFIRMATION`
+2. `M55_IS_SALARY_PAYER_FOR_WITHHOLDING = UNKNOWN_PENDING_HUMAN_FACT_CONFIRMATION`
+
+Do not infer either from the phrase "sole proprietor".
+
+### 10.1 Source-withholding consequence
+
+NTA No.2793 states that when the payer is an **individual** and is **not a payer of salaries**, source withholding on covered remuneration is generally not required, except specified cases such as hostess remuneration.
+
+Therefore:
+
+`SOLE_PROPRIETOR_NO_SALARY_PAYER_SOURCE_WITHHOLDING_FALLBACK = NO_WITHHOLDING_REQUIRED_FOR_ORDINARY_AFFILIATE_PAYMENT_UNDER_CURRENT_NTA_GENERAL_RULE`
+
+If M55 **does pay salaries** (including salary treatment that makes the proprietor a salary payer), the affiliate-payment category must still be classified before cash activation.
+
+The old corporation-vs-individual Creator branch remains relevant to the **recipient**, but M55's own payer form is now correctly sole proprietor.
+
+### 10.2 Freelance Act consequence
+
+JFTC Q2/Q9 and the official applicability chart distinguish:
+- a sole-proprietor ordering business **without employees**: `業務委託事業者`; transaction-condition disclosure remains required if the transaction is otherwise covered;
+- a sole-proprietor ordering business **using employees**: may be `特定業務委託事業者`, triggering additional duties such as payment deadline and other protections.
+
+Therefore:
+
+`SOLE_PROPRIETOR_NO_EMPLOYEE_FREELANCE_ACT_PAYMENT_DEADLINE = NOT_APPLICABLE_UNDER_CURRENT_JFTC_ROLE_SPLIT`
+
+`SOLE_PROPRIETOR_NO_EMPLOYEE_TRANSACTION_TERMS_DISCLOSURE = REQUIRED_IF_COVERED_TRANSACTION`
+
+Employee status must be checked under JFTC's definition, not everyday language.
+
+## 11. Mature Japanese affiliate operating precedent
+
+These precedents support the **operating model**, not legal safe-harbor:
+
+### A8.net
+Public current help documents:
+- outcome occurs -> advertiser validates -> commission is confirmed;
+- monthly closing;
+- payment after confirmation;
+- 1,000 / 5,000 / carry-over modes;
+- scheduled bank payout;
+- payout/report visibility.
+
+Sources:
+- https://support.a8.net/as/payment/
+- https://www.a8.net/campus/campus-blog/1175-transfer.html
+
+M55 treatment:
+- adopt: `PENDING -> APPROVED/PAYABLE -> BATCH PAYOUT` pattern, threshold/carry-over concept, reportability;
+- reject: A8's exact thresholds, exact timing, bank-fee policy as automatic M55 constants.
+
+### ValueCommerce
+Public current help documents:
+- advertiser approval precedes payout;
+- 1,000-yen minimum with carry-over;
+- payout on scheduled later date;
+- bank transfer fee is free;
+- payment report is invoice-system aware.
+
+Sources:
+- https://www.valuecommerce.ne.jp/stepup/guide/comission/
+- https://help.valuecommerce.ne.jp/aff/transactions/comission/02/
+
+M55 treatment:
+- adopt: approval-before-payment, scheduled batching, no-surprise accounting statement, invoice-aware report;
+- reject: exact threshold/timing as M55 legal constants.
+
+### Amazon Associates Japan
+Public current help documents:
+- bank-transfer minimum;
+- automatic carry-over below threshold;
+- account-level payout method/security management.
+
+Sources:
+- https://affiliate.amazon.co.jp/help/node/topic/GP8Z3AZ27ZFHTEUL
+- https://affiliate.amazon.co.jp/help/node/topic/GKDG94FQSRXSJCGK
+
+M55 treatment:
+- adopt: threshold/carry-over and payout-method security patterns;
+- reject: Amazon-specific values and platform rules.
+
+### Evidence conclusion
+
+`M55_AFFILIATE_OPERATING_MODEL_IS_ORDINARY_MARKET_PATTERN = TRUE`
+
+`MATURE_AFFILIATE_PRECEDENT_SUPPORTS_APPROVAL_THEN_BATCH_PAYOUT = TRUE`
+
+`COMPETITOR_PRECEDENT_DOES_NOT_OVERRIDE_M55_PAYER_FORM_OR_JAPANESE_LAW = TRUE`
+
+This materially reduces invention risk: M55 is not creating a novel payout lifecycle. The remaining work is to map ordinary patterns to the sole-proprietor-specific statutory branches.
+
+## 12. Evidence-first closure rule
+
+Before calling JFTC/NTA, confirm only these M55 facts:
+
+- Does M55 currently "use employees" under JFTC's statutory definition?
+- Is M55 currently a payer of salaries for NTA source-withholding purposes?
+
+If both are NO:
+- the Freelance Act 60-day payment deadline issue is not the controlling JFTC obligation under the current role split;
+- the NTA payer-side source-withholding issue is substantially closed by the individual-payer/no-salary-payer rule;
+- remaining R2-B2 work can focus on transaction-condition disclosure, accounting/invoice profile, and safe payout mechanics.
+
+`R2_B2_PHONE_CONSULTATION = CONDITIONAL_FALLBACK_NOT_DEFAULT`
+
+Use phone/adviser consultation only if:
+- either factual switch is YES/unclear;
+- a new fact invalidates the public-rule mapping;
+- or Control Tower/Codex/Grok finds an authority ambiguity that cannot be resolved from official sources.

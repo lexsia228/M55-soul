@@ -35,3 +35,17 @@ Return:
 - CLEAN-STATE PROOF
 
 End: END_R2B2_JAPAN_LEGAL_TAX_GROK_RED_TEAM
+
+## Sole-proprietor correction to audit
+
+Human fact:
+`M55_OPERATOR_FORM = SOLE_PROPRIETOR`
+
+Audit whether:
+- NTA No.2793 individual-payer/no-salary-payer exception is represented correctly;
+- JFTC no-employee ordering-business role split is represented correctly;
+- employee/payroll status is left as a factual switch rather than invented;
+- competitor evidence is used only for ordinary operating patterns;
+- phone consultation is conditional fallback, not an unnecessary default.
+
+Flag any remaining corporation assumption as P1/P2 depending materiality.
