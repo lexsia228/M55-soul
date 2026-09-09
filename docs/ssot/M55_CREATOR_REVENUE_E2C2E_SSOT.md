@@ -12,6 +12,8 @@ Affiliate-first Stripe / payout / Japan tax-legal annex: `docs/ssot/M55_CREATOR_
 
 Commercial/legal/tax evidence pack: `docs/evidence/M55_CREATOR_REVENUE_COMMERCIAL_LEGAL_TAX_EVIDENCE_2026-09-09.md`
 
+Benchmark-independence / Creator-acceptance evidence: `docs/evidence/M55_CREATOR_AFFILIATE_BENCHMARK_INDEPENDENCE_AND_CREATOR_ACCEPTANCE_EVIDENCE_2026-09-09.md`
+
 Frozen affiliate benchmark / target architecture annex: `docs/ssot/M55_CREATOR_AFFILIATE_BENCHMARK_TARGET_ARCHITECTURE_SSOT.md`
 
 Parallel multi-agent operating model: `docs/ssot/M55_MULTI_AGENT_PARALLEL_OPERATING_MODEL_SSOT.md` — mandatory process reference whenever Creator Revenue runs concurrently with UIUX or other AI lanes; does not change R1→R8 order or implementation authority.
@@ -911,3 +913,18 @@ The Creator's final personal/corporate income-tax filing remains the Creator's r
 
 Invoice-registration status may change M55's own consumption-tax/input-tax-credit economics. It must not silently retroactively reduce an already-earned Creator commission rate.
 
+---
+
+## Benchmark independence / Creator trust top-level freeze (Human-approved 2026-09-09)
+
+`BENCHMARK_PATTERN_ADOPTION_NOT_EXPRESSION_COPYING = TRUE`
+
+`M55_IMPLEMENTATION_MUST_BE_INDEPENDENTLY_AUTHORED = TRUE`
+
+`CREATOR_PROGRAM_TRUTH_REQUIRED_BEFORE_FIRST_AFFILIATE_LINK = TRUE`
+
+`CREATOR_EARNINGS_EXPLAINABILITY_REQUIRED = TRUE`
+
+`BENCHMARK_TO_M55_PROVENANCE_REQUIRED = TRUE`
+
+Public competitor/vendor patterns may inform M55 requirements; competitor code, terms text, branding, distinctive UI expression, and non-public implementation are not implementation sources.

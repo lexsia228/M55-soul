@@ -14,6 +14,8 @@ Tax/legal fail-closed authority: `docs/ssot/M55_CREATOR_AFFILIATE_STRIPE_TAX_LEG
 
 Benchmark composition evidence: `docs/evidence/M55_CREATOR_AFFILIATE_BENCHMARK_COMPOSITION_EVIDENCE_2026-09-09.md`
 
+Benchmark-independence / Creator-acceptance evidence: `docs/evidence/M55_CREATOR_AFFILIATE_BENCHMARK_INDEPENDENCE_AND_CREATOR_ACCEPTANCE_EVIDENCE_2026-09-09.md`
+
 Compliance/payout state authority: `docs/ssot/M55_CREATOR_COMPLIANCE_AND_PAYOUT_AUTOMATION_SSOT.md`
 
 ---
@@ -743,3 +745,181 @@ At implementation time:
 `BENCHMARK_SOURCE_TO_M55_TRACEABILITY_REQUIRED = TRUE`
 
 `BROAD_BENCHMARK_RESEARCH_REOPEN_REQUIRES_REAL_INVALIDATOR = TRUE`
+
+---
+
+## Q. Benchmark independence / no-copy contract (Human-approved 2026-09-09)
+
+M55 deliberately uses **multiple public benchmarks** to identify ordinary affiliate patterns. It must not clone a single competitor's protected expression, brand, source code, confidential implementation, or distinctive UI.
+
+`BENCHMARK_PATTERN_ADOPTION_NOT_EXPRESSION_COPYING = TRUE`
+
+`NO_THIRD_PARTY_CODE_COPY = TRUE`
+
+`NO_THIRD_PARTY_TERMS_TEXT_COPY = TRUE`
+
+`NO_PIXEL_LEVEL_COMPETITOR_UI_CLONE = TRUE`
+
+`NO_COMPETITOR_TRADEMARK_OR_LOGO_USE = TRUE`
+
+`NO_NONPUBLIC_COMPETITOR_INFORMATION_USE = TRUE`
+
+`M55_IMPLEMENTATION_MUST_BE_INDEPENDENTLY_AUTHORED = TRUE`
+
+Legal evidence basis is recorded in the benchmark-independence evidence pack. In summary:
+
+- Japanese copyright protects creative **expression**, not unexpressed ideas as such.
+- Business-method ideas alone are not patentable merely as ideas, but ICT-implemented business-related inventions can be patentable.
+- images / graphical designs can be protected under the Design Act when registered.
+- trademarks protect source-identifying marks.
+- the Unfair Competition Prevention Act protects, among other things, famous/well-known source indications, certain imitated product forms, and trade secrets.
+
+Therefore M55 may use ordinary public affiliate patterns such as:
+
+`unique referral link -> attribution -> commission pending -> refund/fraud review -> payable balance -> batch payout -> statement`
+
+but must create its own:
+- database schema;
+- state machine implementation;
+- copywriting;
+- terms text;
+- visual hierarchy;
+- information architecture details;
+- dashboard component design;
+- brand;
+- code;
+- anti-fraud rules;
+- payout policy values.
+
+`MULTI_SOURCE_PATTERN_SYNTHESIS_REQUIRED = TRUE`
+
+No implementation review should say "copy FirstPromoter" or "copy A8". It should say:
+`ADAPT_PUBLIC_STANDARD_PATTERN_TO_M55_CONTRACT`.
+
+### Q-1. Targeted IP check before runtime
+
+Standard affiliate concepts do not by themselves remove patent/design/trademark risk.
+
+Before a nonstandard technical mechanism or externally similar UI becomes runtime authority, the owning implementation gate should perform a targeted public-rights check appropriate to that surface, including J-PlatPat search when warranted.
+
+`TARGETED_IP_RIGHTS_CHECK_REQUIRED_BEFORE_DISTINCTIVE_EXTERNAL_RUNTIME = TRUE`
+
+This is not a standing requirement to obtain a legal opinion for every ordinary CRUD screen. Escalate when the implementation materially resembles a known vendor-specific technical mechanism, distinctive registered design, protected mark, or non-public implementation.
+
+### Q-2. Creator acceptance contract
+
+M55 must be easy for an Affiliate Creator to understand before they publish the first link.
+
+Minimum Creator-facing "Program Truth" before activation:
+
+1. participation is free / approved participation model;
+2. exact eligible M55 products;
+3. exact 50% / 40% / 30% schedule and when each period begins/ends;
+4. the commission base definition (`COMMISSIONABLE_REVENUE`);
+5. attribution rule/window once R5 freezes it;
+6. what makes a conversion Pending / Hold / Payable / Reversed / Adjusted;
+7. refund/chargeback treatment;
+8. self-referral / duplicate / fraud policy;
+9. payout threshold/cadence once R8 freezes it;
+10. gross commission -> lawful deductions -> net payout;
+11. tax/invoice/KYC readiness requirements;
+12. next expected payout/status;
+13. payout failure/return handling;
+14. dispute/appeal/support path;
+15. advertising disclosure/prohibited-claims rules;
+16. policy/rate version and effective date;
+17. no retroactive rate reduction for already-earned valid commission;
+18. exportable statement/history.
+
+`CREATOR_PROGRAM_TRUTH_REQUIRED_BEFORE_FIRST_AFFILIATE_LINK = TRUE`
+
+`CREATOR_EARNINGS_EXPLAINABILITY_REQUIRED = TRUE`
+
+`CREATOR_DISPUTE_PATH_REQUIRED = TRUE`
+
+`NO_RETROACTIVE_CREATOR_RATE_REWRITE = TRUE`
+
+### Q-3. Creator Revenue Console synthesis
+
+M55 should combine the strongest public operating patterns without copying visual expression:
+
+- **開運メーカー / Rewardful**: simple unique-link proposition + clicks/conversions/reward visibility;
+- **Shopify Collabs**: Pending/holding/refund/dispute/upcoming payout visibility;
+- **FirstPromoter**: payout eligibility, fraud/security hardening, provider onboarding;
+- **A8.net**: familiar Japan payout preference/carry-over concepts;
+- **ValueCommerce**: detailed payout/accounting reports and invoice-oriented payment statement.
+
+M55-specific Console target:
+
+```
+OVERVIEW
+- clicks
+- eligible conversions
+- attributed sales
+- conversion rate
+
+COMMISSION
+- COMMISSIONABLE_REVENUE
+- applicable rate
+- gross commission
+- Pending / Hold / Payable
+- Reversed / Adjusted + reason
+
+PAYOUT
+- payable projection
+- tax/KYC/provider readiness
+- next payout
+- payout preference
+- payout history
+- failed/returned state
+
+ACCOUNTING
+- statutory withholding if any
+- lawful fee if any
+- net payout
+- invoice/tax profile
+- statement/export
+
+SUPPORT
+- discrepancy/appeal
+- payout issue
+- policy/rate version
+```
+
+No competitor's color system, component geometry, labels, screen arrangement, or copy is normative.
+
+`CREATOR_CONSOLE_FUNCTIONAL_PATTERN = MULTI_BENCHMARK_SYNTHESIS`
+
+`CREATOR_CONSOLE_VISUAL_EXPRESSION = M55_ORIGINAL_REQUIRED`
+
+### Q-4. Affiliate motivation / trust
+
+M55's Creator proposition should be explicit and stable:
+
+- high introductory rate;
+- no recruitment/downline compensation;
+- no conversion-count cliff;
+- no required inventory/purchase;
+- no mandatory posting quota;
+- no hidden financial deduction;
+- clear reason codes;
+- visible payout status;
+- valid high volume is treated as success, not automatic fraud;
+- security/KYC/tax blocks do not erase valid commission;
+- published policy changes are effective-dated and do not rewrite already-earned commission.
+
+`CREATOR_TRUST_IS_FINANCIAL_PRODUCT_QUALITY = TRUE`
+
+### Q-5. Evidence provenance
+
+Every future Creator-money UI or rule must map:
+`public benchmark pattern -> M55 requirement -> M55-specific rule -> original implementation -> test/runtime evidence`.
+
+The mapping must also identify:
+- source not copied;
+- source-specific value rejected;
+- M55-specific value owner;
+- legal/tax/provider authority where money changes.
+
+`BENCHMARK_TO_M55_PROVENANCE_REQUIRED = TRUE`
+

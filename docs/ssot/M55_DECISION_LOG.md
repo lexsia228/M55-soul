@@ -1211,3 +1211,26 @@ No finding is a `REAL_INVALIDATOR`. No provider selection, cash activation, road
 | Cross-border | non-Japan tax residency requires separate tax readiness before payout |
 | Runtime | none authorized by this docs-only decision |
 | Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` |
+
+### 2026-09-09 — Benchmark independence + Creator acceptance architecture (Human-approved)
+
+**Status:** targeted IP/public-benchmark research + Creator trust mapping · docs/evidence only · no runtime/Stripe/DB/Clerk/env/Production mutation · `M55_EXECUTION_STATE.json` unchanged
+
+| Decision | Value |
+|---|---|
+| Benchmark use | public standard-pattern research is allowed; M55 independently authors implementation |
+| Copyright boundary | ideas/patterns are not copied as expression; no competitor code/copy/terms/dashboard text |
+| Patent boundary | business ideas alone are not the same as patent clearance; ICT business-related inventions can be patentable |
+| Design boundary | no pixel-level or distinctive registered-image/UI clone |
+| Trademark boundary | no competitor marks/logos/brand confusion |
+| Unfair-competition boundary | no trade-secret/non-public data use; no source-identification imitation |
+| Core Six | remain architecture references, not code/spec licensors |
+| M55 phrasing | `ADAPT_PUBLIC_STANDARD_PATTERN_TO_M55_CONTRACT`, not "copy competitor" |
+| Creator Program Truth | required before first affiliate link |
+| Creator earnings | clicks/conversions/base/rate/gross/Pending/Hold/Payable/adjustments/deductions/net/payout all explainable |
+| Dispute/support | required |
+| Visual UI | M55-original expression required |
+| High earner | success alone does not reduce rate or erase valid commission |
+| Provenance | benchmark -> M55 requirement -> rule -> original implementation -> evidence required |
+| Grok | dedicated read-only benchmark-independence/Creator-acceptance red-team authorized |
+| Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` |
