@@ -1095,3 +1095,28 @@ The earlier same-day `PENDING_NO_ACTION_REQUIRED` record above is retained as hi
 | High-earner Creator | high sales volume alone does not reduce earned rate or cancel valid commission; scale raises tax/KYC/fraud/reconciliation controls |
 | Cash activation | requires R2-B2 legal/tax classification closure + explicit Human acceptance + then-current Stripe verification |
 | Roadmap | R2→R8 order unchanged; no R6–R8 runtime pulled into R2 |
+
+### 2026-09-09 — Deep Japan-law audit: affiliate categorical-exclusion correction
+
+**Status:** docs/governance correction based on fresh official-source research · no runtime/Stripe/DB/Clerk/env/Production mutation · `M55_EXECUTION_STATE.json` unchanged
+
+| Decision | Value |
+|---|---|
+| Affiliate-first business design | **PRESERVED** — URL/direct-link introduction, no mandatory deliverable/post count/date/hours/quota/exclusivity |
+| Categorical Freelance Act exclusion | `NOT_CONFIRMED` — no current official JFTC/MHLW source located saying ordinary affiliate commission is categorically outside the Act |
+| Why not GREEN yet | Freelance Act covers entrusted services; JFTC says transaction reality and involvement in service/content/remuneration matter; a paid referral may still be characterized as advertising/referral service |
+| Favorable M55 facts | no work order · Creator may do nothing · no mandatory creative production · no posting schedule · no entry fee/purchase · no recruitment commission |
+| Commercial precedent | A8 proves mature affiliate feasibility, **not** M55 legal safe harbor; A8 terms call outcome compensation consideration for advertising distribution |
+| JFTC evidence gate | preserve exact M55 fact pattern and obtain interpretation consultation before relying on Act exclusion, especially before fee deduction/pass-through |
+| Transfer-fee rule | only controls if Act applies; if it applies, JFTC says bank-transfer-fee deduction from remuneration is prohibited regardless of agreement |
+| Labor status | low risk by design under no direction/hours/quota, but actual operation controls |
+| 景表法 | real applicable M55 advertiser responsibility; PR/ad disclosure + claims controls required |
+| MLM/business-opportunity | low risk only while no entry fee, required purchase/training/inventory, or recruitment/downline commission |
+| Creator income tax | affiliate income is generally business or business-related miscellaneous income depending on facts |
+| M55 source withholding | `OPEN`; exact M55 Affiliate v1 must be checked against NTA `外交員等` rules; neither zero nor 10.21% may be assumed universally |
+| NTA evidence gate | source-withholding classification required before cash activation; use NTA consultation and written-answer procedure where eligible |
+| Consumption tax/invoice | fact/status dependent; existing versioned tax-policy requirement preserved |
+| Payment Services Act | low-risk inference only under M55 paying its own commission debt through Stripe; no third-party remittance/escrow |
+| APPI | attribution cookies/browsing data require privacy controls |
+| PR #185 | strengthen fail-closed SSOT; do **not** merge based on a false “affiliate = legally exempt” claim |
+| Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` |

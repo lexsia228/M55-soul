@@ -85,6 +85,12 @@ Retain:
 - legal payment deadline overrides an economic threshold **when applicable**
 - M55 payout-cost pass-through = **HUMAN ECONOMIC OBJECTIVE**, but Creator fee deduction/pass-through implementation remains **NOT AUTHORIZED** pending legal classification
 - Affiliate-only relationship, Sponsored Creator relationship, withholding treatment, invoice/tax status, and payment-deadline applicability must be classified separately
+- `FREELANCE_ACT_CATEGORICAL_AFFILIATE_EXCLUSION = NOT_CONFIRMED` — no official categorical affiliate exclusion found; exact M55 fact pattern requires regulator/counsel classification
+- `JFTC_M55_FACT_PATTERN_CONFIRMATION = REQUIRED_BEFORE_FREELANCE_ACT_EXCLUSION_IS_USED_AS_AUTHORITY`
+- `AFFILIATE_SOURCE_WITHHOLDING_SALES_AGENT_CLASSIFICATION = OPEN` — NTA `外交員等` classification must be resolved for exact M55 Affiliate v1
+- `NTA_SOURCE_WITHHOLDING_CLASSIFICATION = REQUIRED_BEFORE_CASH_ACTIVATION`
+- `NO_CREATOR_ENTRY_FEE_OR_REQUIRED_PURCHASE = TRUE` · `NO_CREATOR_RECRUITMENT_COMMISSION = TRUE` · no MLM/business-opportunity regression
+- `M55_DOES_NOT_OFFER_THIRD_PARTY_REMITTANCE = TRUE` · `M55_DOES_NOT_OFFER_ESCROW = TRUE`
 
 Do **not** pull R6–R8 runtime implementation into R2.
 

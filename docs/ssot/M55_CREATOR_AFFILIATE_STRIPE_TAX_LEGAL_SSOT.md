@@ -202,7 +202,11 @@ Official JFTC guidance describes an委託 as requesting another business to prov
 
 `COMMERCIAL_PRECEDENT_IS_NOT_LEGAL_SAFE_HARBOR = TRUE`
 
-Existing affiliate/creator platforms are implementation evidence, not proof that M55's exact contract is legally identical.
+`FREELANCE_ACT_CATEGORICAL_AFFILIATE_EXCLUSION = NOT_CONFIRMED`
+
+`AFFILIATE_SERVICE_CHARACTERIZATION = OPEN_PENDING_M55_FACT_PATTERN_CONFIRMATION`
+
+Existing affiliate/creator platforms are implementation evidence, not proof that M55's exact contract is legally identical. A current major Japanese ASP (A8.net) expressly defines affiliate outcome compensation as consideration for advertising distribution; that commercial wording is evidence that "affiliate" is not, by name alone, outside the concept of a paid service.
 
 ---
 
@@ -314,7 +318,7 @@ Actual Creator cash activation is prohibited until all of the following are GREE
 1. Affiliate v1 legal relationship classification for the exact M55 contract/operation.
 2. Japan payment-deadline classification.
 3. Exact legality/contract mechanics of any Creator-borne payout/platform fee.
-4. Japan withholding classification for intended Creator categories.
+4. Japan withholding classification for intended Creator categories, including whether an individual Affiliate Creator could fall within the Income Tax Act/NTA `外交員等` source-withholding category.
 5. Consumption-tax/invoice accounting treatment and evidence requirements.
 6. Creator terms and disclosure contract.
 7. R6 deterministic money/rounding contract.
@@ -365,3 +369,187 @@ All external facts are dated evidence, not timeless constants. Re-verify at R8/a
 - Do not use Creator inactivity or an economic threshold to violate an applicable payment deadline.
 - Do not reduce valid earned commission merely because a Creator becomes highly successful.
 - Do not move real Creator money until the activation blockers are closed.
+
+---
+
+## O. 2026-09-09 deep Japan-law audit — categorical-exclusion correction
+
+**Result:** the research did **not** locate an official JFTC/MHLW statement that ordinary affiliate commission is categorically outside the Freelance Act.
+
+That absence matters. M55 must not convert a plausible business intuition into a legal fact.
+
+### O-1. Freelance Act
+
+The statute defines `業務委託` to include a business entrusting another business to provide services for its business.
+
+Current JFTC Q&A provides useful boundary evidence:
+
+- merely requesting the loan of an existing car/space is outside the Act because the requester is not specifying the content/specifications of a manufactured item, information product, or service;
+- a service used by the ordering business is covered when the business specifies the service content and requests it;
+- creation of software/video/design/music/text is an outsourcing relationship when specifications, theme or concept are specified;
+- whether a platform is substantively outsourcing is judged from the contract and transaction reality, including involvement in the content, counterparty selection, remuneration decision, nature of the monetary claim, and responsibility on default.
+
+M55 Affiliate v1 deliberately removes strong outsourcing characteristics: no mandatory post, no fixed date, no creative deliverable, no work quota, no working hours, no exclusivity, and no obligation to introduce anyone.
+
+Those facts are **favorable but not conclusive**. Paying only when a referred customer buys can still be characterized as consideration for advertising/referral services depending on the exact contract and actual operation.
+
+`FREELANCE_ACT_CATEGORICAL_AFFILIATE_EXCLUSION = NOT_CONFIRMED`
+
+`M55_AFFILIATE_FACT_PATTERN_IS_LOWER_OUTSOURCING_RISK_THAN_SPONSORED_CREATOR = TRUE`
+
+`CONTRACT_LABEL_DOES_NOT_CONTROL = TRUE`
+
+### O-2. Required regulator-grade confirmation
+
+Before using a legal conclusion that the Freelance Act does not apply — especially before deducting/passing through payout fees — M55 must obtain fact-pattern-specific confirmation.
+
+Preferred primary-regulator route:
+
+- JFTC official Freelance Act interpretation consultation desk;
+- for Tokyo/Kanto, JFTC Freelance Transaction Fairness Office, 03-3581-5479 (telephone consultation);
+- preserve the date, department, exact M55 fact pattern presented, exact answer, limits/caveats, and operator notes as dated evidence.
+
+The fact pattern presented must be fixed and non-leading:
+
+1. M55 sells its own digital reports.
+2. Creator voluntarily joins an affiliate program.
+3. M55 provides a unique URL.
+4. Creator has no required post, deliverable, date, channel, hours, quota or exclusivity.
+5. Creator may make zero introductions with no penalty.
+6. Commission arises only on an eligible third-party purchase attributable to the URL.
+7. No joining fee, inventory purchase, M55-product purchase or paid training is required to earn.
+8. No Creator-recruitment/downline commission exists.
+9. M55 only imposes compliance boundaries: law, Stripe rules, ad disclosure, claims policy, anti-fraud/self-referral.
+10. Ask whether this exact relationship constitutes `役務の提供を委託` under Article 2(3), and separately what payout-fee rule follows from that classification.
+
+`JFTC_M55_FACT_PATTERN_CONFIRMATION = REQUIRED_BEFORE_FREELANCE_ACT_EXCLUSION_IS_USED_AS_AUTHORITY`
+
+`JFTC_M55_FACT_PATTERN_CONFIRMATION = REQUIRED_BEFORE_CREATOR_BANK_FEE_DEDUCTION_IF_EXCLUSION_IS_RELied_ON`
+
+A written Japanese-law opinion may supplement regulator evidence; it does not permit changing the actual operating facts later without re-review.
+
+### O-3. Labor/employment law
+
+MHLW worker-status guidance focuses on subordination: freedom to accept/refuse work, concrete direction/supervision, time/place restraint, and labor-compensation characteristics.
+
+M55 Affiliate v1's no-work-order/no-hours/no-quota/no-exclusivity design is low-risk by those factors, but actual operation still controls.
+
+`LABOR_WORKER_STATUS_RISK = LOW_BY_DESIGN_NOT_CATEGORICALLY_ZERO`
+
+### O-4. Advertising / stealth-marketing law
+
+This is a **real applicable compliance area**, not a theoretical one.
+
+CAA guidance states that the regulated party for stealth marketing is the advertiser whose product/service is being promoted; influencers/affiliates are generally not themselves the regulated advertiser. Affiliate pages/posts must make the advertising nature clear where the display is the advertiser's display.
+
+Therefore M55 must retain:
+
+`AFFILIATE_AD_DISCLOSURE_REQUIRED_WHEN_APPLICABLE = TRUE`
+
+`M55_ADVERTISER_COMPLIANCE_RESPONSIBILITY = REQUIRED`
+
+`PROHIBITED_CLAIMS_ENFORCEMENT = REQUIRED`
+
+### O-5. MLM / business-opportunity-sales boundary
+
+CAA guidance on chain-sales and business-opportunity-sales requires, among other elements, a special financial burden imposed on the participant.
+
+M55 Affiliate v1 must preserve:
+
+`NO_CREATOR_ENTRY_FEE_OR_REQUIRED_PURCHASE = TRUE`
+
+`NO_REQUIRED_INVENTORY = TRUE`
+
+`NO_PAID_TRAINING_REQUIRED_TO_EARN = TRUE`
+
+`NO_CREATOR_RECRUITMENT_COMMISSION = TRUE`
+
+These are hard anti-regression controls. Adding a joining fee, mandatory M55 purchase, starter kit or recruitment/downline reward can materially change the legal analysis and requires a new gate.
+
+### O-6. Creator income tax
+
+NTA explicitly lists affiliate income as income that is generally reportable as business income or miscellaneous income (business), depending on the facts.
+
+High earnings do not create a new tax category merely because the amount is high.
+
+But M55's **payer-side source-withholding** classification is not closed.
+
+NTA rules require source withholding for certain remuneration to `外交員等`; NTA basic guidance also treats certain salespeople paid by volume/value as `外交員` remuneration. The research did not locate a current official NTA statement categorically including or excluding ordinary web affiliate commission.
+
+`AFFILIATE_SOURCE_WITHHOLDING_SALES_AGENT_CLASSIFICATION = OPEN`
+
+`NO_WITHHOLDING_ASSUMPTION = PROHIBITED`
+
+`NO_UNIVERSAL_10_21_PERCENT_ASSUMPTION = PROHIBITED`
+
+Before cash activation, M55 must obtain tax-specific confirmation for the exact Affiliate v1 contract. Preferred escalation:
+
+- NTA Tax Consultation Center for source withholding; and
+- where eligible and useful, NTA's pre-transaction written-answer procedure for a fixed future transaction with concrete documents.
+
+`NTA_SOURCE_WITHHOLDING_CLASSIFICATION = REQUIRED_BEFORE_CASH_ACTIVATION`
+
+### O-7. Consumption tax / invoice
+
+Creator commission can be a taxable transaction depending on the recipient and transaction facts. M55 must retain entity/tax-residency/invoice-registration data and effective-dated accounting policy.
+
+The 2026 invoice-transition percentages already recorded in §I remain dated policy evidence, not timeless constants.
+
+### O-8. Payment Services Act
+
+FSA describes a funds-transfer business as accepting a customer's request to move funds between distant persons and carrying out that transfer.
+
+M55's target architecture is materially different: M55 pays **its own commission obligation** to its Creator and uses Stripe as the transfer/payout rail. M55 must not accept customer/Creator funds for onward remittance to third parties and must not represent the pending commission as escrow.
+
+`M55_DOES_NOT_OFFER_THIRD_PARTY_REMITTANCE = TRUE`
+
+`M55_DOES_NOT_OFFER_ESCROW = TRUE`
+
+`PAYMENT_SERVICES_ACT_SELF_DEBT_PAYMENT_LOW_RISK_INFERENCE = TRUE_PENDING_FINAL_LEGAL_REVIEW`
+
+### O-9. Privacy / attribution tracking
+
+PPC guidance treats web browsing history and, generally, cookie/device identifiers as personal-related information unless they already qualify as personal information.
+
+Affiliate attribution therefore requires a privacy-safe server-side evidence model, purpose disclosure, retention policy, access control and lawful handling of any third-party data transfer.
+
+`AFFILIATE_ATTRIBUTION_PRIVACY_COMPLIANCE = REQUIRED`
+
+### O-10. Commercial precedents: use correctly
+
+A8.net currently operates a mature Japanese affiliate model with:
+
+- outcome generation -> advertiser approval -> confirmed commission;
+- payment thresholds/carry-over;
+- Creator/media-borne bank transfer fees;
+- a dashboard and payout process.
+
+But A8's current terms also define outcome compensation as consideration for advertising distribution and impose media obligations such as ad distribution and inducing user actions.
+
+Therefore:
+
+`A8_PRECEDENT_SUPPORTS_COMMERCIAL_FEASIBILITY = TRUE`
+
+`A8_PRECEDENT_PROVES_FREELANCE_ACT_EXCLUSION = FALSE`
+
+`A8_PRECEDENT_PROVES_M55_FEE_DEDUCTION_LEGALITY = FALSE`
+
+The same rule applies to every competitor: **precedent informs design; regulator/counsel classification controls M55 legality.**
+
+### O-11. Revised legal status matrix
+
+| Area | Current M55 status | Required action |
+|---|---|---|
+| Freelance Act | **OPEN / NOT CATEGORICALLY EXCLUDED** | JFTC M55 fact-pattern consultation; counsel supplement if needed |
+| Labor / employment | **LOW RISK BY DESIGN** | preserve no control/quotas/hours; re-review if operations change |
+| 景品表示法 / stealth marketing | **APPLIES TO M55 ADVERTISER RESPONSIBILITY WHEN CONDITIONS MET** | disclosure + claims controls + monitoring |
+| MLM / chain-sales | **LOW RISK BY DESIGN** | never add entry fee/required purchase/recruitment commission without re-review |
+| Business-opportunity sales | **LOW RISK BY DESIGN** | no special financial burden as condition of earning |
+| Creator income tax | **APPLIES** | Creator-facing tax notice; Creator remains responsible for own filing |
+| M55 source withholding | **OPEN** | NTA/tax-adviser classification, including `外交員等` |
+| Consumption tax / invoice | **APPLIES BY FACTS/STATUS** | tax profile + invoice verification + effective-dated policy |
+| Payment Services Act | **LOW RISK INFERENCE UNDER OWN-DEBT + STRIPE RAIL** | no third-party remittance/escrow; final legal review |
+| APPI / cookies | **APPLIES TO ATTRIBUTION DATA AS RELEVANT** | disclosure, minimization, retention and data-transfer controls |
+
+This matrix is the current no-overclaim position until direct M55-specific regulator/tax evidence supersedes it.
+
