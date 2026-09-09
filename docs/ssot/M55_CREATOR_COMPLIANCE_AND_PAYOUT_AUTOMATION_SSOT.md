@@ -1168,3 +1168,22 @@ Creator-facing statement must distinguish:
 
 R8 may implement purchaser-created/self-billing monthly statements when NTA requirements and Creator confirmation mechanics are satisfied.
 
+## BC. Payer-tax liability separation / Creator acknowledgement (Control-Tower third audit 2026-09-09)
+
+When withholding is legally applicable:
+
+- withheld tax is not a commission reversal;
+- withheld tax creates a separately reconcilable M55 tax liability;
+- remittance status must be observable to accounting/ops;
+- statutory-report obligations are classification dependent;
+- My Number collection is prohibited until the exact requirement is confirmed.
+
+`WITHHOLDING_REMITTANCE_STATUS_MUST_BE_ACCOUNTED_IF_APPLICABLE = TRUE`
+
+`STATUTORY_WITHHOLDING_IS_NOT_COMMISSION_ADJUSTMENT = TRUE`
+
+Program activation also requires durable evidence that the Creator accepted the governing financial-policy versions.
+
+`CREATOR_PROGRAM_TRUTH_ACK_REQUIRED_BEFORE_FIRST_AFFILIATE_LINK = TRUE`
+
+Creator Console/export must be privacy-safe and must not reveal customer PII by default.

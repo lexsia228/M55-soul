@@ -923,3 +923,16 @@ The mapping must also identify:
 
 `BENCHMARK_TO_M55_PROVENANCE_REQUIRED = TRUE`
 
+## R. Creator acceptance evidence / privacy-safe transparency (Control-Tower third audit 2026-09-09)
+
+`CREATOR_PROGRAM_TRUTH_ACK_REQUIRED_BEFORE_FIRST_AFFILIATE_LINK = TRUE`
+
+`CREATOR_MATERIAL_POLICY_CHANGE_NOTICE_REQUIRED = TRUE`
+
+`ALREADY_EARNED_COMMISSION_USES_GOVERNING_EVENT_POLICY_VERSION = TRUE`
+
+`CREATOR_REVENUE_CONSOLE_CUSTOMER_PII_DISCLOSURE = PROHIBITED_BY_DEFAULT`
+
+The Creator Program Truth is both a UX surface and a durable financial-contract evidence surface. The final implementation must record the accepted versions that govern a Creator's earnings and payout rules.
+
+Creator transparency must use privacy-safe transaction/event references. The affiliate dashboard is not a customer CRM and must not expose purchaser identity or private M55 content merely to explain commission.

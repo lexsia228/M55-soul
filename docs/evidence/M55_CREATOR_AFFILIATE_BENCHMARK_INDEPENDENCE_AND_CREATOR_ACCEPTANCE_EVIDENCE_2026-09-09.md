@@ -427,3 +427,43 @@ Ordinary multi-source standard-pattern synthesis does not by itself require paus
 `COMPETITOR_OPERATION_IS_NOT_LEGAL_SAFE_HARBOR = TRUE`
 
 `CREATOR_TRUST_IS_FINANCIAL_PRODUCT_QUALITY = TRUE`
+
+## 11. Control-Tower third-audit Creator acceptance / privacy findings — 2026-09-09
+
+### 11.1 Program Truth acknowledgement evidence
+
+Showing Program Truth is not enough for later financial disputes.
+
+`CREATOR_PROGRAM_TRUTH_ACK_REQUIRED_BEFORE_FIRST_AFFILIATE_LINK = TRUE`
+
+Minimum acknowledgement evidence:
+- Creator ID;
+- accepted terms version;
+- accepted rate-schedule version;
+- accepted attribution-policy version when applicable;
+- accepted payout-policy version when applicable;
+- timestamp;
+- locale;
+- immutable acceptance event ID.
+
+Do not require re-acceptance for every nonmaterial copy edit. Material changes affecting earnings, attribution, payout, tax duties, prohibited conduct, or dispute rights require versioned prospective notice/acceptance according to the final contract policy.
+
+`CREATOR_MATERIAL_POLICY_CHANGE_NOTICE_REQUIRED = TRUE`
+
+`ALREADY_EARNED_COMMISSION_USES_GOVERNING_EVENT_POLICY_VERSION = TRUE`
+
+### 11.2 Transparency must not leak customer identity
+
+Creator financial transparency does not authorize disclosure of purchaser PII.
+
+`CREATOR_REVENUE_CONSOLE_CUSTOMER_PII_DISCLOSURE = PROHIBITED_BY_DEFAULT`
+
+Use privacy-safe transaction references and only the minimum event fields needed to explain attribution/commission.
+
+A dispute path may permit additional controlled evidence where legally/privacy permitted, but ordinary Creator exports must not expose customer name, email, payment details, health-like/private consultation content, or full Stripe identifiers.
+
+### 11.3 Acceptance evidence is part of provenance
+
+Future review chain becomes:
+
+`benchmark evidence -> M55 rule -> Creator-visible Program Truth -> Creator acknowledgement/version -> original implementation -> tests -> runtime evidence`.

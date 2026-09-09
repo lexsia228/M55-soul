@@ -733,3 +733,24 @@ Money/tax/commercial implementation must retain:
 
 `MONEY_DECISION_SOURCE_TRACEABILITY = REQUIRED`
 
+## Q. Payer tax-compliance operational firewall (Control-Tower third audit 2026-09-09)
+
+`WITHHOLDING_REMITTANCE_OBLIGATION = CLASSIFICATION_DEPENDENT`
+
+`PAYER_INFORMATION_RETURN_OBLIGATION = CLASSIFICATION_DEPENDENT`
+
+`MY_NUMBER_COLLECTION_BEFORE_REQUIREMENT_CONFIRMED = PROHIBITED`
+
+`MY_NUMBER_IN_CREATOR_VISIBLE_STATEMENT = PROHIBITED`
+
+`STATUTORY_WITHHOLDING_IS_NOT_COMMISSION_ADJUSTMENT = TRUE`
+
+If final tax classification creates payer-side withholding, M55 must implement the corresponding remittance calendar/accounting and any statutory payment-report workflow before that payment path becomes live.
+
+If the resulting statutory-report workflow requires My Number:
+
+`SEPARATE_RESTRICTED_TAX_ID_VAULT_REQUIRED = TRUE`
+
+No ordinary Creator profile, analytics property, Stripe metadata, application log, or Creator-visible payout statement may become a My Number storage channel.
+
+These controls are conditional architecture only. They do not classify ordinary M55 Affiliate commission as `外交員等`.

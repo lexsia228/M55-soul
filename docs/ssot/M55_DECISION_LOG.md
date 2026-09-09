@@ -1234,3 +1234,23 @@ No finding is a `REAL_INVALIDATOR`. No provider selection, cash activation, road
 | Provenance | benchmark -> M55 requirement -> rule -> original implementation -> evidence required |
 | Grok | dedicated read-only benchmark-independence/Creator-acceptance red-team authorized |
 | Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` |
+
+### 2026-09-09 — Control-Tower PR #187 third audit: payer compliance + Creator acceptance
+
+**Status:** independent Control-Tower exact-diff/primary-source red-team · docs/evidence correction only · no runtime/provider mutation
+
+| Finding | Classification | Action |
+|---|---|---|
+| CT-01 withholding can create separate M55 remittance deadline/operation | ACCEPT_FOR_IMPLEMENTATION | freeze classification-dependent remittance liability; runtime R8 |
+| CT-02 statutory payment report may be required for certain classified remuneration | ACCEPT_FOR_IMPLEMENTATION | freeze classification-dependent information-return requirement |
+| CT-03 My Number handling was not explicitly bounded | ACCEPT_FOR_IMPLEMENTATION | prohibit speculative collection; require separate restricted tax-ID vault only if legally required |
+| CT-04 Program Truth lacked durable acknowledgement/version evidence | ACCEPT_FOR_IMPLEMENTATION | require acceptance evidence before first affiliate link |
+| CT-05 transparency could be misread to permit purchaser PII exposure | ACCEPT_FOR_IMPLEMENTATION | privacy-safe transaction references; customer PII prohibited by default |
+
+Primary fresh evidence:
+- NTA No.2804 — withholding/remittance rule for `外交員等`
+- NTA No.7431 — payment-report filing scope and My Number requirements
+
+No finding classifies ordinary M55 Affiliate v1 as `外交員等`. Source-withholding classification remains OPEN.
+
+No `REAL_INVALIDATOR`. CURRENT/NEXT remains `REVENUE_SAFETY_E2E`.

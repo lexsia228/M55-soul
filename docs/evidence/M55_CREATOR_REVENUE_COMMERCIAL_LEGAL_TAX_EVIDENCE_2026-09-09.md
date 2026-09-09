@@ -440,3 +440,85 @@ For every money/tax rule implemented later, the review packet must identify:
 `MONEY_DECISION_SOURCE_TRACEABILITY = REQUIRED`
 
 `CREATOR_REVENUE_EVIDENCE_FIRST_FREEZE = REQUIRED`
+
+## 16. Control-Tower third-audit payer-compliance findings — 2026-09-09
+
+### 16.1 Withholding classification can create M55 remittance operations
+
+Fresh NTA verification:
+
+- No.2804 states that when a payment is actually classified as `外交員等`, the payer must withhold and remit the tax by the 10th day of the following month.
+- NTA also states that `外交員等` remuneration is not covered by the ordinary special semiannual payment schedule even when the payer otherwise has the special-payment approval.
+
+Primary source:
+- https://www.nta.go.jp/taxes/shiraberu/taxanswer/gensen/2804.htm
+
+M55 implication:
+
+`WITHHOLDING_REMITTANCE_OBLIGATION = CLASSIFICATION_DEPENDENT`
+
+`WITHHOLDING_REMITTANCE_STATUS_MUST_BE_ACCOUNTED_IF_APPLICABLE = TRUE`
+
+If M55 ever withholds tax from Creator payout, that amount becomes an M55 tax-remittance liability; it may not disappear into a generic adjustment bucket.
+
+Candidate future accounting states:
+- `WITHHOLDING_NOT_APPLICABLE`
+- `WITHHOLDING_LIABILITY_RECORDED`
+- `WITHHOLDING_REMITTANCE_PENDING`
+- `WITHHOLDING_REMITTED`
+- `WITHHOLDING_REMITTANCE_EXCEPTION`
+
+These are R8/accounting design candidates, not runtime authority yet.
+
+### 16.2 Statutory payment-report obligation is classification dependent
+
+Fresh NTA verification:
+
+No.7431 states that payers of remuneration within specified statutory categories, including `外交員` remuneration, can have a `報酬、料金、契約金及び賞金の支払調書` filing obligation. For `外交員` remuneration, the current cited filing threshold is annual payments exceeding ¥500,000 to the same person.
+
+Primary source:
+- https://www.nta.go.jp/taxes/shiraberu/taxanswer/hotei/7431.htm
+
+M55 implication:
+
+`PAYER_INFORMATION_RETURN_OBLIGATION = CLASSIFICATION_DEPENDENT`
+
+Do not assume the Affiliate v1 payment requires this form. Do not assume it never does. The exact source-withholding/payment classification owns the answer.
+
+### 16.3 My Number must not be collected speculatively
+
+NTA No.7431 states that when the relevant statutory payment report must be filed, the filed report includes the payee's My Number or corporate number, while a copy supplied to the recipient must not contain the My Number.
+
+M55 implication:
+
+`MY_NUMBER_COLLECTION_BEFORE_REQUIREMENT_CONFIRMED = PROHIBITED`
+
+`MY_NUMBER_IN_CREATOR_VISIBLE_STATEMENT = PROHIBITED`
+
+If the final payment classification requires My Number handling:
+
+`SEPARATE_RESTRICTED_TAX_ID_VAULT_REQUIRED = TRUE`
+
+Required future safeguards include least privilege, purpose limitation, access audit, retention/deletion rules, no inclusion in ordinary Creator profile exports, and no storage in Stripe metadata or ordinary analytics.
+
+This finding materially reduces privacy/security risk by avoiding premature collection.
+
+### 16.4 Withheld tax must be financially separate from commission adjustments
+
+`STATUTORY_WITHHOLDING_IS_NOT_COMMISSION_ADJUSTMENT = TRUE`
+
+A required withholding amount must be represented separately from:
+- refund reversal;
+- fraud reversal;
+- commission adjustment;
+- payout/provider fee.
+
+Creator statement and M55 accounting must be able to reconcile:
+`gross commission -> commission adjustments -> statutory withholding -> lawful fee -> net payout`
+and separately track the tax remittance liability.
+
+### 16.5 Fresh evidence conclusion
+
+These obligations remain conditional because the ordinary M55 web-affiliate source-withholding classification is still OPEN.
+
+They strengthen the fail-closed architecture without deciding that M55 Affiliate v1 is `外交員等`.
