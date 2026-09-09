@@ -1133,3 +1133,38 @@ Normative detailed authority: `docs/ssot/M55_CREATOR_AFFILIATE_STRIPE_TAX_LEGAL_
 - If the Freelance Act applies to a payment, bank-transfer-fee deduction from remuneration is prohibited under current JFTC guidance.
 - No universal withholding rate may be hard-coded; tax treatment must be classified by recipient/contract facts.
 - High Creator volume alone must not reduce an already-earned commission rate or erase valid commission; scale may increase KYC, tax verification, fraud review, reconciliation, and observability.
+
+---
+
+## BB. Tax readiness / gross-to-net payout transparency (Human-approved 2026-09-09)
+
+Detailed evidence authority: `docs/evidence/M55_CREATOR_REVENUE_COMMERCIAL_LEGAL_TAX_EVIDENCE_2026-09-09.md`.
+
+Tax readiness is orthogonal to commission validity:
+
+`TAX_PROFILE_UNVERIFIED` · `TAX_CLASSIFICATION_PENDING` · `TAX_READY` · `TAX_REVIEW_REQUIRED`
+
+`COMMISSION_PAYABLE + TAX_NOT_READY` is a valid state combination.
+
+No live payout instruction may be created unless the required tax treatment for that payment is sufficiently classified.
+
+`UNKNOWN_TAX_CLASSIFICATION_MUST_FAIL_CLOSED_BEFORE_LIVE_PAYOUT = TRUE`
+
+Creator-facing statement must distinguish:
+
+- `COMMISSIONABLE_REVENUE`;
+- applicable commission rate;
+- gross Creator commission;
+- append-only adjustments;
+- statutory withholding, only when actually required;
+- any separately lawful/approved fee;
+- net payout;
+- tax/invoice profile status relevant to payout readiness;
+- payout batch/provider status.
+
+`NO_SILENT_CREATOR_DEDUCTION = TRUE`
+
+`NET_OF_TAX_COMMISSION_GUARANTEE = PROHIBITED`
+
+R8 may implement purchaser-created/self-billing monthly statements when NTA requirements and Creator confirmation mechanics are satisfied.
+

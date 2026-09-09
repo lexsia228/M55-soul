@@ -1188,3 +1188,26 @@ Control-Tower adjudication:
 | F-07 architecture/composition URL divergence | `ACCEPT_FOR_IMPLEMENTATION` | align Core Six source URL sets |
 
 No finding is a `REAL_INVALIDATOR`. No provider selection, cash activation, roadmap reorder, or future-stage runtime authorization results from this adjudication.
+
+### 2026-09-09 — Creator Revenue commercial/legal/tax evidence-first firewall (Human-approved)
+
+**Status:** primary-source research + architecture freeze · docs/evidence only · no runtime/Stripe/DB/Clerk/env/Production mutation · `M55_EXECUTION_STATE.json` unchanged
+
+| Decision | Value |
+|---|---|
+| Evidence pack | `docs/evidence/M55_CREATOR_REVENUE_COMMERCIAL_LEGAL_TAX_EVIDENCE_2026-09-09.md` |
+| Governance | evidence → applicability → unresolved list → red-team/adjudication → Human → SSOT → implementation |
+| 50/40/30 meaning | gross commercial commission rate applied to `COMMISSIONABLE_REVENUE` |
+| Tax-net guarantee | **PROHIBITED** |
+| Creator final income tax | Creator filing responsibility; M55 separately satisfies any payer-side withholding duty that actually applies |
+| Ordinary web-affiliate source withholding | **OPEN** — NTA materials do not establish universal zero or universal inclusion as `外交員等` |
+| Unknown tax classification | fail-closed before live payout |
+| Invoice/consumption tax | Creator status/profile required; M55-only payout volume is not tax-status authority; policy effective-dated |
+| Invoice status vs rate | no silent retroactive commission-rate reduction |
+| Self-billing candidate | NTA-supported purchaser-created `仕入明細書` with Creator confirmation may be evaluated in R8 |
+| Tokushoho | price/payment/provision/cancellation/seller/final-confirmation display is Revenue Safety prerequisite |
+| Affiliate disclosure | clear M55 affiliate/advertising disclosure required for Creator promotional content |
+| Payout fee | remains NOT AUTHORIZED pending exact legal classification |
+| Cross-border | non-Japan tax residency requires separate tax readiness before payout |
+| Runtime | none authorized by this docs-only decision |
+| Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` |

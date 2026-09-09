@@ -10,6 +10,8 @@ Machine-first compliance / payout architecture annex: `docs/ssot/M55_CREATOR_COM
 
 Affiliate-first Stripe / payout / Japan tax-legal annex: `docs/ssot/M55_CREATOR_AFFILIATE_STRIPE_TAX_LEGAL_SSOT.md`
 
+Commercial/legal/tax evidence pack: `docs/evidence/M55_CREATOR_REVENUE_COMMERCIAL_LEGAL_TAX_EVIDENCE_2026-09-09.md`
+
 Frozen affiliate benchmark / target architecture annex: `docs/ssot/M55_CREATOR_AFFILIATE_BENCHMARK_TARGET_ARCHITECTURE_SSOT.md`
 
 Parallel multi-agent operating model: `docs/ssot/M55_MULTI_AGENT_PARALLEL_OPERATING_MODEL_SSOT.md` — mandatory process reference whenever Creator Revenue runs concurrently with UIUX or other AI lanes; does not change R1→R8 order or implementation authority.
@@ -551,7 +553,14 @@ Machine-first compliance / payout detail: `docs/ssot/M55_CREATOR_COMPLIANCE_AND_
 
 Do **not** implement payout before attribution/compliance/ledger. Do **not** implement a Human-per-payout workflow as interim architecture.
 
-Do not decide yet whether 50% is before/after tax, Stripe fees, refunds, or other contract adjustments beyond the **COMMISSIONABLE_REVENUE** definition until unit economics / provider / legal gate closes.
+Human-approved clarification after official-source tax review (2026-09-09):
+
+- the frozen 50% / 40% / 30% rate applies to `COMMISSIONABLE_REVENUE` to produce **gross Creator commission before payer-side statutory withholding**;
+- M55 does **not** promise a tax-net or after-withholding take-home percentage;
+- ordinary M55 payment-processing fees remain outside the advertised commission base as already frozen;
+- refund/chargeback/ineligible amounts remain governed by `COMMISSIONABLE_REVENUE` and append-only adjustments;
+- any legally required withholding is a separate payout/tax layer and does not redefine the commercial rate;
+- Creator-borne payout/service fee remains unresolved and may not be implemented until its exact legal/contract classification closes.
 
 ### R2-B2 Stripe P0 evidence (Human-approved 2026-09-06)
 
@@ -861,3 +870,44 @@ Do **not** reorder stages without a real dependency invalidator + Human approval
 | Creator dashboard | **NOT_IMPLEMENTED** |
 | Payout/settlement | **NOT_IMPLEMENTED** |
 | Stripe payout provider | **UNSELECTED** |
+
+---
+
+## Creator Revenue evidence-first financial governance (Human-approved 2026-09-09)
+
+`CREATOR_REVENUE_EVIDENCE_FIRST_FREEZE = REQUIRED`
+
+For commercial terms, money movement, Creator percentage, Creator earnings transparency, tax, invoice, withholding, consumer-sale disclosures, payout fees, payment deadlines, accounting evidence, or material operating duties:
+
+```
+official / primary evidence
+-> bounded mature-market precedent
+-> M55 applicability analysis
+-> explicit unresolved list
+-> independent read-only red-team where useful
+-> Control-Tower adjudication
+-> Human approval
+-> SSOT freeze
+-> implementation
+-> independent code review for money/state/idempotency
+-> runtime evidence
+```
+
+No implementation may silently convert an inference, competitor practice, stale provider price, or tax assumption into financial behavior.
+
+`COMMISSION_RATE_IS_GROSS_COMMERCIAL_RATE = TRUE`
+
+`NET_OF_TAX_COMMISSION_GUARANTEE = PROHIBITED`
+
+`STATUTORY_WITHHOLDING_DOES_NOT_REDEFINE_COMMISSION_RATE = TRUE`
+
+`NO_SILENT_CREATOR_DEDUCTION = TRUE`
+
+`TAX_POLICY_MUST_BE_EFFECTIVE_DATED = TRUE`
+
+`UNKNOWN_TAX_CLASSIFICATION_MUST_FAIL_CLOSED_BEFORE_LIVE_PAYOUT = TRUE`
+
+The Creator's final personal/corporate income-tax filing remains the Creator's responsibility, while M55 must separately satisfy any payer-side withholding/remittance duty that actually applies to the classified payment. M55 must not assume either universal zero withholding or universal withholding.
+
+Invoice-registration status may change M55's own consumption-tax/input-tax-credit economics. It must not silently retroactively reduce an already-earned Creator commission rate.
+

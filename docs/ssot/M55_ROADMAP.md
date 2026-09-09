@@ -99,6 +99,16 @@ Retain:
 - Third-party affiliate SaaS is benchmark evidence only by default; adding Rewardful/FirstPromoter/etc. as runtime dependency requires separate Human decision
 - No repeat broad competitor sweep absent a real invalidator; future research must answer a specific unresolved implementation or legal/tax question
 
+- `CREATOR_REVENUE_EVIDENCE_FIRST_FREEZE = REQUIRED` — commercial terms, tax, legal, payout fee, customer sale display and money-moving semantics require dated primary evidence before SSOT freeze
+- `COMMISSION_RATE_IS_GROSS_COMMERCIAL_RATE = TRUE` — 50/40/30 applies to `COMMISSIONABLE_REVENUE`; statutory withholding, if required, is a separate payout/tax layer
+- `NET_OF_TAX_COMMISSION_GUARANTEE = PROHIBITED`
+- `UNKNOWN_TAX_CLASSIFICATION_MUST_FAIL_CLOSED_BEFORE_LIVE_PAYOUT = TRUE`
+- exact ordinary-web-affiliate source-withholding classification remains **OPEN**; neither zero withholding nor universal 10.21% is assumed
+- Creator invoice status is required for accounting; non-registration does not silently reduce an already-earned commission rate
+- R8 may evaluate NTA-supported purchaser-created/self-billing payout statements with Creator confirmation
+- M55 customer-sale commercial safety must preserve Tokushoho-required price/payment/provision/cancellation/seller/final-confirmation disclosures
+- affiliate promotional content must carry clear M55 affiliate/advertising disclosure under M55 policy
+
 Do **not** pull R6–R8 runtime implementation into R2.
 
 ### R2-B2 Stripe P0 evidence (Human-approved 2026-09-06)
