@@ -2,11 +2,13 @@
 
 Status: READY / READ-ONLY REVIEW CONTRACT
 
+Execution surface: **ordinary Codex task — DO NOT invoke Codex Replay for this PR review**
+
 Repository: `lexsia228/m55-web`
 PR: `#187`
 Branch: `docs/m55-creator-commercial-legal-tax-evidence-v1`
 
-Review the exact remote diff against current main.
+Review the exact remote diff against current main using ordinary Codex read-only GitHub/API/gh inspection. The local worktree is context only unless explicitly stated otherwise. **Do not invoke Codex Replay; it is not the direct PR-review surface for this contract.**
 
 ## Role
 

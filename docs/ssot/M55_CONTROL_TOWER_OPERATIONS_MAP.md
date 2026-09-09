@@ -41,7 +41,7 @@ Current Human operating arrangement (dated 2026-09-09):
 |---|---|---|
 | Mac local plane | Cursor implementation · registered worktrees · local tests · Mac Codex local review | local-only candidate facts remain local until pushed or explicitly exported |
 | Windows control plane | Control-Tower ChatGPT · additional bounded ChatGPT tasks | integration/adjudication; no invented local Mac facts |
-| Windows remote-audit plane | Grok Bot · Codex Replay when available | read-only independent review of pushed PR/HEAD or explicit artifacts |
+| Windows remote-audit plane | Grok Bot · ordinary Codex task when available | read-only independent review of pushed PR/HEAD or explicit artifacts; Replay is not the direct PR-review path |
 | GitHub | branch · PR · exact SHA · CI · durable evidence | canonical cross-device handoff for remote review |
 
 Rules:
@@ -49,7 +49,7 @@ Rules:
 - `GITHUB_IS_CROSS_DEVICE_HANDOFF_AUTHORITY = TRUE`.
 - An unpushed Mac diff is **not** visible remote authority.
 - Remote reviewers pin exact SHA/PR before exact-diff claims.
-- Grok and Codex Replay are reviewers, not mutation owners or payout executors.
+- Grok and ordinary Codex reviewers are not mutation owners or payout executors. Codex Replay is an optional historical-thread comparison tool, not the default PR reviewer.
 - Before declaring an integration unavailable, inspect current connected capabilities when the environment supports discovery.
 - Use risk-weighted audit depth; do not run every AI on low-risk changes.
 

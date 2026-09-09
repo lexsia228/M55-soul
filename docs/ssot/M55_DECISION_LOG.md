@@ -1254,3 +1254,24 @@ Primary fresh evidence:
 No finding classifies ordinary M55 Affiliate v1 as `外交員等`. Source-withholding classification remains OPEN.
 
 No `REAL_INVALIDATOR`. CURRENT/NEXT remains `REVENUE_SAFETY_E2E`.
+
+### 2026-09-09 — Codex Replay capability observation / direct-review correction
+
+**Status:** Human-observed Mac/Windows capability verification · docs-only correction · no product/runtime/provider mutation
+
+Observed:
+- Windows Codex Replay plugin showed installed/enabled but task execution repeatedly lacked required controller tool and/or Python runtime.
+- Mac Codex Replay controller successfully opened at localhost.
+- Mac controller v1.0.128 presented `Choose imported Claude threads`, `Imported threads (0)`, and sample historical data.
+- With zero imported threads, the controller exposed no direct PR-review prompt submission path.
+- No PR #187 findings were produced by Replay; this is **NOT** a GREEN review.
+
+Decision:
+- `ORDINARY_CODEX_IS_PRIMARY_DIRECT_PR_REVIEWER = TRUE`
+- `CODEX_REPLAY_DIRECT_PR_REVIEW = NOT_SUPPORTED_BY_OBSERVED_WORKFLOW`
+- `CODEX_REPLAY_IS_OPTIONAL_COMPARATIVE_AUDIT_TOOL = TRUE`
+- `CODEX_REPLAY_UNAVAILABLE_MUST_NOT_BLOCK_OWNING_GATE = TRUE`
+- PR #187 independent Codex review must run in an ordinary Codex task using the repo-stored exact-diff review contract.
+- Replay may later be used only when a supported imported historical thread exists and comparison adds value.
+
+No roadmap/execution-state change.

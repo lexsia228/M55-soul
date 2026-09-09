@@ -1,7 +1,7 @@
 # M55 Multi-Agent Parallel Operating Model SSOT
 
 Status: **ACTIVE / HUMAN-APPROVED OPERATING MODEL**  
-Version: **1.1.0**  
+Version: **1.1.1**  
 Human approval date: **2026-09-09**
 
 This file is the durable operating contract for running multiple AI agents, ChatGPT conversations, Cursor/Codex sessions, and Grok Bots in parallel without losing lane ownership, evidence provenance, or M55 Control Tower authority.
@@ -18,7 +18,7 @@ This operating model is subordinate to `AGENTS.md`, the Product Authority Pack, 
 
 ## A. Frozen operating principles
 
-`M55_MULTI_AGENT_METHOD_VERSION = 1.1.0`
+`M55_MULTI_AGENT_METHOD_VERSION = 1.1.1`
 
 `ONE_LANE_ONE_MUTATION_OWNER = TRUE`
 
@@ -504,7 +504,7 @@ Human
 │  ├─ Control-Tower ChatGPT = cross-lane integration and adjudication
 │  ├─ additional bounded ChatGPT task(s) = lane-specific work only
 │  ├─ M55 Revenue Auditor / other Grok Bot = long-running read-only red-team
-│  └─ Codex Replay = independent remote PR/commit replay when available
+│  └─ ordinary Codex task = independent remote PR/exact-diff review; Codex Replay only for supported imported historical-thread replay/comparison
 │
 └─ GitHub
    └─ shared cross-device authority for pushed branch / PR / exact SHA / CI / durable evidence
@@ -518,7 +518,7 @@ Human
 
 `LOCAL_UNPUSHED_DIFF_IS_NOT_REMOTE_FACT = TRUE`
 
-The current Human practice is Mac for local mutation/Codex-local review and Windows for Control Tower/Grok/Codex Replay. This is a dated topology snapshot; the durable rule is the local-vs-remote authority boundary.
+The current Human practice is Mac for local mutation/Codex review and Windows for Control Tower/Grok. Codex Replay was evaluated on both platforms on 2026-09-09: Windows lacked required controller/runtime; Mac controller opened but only exposed imported historical-thread replay. This is a dated capability observation, not a timeless platform prohibition. The durable rule is the local-vs-remote authority boundary and ordinary Codex as the direct PR reviewer.
 
 ### O2. Mac local plane
 
@@ -542,7 +542,8 @@ The Windows plane is currently the default place for:
 - Control-Tower ChatGPT;
 - parallel bounded ChatGPT tasks;
 - Grok Bot operations;
-- Codex Replay when installed/available;
+- ordinary Codex remote review tasks when available;
+- Codex Replay only when a supported imported historical thread exists;
 - GitHub/PR/remote evidence review.
 
 Windows/cloud reviewers must not assume access to Mac filesystem/worktrees.
@@ -556,22 +557,30 @@ For exact remote audit, pin:
 - review contract/prompt;
 - mutation prohibition when reviewer is read-only.
 
-### O4. Codex local vs Codex Replay
+### O4. Ordinary Codex vs Codex Replay
 
-These are complementary, not interchangeable:
+These are different tools and must not be conflated.
 
-**Mac/local Codex**
-- may inspect local worktree/candidate when actually opened there;
-- useful before push and for evidence-heavy local review.
+**Ordinary Codex task**
+- is the primary direct independent reviewer for PR / exact-diff / local candidate review;
+- may inspect a local worktree only when that task genuinely has access to it;
+- for remote PR review, must freshly observe GitHub PR HEAD / current main and treat the local branch as context only;
+- does not implement when the review contract is read-only.
 
-**Windows Codex Replay**
-- independent remote replay/review surface;
-- preferred after candidate push when PR/HEAD is stable;
-- must use GitHub/exact SHA as authority unless explicit artifacts are supplied;
-- does not become implementation owner;
-- does not become Production financial authority.
+**Codex Replay**
+- is a historical-thread replay/comparison controller;
+- observed Mac controller v1.0.128 exposes `Choose imported Claude threads` and does not provide a direct PR-review prompt submission surface when `Imported threads = 0`;
+- observed Windows tasks lacked the required controller tool / Python runtime;
+- therefore is **not** a required PR-review path and must not block M55 work;
+- may be used later when a supported imported historical thread exists and replay comparison is materially useful.
 
-`CODEX_REPLAY_IS_INDEPENDENT_REVIEWER_NOT_IMPLEMENTER = TRUE`
+`ORDINARY_CODEX_IS_PRIMARY_DIRECT_PR_REVIEWER = TRUE`
+
+`CODEX_REPLAY_DIRECT_PR_REVIEW = NOT_SUPPORTED_BY_OBSERVED_WORKFLOW`
+
+`CODEX_REPLAY_IS_OPTIONAL_COMPARATIVE_AUDIT_TOOL = TRUE`
+
+`CODEX_REPLAY_UNAVAILABLE_MUST_NOT_BLOCK_OWNING_GATE = TRUE`
 
 `CODEX_REPLAY_IS_NOT_FINANCIAL_RUNTIME = TRUE`
 
