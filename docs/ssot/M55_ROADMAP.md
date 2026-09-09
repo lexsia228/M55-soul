@@ -63,6 +63,8 @@ Compliance/payout automation annex: `docs/ssot/M55_CREATOR_COMPLIANCE_AND_PAYOUT
 
 Affiliate-first Stripe/tax/legal annex: `docs/ssot/M55_CREATOR_AFFILIATE_STRIPE_TAX_LEGAL_SSOT.md`
 
+Frozen benchmark/target architecture annex: `docs/ssot/M55_CREATOR_AFFILIATE_BENCHMARK_TARGET_ARCHITECTURE_SSOT.md`
+
 Retain:
 
 - `M55_REVENUE_DECISION_NO_REGRESSION = TRUE`
@@ -91,6 +93,11 @@ Retain:
 - `NTA_SOURCE_WITHHOLDING_CLASSIFICATION = REQUIRED_BEFORE_CASH_ACTIVATION`
 - `NO_CREATOR_ENTRY_FEE_OR_REQUIRED_PURCHASE = TRUE` · `NO_CREATOR_RECRUITMENT_COMMISSION = TRUE` · no MLM/business-opportunity regression
 - `M55_DOES_NOT_OFFER_THIRD_PARTY_REMITTANCE = TRUE` · `M55_DOES_NOT_OFFER_ESCROW = TRUE`
+- `AFFILIATE_BENCHMARK_SHORTLIST_V1 = FROZEN_SIX` — FirstPromoter · Rewardful · Shopify Collabs · A8.net · ValueCommerce · 開運メーカー
+- Benchmark roles are frozen: FirstPromoter = Stripe payout/fraud · Rewardful = Stripe attribution/event adjustment · Shopify Collabs = hold/refund/dispute/Creator analytics · A8 = Japan threshold/carry-over/payout preference · ValueCommerce = Japan approval/payment/report/invoice · 開運メーカー = Japan fortune/digital-report/affiliate commercial precedent
+- `TARGET_AFFILIATE_ARCHITECTURE = M55_NATIVE_CONTROL_PLANE_PLUS_STRIPE_MONEY_RAIL`
+- Third-party affiliate SaaS is benchmark evidence only by default; adding Rewardful/FirstPromoter/etc. as runtime dependency requires separate Human decision
+- No repeat broad competitor sweep absent a real invalidator; future research must answer a specific unresolved implementation or legal/tax question
 
 Do **not** pull R6–R8 runtime implementation into R2.
 

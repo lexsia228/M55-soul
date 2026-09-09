@@ -1120,3 +1120,29 @@ The earlier same-day `PENDING_NO_ACTION_REQUIRED` record above is retained as hi
 | APPI | attribution cookies/browsing data require privacy controls |
 | PR #185 | strengthen fail-closed SSOT; do **not** merge based on a false “affiliate = legally exempt” claim |
 | Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` |
+
+### 2026-09-09 — Six-benchmark Affiliate target architecture freeze (Human-approved)
+
+**Status:** benchmark-to-architecture freeze · docs/governance only · no runtime/Stripe/DB/Clerk/env/Production mutation · `M55_EXECUTION_STATE.json` unchanged
+
+| Decision | Value |
+|---|---|
+| Benchmark objective | stop treating M55 Affiliate as a new invention; reuse proven commercial patterns and only build M55-specific deltas |
+| Core shortlist | `FROZEN_SIX`: FirstPromoter · Rewardful · Shopify Collabs · A8.net · ValueCommerce · 開運メーカー |
+| FirstPromoter role | Stripe-linked affiliate payout architecture · self-referral/fraud review · balance aggregation · threshold/eligibility · affiliate self-onboarding to payout rail |
+| Rewardful role | Stripe-native event observation · unique referral links · dashboard · commission adjustment after refunds/cancellations |
+| Shopify Collabs role | Pending/holding-period semantics · refund cancellation · dispute path · Creator analytics · scheduled/threshold payout precedent |
+| A8.net role | Japan mature payout choices: 5,000 / 1,000 / carry-over · Creator-triggered next payout · bank-fee economic precedent only |
+| ValueCommerce role | Japan approval→payment schedule · 1,000 threshold · aggregation · payout reports · invoice-system accounting precedent |
+| 開運メーカー role | Japan fortune/digital-report + Stripe + affiliate link + influencer/social sharing + realtime results dashboard commercial precedent |
+| Secondary comparators | Hint / PromoteKit / PartnerStack / impact.com / others = evidence only; not architecture owners unless a future specific gap requires them |
+| Runtime dependency policy | `THIRD_PARTY_AFFILIATE_SAAS_RUNTIME_DEPENDENCY_V1 = NONE_BY_DEFAULT` — patterns are copied, vendor lock-in is not |
+| Target architecture | `M55_NATIVE_CONTROL_PLANE_PLUS_STRIPE_MONEY_RAIL` |
+| M55 owns | Creator approval · links · attribution evidence · commission calculation · compliance/fraud · append-only ledger · payable balance · Creator Revenue Console · tax/legal profile · payout orchestration/reconciliation |
+| Stripe owns | customer charge rail · hosted connected-account onboarding/KYC · bank details where supported · Connect transfer/payout rail · provider events |
+| Purchase-time transfer | **REJECTED** — do not pay Creator at customer purchase time |
+| Affiliate SaaS as accounting SSOT | **REJECTED** — M55 commission ledger remains authority |
+| Threshold/cadence/attribution window | **DEFER** to owning gates; benchmark values are precedents, not copied constants |
+| Legal/tax | benchmark commercial use is not legal safe harbor; tax/legal fail-closed SSOT remains authoritative |
+| Research loop | broad competitor sweep is CLOSED after this freeze absent a real invalidator |
+| Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` |

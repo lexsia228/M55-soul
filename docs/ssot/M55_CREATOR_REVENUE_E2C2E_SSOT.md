@@ -10,6 +10,8 @@ Machine-first compliance / payout architecture annex: `docs/ssot/M55_CREATOR_COM
 
 Affiliate-first Stripe / payout / Japan tax-legal annex: `docs/ssot/M55_CREATOR_AFFILIATE_STRIPE_TAX_LEGAL_SSOT.md`
 
+Frozen affiliate benchmark / target architecture annex: `docs/ssot/M55_CREATOR_AFFILIATE_BENCHMARK_TARGET_ARCHITECTURE_SSOT.md`
+
 Parallel multi-agent operating model: `docs/ssot/M55_MULTI_AGENT_PARALLEL_OPERATING_MODEL_SSOT.md` — mandatory process reference whenever Creator Revenue runs concurrently with UIUX or other AI lanes; does not change R1→R8 order or implementation authority.
 
 **Trust / ledger / payout control detail lives in the annex.** This parent SSOT retains economics, lane contracts, and roadmap authority only.
@@ -43,6 +45,12 @@ Parallel multi-agent operating model: `docs/ssot/M55_MULTI_AGENT_PARALLEL_OPERAT
 `M55_PAYOUT_COST_PASS_THROUGH_OBJECTIVE = HUMAN_APPROVED`
 
 `CREATOR_FEE_DEDUCTION_IMPLEMENTATION = NOT_AUTHORIZED_PENDING_LEGAL_CLASSIFICATION`
+
+`AFFILIATE_BENCHMARK_SHORTLIST_V1 = FROZEN_SIX`
+
+`TARGET_AFFILIATE_ARCHITECTURE = M55_NATIVE_CONTROL_PLANE_PLUS_STRIPE_MONEY_RAIL`
+
+`THIRD_PARTY_AFFILIATE_SAAS_RUNTIME_DEPENDENCY_V1 = NONE_BY_DEFAULT`
 
 Zero-omission traceability matrix and canonical development order: `docs/ssot/M55_ROADMAP.md`
 
