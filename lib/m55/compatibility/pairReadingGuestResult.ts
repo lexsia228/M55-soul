@@ -211,6 +211,7 @@ export function buildCompatibilityPublicResult(
         personAUsesFirstPerspective,
         focusLabel,
         relationStatusId: state.relationStatusId,
+        axisOverlap: free.overlap,
       })
     : baseContext;
 
@@ -270,6 +271,7 @@ function overlayPairFreeInsight(
     personAUsesFirstPerspective: boolean;
     focusLabel: string;
     relationStatusId: RelationStatusId;
+    axisOverlap: string;
   },
 ) {
   const insight = buildPairFreeInsightSpecV2({
@@ -283,7 +285,7 @@ function overlayPairFreeInsight(
     relationStatusId: args.relationStatusId,
   });
   const relationshipLoopSteps = Object.freeze([
-    insight.meshMoment,
+    args.axisOverlap,
     insight.mismatchEntry,
     insight.misreadLoop,
   ] as const);

@@ -97,9 +97,12 @@ export function buildPairManualV1(input: {
   const labels = manualSlotLabels(spec.relationStatusId);
   const ids = [spec.interactionId, spec.id];
   const sides = pairManualRelationSides(spec);
-  const otherTendsJa = sides?.otherJa ?? spec.manualSideTendenciesJa?.otherJa;
+  const manualSides = spec.manualSideTendenciesJa;
+  const oneTendsJa =
+    sides?.oneJa ?? manualSides?.oneJa ?? firstSentenceJa(spec.meshMoment);
+  const otherTendsJa = sides?.otherJa ?? manualSides?.otherJa;
   const slots: ManualSlotV1[] = [
-    slot('one_tends', '一方', sides?.oneJa ?? firstSentenceJa(spec.meshMoment), ids),
+    slot('one_tends', '一方', oneTendsJa, ids),
     ...(otherTendsJa
       ? [slot('other_tends', 'もう一方', otherTendsJa, ids)]
       : input.completeness === 'complete' && spec.relationStatusId !== 'R1'
