@@ -1238,7 +1238,41 @@
 
 /* HV-08: Pair cards use an aspect-specific semantic hierarchy. */
 .cardPair {
-  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: visible;
+  min-width: 0;
+}
+
+.cardPair .pairDualHeroBand {
+  flex: 0 1 auto;
+  order: 1;
+  overflow: hidden;
+  border-radius: 0.55rem;
+}
+
+.cardPair .pairShareHeader {
+  flex: 0 0 auto;
+  order: 2;
+}
+
+.cardPair .relation {
+  flex: 0 0 auto;
+  order: 3;
+  min-height: min-content;
+  overflow: visible;
+}
+
+.cardPair .cue {
+  flex: 0 0 auto;
+  order: 4;
+  margin-top: auto;
+}
+
+.cardPair .cta {
+  flex: 0 0 auto;
+  order: 5;
 }
 
 .pairShareHeader {
@@ -1270,6 +1304,10 @@
   margin: 0;
 }
 
+.cardPair .pairDualHeroCell:nth-of-type(2) .pairDualHeroImage {
+  object-position: center 52%;
+}
+
 .cardPair .pairTraitLabel {
   margin: 0;
 }
@@ -1281,15 +1319,14 @@
 }
 
 .cardPair[data-share-aspect='1:1'] {
-  grid-template-rows: 4.5rem auto minmax(0, 1fr) auto;
-  gap: 0.38rem;
-  padding: 0.7rem 0.8rem 0.75rem;
+  gap: 0.32rem;
+  padding: 0.65rem 0.75rem 0.7rem;
 }
 
 .cardPair[data-share-aspect='1:1'] .pairDualHeroBand,
 .cardPair[data-share-aspect='1:1'] .pairDualHeroImage {
-  min-height: 4.5rem;
-  height: 4.5rem;
+  min-height: 3.6rem;
+  height: 3.6rem;
 }
 
 .cardPair[data-share-aspect='1:1'] .pairShareHeader {
@@ -1308,8 +1345,20 @@
 
 .cardPair[data-share-aspect='1:1'] .relation {
   display: grid;
-  min-height: 0;
-  align-content: center;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: min-content;
+  align-content: start;
+}
+
+.card.cardPair[data-m55-share-subsystem='pair'][data-share-aspect='1:1'] .relation > .relationCombined {
+  grid-column: 1 / -1;
+  justify-self: stretch;
+  width: 100%;
+  max-width: 100%;
+  text-align: left;
+  word-break: keep-all;
+  line-break: strict;
+  text-wrap: pretty;
 }
 
 .cardPair[data-share-aspect='1:1'] .cta {
@@ -1319,15 +1368,14 @@
 }
 
 .cardPair[data-share-aspect='4:5'] {
-  grid-template-rows: 6.6rem auto minmax(0, 1fr) auto;
-  gap: 0.48rem;
-  padding: 0.85rem 1rem 0.95rem;
+  gap: 0.38rem;
+  padding: 0.7rem 0.8rem 0.78rem;
 }
 
 .cardPair[data-share-aspect='4:5'] .pairDualHeroBand,
 .cardPair[data-share-aspect='4:5'] .pairDualHeroImage {
-  min-height: 6.6rem;
-  height: 6.6rem;
+  min-height: 4.8rem;
+  height: 4.8rem;
 }
 
 .cardPair[data-share-aspect='4:5'] .pairShareHeader {
@@ -1343,9 +1391,9 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: stretch;
-  align-content: center;
-  gap: 0.42rem;
-  min-height: 0;
+  align-content: start;
+  gap: 0.32rem;
+  min-height: min-content;
 }
 
 .cardPair[data-share-aspect='4:5'] .relationSide {
@@ -1359,16 +1407,15 @@
 }
 
 .cardPair[data-share-aspect='9:16'] {
-  grid-template-rows: 6.2rem auto minmax(0, 1fr) auto;
-  gap: 0.42rem;
-  padding: 0.85rem 1rem 0.95rem;
+  gap: 0.38rem;
+  padding: 0.72rem 0.85rem 0.82rem;
   max-width: 16rem;
 }
 
 .cardPair[data-share-aspect='9:16'] .pairDualHeroBand,
 .cardPair[data-share-aspect='9:16'] .pairDualHeroImage {
-  min-height: 6.2rem;
-  height: 6.2rem;
+  min-height: 4.6rem;
+  height: 4.6rem;
 }
 
 .cardPair[data-share-aspect='9:16'] .pairShareHeader {
@@ -1390,20 +1437,23 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto auto auto;
-  align-content: center;
-  gap: 0.10rem;
-  min-height: 0;
+  align-content: start;
+  gap: 0.12rem;
+  min-height: min-content;
 }
 
 .cardPair[data-share-aspect='9:16'] .relationSide {
   min-width: 0;
-  padding: 0.32rem 0.62rem;
+  padding: 0.3rem 0.48rem;
 }
 
 .cardPair[data-share-aspect='9:16'] .relationBody {
   font-size: 0.875rem;
-  line-height: 1.42;
+  line-height: 1.4;
   margin-top: 0;
+  word-break: keep-all;
+  line-break: strict;
+  text-wrap: pretty;
 }
 
 .cardPair[data-share-aspect='9:16'] .relationLabel {
@@ -1411,15 +1461,160 @@
 }
 
 .cardPair[data-share-aspect='9:16'] .mirrorVs {
+  position: relative;
   margin: 0;
   line-height: 1;
+  letter-spacing: 0;
+  color: transparent;
+  font-size: 0;
+  height: 0.95rem;
+}
+
+.cardPair[data-share-aspect='9:16'] .mirrorVs::after {
+  content: '↓';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: rgba(78, 68, 128, 0.7);
 }
 
 .cardPair[data-share-aspect='9:16'] .cta {
   flex-shrink: 0;
   margin: 0;
   font-size: 0.875rem;
-  line-height: 1.4;
+  line-height: 1.36;
+  max-width: 100%;
+  word-break: keep-all;
+  line-break: strict;
+  text-wrap: pretty;
+}
+
+.card.cardPair[data-m55-share-subsystem='pair'][data-share-aspect='1:1'],
+.card.cardPair[data-m55-share-subsystem='pair'][data-share-aspect='4:5'],
+.card.cardPair[data-m55-share-subsystem='pair'][data-share-aspect='9:16'] {
+  display: flex;
+  flex-direction: column;
+  grid-template-rows: unset;
+  align-content: stretch;
+}
+
+.card.cardPair[data-m55-share-subsystem='pair'] .relation {
+  min-height: min-content;
+  overflow: visible;
+  align-self: stretch;
+}
+
+.card.cardPair .pairShareHeader {
+  gap: 0.1rem;
+}
+
+.card.cardPair .pairTraitLabel {
+  line-height: 1.22;
+  overflow-wrap: anywhere;
+}
+
+.card.cardPair .pairShareKicker {
+  line-height: 1.24;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 359px) {
+  .card.cardPair[data-share-aspect='1:1'] .pairDualHeroBand,
+  .card.cardPair[data-share-aspect='1:1'] .pairDualHeroImage {
+    min-height: 2.8rem;
+    height: 2.8rem;
+  }
+
+  .card.cardPair[data-share-aspect='4:5'] .pairDualHeroBand,
+  .card.cardPair[data-share-aspect='4:5'] .pairDualHeroImage {
+    min-height: 3.4rem;
+    height: 3.4rem;
+  }
+
+  .card.cardPair[data-share-aspect='9:16'] .pairDualHeroBand,
+  .card.cardPair[data-share-aspect='9:16'] .pairDualHeroImage {
+    min-height: 3.6rem;
+    height: 3.6rem;
+  }
+
+  .card.cardPair[data-share-aspect='1:1'],
+  .card.cardPair[data-share-aspect='4:5'],
+  .card.cardPair[data-share-aspect='9:16'] {
+    gap: 0.24rem;
+    padding: 0.55rem 0.65rem 0.62rem;
+  }
+
+  .card.cardPair[data-share-aspect='4:5'] {
+    aspect-ratio: unset;
+    min-height: min-content;
+    overflow: visible;
+  }
+
+  .card.cardPair .pairShareKicker {
+    font-size: 0.72rem;
+    line-height: 1.2;
+  }
+
+  .card.cardPair .pairTraitLabel {
+    font-size: 0.92rem;
+    line-height: 1.18;
+  }
+
+  .card.cardPair[data-share-aspect='4:5'] .relation {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 0.14rem;
+  }
+
+  .card.cardPair[data-share-aspect='4:5'] .relation > .relationSide:first-of-type,
+  .card.cardPair[data-share-aspect='4:5'] .relation > .mirrorVs,
+  .card.cardPair[data-share-aspect='4:5'] .relation > .relationSide:nth-of-type(2) {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: center;
+  }
+
+  .card.cardPair[data-share-aspect='4:5'] .relation > .mirrorVs {
+    position: relative;
+    margin: 0;
+    color: transparent;
+    font-size: 0;
+    height: 0.9rem;
+    letter-spacing: 0;
+  }
+
+  .card.cardPair[data-share-aspect='4:5'] .relation > .mirrorVs::after {
+    content: '↓';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.76rem;
+    letter-spacing: 0.02em;
+    color: rgba(78, 68, 128, 0.7);
+  }
+
+  .card.cardPair[data-share-aspect='4:5'] .relationSide {
+    padding: 0.38rem 0.48rem;
+  }
+
+  .card.cardPair[data-share-aspect='4:5'] .relationBody {
+    font-size: 0.8rem;
+    line-height: 1.36;
+  }
+
+  .card.cardPair[data-share-aspect='1:1'] .relationCombined {
+    font-size: 0.82rem;
+    line-height: 1.42;
+  }
+
+  .card.cardPair .cta {
+    font-size: 0.78rem;
+    line-height: 1.3;
+  }
 }
 
 .specSheet {

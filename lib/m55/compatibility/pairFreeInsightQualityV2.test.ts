@@ -422,4 +422,24 @@ describe('pair free insight quality v2', () => {
     assert.doesNotMatch(spec.betweenThem, /\d{4}-\d{2}-\d{2}/);
     assert.doesNotMatch(spec.misreadLoop, /\d{4}-\d{2}-\d{2}/);
   });
+
+  it('established R3 guest loop leads with axis overlap and manual exposes both movement patterns', () => {
+    const result = buildCompatibilityPublicResult(
+      { personA: '1990-01-15', personB: '1992-08-20' },
+      'R3',
+      ESTABLISHED_BEHAVIORAL_V2,
+    );
+    assert.equal(result.ok, true);
+    if (!result.ok) return;
+    const context = result.value.currentContext;
+    assert.ok(context);
+    assert.equal(context.relationshipLoopSteps[0], result.value.free.overlap);
+    assert.match(context.relationshipLoopSteps[0], /受け取ったことが分かる/u);
+    assert.notEqual(context.relationshipLoopSteps[1], context.relationshipLoopSteps[0]);
+    assert.match(context.relationshipLoopSteps[2], /その場の言葉で揃えたい動き/u);
+    const spec = insightV2(ESTABLISHED_BEHAVIORAL_V2);
+    assert.ok(spec.manualSideTendenciesJa);
+    assert.match(spec.manualSideTendenciesJa!.oneJa, /その場の言葉で揃えたい動き/u);
+    assert.match(spec.manualSideTendenciesJa!.otherJa, /静かに整えたい動き/u);
+  });
 });

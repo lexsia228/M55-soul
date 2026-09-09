@@ -273,6 +273,39 @@ function manualSideTendenciesFromSideLeadAnswers(
   return parseManualSideTendenciesFromSideLead(sideLead(answers, roles));
 }
 
+function manualSideTendenciesFromMisreadLoop(
+  misreadLoop: string,
+): { oneJa: string; otherJa: string } | null {
+  const match = /^(.+?)と、(.+?)が/u.exec(misreadLoop);
+  if (!match) return null;
+  const oneJa = match[1]!.trim();
+  const otherJa = match[2]!.trim();
+  if (oneJa.length < 4 || otherJa.length < 4) return null;
+  return { oneJa, otherJa };
+}
+
+function establishedManualSideTendenciesJa(
+  answersV2: CompatibilityCurrentContextAnswersV2,
+  personAUsesFirstPerspective: boolean,
+  relationStatusId: 'R3' | 'R6',
+  misreadLoop: string,
+): { oneJa: string; otherJa: string } | null {
+  if (!isNoObservationDisagreement(answersV2.disagreement)) {
+    const fromMisread = manualSideTendenciesFromMisreadLoop(misreadLoop);
+    if (fromMisread) return fromMisread;
+  }
+  const canUseSideLead =
+    !isNoObservationDisagreement(answersV2.disagreement) &&
+    !isNoObservationDecisionPace(answersV2.decisionPace) &&
+    !isNoObservationReturnPattern(answersV2.returnPattern);
+  if (!canUseSideLead) return null;
+  return manualSideTendenciesFromSideLeadAnswers(
+    answersV2,
+    personAUsesFirstPerspective,
+    relationStatusId,
+  );
+}
+
 function r2ManualSideTendenciesJa(
   answersV2: CompatibilityCurrentContextAnswersV2,
 ): { oneJa: string; otherJa: string } {
@@ -1198,16 +1231,15 @@ function buildEstablishedNativeFreeInsight(args: {
     manifestationPatternId: `established_native:${args.relationStatusId}:${visibleCivil.start}x${inwardCivil.start}:${answerFingerprint}`,
     relationshipTriggerJa: hit,
     relationStatusId: args.relationStatusId,
-    ...(args.relationStatusId === 'R6'
-      ? (() => {
-          const manualSideTendenciesJa = manualSideTendenciesFromSideLeadAnswers(
-            args.answersV2,
-            args.personAUsesFirstPerspective,
-            'R6',
-          );
-          return manualSideTendenciesJa ? { manualSideTendenciesJa } : {};
-        })()
-      : {}),
+    ...(() => {
+      const manualSideTendenciesJa = establishedManualSideTendenciesJa(
+        args.answersV2,
+        args.personAUsesFirstPerspective,
+        args.relationStatusId,
+        misreadLoop,
+      );
+      return manualSideTendenciesJa ? { manualSideTendenciesJa } : {};
+    })(),
   };
 }
 
