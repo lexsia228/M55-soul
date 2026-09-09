@@ -974,3 +974,21 @@ Re-open the relevant legal/tax branch before cash payout if any of these change:
 `M55_EMPLOYEE_OR_PAYROLL_STATUS_CHANGE = R2_B2_LEGAL_TAX_INVALIDATOR`
 
 This fact freeze does not authorize payout runtime. R2-B2 closure still requires independent review of the public-evidence mapping and explicit Human R2 final acceptance.
+
+## Operator-status cross-reference — Human-approved 2026-09-10
+
+Normative operator/business-state authority: `docs/ssot/M55_OPERATOR_BUSINESS_STATUS_SSOT.md`.
+
+Current frozen facts:
+- sole proprietor;
+- solo build;
+- zero employees;
+- zero salary/wage payments;
+- pre-revenue / zero M55 business revenue;
+- development phase.
+
+Creator Revenue must consume those facts rather than re-infer them.
+
+`CREATOR_REVENUE_OPERATOR_FACTS_REFERENCE = M55_OPERATOR_BUSINESS_STATUS_SSOT`
+
+First employee, first salary, entity conversion, invoice-status change, first revenue, sponsored-Creator conversion, nonresident payout or material legal change reopens only the affected Creator legal/tax branch.

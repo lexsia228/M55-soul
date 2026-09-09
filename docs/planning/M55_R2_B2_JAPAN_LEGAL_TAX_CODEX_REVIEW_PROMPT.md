@@ -34,3 +34,17 @@ Check:
 4. unknown employee/payroll facts remain explicit;
 5. A8/ValueCommerce/Amazon are evidence of ordinary affiliate operations only, never legal authority;
 6. the packet no longer makes phone consultation the default.
+
+## Expanded operator/pre-revenue exact-diff checks — mandatory
+
+Review `M55_OPERATOR_BUSINESS_STATUS_SSOT.md` and related evidence for:
+1. source strength and no legal overclaim;
+2. opening-date/blue-return/admin unknowns correctly preserved;
+3. loss/bookkeeping treatment not overstated;
+4. electronic-transaction retention accuracy;
+5. consumption-tax/invoice registration consequences;
+6. labour/social-insurance trigger accuracy, including 2029 change;
+7. APPI small-business rule;
+8. Tokushoho individual-seller identity/omission conditions;
+9. Stripe sole-proprietor identity;
+10. scoped invalidator registry and no accidental CURRENT/NEXT change.

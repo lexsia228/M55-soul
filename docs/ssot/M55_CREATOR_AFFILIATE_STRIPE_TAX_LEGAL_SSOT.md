@@ -867,3 +867,24 @@ Independent Grok/Codex review of PR #189 must confirm there is no overclaim. Aft
 `M55_ENTITY_FORM_CHANGE_REOPENS_PAYER_FORM_ANALYSIS = TRUE`
 
 `SPONSORED_CREATOR_RELATIONSHIP_REQUIRES_SEPARATE_CLASSIFICATION = TRUE`
+
+## T. Pre-revenue / operator-status dependency — Human-approved 2026-09-10
+
+Normative operating-fact authority: `docs/ssot/M55_OPERATOR_BUSINESS_STATUS_SSOT.md`.
+
+Current M55 business state:
+`PRE_REVENUE_ZERO_BUSINESS_REVENUE`.
+
+This does **not** remove:
+- bookkeeping/electronic-transaction retention;
+- Tokushoho duties on paid-sale surfaces;
+- APPI duties when personal data is used for business;
+- Stripe/KYC identity accuracy.
+
+It does affect:
+- current consumption-tax/base-period analysis;
+- source-withholding payer branch;
+- employee/employer obligations;
+- loss/evidence preservation.
+
+Unknown administrative records (opening date, opening notification, blue-return status, M55 invoice/consumption-tax status) are tracked in the operator SSOT and must not be invented here.

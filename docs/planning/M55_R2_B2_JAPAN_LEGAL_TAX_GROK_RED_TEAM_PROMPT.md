@@ -49,3 +49,19 @@ Audit whether:
 - phone consultation is conditional fallback, not an unnecessary default.
 
 Flag any remaining corporation assumption as P1/P2 depending materiality.
+
+## Expanded operator-status audit — mandatory
+
+Read `docs/ssot/M55_OPERATOR_BUSINESS_STATUS_SSOT.md` and the new pre-revenue evidence.
+
+Red-team:
+- opening/blue-return unknown facts are not falsely closed;
+- zero revenue does not erase bookkeeping/electronic retention;
+- business-income classification is not overclaimed;
+- invoice registration is not auto-recommended;
+- labour/social-insurance triggers are accurately scoped;
+- APPI/Tokushoho are not incorrectly waived by small scale or zero revenue;
+- Stripe sole-proprietor identity rule is correctly represented;
+- local tax is kept jurisdiction-dependent;
+- personal social-insurance status is not persisted/inferred;
+- re-review triggers are complete and scoped.

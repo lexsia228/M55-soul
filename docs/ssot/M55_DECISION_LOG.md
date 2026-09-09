@@ -1380,3 +1380,32 @@ Invalidators:
 - Sponsored Creator/work-order facts replace Affiliate-first.
 
 PR #189 independent Grok/Codex review remains required before R2-B2 is formally closed. CURRENT/NEXT remains `REVENUE_SAFETY_E2E`.
+
+### 2026-09-10 — M55 pre-revenue solo-proprietor full compliance reclassification (Human-approved)
+
+**Status:** complete public-rule recheck for current operator facts · no runtime/provider mutation
+
+Human-frozen:
+- `M55_OPERATOR_FORM = SOLE_PROPRIETOR`
+- `M55_BUILD_MODEL = SOLO_BUILD`
+- `M55_EMPLOYEES = NONE`
+- `M55_PAYS_SALARY_OR_WAGES = FALSE`
+- `M55_CURRENT_BUSINESS_REVENUE_STATUS = PRE_REVENUE_ZERO_BUSINESS_REVENUE`
+- `M55_CURRENT_OPERATING_PHASE = PRE_REVENUE_DEVELOPMENT`
+
+New normative SSOT:
+`docs/ssot/M55_OPERATOR_BUSINESS_STATUS_SSOT.md`
+
+Material conclusions:
+- no current employee labour-insurance / employer social-insurance trigger;
+- first employee immediately reopens labour/payroll/JFTC branches;
+- current individual/no-salary-payer NTA source-withholding exception applies;
+- no-employee JFTC orderer remains Article-3-only if the affiliate relationship is a covered delegation;
+- zero revenue does not waive bookkeeping/electronic-data retention;
+- blue-return/opening-date/admin status must be reconciled from Human records;
+- zero revenue does not make invoice registration necessary; registration must not be automatic;
+- pre-revenue does not waive APPI or Tokushoho when their factual triggers occur;
+- local tax opening administration is jurisdiction-specific and cannot be inferred;
+- seller/Stripe identity must remain sole-proprietor accurate.
+
+Re-review registry is frozen in the operator SSOT. Review is trigger-scoped; unrelated CLOSED GREEN gates remain closed.

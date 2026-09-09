@@ -61,6 +61,8 @@ Sole executable CURRENT/NEXT remains `docs/ssot/M55_EXECUTION_STATE.json`. Curre
 
 Compliance/payout automation annex: `docs/ssot/M55_CREATOR_COMPLIANCE_AND_PAYOUT_AUTOMATION_SSOT.md`
 
+Operator/business-status annex: `docs/ssot/M55_OPERATOR_BUSINESS_STATUS_SSOT.md`
+
 Affiliate-first Stripe/tax/legal annex: `docs/ssot/M55_CREATOR_AFFILIATE_STRIPE_TAX_LEGAL_SSOT.md`
 
 Frozen benchmark/target architecture annex: `docs/ssot/M55_CREATOR_AFFILIATE_BENCHMARK_TARGET_ARCHITECTURE_SSOT.md`

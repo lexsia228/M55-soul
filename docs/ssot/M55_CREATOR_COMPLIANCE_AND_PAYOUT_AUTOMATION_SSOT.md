@@ -1239,3 +1239,18 @@ Current automation implications:
 `PAYOUT_POLICY_RECLASSIFICATION_TRIGGER = EMPLOYEE_OR_PAYROLL_OR_ENTITY_FORM_CHANGE`
 
 This does not change the R5/R6/R7/R8 stage order and does not authorize payout implementation.
+
+## BF. Operator-status runtime invalidation hooks — Human-approved 2026-09-10
+
+Runtime planning must read `M55_OPERATOR_BUSINESS_STATUS_SSOT.md`.
+
+Before Creator cash activation and before each material payout-policy version:
+- assert M55 operator form;
+- assert employee-status version;
+- assert salary-payer-status version;
+- assert consumption-tax/invoice-status version;
+- assert seller/provider identity version.
+
+`OPERATOR_FACT_VERSION_REQUIRED_FOR_PAYOUT_POLICY = TRUE`
+
+If employee/payroll/entity/invoice/tax status changes, block only the affected payout/tax policy until reclassified. Do not erase valid commissions.
