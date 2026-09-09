@@ -54,11 +54,11 @@ Verification date: **2026-09-09 JST**
 
 ### Sources verified
 
-- https://help.firstpromoter.com/en/articles/8971513-how-to-pay-your-promoters
-- https://help.firstpromoter.com/en/articles/16295072-how-to-enable-stripe-connect-for-your-stripe-payouts-on-firstpromoter
-- https://help.firstpromoter.com/en/articles/9019492-how-payouts-work-in-firstpromoter
 - https://firstpromoter.com/features/affiliate-payout
-- https://changelog.firstpromoter.com/stripe-payouts-pay-affiliates-directly-from-your-stripe-balance-1SFpUk
+- https://firstpromoter.com/features/tracking
+- https://help.firstpromoter.com/en/articles/8971513-how-to-pay-your-promoters
+- https://help.firstpromoter.com/en/articles/13772161-fraud-protection-settings-in-firstpromoter
+- https://docs.firstpromoter.com/how-it-works
 
 ### Current material evidence
 
@@ -104,10 +104,10 @@ FirstPromoter currently documents:
 
 ### Sources verified
 
+- https://help.rewardful.com/en/articles/14852640-integration-with-stripe-payment-links-method-a
+- https://help.rewardful.com/en/articles/6684154-integration-with-stripe-payment-links-method-b
 - https://www.rewardful.com/articles/how-rewardful-pays-affiliate-commissions
-- https://help.rewardful.com/en/articles/2213091-how-does-rewardful-use-my-stripe-account
-- https://help.rewardful.com/en/articles/4209748-stripe-checkout-client-side-integration
-- https://www.rewardful.com/affiliate-program
+- https://www.rewardful.com/rewardful-affiliate-program-get-started
 
 ### Current material evidence
 
@@ -152,8 +152,9 @@ R4 link foundation + R5 attribution + R6 commission event handling + R7 Creator 
 
 ### Sources verified
 
-- https://help.shopify.com/en/manual/promoting-marketing/collabs/creators/payments
-- https://help.shopify.com/en/manual/promoting-marketing/collabs/merchants/payments
+- https://help.shopify.com/ja/manual/promoting-marketing/collabs/merchants/payments
+- https://help.shopify.com/ja/manual/promoting-marketing/collabs/creators/payments
+- https://help.shopify.com/ja/manual/promoting-marketing/collabs/merchants/managing-creators
 
 ### Current material evidence
 
@@ -195,8 +196,9 @@ R5 compliance + R7 Creator Console + R8 payout.
 
 ### Sources verified
 
+- https://support.a8.net/as/payment/
 - https://support.a8.net/a8/as/faq/2013/09/post_168.html
-- https://support.a8.net/a8/as/faq/2004/08/as_9.html
+- https://support.a8.net/a8/as/faq/2008/05/as_3.html
 
 ### Current material evidence
 
@@ -239,6 +241,8 @@ R7 payout preference UX + R8 threshold/cadence/fee policy after legal classifica
 
 - https://help.valuecommerce.ne.jp/aff/transactions/comission/01/
 - https://help.valuecommerce.ne.jp/aff/transactions/comission/02/
+- https://help.valuecommerce.ne.jp/aff/transactions/finance/01/
+- https://help.valuecommerce.ne.jp/aff/transactions/finance/04/
 
 ### Current material evidence
 
@@ -283,6 +287,7 @@ R6 ledger + R7 statement view + R8 tax/accounting/payout reconciliation.
 
 - https://makers.tokyo/fortune/affiliate
 - https://makers.tokyo/fortune/pricing
+- https://makers.tokyo/fortune/terms
 
 ### Current material evidence
 
@@ -336,9 +341,10 @@ For M55 specifically, Stripe Support/Kuriyama evidence already establishes the c
 - M55 product-sale affiliate commission to Japan connected Creator supported in principle;
 - ~30-day internal review before later transfer supported in principle.
 
-Source of record:
+Evidence locators:
 
-`docs/evidence/M55_R2_B2_STRIPE_SUPPORT_EVIDENCE_2026-09-08.md`
+- Stripe A/B/D + completed C follow-up: `docs/evidence/M55_R2_B2_STRIPE_SUPPORT_EVIDENCE_2026-09-08.md`
+- Earlier 2026-09-06 P0-2 JP Creator commission and P0-3 ~30-day delayed-transfer classifications: `docs/ssot/M55_CREATOR_REVENUE_E2C2E_SSOT.md` § R2-B2 Stripe P0 evidence, plus the corresponding durable records in `docs/ssot/M55_ROADMAP.md` and `docs/ssot/M55_DECISION_LOG.md`
 
 `M55_SPECIFIC_STRIPE_EVIDENCE_OVERRIDES_GENERIC_BENCHMARK_STRIPE_SETUP = TRUE`
 

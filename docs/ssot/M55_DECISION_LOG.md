@@ -1162,3 +1162,29 @@ The earlier same-day `PENDING_NO_ACTION_REQUIRED` record above is retained as hi
 | Legal/tax boundary | benchmark precedent is operational evidence only; tax/legal SSOT controls law/tax classification |
 | Runtime dependency | no affiliate SaaS dependency added |
 | Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` |
+
+### 2026-09-09 — Grok PR #185 Revenue red-team adjudication
+
+**Status:** Human-provided Grok Revenue Auditor result adjudicated by Control Tower · docs-only correction · no runtime/Stripe/DB/Clerk/env/Production mutation · `M55_EXECUTION_STATE.json` unchanged
+
+Pinned Grok audit:
+- architecture HEAD `2fb86179ad5a3f703ca2e3bda02e82b58cc2825b`
+- wrapper HEAD `fba280df3bca1a93c229a62ac6376e1146c70e26`
+- classification `GREEN_WITH_NONBLOCKING_FINDINGS`
+- Core Six: all `KEEP_CORE`
+- adversarial matrix: 16 COVERED · 3 DEFERRED · 1 GAP · 0 CONTRADICTION
+- clean-state proof: no mutation
+
+Control-Tower adjudication:
+
+| Finding | Adjudication | Action |
+|---|---|---|
+| F-01 stale Stripe A/B/D OPEN wording | `ACCEPT_FOR_IMPLEMENTATION` | align old section with later CLOSED A/B/D / C non-blocking / legal-tax OPEN state |
+| F-02 threshold ownership wording | `ACCEPT_FOR_IMPLEMENTATION` | R2-B2 classifies constraints; R8 owns exact threshold/cadence |
+| F-03 P0 evidence locator | `ACCEPT_FOR_IMPLEMENTATION` | split A/B/D evidence locator from 2026-09-06 P0-2/P0-3 durable records |
+| F-04 out-of-order provider events | `DEFER_TO_OWNING_GATE` for runtime + invariant accepted now | freeze delivery order as non-authoritative; R8 implements idempotent reconciliation |
+| F-05 mutable payable-balance footgun | `DEFER_TO_OWNING_GATE` for runtime + invariant accepted now | payable balance is derived projection; append-only ledger remains authority |
+| F-06 R7 EARNINGS mixed POSTED state | `ACCEPT_FOR_IMPLEMENTATION` | separate commission earnings from payout status |
+| F-07 architecture/composition URL divergence | `ACCEPT_FOR_IMPLEMENTATION` | align Core Six source URL sets |
+
+No finding is a `REAL_INVALIDATOR`. No provider selection, cash activation, roadmap reorder, or future-stage runtime authorization results from this adjudication.

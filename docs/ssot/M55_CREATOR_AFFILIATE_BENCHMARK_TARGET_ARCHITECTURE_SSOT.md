@@ -36,13 +36,19 @@ M55 is not inventing a new affiliate business model. The target is a conventiona
 6. M55 observes the paid/refund/chargeback lifecycle;
 7. M55 creates and reviews commission;
 8. valid commission becomes `COMMISSION_PAYABLE`;
-9. payable amounts aggregate into a Creator balance;
+9. payable amounts are aggregated into a **derived Creator payable-balance projection** from the append-only commission ledger and payout/adjustment records;
 10. Creator sees the balance/status in M55;
 11. payout is batched according to the final threshold/cadence/legal rules;
 12. Stripe Connect moves approved funds to the Creator payout rail;
 13. provider events reconcile back into M55.
 
 The differentiator is not the affiliate mechanism itself. M55 differentiates through product, conversion, high Creator economics, transparent accounting, machine-first compliance, Creator UX, and reliable payout operation.
+
+`CREATOR_PAYABLE_BALANCE_IS_DERIVED_PROJECTION = TRUE`
+
+`MUTABLE_CREATOR_WALLET_BALANCE_AS_FINANCIAL_AUTHORITY = PROHIBITED`
+
+The append-only commission ledger plus explicit payout/adjustment records are financial authority. Any displayed/cacheable payable balance is a recomputable projection and may not become an independently mutable source of truth.
 
 ---
 
@@ -458,11 +464,17 @@ Stripe Connect
 
 provider event
   -> M55 RECONCILIATION
+
+event delivery order
+  -> NON_AUTHORITATIVE
+  -> idempotent state/reconciliation rules determine financial effect
 ```
 
 No customer-purchase event directly sends Creator money.
 
 `PURCHASE_TIME_CREATOR_TRANSFER = PROHIBITED`
+
+`PROVIDER_EVENT_DELIVERY_ORDER_IS_NON_AUTHORITATIVE = TRUE`
 
 ---
 

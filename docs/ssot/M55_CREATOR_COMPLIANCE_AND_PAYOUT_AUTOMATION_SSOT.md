@@ -259,14 +259,16 @@ Separate Charges and Transfers or another Stripe-directed supported architecture
 
 Stripe support (dated external evidence 2026-09-06) confirmed the described JP→JP M55 affiliate model can use delayed transfer after approximately 30-day review and identified **Separate Charges and Transfers** as the applicable flow. Stripe used **Express connected account** wording.
 
-This does **NOT** prove:
+Cumulative current classification after the later 2026-09-08 Stripe Support evidence:
 
-- final M55WEB account approval (`M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED`)
-- final connected-account API/configuration model (Express legacy type vs current configuration — OPEN)
-- `losses_collector` / negative-balance responsibility (OPEN)
-- final Connect pricing model (OPEN)
-- legal/tax approval
-- cash activation
+- `R2_B2_STRIPE_A_ACCOUNT_CONFIGURATION = CLOSED_GREEN` — Accounts v2 + Express Dashboard; semantic configuration only, not frozen API field syntax
+- `R2_B2_STRIPE_B_NEGATIVE_BALANCE_RESPONSIBILITY = CLOSED_GREEN_PLATFORM_RESPONSIBLE`
+- `R2_B2_STRIPE_D_PRICING_MODEL = CLOSED_FOR_PRICING_MODEL` — platform-managed; exact billing must still be reconciled at R8
+- `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY = NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP`
+- `STRIPE_SUPPORT_FOLLOWUP = COMPLETED_NO_ACTION_REQUIRED`
+- `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED`
+- Japan legal/tax/payment-deadline classification remains OPEN
+- cash activation remains prohibited
 
 Preserve:
 
@@ -305,7 +307,7 @@ Future payout engine must:
 - track processing / posted / failed / returned
 - reconcile failures/returns
 
-Exact threshold and payout cadence remain unresolved until R2-B2.
+R2-B2 classifies applicable provider/legal/tax constraints. **R8 owns the exact economic payout threshold and payout cadence values.**
 
 The 30-day review window must **not** be used to violate any applicable mandatory payment deadline.
 
@@ -841,6 +843,10 @@ Use exception queues and alerting. No Human daily spreadsheet reconciliation wor
 
 External provider/webhook processing must be replay-safe. Failed processing → durable retry/dead-letter path. Replaying an event must reproduce the same financial result. No silent event loss.
 
+`PROVIDER_EVENT_DELIVERY_ORDER_IS_NON_AUTHORITATIVE = TRUE`
+
+Provider webhook arrival order must never be treated as financial truth. R8 implementation must combine provider event identity, idempotency, canonical M55 state invariants, and reconciliation so duplicated or out-of-order events cannot cause backward state corruption or duplicate payout.
+
 ---
 
 ## AQ. Human workload principle (reinforced)
@@ -1091,7 +1097,9 @@ Creator trust/control UX surfaces:
 
 **PERFORMANCE:** unique tracked visits · valid Free completions · eligible paid conversions · conversion rate · attributed sales
 
-**EARNINGS:** estimated commission · `PENDING` · `HOLD` · `PAYABLE` · `POSTED` · adjustments
+**EARNINGS:** estimated commission · `PENDING` · `HOLD` · `PAYABLE` · `REVERSED` · `ADJUSTED`
+
+**PAYOUT STATUS:** `NOT_READY` · applicable `BLOCKED_*` · `QUEUED` · `PROCESSING` · `POSTED` · `FAILED` · `RETURNED`
 
 **PER-COMMISSION:** anonymous purchase reference · product · purchase time · amount collected · commissionable base · rate · commission · `release_at` · reason code · payout status
 
