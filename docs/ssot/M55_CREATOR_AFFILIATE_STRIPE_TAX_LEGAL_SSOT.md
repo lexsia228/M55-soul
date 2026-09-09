@@ -754,3 +754,31 @@ If the resulting statutory-report workflow requires My Number:
 No ordinary Creator profile, analytics property, Stripe metadata, application log, or Creator-visible payout statement may become a My Number storage channel.
 
 These controls are conditional architecture only. They do not classify ordinary M55 Affiliate commission as `外交員等`.
+
+## R. Late-classification tax correction firewall (Codex independent review 2026-09-09)
+
+Codex independent review of PR #187 identified one nonblocking P2: late discovery that a past payout required withholding was not explicitly separated from ordinary commission correction.
+
+Freeze:
+
+`LATE_DISCOVERED_WITHHOLDING_CORRECTION_REQUIRES_SEPARATE_TAX_EVENT = TRUE`
+
+`ORIGINAL_COMMISSION_AND_PAYOUT_HISTORY_REMAINS_IMMUTABLE = TRUE`
+
+`AUTOMATIC_CREATOR_CLAWBACK_FOR_LATE_WITHHOLDING = PROHIBITED_WITHOUT_EXPLICIT_LEGAL_CONTRACT_AUTHORITY`
+
+`AUTOMATIC_FUTURE_COMMISSION_OFFSET_FOR_LATE_WITHHOLDING = PROHIBITED_WITHOUT_EXPLICIT_LEGAL_CONTRACT_AUTHORITY`
+
+`PAST_PAYOUT_POSTED_DOES_NOT_CLOSE_LATE_TAX_REMITTANCE_LIABILITY = TRUE`
+
+`STATUTORY_REPORT_CORRECTION_STATUS_MUST_BE_OBSERVABLE_IF_APPLICABLE = TRUE`
+
+This contract is deliberately conservative:
+
+- it preserves the commercial commission and original payout history;
+- it treats payer tax/remittance correction as a distinct M55 liability/workflow;
+- it does not assume M55 has a legal right to recover tax from the Creator;
+- it does not assume M55 lacks such a right in every future fact pattern;
+- the exact recovery treatment, if any, must be supported by the then-applicable law/contract and explicitly Human-approved before runtime.
+
+Owning implementation gate: R8 `PAYOUT_AND_SETTLEMENT`.

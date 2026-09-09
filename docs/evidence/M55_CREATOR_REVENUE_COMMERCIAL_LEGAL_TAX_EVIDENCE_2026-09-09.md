@@ -522,3 +522,32 @@ and separately track the tax remittance liability.
 These obligations remain conditional because the ordinary M55 web-affiliate source-withholding classification is still OPEN.
 
 They strengthen the fail-closed architecture without deciding that M55 Affiliate v1 is `外交員等`.
+
+## 17. Codex independent review — late withholding correction evidence closure
+
+Independent Codex review of PR #187 at remote HEAD `822ecf6b9dbe09c854a05b4e54a6be4e5e111513` returned:
+
+`GREEN_WITH_NONBLOCKING_FINDINGS`
+
+P0: none.  
+P1: none.  
+P2: one.
+
+The P2 observed that existing docs correctly separated statutory withholding from commission adjustments and correctly modeled M55 remittance liability, but did not explicitly define the correction path when a payout already posted and M55 later determines that payer-side withholding should have applied.
+
+Accepted Control-Tower correction:
+
+1. preserve original commission and payout history;
+2. create a separate linked tax/accounting correction event;
+3. record corrected classification/policy version;
+4. keep M55 tax liability/remittance correction independently observable;
+5. keep statutory-report correction independently observable when applicable;
+6. prohibit automatic Creator clawback or future-commission offset unless explicit legal/contract authority exists.
+
+This closure does **not** decide that ordinary M55 Affiliate commission is source-withholding remuneration.
+
+`LATE_DISCOVERED_WITHHOLDING_CORRECTION_REQUIRES_SEPARATE_TAX_EVENT = TRUE`
+
+`PAST_PAYOUT_POSTED_DOES_NOT_CLOSE_LATE_TAX_REMITTANCE_LIABILITY = TRUE`
+
+Runtime implementation remains R8-owned.

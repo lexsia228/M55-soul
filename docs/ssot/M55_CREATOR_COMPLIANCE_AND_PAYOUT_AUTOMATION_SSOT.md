@@ -1187,3 +1187,31 @@ Program activation also requires durable evidence that the Creator accepted the 
 `CREATOR_PROGRAM_TRUTH_ACK_REQUIRED_BEFORE_FIRST_AFFILIATE_LINK = TRUE`
 
 Creator Console/export must be privacy-safe and must not reveal customer PII by default.
+
+## BD. Late-discovered withholding correction contract (Codex P2 closure 2026-09-09)
+
+`LATE_DISCOVERED_WITHHOLDING_CORRECTION_REQUIRES_SEPARATE_TAX_EVENT = TRUE`
+
+`ORIGINAL_COMMISSION_AND_PAYOUT_HISTORY_REMAINS_IMMUTABLE = TRUE`
+
+`AUTOMATIC_CREATOR_CLAWBACK_FOR_LATE_WITHHOLDING = PROHIBITED_WITHOUT_EXPLICIT_LEGAL_CONTRACT_AUTHORITY`
+
+`AUTOMATIC_FUTURE_COMMISSION_OFFSET_FOR_LATE_WITHHOLDING = PROHIBITED_WITHOUT_EXPLICIT_LEGAL_CONTRACT_AUTHORITY`
+
+`STATUTORY_REPORT_CORRECTION_STATUS_MUST_BE_OBSERVABLE_IF_APPLICABLE = TRUE`
+
+If a past payout is later determined to have required payer-side withholding, M55 must not rewrite the original commission, payout, refund, or adjustment history.
+
+R8 must model the correction as a separate tax/accounting correction linked to:
+- affected Creator;
+- affected payout period(s);
+- original payout event(s);
+- corrected tax classification/policy version;
+- M55 tax liability/remittance correction;
+- statutory information-return correction status when applicable.
+
+Any recovery from the Creator or offset against future commission requires separate explicit legal/contract authority. This SSOT does not itself authorize such recovery.
+
+`PAST_PAYOUT_POSTED_DOES_NOT_CLOSE_LATE_TAX_REMITTANCE_LIABILITY = TRUE`
+
+Implementation owner: R8 `PAYOUT_AND_SETTLEMENT`, after source-withholding classification is closed.

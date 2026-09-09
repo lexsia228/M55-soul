@@ -1275,3 +1275,28 @@ Decision:
 - Replay may later be used only when a supported imported historical thread exists and comparison adds value.
 
 No roadmap/execution-state change.
+
+### 2026-09-09 — Codex PR #187 independent review adjudication
+
+**Pinned reviewed HEAD:** `822ecf6b9dbe09c854a05b4e54a6be4e5e111513`
+
+**Codex classification:** `GREEN_WITH_NONBLOCKING_FINDINGS`
+
+- P0: 0
+- P1: 0
+- P2: 1
+- money invariant verdict: GREEN
+- privacy/My Number: GREEN
+- Creator trust: GREEN
+- benchmark independence: GREEN
+- clean-state proof: GREEN
+
+Control-Tower disposition:
+
+| Finding | Adjudication | Action |
+|---|---|---|
+| P2-01 late discovery of required withholding after payout | `ACCEPT_FOR_IMPLEMENTATION` | freeze separate tax-correction event + immutable original commission/payout + no automatic clawback/offset without explicit legal/contract authority; runtime R8 |
+
+No `REAL_INVALIDATOR`.
+
+This docs closure does not authorize payout runtime, tax recovery, provider mutation, or cash activation.
