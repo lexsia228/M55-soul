@@ -1,7 +1,7 @@
 # M55 Control Tower Operations Map
 
 Status: **ACTIVE** (durable memory for AI + operators)
-Last updated: **2026-08-22**
+Last updated: **2026-09-09**
 Companion: `M55_HIGH_COST_EVIDENCE_LEDGER.md` · `AGENTS.md`
 
 ## Purpose
@@ -28,6 +28,30 @@ Missing evidence in the current chat or gate report does **not** authorize rerun
 | Force push | **Human-authorized only** — never force-push `main` without explicit instruction |
 
 Evidence in Git commits and SSOT docs is durable. Chat memory is not.
+
+---
+
+## Cross-device AI operating topology
+
+Semantic authority: `docs/ssot/M55_MULTI_AGENT_PARALLEL_OPERATING_MODEL_SSOT.md`.
+
+Current Human operating arrangement (dated 2026-09-09):
+
+| Plane | Current use | Authority boundary |
+|---|---|---|
+| Mac local plane | Cursor implementation · registered worktrees · local tests · Mac Codex local review | local-only candidate facts remain local until pushed or explicitly exported |
+| Windows control plane | Control-Tower ChatGPT · additional bounded ChatGPT tasks | integration/adjudication; no invented local Mac facts |
+| Windows remote-audit plane | Grok Bot · Codex Replay when available | read-only independent review of pushed PR/HEAD or explicit artifacts |
+| GitHub | branch · PR · exact SHA · CI · durable evidence | canonical cross-device handoff for remote review |
+
+Rules:
+
+- `GITHUB_IS_CROSS_DEVICE_HANDOFF_AUTHORITY = TRUE`.
+- An unpushed Mac diff is **not** visible remote authority.
+- Remote reviewers pin exact SHA/PR before exact-diff claims.
+- Grok and Codex Replay are reviewers, not mutation owners or payout executors.
+- Before declaring an integration unavailable, inspect current connected capabilities when the environment supports discovery.
+- Use risk-weighted audit depth; do not run every AI on low-risk changes.
 
 ---
 
