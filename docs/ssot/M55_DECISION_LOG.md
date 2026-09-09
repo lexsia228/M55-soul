@@ -1067,3 +1067,124 @@ The earlier same-day `PENDING_NO_ACTION_REQUIRED` record above is retained as hi
 | Cash activation | fail-closed against then-current Stripe account/capability/requirements state |
 | State-machine canonicalization | Compliance SSOT §U remains authoritative: commission and payout are orthogonal; `COMMISSION_HOLD_REVIEW`, `PAYOUT_REQUESTED`, `VESTED`, `CANCELED`, and `PAID` are not canonical persisted M55 state values |
 
+### 2026-09-09 — Affiliate-first Stripe reverse-design + tax/legal fail-closed approval (Human-approved)
+
+**Status:** architecture/SSOT decision · docs-only · no runtime/Stripe/DB/Clerk/env/Production mutation · `M55_EXECUTION_STATE.json` unchanged
+
+| Decision | Value |
+|---|---|
+| Creator Program v1 | `AFFILIATE_FIRST` |
+| Creator action | share Creator-specific M55 URL/direct link; Creator chooses whether, when, where and how to introduce M55 within mandatory compliance boundaries |
+| M55 mandatory work order | **NONE in Affiliate v1** — no mandatory deliverable, post count, posting schedule, or creative-production order |
+| M55 mandatory safeguards | M55 terms · Stripe rules · Japanese law · advertising disclosure · prohibited claims · anti-fraud/anti-self-referral |
+| Sponsored Creator | separate future contract/classification; must not be silently mixed into Affiliate v1 |
+| Customer charge | M55 platform charge |
+| Attribution / commission calculation / compliance / ledger | M55-owned |
+| Stripe target flow | Accounts v2 + Express Dashboard + Separate Charges and Transfers; transfer only after `COMMISSION_PAYABLE` |
+| KYC / bank details / payout rail | Stripe-owned where supported; M55 avoids storing full bank details |
+| Connect billing fact | observed M55 configuration bills Connect fees to M55 platform balance; Creator fee pass-through is a separate M55 legal/economic decision |
+| Payout batching | `PAYOUT_BATCHING_REQUIRED = TRUE` |
+| Creator payout request | early trigger / timing preference only; **not** commission approval |
+| Economic payout threshold | **UNRESOLVED** |
+| Legal deadline | `LEGAL_PAYMENT_DEADLINE_OVERRIDES_ECONOMIC_THRESHOLD = TRUE_IF_APPLICABLE` |
+| Payout-cost objective | `M55_PAYOUT_COST_PASS_THROUGH_OBJECTIVE = HUMAN_APPROVED` |
+| Creator fee implementation | `NOT_AUTHORIZED_PENDING_LEGAL_CLASSIFICATION` |
+| Freelance Act guard | if applicable, do not deduct bank-transfer fees from remuneration |
+| Withholding guard | no universal withholding percentage; classify recipient/contract facts before implementation |
+| Invoice/consumption-tax guard | Creator tax/invoice status and M55 accounting treatment must be versioned and re-verifiable |
+| High-earner Creator | high sales volume alone does not reduce earned rate or cancel valid commission; scale raises tax/KYC/fraud/reconciliation controls |
+| Cash activation | requires R2-B2 legal/tax classification closure + explicit Human acceptance + then-current Stripe verification |
+| Roadmap | R2→R8 order unchanged; no R6–R8 runtime pulled into R2 |
+
+### 2026-09-09 — Deep Japan-law audit: affiliate categorical-exclusion correction
+
+**Status:** docs/governance correction based on fresh official-source research · no runtime/Stripe/DB/Clerk/env/Production mutation · `M55_EXECUTION_STATE.json` unchanged
+
+| Decision | Value |
+|---|---|
+| Affiliate-first business design | **PRESERVED** — URL/direct-link introduction, no mandatory deliverable/post count/date/hours/quota/exclusivity |
+| Categorical Freelance Act exclusion | `NOT_CONFIRMED` — no current official JFTC/MHLW source located saying ordinary affiliate commission is categorically outside the Act |
+| Why not GREEN yet | Freelance Act covers entrusted services; JFTC says transaction reality and involvement in service/content/remuneration matter; a paid referral may still be characterized as advertising/referral service |
+| Favorable M55 facts | no work order · Creator may do nothing · no mandatory creative production · no posting schedule · no entry fee/purchase · no recruitment commission |
+| Commercial precedent | A8 proves mature affiliate feasibility, **not** M55 legal safe harbor; A8 terms call outcome compensation consideration for advertising distribution |
+| JFTC evidence gate | preserve exact M55 fact pattern and obtain interpretation consultation before relying on Act exclusion, especially before fee deduction/pass-through |
+| Transfer-fee rule | only controls if Act applies; if it applies, JFTC says bank-transfer-fee deduction from remuneration is prohibited regardless of agreement |
+| Labor status | low risk by design under no direction/hours/quota, but actual operation controls |
+| 景表法 | real applicable M55 advertiser responsibility; PR/ad disclosure + claims controls required |
+| MLM/business-opportunity | low risk only while no entry fee, required purchase/training/inventory, or recruitment/downline commission |
+| Creator income tax | affiliate income is generally business or business-related miscellaneous income depending on facts |
+| M55 source withholding | `OPEN`; exact M55 Affiliate v1 must be checked against NTA `外交員等` rules; neither zero nor 10.21% may be assumed universally |
+| NTA evidence gate | source-withholding classification required before cash activation; use NTA consultation and written-answer procedure where eligible |
+| Consumption tax/invoice | fact/status dependent; existing versioned tax-policy requirement preserved |
+| Payment Services Act | low-risk inference only under M55 paying its own commission debt through Stripe; no third-party remittance/escrow |
+| APPI | attribution cookies/browsing data require privacy controls |
+| PR #185 | strengthen fail-closed SSOT; do **not** merge based on a false “affiliate = legally exempt” claim |
+| Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` |
+
+### 2026-09-09 — Six-benchmark Affiliate target architecture freeze (Human-approved)
+
+**Status:** benchmark-to-architecture freeze · docs/governance only · no runtime/Stripe/DB/Clerk/env/Production mutation · `M55_EXECUTION_STATE.json` unchanged
+
+| Decision | Value |
+|---|---|
+| Benchmark objective | stop treating M55 Affiliate as a new invention; reuse proven commercial patterns and only build M55-specific deltas |
+| Core shortlist | `FROZEN_SIX`: FirstPromoter · Rewardful · Shopify Collabs · A8.net · ValueCommerce · 開運メーカー |
+| FirstPromoter role | Stripe-linked affiliate payout architecture · self-referral/fraud review · balance aggregation · threshold/eligibility · affiliate self-onboarding to payout rail |
+| Rewardful role | Stripe-native event observation · unique referral links · dashboard · commission adjustment after refunds/cancellations |
+| Shopify Collabs role | Pending/holding-period semantics · refund cancellation · dispute path · Creator analytics · scheduled/threshold payout precedent |
+| A8.net role | Japan mature payout choices: 5,000 / 1,000 / carry-over · Creator-triggered next payout · bank-fee economic precedent only |
+| ValueCommerce role | Japan approval→payment schedule · 1,000 threshold · aggregation · payout reports · invoice-system accounting precedent |
+| 開運メーカー role | Japan fortune/digital-report + Stripe + affiliate link + influencer/social sharing + realtime results dashboard commercial precedent |
+| Secondary comparators | Hint / PromoteKit / PartnerStack / impact.com / others = evidence only; not architecture owners unless a future specific gap requires them |
+| Runtime dependency policy | `THIRD_PARTY_AFFILIATE_SAAS_RUNTIME_DEPENDENCY_V1 = NONE_BY_DEFAULT` — patterns are copied, vendor lock-in is not |
+| Target architecture | `M55_NATIVE_CONTROL_PLANE_PLUS_STRIPE_MONEY_RAIL` |
+| M55 owns | Creator approval · links · attribution evidence · commission calculation · compliance/fraud · append-only ledger · payable balance · Creator Revenue Console · tax/legal profile · payout orchestration/reconciliation |
+| Stripe owns | customer charge rail · hosted connected-account onboarding/KYC · bank details where supported · Connect transfer/payout rail · provider events |
+| Purchase-time transfer | **REJECTED** — do not pay Creator at customer purchase time |
+| Affiliate SaaS as accounting SSOT | **REJECTED** — M55 commission ledger remains authority |
+| Threshold/cadence/attribution window | **DEFER** to owning gates; benchmark values are precedents, not copied constants |
+| Legal/tax | benchmark commercial use is not legal safe harbor; tax/legal fail-closed SSOT remains authoritative |
+| Research loop | broad competitor sweep is CLOSED after this freeze absent a real invalidator |
+| Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` |
+
+### 2026-09-09 — Benchmark composition evidence freeze (Human-approved)
+
+**Status:** evidence/governance only · no runtime/Stripe/DB/Clerk/env/Production mutation · `M55_EXECUTION_STATE.json` unchanged
+
+| Decision | Value |
+|---|---|
+| Evidence artifact | `docs/evidence/M55_CREATOR_AFFILIATE_BENCHMARK_COMPOSITION_EVIDENCE_2026-09-09.md` |
+| Purpose | preserve which vendor/service pattern informed each M55 money/affiliate surface, exact source URLs, verification date, adopted delta, rejected delta, and unresolved owner gate |
+| Money-surface standard | `BENCHMARK_COMPOSITION_EVIDENCE_REQUIRED_FOR_MONEY_SURFACES = TRUE` |
+| Traceability | `BENCHMARK_SOURCE_TO_M55_TRACEABILITY_REQUIRED = TRUE` |
+| Core Six | FirstPromoter · Rewardful · Shopify Collabs · A8.net · ValueCommerce · 開運メーカー |
+| Stripe M55-specific evidence | existing Kuriyama/Stripe Support evidence remains primary for M55 account configuration/pricing responsibility; generic benchmark vendors do not override it |
+| Legal/tax boundary | benchmark precedent is operational evidence only; tax/legal SSOT controls law/tax classification |
+| Runtime dependency | no affiliate SaaS dependency added |
+| Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` |
+
+### 2026-09-09 — Grok PR #185 Revenue red-team adjudication
+
+**Status:** Human-provided Grok Revenue Auditor result adjudicated by Control Tower · docs-only correction · no runtime/Stripe/DB/Clerk/env/Production mutation · `M55_EXECUTION_STATE.json` unchanged
+
+Pinned Grok audit:
+- architecture HEAD `2fb86179ad5a3f703ca2e3bda02e82b58cc2825b`
+- wrapper HEAD `fba280df3bca1a93c229a62ac6376e1146c70e26`
+- classification `GREEN_WITH_NONBLOCKING_FINDINGS`
+- Core Six: all `KEEP_CORE`
+- adversarial matrix: 16 COVERED · 3 DEFERRED · 1 GAP · 0 CONTRADICTION
+- clean-state proof: no mutation
+
+Control-Tower adjudication:
+
+| Finding | Adjudication | Action |
+|---|---|---|
+| F-01 stale Stripe A/B/D OPEN wording | `ACCEPT_FOR_IMPLEMENTATION` | align old section with later CLOSED A/B/D / C non-blocking / legal-tax OPEN state |
+| F-02 threshold ownership wording | `ACCEPT_FOR_IMPLEMENTATION` | R2-B2 classifies constraints; R8 owns exact threshold/cadence |
+| F-03 P0 evidence locator | `ACCEPT_FOR_IMPLEMENTATION` | split A/B/D evidence locator from 2026-09-06 P0-2/P0-3 durable records |
+| F-04 out-of-order provider events | `DEFER_TO_OWNING_GATE` for runtime + invariant accepted now | freeze delivery order as non-authoritative; R8 implements idempotent reconciliation |
+| F-05 mutable payable-balance footgun | `DEFER_TO_OWNING_GATE` for runtime + invariant accepted now | payable balance is derived projection; append-only ledger remains authority |
+| F-06 R7 EARNINGS mixed POSTED state | `ACCEPT_FOR_IMPLEMENTATION` | separate commission earnings from payout status |
+| F-07 architecture/composition URL divergence | `ACCEPT_FOR_IMPLEMENTATION` | align Core Six source URL sets |
+
+No finding is a `REAL_INVALIDATOR`. No provider selection, cash activation, roadmap reorder, or future-stage runtime authorization results from this adjudication.

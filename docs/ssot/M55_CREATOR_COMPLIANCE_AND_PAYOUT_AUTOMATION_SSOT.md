@@ -259,14 +259,16 @@ Separate Charges and Transfers or another Stripe-directed supported architecture
 
 Stripe support (dated external evidence 2026-09-06) confirmed the described JP→JP M55 affiliate model can use delayed transfer after approximately 30-day review and identified **Separate Charges and Transfers** as the applicable flow. Stripe used **Express connected account** wording.
 
-This does **NOT** prove:
+Cumulative current classification after the later 2026-09-08 Stripe Support evidence:
 
-- final M55WEB account approval (`M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED`)
-- final connected-account API/configuration model (Express legacy type vs current configuration — OPEN)
-- `losses_collector` / negative-balance responsibility (OPEN)
-- final Connect pricing model (OPEN)
-- legal/tax approval
-- cash activation
+- `R2_B2_STRIPE_A_ACCOUNT_CONFIGURATION = CLOSED_GREEN` — Accounts v2 + Express Dashboard; semantic configuration only, not frozen API field syntax
+- `R2_B2_STRIPE_B_NEGATIVE_BALANCE_RESPONSIBILITY = CLOSED_GREEN_PLATFORM_RESPONSIBLE`
+- `R2_B2_STRIPE_D_PRICING_MODEL = CLOSED_FOR_PRICING_MODEL` — platform-managed; exact billing must still be reconciled at R8
+- `R2_B2_STRIPE_C_ACCOUNT_SUPPORTABILITY = NON_BLOCKING_STRIPE_SUPPORT_FOLLOWUP`
+- `STRIPE_SUPPORT_FOLLOWUP = COMPLETED_NO_ACTION_REQUIRED`
+- `M55_ACCOUNT_FINAL_STRIPE_APPROVAL = NOT_YET_CONFIRMED`
+- Japan legal/tax/payment-deadline classification remains OPEN
+- cash activation remains prohibited
 
 Preserve:
 
@@ -305,7 +307,7 @@ Future payout engine must:
 - track processing / posted / failed / returned
 - reconcile failures/returns
 
-Exact threshold and payout cadence remain unresolved until R2-B2.
+R2-B2 classifies applicable provider/legal/tax constraints. **R8 owns the exact economic payout threshold and payout cadence values.**
 
 The 30-day review window must **not** be used to violate any applicable mandatory payment deadline.
 
@@ -795,7 +797,7 @@ R7 is **not** cosmetic. Minimum trust contract:
 
 Every posted payout batch must be explainable.
 
-Future statement minimum: batch ID · covered commission IDs/count · gross eligible commission · adjustments · withholding/tax deductions if legally required · provider fees if creator-borne under final contract · net payout · currency · payout date · provider payout reference · status
+Future statement minimum: batch ID · covered commission IDs/count · gross eligible commission · adjustments · withholding/tax deductions if legally required · any legally approved and pre-disclosed payout/service fee only when the exact Creator relationship permits it · net payout · currency · payout date · provider payout reference · status
 
 Commercial commission rate must remain distinguishable from tax or other legally required payout deductions.
 
@@ -840,6 +842,10 @@ Use exception queues and alerting. No Human daily spreadsheet reconciliation wor
 ## AP. Dead-letter / replay (frozen)
 
 External provider/webhook processing must be replay-safe. Failed processing → durable retry/dead-letter path. Replaying an event must reproduce the same financial result. No silent event loss.
+
+`PROVIDER_EVENT_DELIVERY_ORDER_IS_NON_AUTHORITATIVE = TRUE`
+
+Provider webhook arrival order must never be treated as financial truth. R8 implementation must combine provider event identity, idempotency, canonical M55 state invariants, and reconciliation so duplicated or out-of-order events cannot cause backward state corruption or duplicate payout.
 
 ---
 
@@ -1091,7 +1097,9 @@ Creator trust/control UX surfaces:
 
 **PERFORMANCE:** unique tracked visits · valid Free completions · eligible paid conversions · conversion rate · attributed sales
 
-**EARNINGS:** estimated commission · `PENDING` · `HOLD` · `PAYABLE` · `POSTED` · adjustments
+**EARNINGS:** estimated commission · `PENDING` · `HOLD` · `PAYABLE` · `REVERSED` · `ADJUSTED`
+
+**PAYOUT STATUS:** `NOT_READY` · applicable `BLOCKED_*` · `QUEUED` · `PROCESSING` · `POSTED` · `FAILED` · `RETURNED`
 
 **PER-COMMISSION:** anonymous purchase reference · product · purchase time · amount collected · commissionable base · rate · commission · `release_at` · reason code · payout status
 
@@ -1108,3 +1116,20 @@ Customer PII remains hidden. **Trust surface — not cosmetic analytics.**
 Stripe/provider account integration · hosted onboarding · KYC readiness · `payouts_enabled`/equivalent · provider requirements sync · commission/payout state separation · payout batching · threshold/cadence · payout instruction idempotency · provider transfer IDs · payout processing · posted · failed · returned · re-onboarding · destination-change security hold · account-takeover controls · provider webhook processing · dead-letter/replay · negative balance handling · refund/chargeback post-payout reconciliation · payout statement. **No bank account details stored directly by M55 unless later unavoidable and explicitly approved.**
 
 Do **not** pull R6–R8 runtime implementation into R2.
+
+---
+
+## BA. Affiliate-first Stripe / tax / legal override (Human-approved 2026-09-09)
+
+Normative detailed authority: `docs/ssot/M55_CREATOR_AFFILIATE_STRIPE_TAX_LEGAL_SSOT.md`.
+
+- `CREATOR_PROGRAM_V1 = AFFILIATE_FIRST`.
+- Affiliate v1 has no M55-mandated post count, posting schedule, creative deliverable, or recruitment commission.
+- M55 may require compliance with M55 terms, Stripe rules, Japanese law, ad-disclosure rules, approved claims, anti-fraud rules, and prohibited-claims rules. Those safeguards do not by themselves authorize M55 to invent a sponsored-content work order.
+- Commission validity and payout readiness remain orthogonal.
+- Creator payout preference may accelerate or batch payout, but does not approve the commission itself.
+- `LEGAL_PAYMENT_DEADLINE_OVERRIDES_ECONOMIC_THRESHOLD = TRUE_IF_APPLICABLE`.
+- `M55_PAYOUT_COST_PASS_THROUGH_OBJECTIVE = HUMAN_APPROVED`, but no Creator fee deduction/pass-through implementation is authorized until the exact Affiliate relationship and fee mechanics are legally classified.
+- If the Freelance Act applies to a payment, bank-transfer-fee deduction from remuneration is prohibited under current JFTC guidance.
+- No universal withholding rate may be hard-coded; tax treatment must be classified by recipient/contract facts.
+- High Creator volume alone must not reduce an already-earned commission rate or erase valid commission; scale may increase KYC, tax verification, fraud review, reconciliation, and observability.

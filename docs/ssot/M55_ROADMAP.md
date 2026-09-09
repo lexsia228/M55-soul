@@ -61,6 +61,10 @@ Sole executable CURRENT/NEXT remains `docs/ssot/M55_EXECUTION_STATE.json`. Curre
 
 Compliance/payout automation annex: `docs/ssot/M55_CREATOR_COMPLIANCE_AND_PAYOUT_AUTOMATION_SSOT.md`
 
+Affiliate-first Stripe/tax/legal annex: `docs/ssot/M55_CREATOR_AFFILIATE_STRIPE_TAX_LEGAL_SSOT.md`
+
+Frozen benchmark/target architecture annex: `docs/ssot/M55_CREATOR_AFFILIATE_BENCHMARK_TARGET_ARCHITECTURE_SSOT.md`
+
 Retain:
 
 - `M55_REVENUE_DECISION_NO_REGRESSION = TRUE`
@@ -76,6 +80,24 @@ Retain:
 - anti-MLM / no recursive compensation
 - creator cash infrastructure **NOT IMPLEMENTED**
 - Stripe payout provider **UNSELECTED**
+- Creator Program v1 = **AFFILIATE_FIRST** — URL/direct-link introduction; no mandatory post count, posting schedule, or creative deliverable
+- Stripe money-flow target = **M55 platform charge → M55 attribution/ledger → PAYABLE → Connect transfer → connected-account payout**
+- payout batching = **REQUIRED**; exact economic threshold/cadence remains unresolved
+- Creator payout request = **timing preference / early trigger only**, not commission approval
+- legal payment deadline overrides an economic threshold **when applicable**
+- M55 payout-cost pass-through = **HUMAN ECONOMIC OBJECTIVE**, but Creator fee deduction/pass-through implementation remains **NOT AUTHORIZED** pending legal classification
+- Affiliate-only relationship, Sponsored Creator relationship, withholding treatment, invoice/tax status, and payment-deadline applicability must be classified separately
+- `FREELANCE_ACT_CATEGORICAL_AFFILIATE_EXCLUSION = NOT_CONFIRMED` — no official categorical affiliate exclusion found; exact M55 fact pattern requires regulator/counsel classification
+- `JFTC_M55_FACT_PATTERN_CONFIRMATION = REQUIRED_BEFORE_FREELANCE_ACT_EXCLUSION_IS_USED_AS_AUTHORITY`
+- `AFFILIATE_SOURCE_WITHHOLDING_SALES_AGENT_CLASSIFICATION = OPEN` — NTA `外交員等` classification must be resolved for exact M55 Affiliate v1
+- `NTA_SOURCE_WITHHOLDING_CLASSIFICATION = REQUIRED_BEFORE_CASH_ACTIVATION`
+- `NO_CREATOR_ENTRY_FEE_OR_REQUIRED_PURCHASE = TRUE` · `NO_CREATOR_RECRUITMENT_COMMISSION = TRUE` · no MLM/business-opportunity regression
+- `M55_DOES_NOT_OFFER_THIRD_PARTY_REMITTANCE = TRUE` · `M55_DOES_NOT_OFFER_ESCROW = TRUE`
+- `AFFILIATE_BENCHMARK_SHORTLIST_V1 = FROZEN_SIX` — FirstPromoter · Rewardful · Shopify Collabs · A8.net · ValueCommerce · 開運メーカー
+- Benchmark roles are frozen: FirstPromoter = Stripe payout/fraud · Rewardful = Stripe attribution/event adjustment · Shopify Collabs = hold/refund/dispute/Creator analytics · A8 = Japan threshold/carry-over/payout preference · ValueCommerce = Japan approval/payment/report/invoice · 開運メーカー = Japan fortune/digital-report/affiliate commercial precedent
+- `TARGET_AFFILIATE_ARCHITECTURE = M55_NATIVE_CONTROL_PLANE_PLUS_STRIPE_MONEY_RAIL`
+- Third-party affiliate SaaS is benchmark evidence only by default; adding Rewardful/FirstPromoter/etc. as runtime dependency requires separate Human decision
+- No repeat broad competitor sweep absent a real invalidator; future research must answer a specific unresolved implementation or legal/tax question
 
 Do **not** pull R6–R8 runtime implementation into R2.
 
@@ -131,7 +153,11 @@ Primary evidence: `docs/evidence/M55_R2_B2_STRIPE_SUPPORT_EVIDENCE_2026-09-08.md
 | Topic | R2-B2 owns | R6/R8 owns |
 |---|---|---|
 | Negative balance | Japan/provider recovery-model **classification** | R8: runtime handling / reconciliation **implementation** |
-| Tax/withholding | Japan legal/tax **classification** sufficient for R2 closure | R8: payout/tax operational **implementation** |
+| Creator legal relationship | classify Affiliate-only v1 vs any future Sponsored Creator work order; transaction reality governs | R4/R5/R8: implement only the approved relationship model |
+| Payout fee pass-through | classify whether any platform/payout fee may lawfully be Creator-borne under the exact Affiliate relationship; if Freelance Act applies, bank-transfer-fee deduction is prohibited | R8: implement only legally approved mechanics and full disclosure |
+| Tax/withholding | Japan legal/tax **classification** sufficient for R2 closure; no universal 10.21% assumption | R8: payout/tax operational **implementation** |
+| Invoice / consumption-tax status | classify Creator invoice-registration and M55 accounting treatment; policy must be versioned | R8: operational verification/reporting |
+| Payment deadline | classify applicable statutory/contractual deadline; economic threshold may not override it | R8: automatic deadline fallback |
 | Rounding | — | R6: deterministic financial calculation rule — **do not solve in R2-B2** |
 
 Principle: **R2-B2 CLASSIFIES · R6/R8 IMPLEMENT**
