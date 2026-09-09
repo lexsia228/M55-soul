@@ -1,8 +1,8 @@
 # M55 Multi-Agent Parallel Operating Model SSOT
 
 Status: **ACTIVE / HUMAN-APPROVED OPERATING MODEL**  
-Version: **1.0.0**  
-Human approval date: **2026-09-08**
+Version: **1.1.1**  
+Human approval date: **2026-09-09**
 
 This file is the durable operating contract for running multiple AI agents, ChatGPT conversations, Cursor/Codex sessions, and Grok Bots in parallel without losing lane ownership, evidence provenance, or M55 Control Tower authority.
 
@@ -18,7 +18,7 @@ This operating model is subordinate to `AGENTS.md`, the Product Authority Pack, 
 
 ## A. Frozen operating principles
 
-`M55_MULTI_AGENT_METHOD_VERSION = 1.0.0`
+`M55_MULTI_AGENT_METHOD_VERSION = 1.1.1`
 
 `ONE_LANE_ONE_MUTATION_OWNER = TRUE`
 
@@ -482,3 +482,223 @@ Ordinary lane progress, branch changes, merged PRs, or new Bot instances do **no
 Only update this SSOT when the operating topology/rules themselves change.
 
 Dynamic branch/HEAD/worktree/PR facts belong in fresh observations, lane state, or decision records — not in timeless operating rules.
+
+---
+
+## O. Cross-device control / audit topology — Human-approved 2026-09-09
+
+This section freezes the **role separation**, not a permanent hardware requirement. The Human may later move a role to another device without changing the semantic model, provided the authority and handoff rules remain intact.
+
+### O1. Current approved operating topology
+
+Dated current topology:
+
+```text
+Human
+├─ Mac local plane
+│  ├─ Cursor = authorized implementation / mutation when a gate permits it
+│  ├─ registered Git worktrees = local candidate state
+│  └─ Codex desktop/local session = local exact-diff / evidence-heavy independent review where useful
+│
+├─ Windows control / remote-audit plane
+│  ├─ Control-Tower ChatGPT = cross-lane integration and adjudication
+│  ├─ additional bounded ChatGPT task(s) = lane-specific work only
+│  ├─ M55 Revenue Auditor / other Grok Bot = long-running read-only red-team
+│  └─ ordinary Codex task = independent remote PR/exact-diff review; Codex Replay only for supported imported historical-thread replay/comparison
+│
+└─ GitHub
+   └─ shared cross-device authority for pushed branch / PR / exact SHA / CI / durable evidence
+```
+
+`GITHUB_IS_CROSS_DEVICE_HANDOFF_AUTHORITY = TRUE`
+
+`LOCAL_MUTATION_PLANE_AND_REMOTE_AUDIT_PLANE_MUST_NOT_BE_CONFUSED = TRUE`
+
+`REMOTE_AUDIT_REQUIRES_PUSHED_SHA_OR_EXPLICIT_ARTIFACT = TRUE`
+
+`LOCAL_UNPUSHED_DIFF_IS_NOT_REMOTE_FACT = TRUE`
+
+The current Human practice is Mac for local mutation/Codex review and Windows for Control Tower/Grok. Codex Replay was evaluated on both platforms on 2026-09-09: Windows lacked required controller/runtime; Mac controller opened but only exposed imported historical-thread replay. This is a dated capability observation, not a timeless platform prohibition. The durable rule is the local-vs-remote authority boundary and ordinary Codex as the direct PR reviewer.
+
+### O2. Mac local plane
+
+The Mac local plane is currently the default place for:
+
+- Cursor implementation;
+- registered worktree mutation;
+- local test execution;
+- local Git facts;
+- local screenshots/artifacts;
+- Codex review that genuinely has access to the local candidate.
+
+A local reviewer may reason about an unpushed candidate only when it actually has that local worktree/artifact.
+
+Do not represent a Mac-local candidate as GitHub/remote truth before push.
+
+### O3. Windows control / remote-audit plane
+
+The Windows plane is currently the default place for:
+
+- Control-Tower ChatGPT;
+- parallel bounded ChatGPT tasks;
+- Grok Bot operations;
+- ordinary Codex remote review tasks when available;
+- Codex Replay only when a supported imported historical thread exists;
+- GitHub/PR/remote evidence review.
+
+Windows/cloud reviewers must not assume access to Mac filesystem/worktrees.
+
+For exact remote audit, pin:
+
+- repository;
+- PR number or branch;
+- exact HEAD SHA;
+- base SHA when material;
+- review contract/prompt;
+- mutation prohibition when reviewer is read-only.
+
+### O4. Ordinary Codex vs Codex Replay
+
+These are different tools and must not be conflated.
+
+**Ordinary Codex task**
+- is the primary direct independent reviewer for PR / exact-diff / local candidate review;
+- may inspect a local worktree only when that task genuinely has access to it;
+- for remote PR review, must freshly observe GitHub PR HEAD / current main and treat the local branch as context only;
+- does not implement when the review contract is read-only.
+
+**Codex Replay**
+- is a historical-thread replay/comparison controller;
+- observed Mac controller v1.0.128 exposes `Choose imported Claude threads` and does not provide a direct PR-review prompt submission surface when `Imported threads = 0`;
+- observed Windows tasks lacked the required controller tool / Python runtime;
+- therefore is **not** a required PR-review path and must not block M55 work;
+- may be used later when a supported imported historical thread exists and replay comparison is materially useful.
+
+`ORDINARY_CODEX_IS_PRIMARY_DIRECT_PR_REVIEWER = TRUE`
+
+`CODEX_REPLAY_DIRECT_PR_REVIEW = NOT_SUPPORTED_BY_OBSERVED_WORKFLOW`
+
+`CODEX_REPLAY_IS_OPTIONAL_COMPARATIVE_AUDIT_TOOL = TRUE`
+
+`CODEX_REPLAY_UNAVAILABLE_MUST_NOT_BLOCK_OWNING_GATE = TRUE`
+
+`CODEX_REPLAY_IS_NOT_FINANCIAL_RUNTIME = TRUE`
+
+### O5. Grok Bot current use
+
+Recent approved addition:
+
+- `M55 Revenue Auditor` Grok Bot on the Windows/control side;
+- long-running read-only repository mapping, adversarial audit, benchmark/legal/tax review, state-drift review, and post-push red-team;
+- controlled by exactly one ChatGPT/lane owner per task.
+
+Grok results remain supporting evidence until Control-Tower adjudication.
+
+`GROK_BOT_IS_READ_ONLY_BY_DEFAULT = TRUE`
+
+`GROK_BOT_IS_NOT_FINANCIAL_RUNTIME = TRUE`
+
+### O6. Capability discovery before manual workaround
+
+An AI session must not state that a useful external capability is unavailable merely because it was not used previously.
+
+When the task materially benefits from an external reviewer/integration and the current environment supports capability/plugin discovery:
+
+1. inspect currently available/connected capabilities;
+2. prefer an already connected appropriate tool;
+3. if unavailable, preserve a repo-local replay/review prompt;
+4. never claim a review ran unless actual output/evidence exists.
+
+`TOOL_CAPABILITY_DISCOVERY_BEFORE_UNAVAILABLE_CLAIM = REQUIRED_WHEN_SUPPORTED`
+
+`REVIEW_PROMPT_PERSISTENCE_REQUIRED_WHEN_REVIEW_CANNOT_RUN_INLINE = TRUE`
+
+### O7. Cross-device handoff packet
+
+For a pushed candidate, the minimum cross-device review packet is:
+
+```text
+REPOSITORY=
+PR=
+BRANCH=
+HEAD_SHA=
+BASE_SHA=
+SCOPE=
+REVIEW_CONTRACT=
+MUTATION_ALLOWED=NO|YES
+KNOWN_OPEN_ITEMS=
+EXPECTED_OUTPUT_TOKEN=
+```
+
+For an unpushed candidate, replace remote HEAD authority with explicit local evidence and state:
+
+`LOCAL_CANDIDATE_NOT_REMOTE_AUTHORITY`.
+
+---
+
+## P. Risk-weighted audit depth
+
+`AUDIT_DEPTH_IS_RISK_WEIGHTED = TRUE`
+
+`RUNNING_ALL_AGENTS_ON_EVERY_CHANGE = PROHIBITED_AS_DEFAULT`
+
+The goal is high assurance without wasting Human/AI time.
+
+### P1. LOW — docs/editorial / no semantic money or runtime change
+
+Default:
+- required CI/static guards;
+- Control-Tower or lane-owner review;
+- no mandatory Grok + Codex duplication unless the doc itself changes legal/tax/money authority.
+
+### P2. MEDIUM — user-visible/product behavior, non-money
+
+Default:
+- required CI/tests;
+- lane-required actual-browser/Human visual evidence when applicable;
+- at least one genuinely independent reviewer where the lane contract calls for it (Codex or Grok chosen by task fit).
+
+### P3. HIGH — money / tax / provider / security / ledger / idempotency / payout
+
+Default review stack before merge/activation:
+
+```text
+primary evidence / SSOT
++ implementation-owner validation
++ GitHub CI
++ Grok read-only adversarial review when materially useful
++ Codex independent exact-diff/state review
++ Control-Tower cross-review adjudication
++ Human approval where required
+```
+
+Examples:
+- commission formula;
+- rate locking;
+- refund/reversal;
+- tax withholding/remittance;
+- invoice/tax profile;
+- payout batching;
+- Stripe Connect transfer;
+- webhook idempotency/order;
+- payout destination/security;
+- append-only ledger;
+- reconciliation.
+
+No reviewer may silently substitute for deterministic tests or for Human approval required by the owning contract.
+
+### P4. Financial runtime boundary
+
+`AI_REVIEWERS_DO_NOT_HOLD_FINANCIAL_AUTHORITY = TRUE`
+
+`PRODUCTION_MONEY_EXECUTION_REMAINS_DETERMINISTIC_GATED_CODE = TRUE`
+
+Grok/Codex/ChatGPT may monitor, explain, investigate, classify, and recommend. They do not become the financial ledger, tax calculator of record, or direct unrestricted payout executor.
+
+Future automated operations should be exception-driven:
+
+- deterministic code owns calculation/state/idempotent actions;
+- AI helps with anomaly/compliance triage and explanation;
+- uncertain/high-risk cases fail closed or escalate;
+- Human handles bounded exceptions rather than routine per-payout approval.
+

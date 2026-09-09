@@ -1188,3 +1188,154 @@ Control-Tower adjudication:
 | F-07 architecture/composition URL divergence | `ACCEPT_FOR_IMPLEMENTATION` | align Core Six source URL sets |
 
 No finding is a `REAL_INVALIDATOR`. No provider selection, cash activation, roadmap reorder, or future-stage runtime authorization results from this adjudication.
+
+### 2026-09-09 — Creator Revenue commercial/legal/tax evidence-first firewall (Human-approved)
+
+**Status:** primary-source research + architecture freeze · docs/evidence only · no runtime/Stripe/DB/Clerk/env/Production mutation · `M55_EXECUTION_STATE.json` unchanged
+
+| Decision | Value |
+|---|---|
+| Evidence pack | `docs/evidence/M55_CREATOR_REVENUE_COMMERCIAL_LEGAL_TAX_EVIDENCE_2026-09-09.md` |
+| Governance | evidence → applicability → unresolved list → red-team/adjudication → Human → SSOT → implementation |
+| 50/40/30 meaning | gross commercial commission rate applied to `COMMISSIONABLE_REVENUE` |
+| Tax-net guarantee | **PROHIBITED** |
+| Creator final income tax | Creator filing responsibility; M55 separately satisfies any payer-side withholding duty that actually applies |
+| Ordinary web-affiliate source withholding | **OPEN** — NTA materials do not establish universal zero or universal inclusion as `外交員等` |
+| Unknown tax classification | fail-closed before live payout |
+| Invoice/consumption tax | Creator status/profile required; M55-only payout volume is not tax-status authority; policy effective-dated |
+| Invoice status vs rate | no silent retroactive commission-rate reduction |
+| Self-billing candidate | NTA-supported purchaser-created `仕入明細書` with Creator confirmation may be evaluated in R8 |
+| Tokushoho | price/payment/provision/cancellation/seller/final-confirmation display is Revenue Safety prerequisite |
+| Affiliate disclosure | clear M55 affiliate/advertising disclosure required for Creator promotional content |
+| Payout fee | remains NOT AUTHORIZED pending exact legal classification |
+| Cross-border | non-Japan tax residency requires separate tax readiness before payout |
+| Runtime | none authorized by this docs-only decision |
+| Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` |
+
+### 2026-09-09 — Benchmark independence + Creator acceptance architecture (Human-approved)
+
+**Status:** targeted IP/public-benchmark research + Creator trust mapping · docs/evidence only · no runtime/Stripe/DB/Clerk/env/Production mutation · `M55_EXECUTION_STATE.json` unchanged
+
+| Decision | Value |
+|---|---|
+| Benchmark use | public standard-pattern research is allowed; M55 independently authors implementation |
+| Copyright boundary | ideas/patterns are not copied as expression; no competitor code/copy/terms/dashboard text |
+| Patent boundary | business ideas alone are not the same as patent clearance; ICT business-related inventions can be patentable |
+| Design boundary | no pixel-level or distinctive registered-image/UI clone |
+| Trademark boundary | no competitor marks/logos/brand confusion |
+| Unfair-competition boundary | no trade-secret/non-public data use; no source-identification imitation |
+| Core Six | remain architecture references, not code/spec licensors |
+| M55 phrasing | `ADAPT_PUBLIC_STANDARD_PATTERN_TO_M55_CONTRACT`, not "copy competitor" |
+| Creator Program Truth | required before first affiliate link |
+| Creator earnings | clicks/conversions/base/rate/gross/Pending/Hold/Payable/adjustments/deductions/net/payout all explainable |
+| Dispute/support | required |
+| Visual UI | M55-original expression required |
+| High earner | success alone does not reduce rate or erase valid commission |
+| Provenance | benchmark -> M55 requirement -> rule -> original implementation -> evidence required |
+| Grok | dedicated read-only benchmark-independence/Creator-acceptance red-team authorized |
+| Executable authority | CURRENT/NEXT remains `REVENUE_SAFETY_E2E` |
+
+### 2026-09-09 — Control-Tower PR #187 third audit: payer compliance + Creator acceptance
+
+**Status:** independent Control-Tower exact-diff/primary-source red-team · docs/evidence correction only · no runtime/provider mutation
+
+| Finding | Classification | Action |
+|---|---|---|
+| CT-01 withholding can create separate M55 remittance deadline/operation | ACCEPT_FOR_IMPLEMENTATION | freeze classification-dependent remittance liability; runtime R8 |
+| CT-02 statutory payment report may be required for certain classified remuneration | ACCEPT_FOR_IMPLEMENTATION | freeze classification-dependent information-return requirement |
+| CT-03 My Number handling was not explicitly bounded | ACCEPT_FOR_IMPLEMENTATION | prohibit speculative collection; require separate restricted tax-ID vault only if legally required |
+| CT-04 Program Truth lacked durable acknowledgement/version evidence | ACCEPT_FOR_IMPLEMENTATION | require acceptance evidence before first affiliate link |
+| CT-05 transparency could be misread to permit purchaser PII exposure | ACCEPT_FOR_IMPLEMENTATION | privacy-safe transaction references; customer PII prohibited by default |
+
+Primary fresh evidence:
+- NTA No.2804 — withholding/remittance rule for `外交員等`
+- NTA No.7431 — payment-report filing scope and My Number requirements
+
+No finding classifies ordinary M55 Affiliate v1 as `外交員等`. Source-withholding classification remains OPEN.
+
+No `REAL_INVALIDATOR`. CURRENT/NEXT remains `REVENUE_SAFETY_E2E`.
+
+### 2026-09-09 — Codex Replay capability observation / direct-review correction
+
+**Status:** Human-observed Mac/Windows capability verification · docs-only correction · no product/runtime/provider mutation
+
+Observed:
+- Windows Codex Replay plugin showed installed/enabled but task execution repeatedly lacked required controller tool and/or Python runtime.
+- Mac Codex Replay controller successfully opened at localhost.
+- Mac controller v1.0.128 presented `Choose imported Claude threads`, `Imported threads (0)`, and sample historical data.
+- With zero imported threads, the controller exposed no direct PR-review prompt submission path.
+- No PR #187 findings were produced by Replay; this is **NOT** a GREEN review.
+
+Decision:
+- `ORDINARY_CODEX_IS_PRIMARY_DIRECT_PR_REVIEWER = TRUE`
+- `CODEX_REPLAY_DIRECT_PR_REVIEW = NOT_SUPPORTED_BY_OBSERVED_WORKFLOW`
+- `CODEX_REPLAY_IS_OPTIONAL_COMPARATIVE_AUDIT_TOOL = TRUE`
+- `CODEX_REPLAY_UNAVAILABLE_MUST_NOT_BLOCK_OWNING_GATE = TRUE`
+- PR #187 independent Codex review must run in an ordinary Codex task using the repo-stored exact-diff review contract.
+- Replay may later be used only when a supported imported historical thread exists and comparison adds value.
+
+No roadmap/execution-state change.
+
+### 2026-09-09 — Codex PR #187 independent review adjudication
+
+**Pinned reviewed HEAD:** `822ecf6b9dbe09c854a05b4e54a6be4e5e111513`
+
+**Codex classification:** `GREEN_WITH_NONBLOCKING_FINDINGS`
+
+- P0: 0
+- P1: 0
+- P2: 1
+- money invariant verdict: GREEN
+- privacy/My Number: GREEN
+- Creator trust: GREEN
+- benchmark independence: GREEN
+- clean-state proof: GREEN
+
+Control-Tower disposition:
+
+| Finding | Adjudication | Action |
+|---|---|---|
+| P2-01 late discovery of required withholding after payout | `ACCEPT_FOR_IMPLEMENTATION` | freeze separate tax-correction event + immutable original commission/payout + no automatic clawback/offset without explicit legal/contract authority; runtime R8 |
+
+No `REAL_INVALIDATOR`.
+
+This docs closure does not authorize payout runtime, tax recovery, provider mutation, or cash activation.
+
+### 2026-09-09 — PR #187 final multi-agent adjudication
+
+**Status:** FINAL MULTI-AGENT REVIEW COMPLETE · evidence-only closure · no runtime/provider/DB/env mutation · `M55_EXECUTION_STATE.json` unchanged
+
+Pinned final reviewed authority:
+- PR #187 substantive audited HEAD: `c5bbc4cd32dc25d332dceb3592f6fe62084f932a`
+- main: `3af92982f1e08cf8531978ff4cfeca1e7bf2a2d8`
+
+Independent review results:
+
+| Reviewer | Result | Material outcome |
+|---|---|---|
+| Codex exact-diff review | `GREEN_WITH_NONBLOCKING_FINDINGS` | P0=0 · P1=0 · one P2 late-withholding correction |
+| Control Tower | P2 accepted and patched | separate tax-correction event · immutable original commission/payout · no automatic clawback/offset without explicit authority |
+| Codex closure review | `GREEN_CLOSURE` | P2-01 closed · no new P0/P1/P2 |
+| Grok dual final red-team | `GREEN_WITH_NONBLOCKING_FINDINGS` | no YELLOW/RED · `REAL INVALIDATOR = NONE` |
+| GitHub CI / Vercel | GREEN at substantive audited HEAD | required guards + Vercel succeeded |
+
+Grok low/info adjudication:
+
+| Finding | Control-Tower disposition |
+|---|---|
+| MF-01 Codex reviewed older SHA before closure | `CLOSED_BY_CODEX_CLOSURE_REVIEW` |
+| MF-02 remittance day-10 not tokenized while withholding classification OPEN | `DEFER_TO_OWNING_GATE` — preserve dated NTA evidence; do not freeze a mutable statutory date as timeless business constant |
+| MF-03 A8 “no withholding” reader-risk | `REJECT_FALSE_POSITIVE` — benchmark legal safe-harbor is already prohibited and M55 withholding classification remains explicitly OPEN |
+| MF-IP-01 legacy “copy patterns” shorthand watchpoint | `REJECT_FALSE_POSITIVE` for current authority — explicit no-copy / independent-authorship / multi-source synthesis contracts control implementation |
+| MF-IP-02 targeted IP check prospective | `DEFER_TO_OWNING_GATE` — execute only when a distinctive vendor-like technical/UI surface is actually proposed |
+
+Final Control-Tower classification:
+
+`GREEN_MULTI_AGENT_REVIEW_COMPLETE`
+
+`REAL_INVALIDATOR = NONE`
+
+No additional full Grok/Codex rerun is required merely to record these audit artifacts, because the final commit is evidence/adjudication-only and does not alter financial/runtime semantics.
+
+Merge remains a separate Human-authorized action.
+

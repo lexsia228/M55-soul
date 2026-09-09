@@ -1133,3 +1133,85 @@ Normative detailed authority: `docs/ssot/M55_CREATOR_AFFILIATE_STRIPE_TAX_LEGAL_
 - If the Freelance Act applies to a payment, bank-transfer-fee deduction from remuneration is prohibited under current JFTC guidance.
 - No universal withholding rate may be hard-coded; tax treatment must be classified by recipient/contract facts.
 - High Creator volume alone must not reduce an already-earned commission rate or erase valid commission; scale may increase KYC, tax verification, fraud review, reconciliation, and observability.
+
+---
+
+## BB. Tax readiness / gross-to-net payout transparency (Human-approved 2026-09-09)
+
+Detailed evidence authority: `docs/evidence/M55_CREATOR_REVENUE_COMMERCIAL_LEGAL_TAX_EVIDENCE_2026-09-09.md`.
+
+Tax readiness is orthogonal to commission validity:
+
+`TAX_PROFILE_UNVERIFIED` · `TAX_CLASSIFICATION_PENDING` · `TAX_READY` · `TAX_REVIEW_REQUIRED`
+
+`COMMISSION_PAYABLE + TAX_NOT_READY` is a valid state combination.
+
+No live payout instruction may be created unless the required tax treatment for that payment is sufficiently classified.
+
+`UNKNOWN_TAX_CLASSIFICATION_MUST_FAIL_CLOSED_BEFORE_LIVE_PAYOUT = TRUE`
+
+Creator-facing statement must distinguish:
+
+- `COMMISSIONABLE_REVENUE`;
+- applicable commission rate;
+- gross Creator commission;
+- append-only adjustments;
+- statutory withholding, only when actually required;
+- any separately lawful/approved fee;
+- net payout;
+- tax/invoice profile status relevant to payout readiness;
+- payout batch/provider status.
+
+`NO_SILENT_CREATOR_DEDUCTION = TRUE`
+
+`NET_OF_TAX_COMMISSION_GUARANTEE = PROHIBITED`
+
+R8 may implement purchaser-created/self-billing monthly statements when NTA requirements and Creator confirmation mechanics are satisfied.
+
+## BC. Payer-tax liability separation / Creator acknowledgement (Control-Tower third audit 2026-09-09)
+
+When withholding is legally applicable:
+
+- withheld tax is not a commission reversal;
+- withheld tax creates a separately reconcilable M55 tax liability;
+- remittance status must be observable to accounting/ops;
+- statutory-report obligations are classification dependent;
+- My Number collection is prohibited until the exact requirement is confirmed.
+
+`WITHHOLDING_REMITTANCE_STATUS_MUST_BE_ACCOUNTED_IF_APPLICABLE = TRUE`
+
+`STATUTORY_WITHHOLDING_IS_NOT_COMMISSION_ADJUSTMENT = TRUE`
+
+Program activation also requires durable evidence that the Creator accepted the governing financial-policy versions.
+
+`CREATOR_PROGRAM_TRUTH_ACK_REQUIRED_BEFORE_FIRST_AFFILIATE_LINK = TRUE`
+
+Creator Console/export must be privacy-safe and must not reveal customer PII by default.
+
+## BD. Late-discovered withholding correction contract (Codex P2 closure 2026-09-09)
+
+`LATE_DISCOVERED_WITHHOLDING_CORRECTION_REQUIRES_SEPARATE_TAX_EVENT = TRUE`
+
+`ORIGINAL_COMMISSION_AND_PAYOUT_HISTORY_REMAINS_IMMUTABLE = TRUE`
+
+`AUTOMATIC_CREATOR_CLAWBACK_FOR_LATE_WITHHOLDING = PROHIBITED_WITHOUT_EXPLICIT_LEGAL_CONTRACT_AUTHORITY`
+
+`AUTOMATIC_FUTURE_COMMISSION_OFFSET_FOR_LATE_WITHHOLDING = PROHIBITED_WITHOUT_EXPLICIT_LEGAL_CONTRACT_AUTHORITY`
+
+`STATUTORY_REPORT_CORRECTION_STATUS_MUST_BE_OBSERVABLE_IF_APPLICABLE = TRUE`
+
+If a past payout is later determined to have required payer-side withholding, M55 must not rewrite the original commission, payout, refund, or adjustment history.
+
+R8 must model the correction as a separate tax/accounting correction linked to:
+- affected Creator;
+- affected payout period(s);
+- original payout event(s);
+- corrected tax classification/policy version;
+- M55 tax liability/remittance correction;
+- statutory information-return correction status when applicable.
+
+Any recovery from the Creator or offset against future commission requires separate explicit legal/contract authority. This SSOT does not itself authorize such recovery.
+
+`PAST_PAYOUT_POSTED_DOES_NOT_CLOSE_LATE_TAX_REMITTANCE_LIABILITY = TRUE`
+
+Implementation owner: R8 `PAYOUT_AND_SETTLEMENT`, after source-withholding classification is closed.

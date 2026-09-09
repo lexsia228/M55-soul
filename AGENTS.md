@@ -63,6 +63,10 @@ If no invalidating dependency changed → **`RERUN_PROHIBITED`**. A new chat/ses
 
 **Completed development-gate replay:** do not replay gates listed as completed in `M55_EXECUTION_STATE.json` or CLOSED / CLOSED GREEN / do-not-replay narrative evidence. A new chat/session is never invalidation.
 
+**Cross-device / multi-agent operating rule:** read `docs/ssot/M55_MULTI_AGENT_PARALLEL_OPERATING_MODEL_SSOT.md` before coordinating Mac/Windows, Cursor, Codex, Codex Replay, Grok Bot, or multiple ChatGPT lanes. Current approved topology uses GitHub as the cross-device handoff authority: local-only Mac work is not visible to Windows/cloud auditors until pushed or explicitly supplied as an artifact. Independent remote review must pin the exact PR/branch SHA. **Ordinary Codex is the direct PR/exact-diff reviewer; Codex Replay is not a direct PR-review surface and is reserved for supported imported historical-thread replay/comparison.** Do not declare Codex/Grok/plugin capability unavailable before checking the capabilities actually available in the current environment.
+
+**Risk-weighted audit depth:** do not run every agent on every change. Ordinary docs/editorial work may use normal CI + Control-Tower review; user-visible/product changes need the lane-required independent quality review; money/tax/provider/security/ledger/idempotency changes require the full independent audit stack defined by the multi-agent SSOT.
+
 Cursor bootstrap: `.cursor/rules/m55-control-tower.mdc` (always apply). **Do not use legacy `.cursorrules` as authority.**
 
 ## Read order

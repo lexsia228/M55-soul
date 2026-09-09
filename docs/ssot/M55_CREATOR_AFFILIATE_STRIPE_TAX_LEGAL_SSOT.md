@@ -12,6 +12,8 @@ Compliance/payout state authority: `docs/ssot/M55_CREATOR_COMPLIANCE_AND_PAYOUT_
 
 Stripe primary evidence: `docs/evidence/M55_R2_B2_STRIPE_SUPPORT_EVIDENCE_2026-09-08.md`
 
+Commercial/legal/tax primary evidence pack: `docs/evidence/M55_CREATOR_REVENUE_COMMERCIAL_LEGAL_TAX_EVIDENCE_2026-09-09.md`
+
 ---
 
 ## A. Human-approved v1 business model
@@ -553,3 +555,230 @@ The same rule applies to every competitor: **precedent informs design; regulator
 
 This matrix is the current no-overclaim position until direct M55-specific regulator/tax evidence supersedes it.
 
+---
+
+## P. Commercial / legal / tax evidence freeze — 2026-09-09
+
+### P-1. Commission contract firewall
+
+`COMMISSION_RATE_IS_GROSS_COMMERCIAL_RATE = TRUE`
+
+Define:
+
+```
+GROSS_CREATOR_COMMISSION
+  = COMMISSIONABLE_REVENUE
+  × applicable frozen Creator commission rate
+```
+
+This is the Creator's commercial commission before any payer-side statutory withholding that is actually required.
+
+`NET_OF_TAX_COMMISSION_GUARANTEE = PROHIBITED`
+
+NTA guidance shows that when a source-withholding payment is contracted as a **net take-home amount**, the payer must gross up the payment amount to compute withholding. M55 therefore must not contract 50% / 40% / 30% as an after-tax/net-of-withholding guarantee.
+
+Candidate payout equation:
+
+```
+NET_PAYOUT
+  = GROSS_CREATOR_COMMISSION
+  + append-only lawful adjustments
+  - statutory withholding actually required
+  - any separately lawful and Human-approved payout/service fee
+```
+
+The final fee term remains unresolved and cannot be activated by this equation alone.
+
+`STATUTORY_WITHHOLDING_DOES_NOT_REDEFINE_COMMISSION_RATE = TRUE`
+
+`NO_SILENT_CREATOR_DEDUCTION = TRUE`
+
+### P-2. Creator income tax vs M55 payer duties
+
+NTA's current filing guidance expressly lists affiliate income among income generally requiring filing as business income or miscellaneous income (business), depending on facts.
+
+That is the Creator's own tax filing layer.
+
+Separately, M55 has a payer-side withholding obligation **only if** the exact payment is legally within a source-withholding category. Current NTA materials list specific categories including `外交員等`, but the official research did not locate a categorical rule that ordinary web affiliate commission is always inside or always outside that category.
+
+Therefore:
+
+`AFFILIATE_SOURCE_WITHHOLDING_CLASSIFICATION = OPEN`
+
+`NO_WITHHOLDING_ASSUMPTION = PROHIBITED`
+
+`UNIVERSAL_WITHHOLDING_RATE = PROHIBITED`
+
+`UNKNOWN_TAX_CLASSIFICATION_MUST_FAIL_CLOSED_BEFORE_LIVE_PAYOUT = TRUE`
+
+If a payment is classified as `外交員等`, current NTA guidance uses a category-specific calculation with a monthly ¥120,000 deduction rule rather than a universal flat 10.21% on the whole amount. Do not generalize that formula to M55 until the exact classification closes.
+
+### P-3. Tax readiness as an orthogonal control
+
+Minimum tax-readiness values for implementation planning:
+
+- `TAX_PROFILE_UNVERIFIED`
+- `TAX_CLASSIFICATION_PENDING`
+- `TAX_READY`
+- `TAX_REVIEW_REQUIRED`
+
+Tax readiness does not change whether a valid commission is economically earned.
+
+A valid `COMMISSION_PAYABLE` may coexist with tax payout not-ready status. No live transfer/payout may proceed while tax treatment required for that payment is unknown.
+
+Non-Japan tax residency must enter `TAX_REVIEW_REQUIRED` before payout until the applicable domestic-source/treaty classification is implemented.
+
+### P-4. Consumption tax / invoice firewall
+
+Creator consumption-tax status must not be inferred from M55 payouts alone.
+
+Current NTA rules include:
+
+- base-period taxable-sales tests around ¥10 million;
+- specified-period rules;
+- invoice-registered businesses being taxable even when the base-period threshold is not exceeded.
+
+For M55:
+
+`CREATOR_INVOICE_STATUS_REQUIRED_FOR_ACCOUNTING = TRUE`
+
+`M55_ONLY_PAYOUT_VOLUME_IS_NOT_TAX_STATUS_AUTHORITY = TRUE`
+
+`NO_RETROACTIVE_COMMISSION_RATE_REDUCTION_FOR_INVOICE_STATUS = TRUE`
+
+Invoice registration may affect M55's own input-tax-credit economics; it is not a reason to silently rewrite a commission that was already earned under the governing rate schedule.
+
+Current 2026 reform evidence for purchases from non-invoice issuers is effective-dated: 70% from 2026-10 for two years, 50% from 2028-10 for two years, 30% from 2030-10 for one year, then 0% from 2031-10, subject to current statutory conditions/limits. Do not hard-code these as timeless business constants.
+
+### P-5. Self-billing / payout statement candidate
+
+NTA permits a purchaser-created `仕入明細書` / similar statement to count among invoice-preservation documents when required fields are present and the counterparty confirms the contents.
+
+Accepted confirmation examples include electronic confirmation and, under an agreed framework, deemed confirmation after a defined period with no correction notice.
+
+Therefore R8 may evaluate:
+
+`CREATOR_SELF_BILLING_STATEMENT = PREFERRED_CANDIDATE_NOT_YET_IMPLEMENTED`
+
+Target: M55 generates a monthly Creator payout/accounting statement from the immutable commission ledger, tax profile, invoice registration status, and payout batch; the Creator can confirm/correct it electronically.
+
+This is an operational candidate, not a claim that every Creator/payment automatically creates an input-tax-credit entitlement.
+
+### P-6. Customer sales / Specified Commercial Transactions Act safety
+
+M55 customer sale safety and Creator payout safety are separate layers.
+
+For M55 online paid reports, current CAA guidance requires communication-sale disclosures including applicable items such as:
+
+- selling price / service consideration; if M55 collects consumption tax, displayed price means tax-inclusive price;
+- other customer-borne charges if any;
+- payment timing and method;
+- product delivery / service provision timing;
+- application period or special sales conditions when applicable;
+- cancellation / withdrawal / refund terms;
+- seller/business identity, address, phone, and responsible representative/operator information as required.
+
+Internet final-confirmation screens must allow the customer to clearly review the required transaction information, and the customer must be able to confirm/correct the application contents.
+
+`REVENUE_SAFETY_TOKUSHOHO_DISPLAY_REQUIRED = TRUE`
+
+`FINAL_CONFIRMATION_SCREEN_COMMERCIAL_TERMS_REQUIRED = TRUE`
+
+`REFUND_CANCELLATION_TERMS_MUST_BE_EXPLICIT = TRUE`
+
+Do not market mail-order purchases as having a blanket statutory cooling-off right. Do not use the absence of a general mail-order cooling-off rule to override any mandatory law or M55's published refund terms.
+
+### P-7. Affiliate / influencer advertising disclosure
+
+CAA stealth-marketing guidance identifies the advertiser as the regulated party when it is involved in determining a display, while influencers/affiliates acting for the advertiser are generally not themselves the regulated advertiser.
+
+CAA also states that affiliate disclosures must be clear from the overall display; a small or inconspicuous notice can be insufficient, and video disclosure only at the beginning can be insufficient depending on the presentation.
+
+M55 policy:
+
+`M55_AFFILIATE_PROMOTION_DISCLOSURE_REQUIRED = TRUE`
+
+Whenever a Creator chooses to publish promotional content containing an M55 affiliate relationship/link, M55 requires a clear, conspicuous advertising/affiliate disclosure appropriate to the medium.
+
+This is a compliance condition, not a posting quota or commissioned deliverable.
+
+### P-8. Payout fee guard remains unchanged
+
+Stripe currently bills the M55 platform under the planned platform-managed configuration. Stripe's public pricing also states that platforms can charge users fees in supported configurations.
+
+That technical ability is **not** sufficient legal authority to deduct a fee from Creator commission.
+
+If the Freelance Act applies, current JFTC Q&A states that deducting bank-transfer fees from remuneration is prohibited regardless of agreement.
+
+`CREATOR_FEE_DEDUCTION_IMPLEMENTATION = NOT_AUTHORIZED_PENDING_LEGAL_CLASSIFICATION`
+
+### P-9. Evidence maintenance
+
+Money/tax/commercial implementation must retain:
+
+- source/evidence date;
+- policy effective date;
+- `rate_schedule_version`;
+- `calculation_version`;
+- `withholding_policy_version`;
+- `consumption_tax_policy_version`;
+- Creator entity/residency/invoice snapshot used;
+- gross commission;
+- adjustments;
+- withholding amount and classification if any;
+- lawful fee if any;
+- net payout;
+- provider transfer/payout IDs;
+- accounting/self-billing statement reference.
+
+`MONEY_DECISION_SOURCE_TRACEABILITY = REQUIRED`
+
+## Q. Payer tax-compliance operational firewall (Control-Tower third audit 2026-09-09)
+
+`WITHHOLDING_REMITTANCE_OBLIGATION = CLASSIFICATION_DEPENDENT`
+
+`PAYER_INFORMATION_RETURN_OBLIGATION = CLASSIFICATION_DEPENDENT`
+
+`MY_NUMBER_COLLECTION_BEFORE_REQUIREMENT_CONFIRMED = PROHIBITED`
+
+`MY_NUMBER_IN_CREATOR_VISIBLE_STATEMENT = PROHIBITED`
+
+`STATUTORY_WITHHOLDING_IS_NOT_COMMISSION_ADJUSTMENT = TRUE`
+
+If final tax classification creates payer-side withholding, M55 must implement the corresponding remittance calendar/accounting and any statutory payment-report workflow before that payment path becomes live.
+
+If the resulting statutory-report workflow requires My Number:
+
+`SEPARATE_RESTRICTED_TAX_ID_VAULT_REQUIRED = TRUE`
+
+No ordinary Creator profile, analytics property, Stripe metadata, application log, or Creator-visible payout statement may become a My Number storage channel.
+
+These controls are conditional architecture only. They do not classify ordinary M55 Affiliate commission as `外交員等`.
+
+## R. Late-classification tax correction firewall (Codex independent review 2026-09-09)
+
+Codex independent review of PR #187 identified one nonblocking P2: late discovery that a past payout required withholding was not explicitly separated from ordinary commission correction.
+
+Freeze:
+
+`LATE_DISCOVERED_WITHHOLDING_CORRECTION_REQUIRES_SEPARATE_TAX_EVENT = TRUE`
+
+`ORIGINAL_COMMISSION_AND_PAYOUT_HISTORY_REMAINS_IMMUTABLE = TRUE`
+
+`AUTOMATIC_CREATOR_CLAWBACK_FOR_LATE_WITHHOLDING = PROHIBITED_WITHOUT_EXPLICIT_LEGAL_CONTRACT_AUTHORITY`
+
+`AUTOMATIC_FUTURE_COMMISSION_OFFSET_FOR_LATE_WITHHOLDING = PROHIBITED_WITHOUT_EXPLICIT_LEGAL_CONTRACT_AUTHORITY`
+
+`PAST_PAYOUT_POSTED_DOES_NOT_CLOSE_LATE_TAX_REMITTANCE_LIABILITY = TRUE`
+
+`STATUTORY_REPORT_CORRECTION_STATUS_MUST_BE_OBSERVABLE_IF_APPLICABLE = TRUE`
+
+This contract is deliberately conservative:
+
+- it preserves the commercial commission and original payout history;
+- it treats payer tax/remittance correction as a distinct M55 liability/workflow;
+- it does not assume M55 has a legal right to recover tax from the Creator;
+- it does not assume M55 lacks such a right in every future fact pattern;
+- the exact recovery treatment, if any, must be supported by the then-applicable law/contract and explicitly Human-approved before runtime.
+
+Owning implementation gate: R8 `PAYOUT_AND_SETTLEMENT`.
