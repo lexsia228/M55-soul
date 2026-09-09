@@ -5,6 +5,7 @@ import { describe, it } from 'node:test';
 import {
   publicShareArtworkPathFromStemLane,
   resolvePublicShareArtworkFromToken,
+  resolvePublicShareArtworkPathsFromToken,
 } from './resolvePublicShareArtworkV1';
 import { encodeShareToken } from '../freeResult/privacySafeShareCardV1';
 import { encodePublicShareToken } from './publicShareTokenV1';
@@ -56,6 +57,14 @@ describe('resolvePublicShareArtworkV1', () => {
       interactionId: 'tempo_mismatch',
     });
     assert.equal(resolvePublicShareArtworkFromToken(token), null);
+  });
+
+  it('maps OG fixture tokens used in narrative share proof to artwork', () => {
+    for (const token of ['n1pa9tspijasknbt', 'n1pb9tspijasknbt', 'n1pc9tspijasknbt']) {
+      const paths = resolvePublicShareArtworkPathsFromToken(token);
+      assert.equal(paths.length, 1);
+      assert.match(paths[0]!, /^\/ten-views\//);
+    }
   });
 
   it('public /r panel uses substantial artwork and stays privacy-safe', () => {

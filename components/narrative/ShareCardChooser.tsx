@@ -82,18 +82,20 @@ export default function ShareCardChooser({ input }: { input: FreeFiveViewInput }
       <p className={styles.chooserLead}>
         見せたい自分を一枚だけ選んでください。生年月日や回答そのものは含まれません。
       </p>
-      <div className={styles.optionGrid} role="list">
+      <div className={styles.optionGrid} role="group" aria-label="どの自分を見せる？">
         {VARIANTS.map((variant) => {
           const candidate = narrative.shareCandidates.find((item) => item.variant === variant);
           if (!candidate || !specs[variant]) return null;
           const isRecommended = variant === recommended;
+          const isSelected = selected === variant;
           return (
             <button
               key={variant}
               type="button"
               className={styles.option}
-              data-selected={selected === variant ? 'true' : 'false'}
+              data-selected={isSelected ? 'true' : 'false'}
               data-recommended={isRecommended ? 'true' : 'false'}
+              aria-pressed={isSelected}
               data-testid={`m55-share-card-${variant}`}
               data-variant={variant}
               onClick={() => {
@@ -113,6 +115,14 @@ export default function ShareCardChooser({ input }: { input: FreeFiveViewInput }
                 </span>
               ) : null}
               <span className={styles.optionTitle}>{candidate.labelJa}</span>
+              {isSelected ? (
+                <span
+                  className={styles.optionSelectedBadge}
+                  data-testid="m55-share-card-selected-marker"
+                >
+                  ✓ 選択中
+                </span>
+              ) : null}
               {isRecommended ? (
                 <span className={styles.optionHint} data-testid="m55-share-card-recommended">
                   {variant === 'hidden_spec' ? 'いちばん意外な結果' : 'おすすめ'}

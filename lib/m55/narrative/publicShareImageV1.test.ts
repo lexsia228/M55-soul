@@ -19,8 +19,11 @@ import { M55_ASSET_ROUTE_CONSUMPTION } from '../commercialUx/assetLedger/assetRo
 import {
   buildPublicShareImageExportModel,
   buildUserShareImagePath,
+  exportArtBandHeight,
   parseShareExportAspectRatio,
+  resolveExportArtUrls,
   resolveShareSubsystemFromVariant,
+  shareExportArtOrigin,
   shareExportDimensions,
 } from './publicShareImageV1';
 import { resolvePublicShareArtworkPathsFromToken } from './resolvePublicShareArtworkV1';
@@ -295,6 +298,72 @@ describe('Pair aspect presentation authority', () => {
     const renderer = readFileSync(join(ROOT, 'lib/m55/narrative/publicShareImageV1.tsx'), 'utf8');
     assert.match(preview, /buildPairSharePresentationV1/);
     assert.match(renderer, /buildPairSharePresentationV1/);
+  });
+});
+
+describe('export art band height', () => {
+  it('keeps poster variants on legacy ratios', () => {
+    assert.equal(exportArtBandHeight('4:5', 1350, 'hidden_spec'), Math.round(1350 * 0.36));
+    assert.equal(exportArtBandHeight('9:16', 1920, 'hidden_spec'), Math.round(1920 * 0.4));
+    assert.equal(exportArtBandHeight('1:1', 1080, 'premium_takeaway'), Math.round(1080 * 0.34));
+  });
+
+  it('uses editorial art bands sized for manual and mirror exports', () => {
+    assert.equal(exportArtBandHeight('4:5', 1350, 'manual'), Math.round(1350 * 0.34));
+    assert.equal(exportArtBandHeight('1:1', 1080, 'manual'), Math.round(1080 * 0.34));
+    assert.equal(exportArtBandHeight('9:16', 1920, 'manual'), Math.round(1920 * 0.36));
+    assert.equal(exportArtBandHeight('4:5', 1350, 'seen_vs_actual'), Math.round(1350 * 0.28));
+    assert.equal(exportArtBandHeight('1:1', 1080, 'seen_vs_actual'), Math.round(1080 * 0.22));
+    assert.ok(
+      exportArtBandHeight('4:5', 1350, 'seen_vs_actual') <
+        exportArtBandHeight('4:5', 1350, 'hidden_spec'),
+    );
+    assert.ok(
+      exportArtBandHeight('4:5', 1350, 'manual') >
+        exportArtBandHeight('4:5', 1350, 'seen_vs_actual'),
+    );
+    assert.ok(
+      exportArtBandHeight('4:5', 1350, 'manual') <
+        exportArtBandHeight('4:5', 1350, 'hidden_spec'),
+    );
+  });
+
+  it('export renderer keeps mirror labels and top-weighted self layout', () => {
+    const renderer = readFileSync(join(ROOT, 'lib/m55/narrative/publicShareImageV1.tsx'), 'utf8');
+    assert.match(renderer, /外から見えやすい動き/);
+    assert.match(renderer, /自分に出やすい傾向/);
+    assert.match(renderer, /exportArtBandHeight/);
+    assert.match(renderer, /isSelfEditorialVariant/);
+    assert.match(renderer, /resolveExportArtUrls/);
+    assert.match(renderer, /display\.cueJa/);
+  });
+
+  it('resolves OG fixture tokens to local export art during clean capture', () => {
+    const spec = personalSpec('seen_vs_actual');
+    const prior = process.env.M55_E2E_CLEAN_CAPTURE;
+    process.env.M55_E2E_CLEAN_CAPTURE = '1';
+    process.env.PORT = '3000';
+    try {
+      assert.equal(shareExportArtOrigin(), 'http://127.0.0.1:3000');
+      const urls = resolveExportArtUrls(spec, null);
+      assert.equal(urls.length, 1);
+      assert.match(urls[0]!, /^http:\/\/127\.0\.0\.1:3000\/ten-views\//);
+    } finally {
+      if (prior === undefined) delete process.env.M55_E2E_CLEAN_CAPTURE;
+      else process.env.M55_E2E_CLEAN_CAPTURE = prior;
+      delete process.env.PORT;
+    }
+  });
+});
+
+describe('SELF share chooser selection contract', () => {
+  it('exposes aria-pressed and a visible selected marker separate from recommendation', () => {
+    const chooser = readFileSync(join(ROOT, 'components/narrative/ShareCardChooser.tsx'), 'utf8');
+    assert.match(chooser, /aria-pressed=\{isSelected\}/);
+    assert.match(chooser, /data-testid="m55-share-card-selected-marker"/);
+    assert.match(chooser, /✓ 選択中/);
+    assert.match(chooser, /data-testid="m55-share-card-recommended"/);
+    assert.doesNotMatch(chooser, /おすすめ.*選択中|選択中.*おすすめ/);
   });
 });
 
