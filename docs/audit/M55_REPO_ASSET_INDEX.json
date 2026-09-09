@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-09-08T23:22:47.019238+00:00",
-  "count": 710,
+  "generated_at_utc": "2026-09-09T23:13:33.419667+00:00",
+  "count": 712,
   "records": [
     {
       "path": "docs/ssot/CHECKPOINT_2026-03-02.md",
@@ -85,7 +85,7 @@
     {
       "path": "docs/ssot/M55_CONTROL_TOWER_OPERATIONS_MAP.md",
       "category": "ssot",
-      "bytes": 5138
+      "bytes": 6577
     },
     {
       "path": "docs/ssot/M55_COPY_AND_CLAIMS.md",
@@ -93,14 +93,24 @@
       "bytes": 2471
     },
     {
+      "path": "docs/ssot/M55_CREATOR_AFFILIATE_BENCHMARK_TARGET_ARCHITECTURE_SSOT.md",
+      "category": "ssot",
+      "bytes": 30879
+    },
+    {
+      "path": "docs/ssot/M55_CREATOR_AFFILIATE_STRIPE_TAX_LEGAL_SSOT.md",
+      "category": "ssot",
+      "bytes": 35272
+    },
+    {
       "path": "docs/ssot/M55_CREATOR_COMPLIANCE_AND_PAYOUT_AUTOMATION_SSOT.md",
       "category": "ssot",
-      "bytes": 44236
+      "bytes": 50136
     },
     {
       "path": "docs/ssot/M55_CREATOR_REVENUE_E2C2E_SSOT.md",
       "category": "ssot",
-      "bytes": 41788
+      "bytes": 45734
     },
     {
       "path": "docs/ssot/M55_CURRENT_STATE.md",
@@ -115,7 +125,7 @@
     {
       "path": "docs/ssot/M55_DECISION_LOG.md",
       "category": "ssot",
-      "bytes": 79215
+      "bytes": 100097
     },
     {
       "path": "docs/ssot/M55_DEPRECATION_MAP_20260330.md",
@@ -290,7 +300,7 @@
     {
       "path": "docs/ssot/M55_MULTI_AGENT_PARALLEL_OPERATING_MODEL_SSOT.md",
       "category": "ssot",
-      "bytes": 14073
+      "bytes": 22076
     },
     {
       "path": "docs/ssot/M55_PAID_DTR_PRODUCT_COPY_MASTER_v1.md",
@@ -3070,7 +3080,7 @@
     {
       "path": "docs/ssot/M55_ROADMAP.md",
       "category": "ssot",
-      "bytes": 41133
+      "bytes": 45831
     },
     {
       "path": "docs/ssot/M55_SAFARI_MCP_AI_BROWSER_QUALITY_SSOT.md",
@@ -3185,7 +3195,7 @@
     {
       "path": "docs/ssot/README.md",
       "category": "ssot",
-      "bytes": 3949
+      "bytes": 4520
     },
     {
       "path": "docs/ssot/SOURCES_USED__PROJECT_B_v8.md",
@@ -3370,12 +3380,12 @@
     {
       "path": "docs/audit/M55_REPO_ASSET_INDEX.json",
       "category": "audit",
-      "bytes": 111876
+      "bytes": 112012
     },
     {
       "path": "docs/audit/M55_REPO_ASSET_INDEX.md",
       "category": "audit",
-      "bytes": 75001
+      "bytes": 75085
     },
     {
       "path": "docs/audit/M55_STEP1_STEP2_CONSTITUTION_AND_ENTITY_AUDIT_2026_03_15.md",
