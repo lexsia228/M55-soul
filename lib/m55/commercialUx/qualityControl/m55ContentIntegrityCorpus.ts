@@ -33,6 +33,10 @@ import { reconstructPersonalPublicCard } from '../../narrative/reconstructPublic
 import { checkShareCardBodyParseIntegrity, runContentIntegrityAudit } from '../../../commercialQuality/contentIntegrityChecks';
 import type { ContentIntegrityCorpusItem, ContentIntegrityFinding } from '../../../commercialQuality/contentIntegrityTypes';
 import type { ShareCandidateVariant } from '../../narrative/m55NarrativeSpecV1';
+import {
+  pairShareCaptionContext,
+  pairShareRelationshipConclusionContext,
+} from './m55CopyRoleRegistry';
 
 const SHARE_VARIANTS: readonly ShareCandidateVariant[] = [
   'manual',
@@ -249,6 +253,7 @@ export function buildM55ContentIntegrityCorpus(): ContentIntegrityCorpusItem[] {
       semanticText: pairShare.body,
       shareTextJa: pairShare.shareTextJa,
       sourceOwner: 'lib/m55/narrative/projectPublicShareV1.ts',
+      editorial: pairShareRelationshipConclusionContext(),
     });
     pushItem(items, {
       surface: 'pair.free.share_post',
@@ -258,6 +263,7 @@ export function buildM55ContentIntegrityCorpus(): ContentIntegrityCorpusItem[] {
       semanticText: pairShare.shareTextJa,
       shareTextJa: pairShare.shareTextJa,
       sourceOwner: 'lib/m55/narrative/projectPublicShareV1.ts',
+      editorial: pairShareCaptionContext(),
     });
   }
 

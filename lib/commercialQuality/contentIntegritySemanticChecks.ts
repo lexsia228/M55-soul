@@ -23,6 +23,7 @@ import { buildPairFreeInsightSpecV2 } from '../m55/compatibility/pairFreeInsight
 import type { RelationStatusId } from '../m55/compatibility/pairReadingTypes';
 import { buildCompatibilityPublicResult } from '../m55/compatibility/pairReadingGuestResult';
 import { projectPairPublicShareV1 } from '../m55/narrative/projectPublicShareV1';
+import { evaluateEditorialLanguageRisk } from '../m55/commercialUx/qualityControl/m55EditorialCommercialPolicy';
 
 /** Permanent Person-B DOB source-anchor identity (CompatibilityGuestExperience.tsx). */
 export const PERSON_B_DOB_SOURCE_ANCHOR_V1 = {
@@ -837,8 +838,15 @@ export function checkPremiumOpenLoopCollapse(
   return findings;
 }
 
+export function checkEditorialLanguageRiskItem(
+  item: ContentIntegrityCorpusItem,
+): ContentIntegrityFinding[] {
+  return evaluateEditorialLanguageRisk(item);
+}
+
 export function checkSemanticIntegrityItem(item: ContentIntegrityCorpusItem): ContentIntegrityFinding[] {
   return [
+    ...checkEditorialLanguageRiskItem(item),
     ...checkPersonBSourceAnchorIdentity(item),
     ...checkSelfGeneratedAbstraction(item),
     ...checkPairShareSelfPerspective(item),
