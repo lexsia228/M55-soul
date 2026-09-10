@@ -1,12 +1,20 @@
 # M55 Git-First AI Entrypoint
 
-Status: **ACTIVE / HUMAN-APPROVED GOVERNANCE TARGET (2026-09-10)**
+Status: **ACTIVE / HUMAN-APPROVED GOVERNANCE TARGET (2026-09-11)**
 
 This is the short mandatory entrypoint for every AI before it starts an M55 work unit.
 
 The purpose is simple: **identify the work, inspect the relevant Git authority, then reason.**
 
 Do not start from chat memory alone.
+
+Before substantive work, every AI must follow the routing manifest and hardening rules:
+
+- `docs/ssot/M55_GIT_PREFLIGHT_MANIFEST.json`
+- `docs/ssot/M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md`
+- `docs/ssot/M55_GIT_FIRST_HARDENING_SSOT.md`
+
+Operational failure examples live in `docs/ssot/M55_GIT_FIRST_OPERATIONAL_FIXTURES.md` and are required for governance/red-team work, but ordinary bounded UIUX continuation does not need to reread the fixture catalog every task.
 
 ## 0. Non-negotiable order
 
@@ -57,7 +65,7 @@ Read `docs/ssot/M55_GIT_PREFLIGHT_MANIFEST.json` and select the closest task cla
 
 Then read:
 
-1. universal critical files for that profile;
+1. the manifest universal required reads;
 2. the task-class required authority;
 3. the exact files or contracts governing the paths/semantics you will touch;
 4. relevant open PR / stacked branch authority when newer Human decisions may exist there.
@@ -81,6 +89,16 @@ Before creating a new architecture, token, policy, component owner, or SSOT:
 
 If the concept already exists, reuse or amend the existing owner. Do not recreate it from memory.
 
+For FULL work where unmerged authority may matter, record or internally establish at minimum:
+
+- repository;
+- query/scope used to discover relevant open PRs/stacked branches;
+- observation timestamp;
+- candidate PR/branch SHA set;
+- why each result is relevant or excluded.
+
+Do not claim `relevant open PR checked` from memory alone.
+
 ## 5. Stage 4 — choose depth
 
 Use exactly one profile defined in `M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md`:
@@ -91,18 +109,40 @@ Use exactly one profile defined in `M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md`:
 
 All three profiles include Stage 1 Git identity. The profile changes **depth**, not whether Git is checked.
 
-## 6. Stage 5 — pre-mutation recheck
+### New session vs valid continuation
 
-Immediately before mutation, confirm again only the volatile facts that can invalidate the write:
+A new chat/session by itself does not invalidate CLOSED GREEN work. However, a new session is not automatically allowed to self-declare FAST.
 
-- correct branch/worktree;
-- current HEAD;
-- dirty/staged paths;
-- exact mutable-path allowlist;
-- no mutation-owner collision;
-- no relevant authority drift discovered since Stage 1.
+FAST across a new session is allowed only when a durable `CONTINUATION_HANDOFF` can be freshly reconstructed with all manifest-required fields:
+
+- lane;
+- owner;
+- workspace/ref;
+- authorized task;
+- candidate SHA;
+- mutable paths;
+- observation time.
+
+Then the new session must re-observe Git identity before work and confirm that no hard trigger, authority drift, or semantic expansion has entered scope.
+
+If the handoff is missing, stale, contradictory, or cannot be verified, default to `FULL_REPO_PREFLIGHT`.
+
+`CONTINUATION_HANDOFF_REQUIRED_FOR_NEW_SESSION_FAST = TRUE`
+
+`NEW_CHAT_ALONE_IS_NOT_INVALIDATION = TRUE`
+
+## 6. Stage 5 — hard-trigger check and pre-mutation recheck
+
+Before mutation:
+
+1. classify intended/changed paths against manifest `hardTriggerPaths` and `semanticOwnerPaths`;
+2. if a known machine path trigger matches, FULL is mandatory;
+3. independently inspect semantics for money/price/reward/legal/tax/identity/auth/security/attribution/ledger/provider/executable-state/cross-lane meaning, because static path classification is not complete semantic proof;
+4. confirm branch/worktree, current HEAD, dirty/staged paths, mutable-path allowlist, and mutation ownership.
 
 `PRE_MUTATION_GIT_RECHECK_REQUIRED = TRUE`
+
+`STATIC_PATH_CLASSIFIER_IS_NOT_COMPLETE_SEMANTIC_PROOF = TRUE`
 
 Do not use reset/stash/clean/rebase/force-push/history rewrite merely to satisfy preflight.
 
@@ -113,9 +153,12 @@ Before commit/push/PR/merge/integration or consequential `PLAN_GREEN` / `DESIGN_
 - re-observe the relevant Git identity;
 - reconcile fresh `origin/main` when integration depends on it;
 - compare exact candidate diff against the approved scope;
-- confirm no newer relevant authority supersedes the decision.
+- confirm no newer relevant authority supersedes the decision;
+- if external audit evidence is used, re-ground the finding against the exact acceptance contract rather than treating the auditor statement as self-authenticating authority.
 
 `PRE_GREEN_RELEVANT_GIT_RECHECK_REQUIRED = TRUE`
+
+`AUDIT_REPRODUCTION_MUST_MATCH_EXACT_ACCEPTANCE_CONDITION = TRUE`
 
 A UIUX lane does not need Creator Revenue Git archaeology to finish CSS. A Creator Revenue decision does not need unrelated UIUX history. The required evidence follows the task.
 
@@ -128,11 +171,18 @@ Stop or downgrade the claim when:
 - relevant SSOT/source ownership is unknown;
 - a newer relevant open PR/stacked branch may supersede current understanding but has not been inspected;
 - intended mutation overlaps another mutation owner;
-- exact diff exceeds the authorized scope.
+- exact diff exceeds the authorized scope;
+- a machine path trigger is present but the task is not FULL;
+- an external audit finding does not reproduce the exact accepted condition.
 
-Use:
+Use the applicable token:
 
-`GIT_PREFLIGHT_INCOMPLETE`
+- `GIT_PREFLIGHT_INCOMPLETE`
+- `HARD_TRIGGER_FULL_PREFLIGHT_REQUIRED`
+- `LANE_LOCK_UNPROVEN`
+- `LANE_ALLOWLIST_VIOLATION`
+- `MUTATION_OWNERSHIP_CONFLICT`
+- `CONTEXT_REFRESH_REQUIRED`
 
 rather than guessing.
 
@@ -145,6 +195,14 @@ Normative routing detail:
 Machine-readable routing manifest:
 
 `docs/ssot/M55_GIT_PREFLIGHT_MANIFEST.json`
+
+Hardening / bounded machine enforcement:
+
+`docs/ssot/M55_GIT_FIRST_HARDENING_SSOT.md`
+
+Operational regression fixtures:
+
+`docs/ssot/M55_GIT_FIRST_OPERATIONAL_FIXTURES.md`
 
 Global AI rules:
 
