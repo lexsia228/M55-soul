@@ -3,10 +3,24 @@
 Status: **ACTIVE** (Commercial Funnel SSOT lane)  
 Machine truth: `lib/m55/contracts/m55CommercialFunnelContract.ts`
 
+## AI work entry — Git first
+
+Every M55 AI work unit starts with:
+
+1. `AGENTS.md`
+2. `M55_GIT_FIRST_ENTRYPOINT.md`
+3. `M55_GIT_PREFLIGHT_MANIFEST.json`
+4. `M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md`
+
+The AI identifies its task, verifies task-relevant Git identity, loads only the relevant authority, checks for an existing decision/contract, and only then performs substantive work. Continuation lanes use the fast path; consequential/cross-lane/money/legal/provider/SSOT work uses full preflight.
+
 ## Authority hierarchy
 
 | Tier | File | Role |
 |---|---|---|
+| A0-preflight | `M55_GIT_FIRST_ENTRYPOINT.md` | Mandatory short entrypoint — identify task → Git identity → relevant authority → existing-decision check → work |
+| A0-preflight | `M55_GIT_PREFLIGHT_MANIFEST.json` | Machine-readable task class → profile → required authority routing |
+| A0-preflight | `M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md` | FULL / CONTINUATION_FAST_PATH / PINNED_REVIEW routing and escalation rules |
 | A | `lib/m55/contracts/m55CommercialFunnelContract.ts` | Prices, counts, status, availability, CTA flags |
 | B | `M55_COMMERCIAL_FUNNEL_SSOT.md` | Commercial principles, psychology, free/paid boundary |
 | C | `M55_SELF_FUNNEL_CONTRACT.md`, `M55_PAIR_FUNNEL_CONTRACT.md` | Funnel flow contracts |
@@ -44,6 +58,7 @@ It does **not** override `M55_EXECUTION_STATE.json`, does **not** reorder roadma
 ## Verification
 
 ```bash
+node scripts/verify-m55-git-first-preflight.mjs
 npm run verify:m55-ssot
 node scripts/verify-m55-commercial-ssot.mjs
 ```
