@@ -1,5 +1,5 @@
 ---
-description: M55 scope-aware repository preflight routing — full for consequential decisions, fast path for bounded continuation lanes.
+description: M55 scope-aware repository preflight routing — Git-first always; full for hard/consequential changes, fast path for bounded continuation lanes.
 alwaysApply: true
 ---
 
@@ -7,27 +7,50 @@ alwaysApply: true
 
 Normative authority:
 
-`docs/ssot/M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md`
+- `docs/ssot/M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md`
+- `docs/ssot/M55_GIT_FIRST_HARDENING_SSOT.md`
+- `docs/ssot/M55_GIT_PREFLIGHT_MANIFEST.json`
 
-Before consequential M55 reasoning or mutation, classify the task into exactly one profile:
+Before substantive M55 work, establish task-relevant Git identity. Then classify the task into exactly one profile:
 
 - `FULL_REPO_PREFLIGHT`
 - `CONTINUATION_FAST_PATH`
 - `PINNED_REVIEW_PREFLIGHT`
 
+## Hard trigger — AI self-classification cannot bypass
+
+`HARD_TRIGGER_FORCES_FULL_PREFLIGHT = TRUE`
+
+If intended or observed mutation touches any of these semantic/path families, force `FULL_REPO_PREFLIGHT`:
+
+- `docs/ssot/**`
+- `.product-authority/**`
+- `lib/m55/contracts/**`
+- `app/api/stripe/**`
+- checkout or webhook API code
+- `supabase/**`, migrations, DB schema/RPC/RLS/privileges
+- Creator commission/ledger/payout/tax/provider policy
+- `AGENTS.md`, `.cursor/rules/**`, or control/security/release workflows
+- `M55_EXECUTION_STATE.json`
+- money, price, commission rate, reward, legal/tax, identity/KYC, security, attribution/ledger authority, provider behavior, cross-lane ownership
+
+On a hard trigger, FAST is prohibited even if the task looks editorial or small.
+
 ## CONTINUATION_FAST_PATH
 
-Use for an already-authorized bounded continuation lane such as UIUX only when lane, mutation owner, worktree/ref, gate/task family, and mutable scope remain unchanged and no new architecture/economics/legal/tax/provider/DB/ledger/security/governance semantics enter scope.
+Use for an already-authorized bounded continuation lane such as UIUX only when lane, mutation owner, worktree/ref, gate/task family, mutable scope, and semantics remain unchanged and no hard trigger enters scope.
 
 Do not force unrelated Creator Revenue, Stripe payout, Japan legal/tax, or global repo archaeology onto a valid UIUX continuation merely because those programs exist elsewhere.
 
 A fresh `origin/main` reconciliation is not required every turn. Require it before merge/sync integration, when touched-path/shared-authority drift is relevant, or when another escalation trigger occurs.
 
+FAST_PATH is fast, not blind: task-relevant Git identity and lane authority are still mandatory.
+
 ## FULL_REPO_PREFLIGHT
 
-Escalate before new architecture/economics/reward/legal/tax/provider/security/DB/ledger/payout/SSOT/governance/roadmap decisions, cross-lane integration, unknown existing-contract coverage, or consequential new GREEN/freeze/authorization.
+Escalate before new architecture/economics/reward/legal/tax/provider/security/DB/ledger/payout/SSOT/governance/roadmap decisions, cross-lane integration, unknown existing-contract coverage, hard-trigger mutation, or consequential new GREEN/freeze/authorization.
 
-Minimum full evidence is bounded to relevant authority: `AGENTS.md`, `M55_EXECUTION_STATE.json`, fresh remote main, SSOT index, relevant normative SSOTs, relevant unmerged PR/stacked authority, relevant CLOSED/no-replay evidence, and local identity only when local mutation is proposed.
+Minimum full evidence is bounded to relevant authority: `AGENTS.md`, `M55_EXECUTION_STATE.json`, fresh remote main, SSOT index, relevant normative SSOTs, relevant unmerged PR/stacked authority, relevant CLOSED/no-replay evidence, and local identity when local mutation is proposed.
 
 Search existing SSOT before creating a new contract. Chat memory alone is insufficient for consequential M55 architecture.
 
@@ -35,10 +58,27 @@ Search existing SSOT before creating a new contract. Chat memory alone is insuff
 
 For read-only independent review, pin exact PR/branch/commit, exact diff/artifact boundary, relevant lane authority, accepted baselines, and mutation prohibition. Do not load unrelated business/global SSOTs unless the diff touches them.
 
+## Lane lock before mutation
+
+`LANE_LOCK_REQUIRED_BEFORE_MUTATION = TRUE`
+
+Use fresh branch/worktree/HEAD/status plus `M55_WORKTREE_REGISTRY.md` ownership and the exact mutable-path allowlist. A future `.m55_lane_state.json` may be used only as a generated cache; it never overrides the registry or fresh Git evidence.
+
+Any lane-owner mismatch, allowlist violation, or ownership ambiguity is STOP.
+
+Do not mutate existing protected UIUX worktrees merely to add lane-state markers.
+
+## Context refresh
+
+At a material subtask boundary, re-enter the Git-first flow and reselect FAST/REVIEW/FULL. A new chat is optional and is never authority or a CLOSED-GREEN invalidator.
+
+`SUBTASK_BOUNDARY_CONTEXT_REFRESH_REQUIRED = TRUE`
+
 ## Escalation triggers
 
 Escalate FAST_PATH to FULL on any of:
 
+- any hard trigger above;
 - new Human architecture/economic/reward decision;
 - legal/tax/provider/DB/ledger/security/governance semantics;
 - cross-lane authority collision;
