@@ -19,9 +19,10 @@ const required = [
 ];
 for (const file of required) if (!fs.existsSync(file)) failures.push(`missing required file ${file}`);
 
+let manifest;
 if (fs.existsSync('docs/ssot/M55_GIT_PREFLIGHT_MANIFEST.json')) {
   try {
-    const manifest = JSON.parse(fs.readFileSync('docs/ssot/M55_GIT_PREFLIGHT_MANIFEST.json','utf8'));
+    manifest = JSON.parse(fs.readFileSync('docs/ssot/M55_GIT_PREFLIGHT_MANIFEST.json','utf8'));
     failures.push(...validateManifest(manifest));
   } catch (error) {
     failures.push(`manifest parse failed: ${error.message}`);
@@ -35,10 +36,15 @@ if (fs.existsSync('.github/workflows/m55-git-first-preflight.yml')) {
 }
 
 const agents = fs.existsSync('AGENTS.md') ? fs.readFileSync('AGENTS.md','utf8') : '';
+const entry = fs.existsSync('docs/ssot/M55_GIT_FIRST_ENTRYPOINT.md') ? fs.readFileSync('docs/ssot/M55_GIT_FIRST_ENTRYPOINT.md','utf8') : '';
+if (!agents.includes('M55_GIT_FIRST_ENTRYPOINT.md')) failures.push('AGENTS.md must route every AI through M55_GIT_FIRST_ENTRYPOINT.md');
+if (!agents.includes('M55_GIT_PREFLIGHT_MANIFEST.json')) failures.push('AGENTS.md must require M55_GIT_PREFLIGHT_MANIFEST.json');
 for (const ref of ['M55_GIT_FIRST_HARDENING_SSOT.md','M55_GIT_FIRST_OPERATIONAL_FIXTURES.md']) {
-  if (!agents.includes(ref)) failures.push(`AGENTS.md missing universal governance reference ${ref}`);
+  if (!entry.includes(ref)) failures.push(`entrypoint missing governance reference ${ref}`);
 }
-if (!agents.includes('CONTINUATION_HANDOFF')) failures.push('AGENTS.md missing CONTINUATION_HANDOFF rule');
+if (!entry.includes('CONTINUATION_HANDOFF')) failures.push('entrypoint missing CONTINUATION_HANDOFF rule');
+if (!entry.includes('AUDIT_REPRODUCTION_MUST_MATCH_EXACT_ACCEPTANCE_CONDITION = TRUE')) failures.push('entrypoint missing exact audit re-grounding rule');
+if (!manifest?.universal?.requiredReads?.includes('docs/ssot/M55_GIT_FIRST_HARDENING_SSOT.md')) failures.push('manifest must make hardening a universal required read');
 
 if (failures.length) {
   console.error('M55_GIT_FIRST_STRUCTURE_VERIFY=FAIL');
