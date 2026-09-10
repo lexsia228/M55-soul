@@ -18,6 +18,8 @@ Before substantive M55 work, establish task-relevant Git identity. Then classify
 - `CONTINUATION_FAST_PATH`
 - `PINNED_REVIEW_PREFLIGHT`
 
+If required task-relevant Git identity or authority cannot be established, use `GIT_PREFLIGHT_INCOMPLETE` and STOP rather than guessing.
+
 ## Hard trigger — self-classification cannot bypass known machine paths
 
 `HARD_TRIGGER_FORCES_FULL_PREFLIGHT = TRUE`
