@@ -87,6 +87,23 @@ export function validateManifest(manifest, { fileExists = fs.existsSync } = {}) 
         else if (!fileExists(rel)) failures.push(`${taskClass}.requiredAuthority missing file ${rel}`);
       }
     }
+    if (config.requiredUnmergedAuthority !== undefined) {
+      if (config.checkRelevantOpenPrOrStackedBranch !== true) {
+        failures.push(`${taskClass}.requiredUnmergedAuthority requires checkRelevantOpenPrOrStackedBranch=true`);
+      }
+      if (!Array.isArray(config.requiredUnmergedAuthority) || config.requiredUnmergedAuthority.length === 0) {
+        failures.push(`${taskClass}.requiredUnmergedAuthority must be a non-empty array`);
+      } else {
+        for (const item of config.requiredUnmergedAuthority) {
+          if (!item || typeof item !== 'object' || Array.isArray(item)) {
+            failures.push(`${taskClass}.requiredUnmergedAuthority contains invalid entry`);
+            continue;
+          }
+          if (typeof item.path !== 'string' || !item.path.trim()) failures.push(`${taskClass}.requiredUnmergedAuthority entry missing path`);
+          if (typeof item.discoveryHint !== 'string' || !item.discoveryHint.trim()) failures.push(`${taskClass}.requiredUnmergedAuthority entry missing discoveryHint`);
+        }
+      }
+    }
   }
 
   if (!Array.isArray(manifest?.hardTriggerPaths) || manifest.hardTriggerPaths.length === 0) failures.push('hardTriggerPaths must be non-empty');
