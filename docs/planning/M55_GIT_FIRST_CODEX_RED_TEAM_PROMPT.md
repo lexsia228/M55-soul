@@ -1,11 +1,11 @@
-# Codex — M55 Git-First System Exact-Diff Red-Team
+# Codex — M55 Git-First System v2 Exact-Diff Red-Team
 
 READ-ONLY ONLY. DO NOT PATCH. DO NOT MERGE. DO NOT MUTATE REPO.
 
 Repository: `lexsia228/m55-web`
 Target PR: `#194`
 
-Before review, fetch the PR fresh and pin the exact current base SHA and head SHA. If the head differs from any SHA written in this prompt, use the fresh PR head and report the mismatch. Do not rely on chat memory.
+Fresh-fetch PR #194. Pin the exact current base SHA and head SHA. If the branch moves during review, STOP and mark the review stale. Do not rely on chat memory or prior Codex/Grok reports.
 
 Primary acceptance authority:
 - `docs/ssot/M55_GIT_FIRST_EXTERNAL_RED_TEAM_ACCEPTANCE_SSOT.md`
@@ -16,64 +16,60 @@ Mandatory system files:
 - `docs/ssot/M55_GIT_PREFLIGHT_MANIFEST.json`
 - `docs/ssot/M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md`
 - `docs/ssot/M55_GIT_FIRST_HARDENING_SSOT.md`
+- `docs/ssot/M55_GIT_FIRST_OPERATIONAL_FIXTURES.md`
 - `docs/ssot/M55_GIT_FIRST_MINDMAP.md`
+- `docs/ssot/README.md`
 - `.cursor/rules/m55-control-tower.mdc`
 - `.cursor/rules/m55-scope-aware-repo-preflight.mdc`
-- `scripts/verify-m55-git-first-preflight.mjs`
-- `scripts/verify-m55-git-first-hardening.mjs`
+- `scripts/m55-git-first-policy.mjs`
+- `scripts/m55-git-first-policy.test.mjs`
+- `scripts/verify-m55-git-first-structure.mjs`
+- `scripts/verify-m55-git-first-diff.mjs`
+- legacy compatibility verifiers
 - `.github/workflows/m55-git-first-preflight.yml`
-- `package.json`
-- `docs/ssot/README.md`
 
 Mission:
-Determine whether the actual PR implementation is safe and practical enough to classify `USABLE`, not merely whether the architecture sounds sensible.
+Determine whether the ACTUAL v2 candidate is safe, internally consistent and practical enough for external acceptance. Do not reward prose. Attack implementation and claimed enforcement boundaries.
 
-You must inspect the exact PR diff and current CI/check state on the pinned head.
+Important v2 boundary:
+- known protected changed paths are machine-classified from exact base/head diff;
+- semantic meaning outside known paths still requires AI/Human review and is NOT claimed as statically complete;
+- Lane Lock is a procedural ownership guard, NOT an atomic distributed mutex;
+- repo-contained CI is NOT claimed tamper-proof without host required-check enforcement.
 
-Attack these areas:
-1. Git-first can be bypassed before substantive work.
-2. `CONTINUATION_FAST_PATH` can be abused to smuggle consequential changes.
-3. Hard Trigger coverage is incomplete, contradictory, or purely cosmetic.
-4. Hard Triggers create pathological false positives that make UIUX unusable.
-5. Lane Lock is ambiguous or can create shadow authority.
-6. local-vs-remote behavior lets an agent fabricate worktree/dirty facts.
-7. open PR/stacked authority is not actually discoverable when relevant.
-8. Context Refresh fails to protect long-running sessions.
-9. pre-mutation/pre-GREEN rechecks leave TOCTOU gaps.
-10. CLOSED GREEN/no-replay semantics were accidentally weakened.
-11. AGENTS/Cursor/manifest/SSOT/mindmap disagree.
-12. static verifier can false-pass when critical wiring is missing.
-13. CI workflow path filters fail to run on files that can break the system.
-14. package command/documentation wiring is incomplete.
-15. Product Authority mandatory rule was weakened or made contradictory.
-16. relevant operator/multi-agent/worktree authority became unreachable.
-17. branch/path/semantic trigger rules are technically impossible or underspecified.
-18. exact PR contains unrelated changes.
-19. another fresh Codex agent could reconstruct behavior without chat history.
-20. any lower-cost stronger enforcement is missing.
+Do not report those explicit limitations as defects merely because stronger mechanisms could exist. Instead identify contradictions, false claims, or bypasses relative to the stated boundary.
 
-Perform the D1-D10 scenarios from the acceptance SSOT. Where safe, reason from actual source/verifier behavior rather than prose alone.
+Mandatory attacks:
+1. exact changed-path classifier can false-negative known protected paths;
+2. dangerous task classes can be changed to FAST without deterministic failure;
+3. manifest requiredAuthority can point to missing local files without failure;
+4. `requiredUnmergedAuthority` can become ceremonial or unqueryable;
+5. Cursor `alwaysApply: true` can be disabled without failure;
+6. workflow command/checkout/full-history wiring can be removed without failure;
+7. workflow can be narrowed with a path filter without failure;
+8. negative tests/verifier can be gutted while preserving harmless strings;
+9. new-chat FAST can occur without complete/fresh CONTINUATION_HANDOFF;
+10. valid UIUX CSS continuation is forced through unrelated Creator/legal/provider work;
+11. open/stacked authority discovery is vague enough to fabricate `none found`;
+12. remote-only reviewer can accidentally validate a different local ref;
+13. external audit output can become a blocker without matching exact acceptance reproduction;
+14. CLOSED GREEN/no-replay can be reopened by new session;
+15. Product Authority requirement or execution-state authority is weakened;
+16. lane collision is overclaimed as atomically prevented;
+17. PR contains unrelated runtime/provider/DB changes;
+18. host required-check/ruleset state is missing or unverifiable;
+19. another fresh AI cannot reconstruct the system from repo alone;
+20. static verifier/tests themselves contain false-pass logic.
 
-Specifically inspect CI path coverage: identify every file whose modification could materially disable Git-first/hardening enforcement and verify whether the workflow is guaranteed to run when that file changes.
+Run/inspect all D1-D10 and F1-F8 from the acceptance SSOT. Safe local negative-fixture simulation is allowed only in an isolated disposable checkout and must not mutate the review candidate or push anything.
 
-Specifically inspect verifier negative coverage: report concrete mutations that would incorrectly PASS today.
+For F1 specifically, verify the governance principle rather than re-testing the UI product: an auditor's `2 -> 1 -> 21` sequence cannot disprove an exact `1 -> 12` acceptance contract.
 
-Do not treat GitHub mergeability or CI GREEN as proof of governance correctness.
+Inspect same-head CI and separately inspect GitHub host enforcement (branch protection/ruleset/required checks) if accessible. CI GREEN alone is not acceptance.
 
-Required output: exactly the structure defined in `M55_GIT_FIRST_EXTERNAL_RED_TEAM_ACCEPTANCE_SSOT.md`, including:
-- PINNED_AUTHORITY
-- RECONSTRUCTION_TEST
-- ADVERSARIAL_RESULTS D1-D10
-- FINDINGS P0/P1/P2/P3
-- CONTRADICTIONS
-- BYPASS_PATHS
-- FALSE_POSITIVE_RISK
-- OTHER_AI_COMPREHENSION
-- IMPROVEMENTS
-- FINAL_CLASSIFICATION (`USABLE | USABLE_WITH_CONDITIONS | NOT_USABLE`)
-- FINAL_REASON
+Required output: exactly the structure in `M55_GIT_FIRST_EXTERNAL_RED_TEAM_ACCEPTANCE_SSOT.md`, including D1-D10, F1-F8, P0-P3, host_required_check_state, contradictions, bypasses, false-positive risk, other-AI comprehension, HOST_ENFORCEMENT, improvements, final classification and reason.
 
-Be strict. Any credible P0/P1 must block `USABLE`.
+Be strict. Any credible unresolved P0/P1 blocks `USABLE`.
 
 End with:
 `END_M55_GIT_FIRST_CODEX_RED_TEAM`
