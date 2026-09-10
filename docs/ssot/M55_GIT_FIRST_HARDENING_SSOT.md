@@ -1,39 +1,51 @@
 # M55 Git-First Hardening SSOT
 
-Status: **ACTIVE / HUMAN-APPROVED GOVERNANCE TARGET (2026-09-10)**
+Status: **ACTIVE / HUMAN-APPROVED GOVERNANCE TARGET (2026-09-11)**
 
 Purpose: harden the Git-first preflight so correctness does not depend only on an AI correctly self-classifying its task.
 
 This annex is subordinate to `AGENTS.md` and `M55_EXECUTION_STATE.json` for executable authority and complements `M55_GIT_FIRST_ENTRYPOINT.md` and `M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md`.
 
-## A. Machine hard triggers — FAST cannot override
+## A. Bounded machine path triggers + mandatory semantic review
 
 `HARD_TRIGGER_FORCES_FULL_PREFLIGHT = TRUE`
 
-If an intended or observed mutation touches any protected semantic family below, the task is forced to `FULL_REPO_PREFLIGHT` even if the AI initially classified itself as FAST:
+The machine-verifiable subset is defined in `M55_GIT_PREFLIGHT_MANIFEST.json` as `hardTriggerPaths` and `semanticOwnerPaths`.
 
-- `docs/ssot/**`
-- `.product-authority/**`
-- `lib/m55/contracts/**`
-- `app/api/stripe/**`
-- `app/api/**/checkout/**`
-- `app/api/**/webhook/**`
-- `supabase/**`
-- DB migration/schema/RPC/privilege/RLS artifacts
-- Creator commission/ledger/payout/tax/provider policy artifacts
-- `.github/workflows/**` when changing M55 control/security/release behavior
-- `AGENTS.md` or `.cursor/rules/**`
-- `M55_EXECUTION_STATE.json`
+If an intended or observed changed path matches one of those patterns, the task is forced to `FULL_REPO_PREFLIGHT` and the PR must declare:
+
+`M55_PREFLIGHT_PROFILE: FULL_REPO_PREFLIGHT`
+
+The exact changed-path classifier runs from the PR base/head diff in CI.
+
+This is deliberately called **bounded machine path enforcement**, not complete semantic enforcement.
 
 Semantic hard triggers also force FULL regardless of path: money movement, price/rate/reward definition, legal/tax meaning, identity/KYC, authorization/security, attribution authority, ledger authority, provider behavior, executable gate/NEXT, cross-lane ownership, or a new normative SSOT.
 
+Those semantic triggers require AI/human review because a static path classifier cannot prove all semantic meaning.
+
+`STATIC_PATH_CLASSIFIER_IS_NOT_COMPLETE_SEMANTIC_PROOF = TRUE`
+
 A path trigger is conservative. It may escalate a simple edit, but a false escalation is safer than silently changing money/legal/global authority under FAST.
 
-## B. Lane lock — physical ownership boundary
+## B. Lane ownership guard — procedural, not an atomic lock
 
 `LANE_LOCK_REQUIRED_BEFORE_MUTATION = TRUE`
 
 The canonical ownership authority remains `M55_WORKTREE_REGISTRY.md` plus fresh Git/worktree facts. Do not create a competing global authority.
+
+The phrase **Lane Lock** in diagrams means a required procedural ownership guard. It is **not** an OS/file-system mutex and is not claimed to be an atomic distributed lock.
+
+Before mutation the agent must prove:
+
+- registered/dedicated workspace or pinned branch identity;
+- one declared mutation owner;
+- exact mutable path boundary;
+- no known overlapping mutation owner;
+- fresh branch/HEAD/dirty state when locally observable;
+- relevant open PR/stacked-branch collision check when shared owners may overlap.
+
+If two agents claim overlapping mutable paths, both must stop with `MUTATION_OWNERSHIP_CONFLICT` until Control Tower/Human reconciles ownership.
 
 For new dedicated mutation workspaces, a machine-readable workspace-local lane marker MAY be generated from the registry, e.g. `.m55_lane_state.json`, containing only:
 
@@ -53,11 +65,17 @@ Existing protected UIUX worktrees are grandfathered: do not inject or mutate loc
 
 `LANE_ALLOWLIST_VIOLATION = STOP`
 
-## C. Context refresh — not mandatory chat reset
+## C. Durable continuation handoff + context refresh
 
 External audit correctly identifies long-context drift risk, but mandatory new-chat resets are not adopted as a correctness primitive.
 
 `SUBTASK_BOUNDARY_CONTEXT_REFRESH_REQUIRED = TRUE`
+
+A new chat does not invalidate CLOSED GREEN. A new chat also does not automatically qualify for FAST.
+
+A new session may continue on FAST only when a valid `CONTINUATION_HANDOFF` can be reconstructed from durable Git/repo evidence with all fields required by the manifest, followed by fresh Git identity observation.
+
+If the handoff is missing/stale/contradictory, default FULL.
 
 At a material subtask boundary, before starting the next work unit, re-run the compact Git-first entry:
 
@@ -67,37 +85,61 @@ At a material subtask boundary, before starting the next work unit, re-run the c
 4. confirm existing-decision/duplicate status;
 5. select FAST/PINNED/FULL again.
 
-Starting a new chat is optional. A new chat does not invalidate CLOSED GREEN and does not replace Git evidence.
-
 Use FULL again when the new subtask changes semantic class or crosses a hard trigger.
 
-## D. Non-human enforcement
+## D. Non-human enforcement — repo layer
 
 `CI_FAIL_CLOSED_FOR_GIT_FIRST_GOVERNANCE = TRUE`
 
-Required enforcement layers:
+Repo-level enforcement layers:
 
-1. static verifier checks required entrypoints, manifest, hard-trigger tokens, and Cursor wiring;
-2. GitHub Actions runs verifier on relevant PR/push changes;
-3. pre-commit/local hook is recommended but not the sole authority because developer environments can omit hooks;
-4. PR exact-diff review catches path-scope violations;
-5. protected runtime/provider/DB operations retain their own existing gates.
+1. legacy compatibility verifiers remain active;
+2. structural verifier validates manifest invariants, required authority existence, Cursor `alwaysApply: true`, workflow structure, and continuation-handoff requirements;
+3. negative policy tests prove representative corruptions fail;
+4. exact changed-path classifier evaluates PR base/head and requires FULL declaration for known protected paths;
+5. GitHub Actions runs on every PR and on pushes to main;
+6. protected runtime/provider/DB operations retain their own existing gates;
+7. external Codex/Grok red-team remains required before this governance system is adopted as USABLE.
 
-A local Git hook may improve ergonomics, but CI is the portable mandatory enforcement surface.
+Important limitation: repo-contained CI cannot make itself cryptographically undeletable. Durable `USABLE` acceptance therefore also requires the repository host to enforce the Git-first check (or equivalent immutable external check) as a required merge condition. Until that repository setting is proven, do not describe the CI as tamper-proof.
 
-## E. Escalation algorithm
+`REPO_CI_SELF_PROTECTION_REQUIRES_HOST_REQUIRED_CHECK = TRUE`
+
+A local Git hook may improve ergonomics, but it is never the sole authority.
+
+## E. External audit findings must be re-grounded
+
+An external AI report is supporting evidence, not self-authenticating product truth.
+
+`EXTERNAL_AUDIT_OUTPUT_IS_NOT_SELF_AUTHENTICATING_AUTHORITY = TRUE`
+
+Before accepting a blocking audit finding:
+
+1. pin the exact candidate SHA;
+2. retrieve the exact acceptance condition/contract;
+3. compare the auditor's reproduction sequence/evidence with that contract;
+4. reject or downgrade mismatched reproduction rather than reopening product source;
+5. preserve unrelated real findings independently.
+
+The UIUX PR #193 month-input incident is preserved in `M55_GIT_FIRST_OPERATIONAL_FIXTURES.md`: `2 -> 1 -> 21` does not disprove the accepted uninterrupted `1 -> 12` sequence.
+
+`AUDIT_REPRODUCTION_MUST_MATCH_EXACT_ACCEPTANCE_CONDITION = TRUE`
+
+## F. Escalation algorithm
 
 ```text
 TASK ARRIVES
   -> GIT_FIRST_BASELINE
   -> identify intended/read/touched paths + semantics
-  -> HARD TRIGGER?
+  -> MACHINE PATH TRIGGER?
        YES -> FULL_REPO_PREFLIGHT
-       NO  -> evaluate profile
-               same bounded lane -> CONTINUATION_FAST_PATH
-               exact read-only candidate -> PINNED_REVIEW_PREFLIGHT
-               otherwise -> FULL_REPO_PREFLIGHT
-  -> lane ownership/allowlist check
+       NO  -> SEMANTIC TRIGGER REVIEW
+               YES -> FULL_REPO_PREFLIGHT
+               NO  -> evaluate profile
+                       valid durable continuation -> CONTINUATION_FAST_PATH
+                       exact read-only candidate -> PINNED_REVIEW_PREFLIGHT
+                       otherwise -> FULL_REPO_PREFLIGHT
+  -> lane ownership/allowlist guard
   -> relevant authority check
   -> existing decision check
   -> work
@@ -106,7 +148,7 @@ TASK ARRIVES
   -> pre-GREEN/integration recheck
 ```
 
-## F. Failure tokens
+## G. Failure tokens
 
 - `GIT_PREFLIGHT_INCOMPLETE`
 - `HARD_TRIGGER_FULL_PREFLIGHT_REQUIRED`
@@ -117,13 +159,15 @@ TASK ARRIVES
 
 No failure token authorizes reset/stash/clean/rebase/force push or unrelated mutation.
 
-## G. External audit disposition
+## H. External audit disposition
 
-Accepted/adapted:
+Accepted/adapted from the first external audit and the independent Codex/Grok red-team:
 
-- path/keyword machine hard triggers: **ACCEPT / ADAPT**;
-- physical lane lock: **ACCEPT / ADAPT to existing Worktree Registry, grandfather existing protected lanes**;
-- context flush: **ADAPT to mandatory task-boundary context refresh; new chat optional**;
-- CI/Git-hook fail closed: **ACCEPT, with CI mandatory and local hook advisory**.
+- path machine triggers: **ACCEPT / IMPLEMENT bounded diff classifier**;
+- semantic triggers: **ACCEPT as mandatory AI review; do not overclaim static completeness**;
+- physical lane lock wording: **REJECT overclaim / retain procedural ownership guard unless an atomic mechanism is later introduced**;
+- context flush: **ADAPT to durable continuation handoff + mandatory task-boundary context refresh**;
+- CI fail closed: **ACCEPT repo-level structural/negative/diff enforcement, with host required-check proof as adoption prerequisite**;
+- external audit: **must be re-grounded against exact acceptance contract before blocker acceptance**.
 
 This annex creates governance only. It does not authorize runtime UI, Stripe, DB, provider, deploy, merge, or Production mutation.
