@@ -40,7 +40,7 @@ A model hallucination or stale recollection never authorizes work. Any contradic
 
 ## Product Authority Pack (mandatory before analysis or mutation)
 
-For work whose selected preflight profile requires Product Authority reconciliation, or whose touched semantics depend on Product Authority:
+The Git-first Stage 0 routing does **not** weaken this existing requirement. Before any M55 analysis or source mutation:
 
 1. Run `npm run verify:product-authority:bootstrap` when on the Authority Pack bootstrap branch (`feat/m55-product-authority-pack-v1`) with provisional sequence-0 history only.
 2. Run `npm run verify:product-authority` for steady-state reconciliation (requires history sequences 0–2 after bootstrap reconciliation).
@@ -60,7 +60,7 @@ A new/cold-start or FULL_REPO_PREFLIGHT session must establish durable repo memo
 3. `docs/ssot/M55_GIT_PREFLIGHT_MANIFEST.json`
 4. `docs/ssot/M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md`
 5. `docs/ssot/M55_EXECUTION_STATE.json` — sole executable lane/gate/NEXT owner
-6. `.product-authority/generated/authority-header.md` when relevant to the selected task/profile
+6. `.product-authority/generated/authority-header.md`
 7. `docs/ssot/README.md`
 8. `docs/ssot/M55_CURRENT_STATE.md` — narrative/history; subordinate executable fields when superseded
 9. `docs/ssot/M55_ROADMAP.md`
@@ -74,7 +74,7 @@ A new/cold-start or FULL_REPO_PREFLIGHT session must establish durable repo memo
 17. Invalidating dependencies — document before any proposed rerun
 18. Execute only the authorized **NEXT SINGLE ACTION** from `M55_EXECUTION_STATE.json` when global executable progression is in scope
 
-A valid `CONTINUATION_FAST_PATH` does not replay this full list. It follows the Git-first entrypoint and manifest, verifies its own lane/ref/workspace/touched authority, and escalates to FULL only when a listed trigger enters scope.
+A valid `CONTINUATION_FAST_PATH` does not replay the unrelated lane-specific parts of this full list. It still preserves the Product Authority requirement, follows the Git-first entrypoint/manifest, verifies its own lane/ref/workspace/touched authority, and escalates to FULL only when a listed trigger enters scope.
 
 **Critical:** `GATE_LOCAL_UNPROVEN != HISTORICALLY_UNPROVEN`. Missing evidence in the current chat does **not** authorize rerunning real payment, checkout, fulfillment, Preview mutation smoke, DB migration, user deletion, webhook mutation, or real consult consumption. Search SSOT and prior evidence first.
 
@@ -100,14 +100,14 @@ Cursor bootstrap: `.cursor/rules/m55-control-tower.mdc` and `.cursor/rules/m55-s
 
 ## Read order
 
-Use `docs/ssot/M55_GIT_PREFLIGHT_MANIFEST.json` to route the exact task-specific read set. The following is the FULL/cold-start order; continuation/review profiles intentionally use a narrower set.
+Use `docs/ssot/M55_GIT_PREFLIGHT_MANIFEST.json` to route the exact task-specific read set. The following is the FULL/cold-start order; continuation/review profiles intentionally use a narrower task-specific set after the mandatory Product Authority step.
 
 1. `AGENTS.md` (this file)
 2. `docs/ssot/M55_GIT_FIRST_ENTRYPOINT.md`
 3. `docs/ssot/M55_GIT_PREFLIGHT_MANIFEST.json`
 4. `docs/ssot/M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md`
 5. `docs/ssot/M55_EXECUTION_STATE.json`
-6. `.product-authority/generated/authority-header.md` when relevant
+6. `.product-authority/generated/authority-header.md`
 7. `docs/ssot/README.md`
 8. `docs/ssot/M55_CURRENT_STATE.md`
 9. `docs/ssot/M55_WORKTREE_REGISTRY.md`
