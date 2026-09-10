@@ -31,12 +31,9 @@ export const REQUIRED_UNIVERSAL_READS = [
   'docs/ssot/M55_GIT_FIRST_HARDENING_SSOT.md',
 ];
 
-export const REQUIRED_WORKFLOW_SNIPPETS = [
-  'pull_request:',
-  'push:',
-  'branches:',
-  '- main',
-  'fetch-depth: 0',
+export const REQUIRED_WORKFLOW_COMMANDS = [
+  'node scripts/verify-m55-git-first-preflight.mjs',
+  'node scripts/verify-m55-git-first-hardening.mjs',
   'node scripts/verify-m55-git-first-structure.mjs',
   'node --test scripts/m55-git-first-policy.test.mjs',
   'node scripts/verify-m55-git-first-diff.mjs',
@@ -133,10 +130,24 @@ export function validateCursorRule(text, label) {
 
 export function validateWorkflow(text) {
   const failures = [];
-  for (const snippet of REQUIRED_WORKFLOW_SNIPPETS) {
-    if (!text.includes(snippet)) failures.push(`workflow missing required structure: ${snippet}`);
+  const activeLines = text.split(/\r?\n/).filter(line => !/^\s*#/.test(line));
+  const active = activeLines.join('\n');
+
+  if (!/^on:\s*$/m.test(active)) failures.push('workflow missing active on: block');
+  if (!/^\s{2}pull_request:\s*$/m.test(active)) failures.push('workflow missing active pull_request trigger');
+  if (!/^\s{2}push:\s*$/m.test(active)) failures.push('workflow missing active push trigger');
+  if (!/^\s{6}- main\s*$/m.test(active)) failures.push('workflow push trigger must include main');
+  if (!/^\s{6}- uses:\s*actions\/checkout@v4\s*$/m.test(active)) failures.push('workflow must use actions/checkout@v4');
+  if (!/^\s{10}fetch-depth:\s*0\s*$/m.test(active)) failures.push('workflow checkout must use fetch-depth: 0');
+
+  for (const command of REQUIRED_WORKFLOW_COMMANDS) {
+    const escaped = command.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    if (!new RegExp(`^\\s{8}run:\\s*${escaped}\\s*$`, 'm').test(active)) {
+      failures.push(`workflow missing active command: ${command}`);
+    }
   }
-  if (/\n\s*paths:\s*\n/.test(text)) failures.push('workflow must not use a paths filter; Git-first self-protection must run on every PR');
+
+  if (/^\s+paths:\s*$/m.test(active)) failures.push('workflow must not use a paths filter; Git-first self-protection must run on every PR');
   return failures;
 }
 
