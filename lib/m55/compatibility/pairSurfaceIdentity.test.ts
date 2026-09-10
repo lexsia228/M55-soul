@@ -74,7 +74,10 @@ describe('pair free surface wiring', () => {
     assert.doesNotMatch(insightSpec, /pairReadingFingerprint/);
     assert.match(guest, /result\.free\.overlap/);
     assert.match(guest, /data-testid="m55-pair-identity-strip"/);
-    assert.match(guest, /data-testid="m55-pair-result-hero"/);
+    assert.match(guest, /data-testid="m55-pair-relational-grammar"/);
+    assert.match(guest, /id="pair-free-lead"/);
+    assert.doesNotMatch(guest, /pairRelationalBanner/);
+    assert.match(guest, /data-testid="m55-pair-result-thesis"/);
     assert.doesNotMatch(guest, /data-testid="m55-pair-trait-hero"/);
     assert.doesNotMatch(guest, /pairTraitIdentity\.pairLabel\}の二人に起きやすいこと/);
     const manualAt = guest.indexOf('<PairManualBlock');
