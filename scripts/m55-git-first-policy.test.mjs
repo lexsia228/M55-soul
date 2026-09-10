@@ -54,14 +54,39 @@ test('dangerous task class cannot downgrade to FAST', () => {
   assert.ok(validateManifest(m,{fileExists:exists}).some(x=>x.includes('STRIPE_PROVIDER_MONEY')));
 });
 
+test('hardening universal read cannot be removed', () => {
+  const m = clone(baseManifest); m.universal.requiredReads = m.universal.requiredReads.filter(x=>!x.includes('HARDENING'));
+  assert.ok(validateManifest(m,{fileExists:exists}).some(x=>x.includes('HARDENING')));
+});
+
 test('missing mandatory stage fails', () => {
   const m = clone(baseManifest); m.mandatoryStages = m.mandatoryStages.filter(x=>x!=='PRE_MUTATION_RECHECK_IF_MUTATING');
   assert.ok(validateManifest(m,{fileExists:exists}).some(x=>x.includes('PRE_MUTATION_RECHECK_IF_MUTATING')));
 });
 
-test('missing authority file fails', () => {
+test('missing local authority file fails', () => {
   const m = clone(baseManifest); m.taskClasses.DB_LEDGER_SECURITY.requiredAuthority=['missing.md'];
   assert.ok(validateManifest(m,{fileExists:()=>false}).some(x=>x.includes('missing.md')));
+});
+
+test('well-formed unmerged authority need not exist in current checkout', () => {
+  const m = clone(baseManifest);
+  m.taskClasses.LEGAL_TAX_OPERATOR.checkRelevantOpenPrOrStackedBranch = true;
+  m.taskClasses.LEGAL_TAX_OPERATOR.requiredUnmergedAuthority = [{path:'docs/ssot/future.md',discoveryHint:'fresh open PR search'}];
+  assert.deepEqual(validateManifest(m,{fileExists:()=>false}), []);
+});
+
+test('unmerged authority requires fresh-discovery contract', () => {
+  const m = clone(baseManifest);
+  m.taskClasses.LEGAL_TAX_OPERATOR.requiredUnmergedAuthority = [{path:'docs/ssot/future.md',discoveryHint:'fresh open PR search'}];
+  assert.ok(validateManifest(m,{fileExists:exists}).some(x=>x.includes('checkRelevantOpenPrOrStackedBranch')));
+});
+
+test('unmerged authority requires path and discovery hint', () => {
+  const m = clone(baseManifest);
+  m.taskClasses.LEGAL_TAX_OPERATOR.checkRelevantOpenPrOrStackedBranch = true;
+  m.taskClasses.LEGAL_TAX_OPERATOR.requiredUnmergedAuthority = [{path:'docs/ssot/future.md'}];
+  assert.ok(validateManifest(m,{fileExists:exists}).some(x=>x.includes('discoveryHint')));
 });
 
 test('PINNED mutation cannot be enabled', () => {
@@ -80,17 +105,22 @@ test('Cursor alwaysApply false fails', () => {
 });
 
 test('workflow missing structural verifier fails', () => {
-  const workflow='pull_request:\npush:\n  branches:\n    - main\nfetch-depth: 0\nnode --test scripts/m55-git-first-policy.test.mjs\nnode scripts/verify-m55-git-first-diff.mjs';
+  const workflow='pull_request:\npush:\n  branches:\n    - main\nfetch-depth: 0\nrun: node --test scripts/m55-git-first-policy.test.mjs\nrun: node scripts/verify-m55-git-first-diff.mjs';
   assert.ok(validateWorkflow(workflow).some(x=>x.includes('verify-m55-git-first-structure')));
 });
 
 test('workflow paths filter fails self-protection rule', () => {
-  const workflow='pull_request:\n  paths:\n    - AGENTS.md\npush:\n  branches:\n    - main\nfetch-depth: 0\nnode scripts/verify-m55-git-first-structure.mjs\nnode --test scripts/m55-git-first-policy.test.mjs\nnode scripts/verify-m55-git-first-diff.mjs';
+  const workflow='pull_request:\n  paths:\n    - AGENTS.md\npush:\n  branches:\n    - main\nfetch-depth: 0\nrun: node scripts/verify-m55-git-first-structure.mjs\nrun: node --test scripts/m55-git-first-policy.test.mjs\nrun: node scripts/verify-m55-git-first-diff.mjs';
   assert.ok(validateWorkflow(workflow).some(x=>x.includes('paths filter')));
 });
 
 test('known hard-trigger changed path requires FULL', () => {
   const result=classifyChangedPaths(['app/api/stripe/route.ts'],baseManifest);
+  assert.equal(result.requiresFull,true);
+});
+
+test('known semantic-owner path requires FULL', () => {
+  const result=classifyChangedPaths(['app/foo/checkout/action.ts'],baseManifest);
   assert.equal(result.requiresFull,true);
 });
 
