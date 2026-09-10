@@ -812,11 +812,11 @@ M55 currently uses **no employees**.
 
 Therefore:
 
-`FREELANCE_ACT_M55_ORDERER_ROLE = 業務委託事業者_NOT_特定業務委託事業者_CURRENT_FACTS`
+`FREELANCE_ACT_M55_ORDERER_ROLE_IF_AFFILIATE_IS_COVERED_DELEGATION = 業務委託事業者_NOT_特定業務委託事業者_CURRENT_FACTS`
 
 `FREELANCE_ACT_ARTICLE_3_TRANSACTION_TERMS_DISCLOSURE = REQUIRED_IF_AFFILIATE_IS_COVERED_業務委託`
 
-`JAPAN_LEGAL_60_DAY_PAYMENT_COMPATIBILITY = NOT_A_CURRENT_M55_ORDERER_REQUIREMENT`
+`JAPAN_LEGAL_60_DAY_PAYMENT_COMPATIBILITY = NOT_A_CURRENT_M55_REQUIREMENT_IF_AFFILIATE_IS_COVERED_DELEGATION`
 
 M55 should nevertheless use clear written/electronic Program Truth/Creator Terms with compensation calculation, payment timing, refund/reversal treatment, dispute path, and policy versions. This is both a conservative Article 3-compatible design and Creator trust requirement.
 
@@ -830,13 +830,13 @@ M55 currently pays **no salary or wages**.
 
 Therefore:
 
-`NTA_SOURCE_WITHHOLDING_M55_CURRENT_PAYER_FACT_PATTERN = CLOSED_NO_WITHHOLDING_REQUIRED_FOR_ORDINARY_AFFILIATE_PAYMENT`
+`NTA_SOURCE_WITHHOLDING_M55_CURRENT_PAYER_FACT_PATTERN = CLOSED_NO_WITHHOLDING_REQUIRED_FOR_JP_RESIDENT_ORDINARY_AFFILIATE_PAYMENT`
 
 `AFFILIATE_SOURCE_WITHHOLDING_SALES_AGENT_CLASSIFICATION = NOT_REQUIRED_TO_DETERMINE_CURRENT_M55_PAYER_OBLIGATION`
 
 `NO_UNIVERSAL_WITHHOLDING_RATE = STILL_PROHIBITED`
 
-Do not translate this into a timeless statement that "affiliate commission is never subject to withholding." It is a **payer-fact exception**. If M55 becomes a salary payer, the payment-category analysis reopens before the next live payout.
+Do not translate this into a timeless statement that "affiliate commission is never subject to withholding." It is a **payer-fact exception for the current Japan-resident ordinary Affiliate payout branch**. Nonresident/foreign-recipient payouts remain separately blocked pending tax/treaty classification. If M55 becomes a salary payer, the payment-category analysis reopens before the next live payout.
 
 ### S-4. Fee policy
 

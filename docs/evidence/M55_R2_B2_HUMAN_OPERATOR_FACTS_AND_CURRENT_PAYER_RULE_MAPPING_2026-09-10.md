@@ -37,11 +37,11 @@ M55 uses no employees.
 
 Mapping:
 
-`M55_CURRENT_JFTC_ROLE = 業務委託事業者_NOT_特定業務委託事業者`
+`M55_CURRENT_JFTC_ROLE_IF_COVERED_DELEGATION = 業務委託事業者_NOT_特定業務委託事業者`
 
 `M55_CURRENT_FREELANCE_ACT_DUTY = ARTICLE_3_DISCLOSURE_IF_COVERED_TRANSACTION`
 
-`M55_CURRENT_FREELANCE_ACT_60_DAY_DEADLINE = NOT_APPLICABLE`
+`M55_CURRENT_FREELANCE_ACT_60_DAY_DEADLINE = NOT_APPLICABLE_IF_AFFILIATE_IS_COVERED_DELEGATION`
 
 This does not claim the Affiliate relationship is definitively a covered `業務委託`; M55 will provide clear Creator terms regardless.
 
@@ -61,9 +61,9 @@ Mapping:
 
 `M55_CURRENT_NTA_PAYER_EXCEPTION = INDIVIDUAL_NO_SALARY_PAYER`
 
-`M55_CURRENT_SOURCE_WITHHOLDING_ON_ORDINARY_AFFILIATE_COMMISSION = NOT_REQUIRED`
+`M55_CURRENT_SOURCE_WITHHOLDING_ON_JP_RESIDENT_ORDINARY_AFFILIATE_COMMISSION = NOT_REQUIRED`
 
-This is not a timeless legal statement about affiliate commission. If M55 becomes a salary payer, the payment category (including possible `外交員等`) must be classified before the next payout.
+This is not a timeless legal statement about affiliate commission. It is limited to the current Japan-resident ordinary Affiliate payout branch. Nonresident/foreign-recipient payouts remain separately classified. If M55 becomes a salary payer, the payment category (including possible `外交員等`) must be classified before the next payout.
 
 ## R2-B2 impact
 

@@ -165,11 +165,11 @@ Current JFTC role split:
 - when a transaction is covered, Article 3 transaction-condition disclosure remains required;
 - the additional specified-orderer duties (including the 60-day payment-deadline framework) are not the current M55 branch.
 
-`M55_CURRENT_JFTC_ROLE = 業務委託事業者_NOT_特定業務委託事業者`
+`M55_CURRENT_JFTC_ROLE_IF_COVERED_DELEGATION = 業務委託事業者_NOT_特定業務委託事業者`
 
 `FREELANCE_ACT_ARTICLE_3_DISCLOSURE = REQUIRED_IF_COVERED_TRANSACTION`
 
-`FREELANCE_ACT_60_DAY_PAYMENT_DEADLINE = NOT_APPLICABLE_TO_CURRENT_M55_ORDERER_ROLE`
+`FREELANCE_ACT_60_DAY_PAYMENT_DEADLINE = NOT_APPLICABLE_TO_CURRENT_M55_IF_AFFILIATE_IS_COVERED_DELEGATION`
 
 Creator Program Truth / Terms should nevertheless provide explicit:
 - parties;
@@ -194,9 +194,9 @@ Current Human fact:
 
 Therefore:
 
-`M55_CURRENT_SOURCE_WITHHOLDING_ON_ORDINARY_AFFILIATE_COMMISSION = NOT_REQUIRED_UNDER_CURRENT_PAYER_FACTS`
+`M55_CURRENT_SOURCE_WITHHOLDING_ON_JP_RESIDENT_ORDINARY_AFFILIATE_COMMISSION = NOT_REQUIRED_UNDER_CURRENT_PAYER_FACTS`
 
-This is a **payer-fact exception**, not a timeless classification that affiliate commission can never be `外交員等`.
+This is a **payer-fact exception for the current Japan-resident ordinary Affiliate payout branch**, not a timeless classification that affiliate commission can never be `外交員等`. Nonresident/foreign-recipient payouts remain a separate tax/treaty branch.
 
 `NO_UNIVERSAL_WITHHOLDING_RATE = PROHIBITED`
 

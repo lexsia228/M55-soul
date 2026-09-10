@@ -949,17 +949,17 @@ Human clarification: M55 is not a corporation and does not currently employ work
 
 Under current JFTC public guidance, a sole-proprietor ordering business that does **not** use employees is not a `特定業務委託事業者`. If a Creator affiliate relationship is a covered `業務委託`, M55 still must satisfy the Article 3 transaction-condition disclosure requirement, but the additional duties imposed on `特定業務委託事業者` — including the statutory payment-deadline framework — are not the current M55 payer branch.
 
-`FREELANCE_ACT_M55_ORDERER_ROLE = BUSINESS_COMMISSIONER_NOT_SPECIFIED_COMMISSIONER_CURRENT_FACTS`
+`FREELANCE_ACT_M55_ORDERER_ROLE_IF_AFFILIATE_IS_COVERED_DELEGATION = BUSINESS_COMMISSIONER_NOT_SPECIFIED_COMMISSIONER_CURRENT_FACTS`
 
 `FREELANCE_ACT_ARTICLE_3_DISCLOSURE = REQUIRED_IF_COVERED_TRANSACTION`
 
-`FREELANCE_ACT_60_DAY_PAYMENT_DEADLINE = NOT_APPLICABLE_TO_CURRENT_M55_ORDERER_ROLE`
+`FREELANCE_ACT_60_DAY_PAYMENT_DEADLINE = NOT_APPLICABLE_TO_CURRENT_M55_IF_AFFILIATE_IS_COVERED_DELEGATION`
 
 Under NTA No.2793, when the payer is an individual who is not a payer of salaries, source withholding on remuneration/fees is generally not required except specified cases such as hostess remuneration.
 
-`M55_PAYER_SIDE_SOURCE_WITHHOLDING_FOR_ORDINARY_AFFILIATE_COMMISSION = NOT_REQUIRED_UNDER_CURRENT_PAYER_FACTS`
+`M55_PAYER_SIDE_SOURCE_WITHHOLDING_FOR_JP_RESIDENT_ORDINARY_AFFILIATE_COMMISSION = NOT_REQUIRED_UNDER_CURRENT_PAYER_FACTS`
 
-The unresolved academic question of whether ordinary web-affiliate commission could fall inside a category such as `外交員等` does not control M55's current payer obligation while the individual/no-salary-payer exception applies.
+The unresolved academic question of whether ordinary web-affiliate commission could fall inside a category such as `外交員等` does not control M55's current Japan-resident ordinary Affiliate payer obligation while the individual/no-salary-payer exception applies. Nonresident/foreign-recipient payouts remain a separate tax/treaty branch.
 
 ### Invalidation
 
