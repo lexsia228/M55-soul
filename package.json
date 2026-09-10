@@ -9,7 +9,6 @@
         "audit": "node scripts/audit_gate.mjs",
         "verify:m55-ssot": "node scripts/verify-m55-commercial-ssot.mjs",
         "verify:m55-control-tower": "node scripts/verify-m55-control-tower.mjs",
-        "verify:m55-git-first-preflight": "node scripts/verify-m55-git-first-preflight.mjs",
         "m55:context": "node scripts/m55-control-tower-context.mjs",
         "m55:handoff": "node scripts/m55-control-tower-handoff.mjs",
         "verify:m55-worktree-preflight:local": "node scripts/verify-m55-commercial-ssot.mjs --local-worktree-preflight",
