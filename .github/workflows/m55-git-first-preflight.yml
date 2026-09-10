@@ -1,0 +1,30 @@
+name: m55-git-first-preflight
+
+on:
+  pull_request:
+    paths:
+      - 'AGENTS.md'
+      - '.cursor/rules/**'
+      - 'docs/ssot/**'
+      - 'scripts/verify-m55-git-first-preflight.mjs'
+      - '.github/workflows/m55-git-first-preflight.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'AGENTS.md'
+      - '.cursor/rules/**'
+      - 'docs/ssot/**'
+      - 'scripts/verify-m55-git-first-preflight.mjs'
+      - '.github/workflows/m55-git-first-preflight.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify-git-first-preflight:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify M55 Git-first AI routing
+        run: node scripts/verify-m55-git-first-preflight.mjs
