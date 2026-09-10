@@ -149,7 +149,7 @@ Machine-verifiable product facts: `lib/m55/contracts/m55CommercialFunnelContract
 - **Safari actual-browser gates** — before claiming ACTUAL-BROWSER GREEN or running Safari MCP observation, read `docs/ssot/M55_SAFARI_MCP_AI_BROWSER_QUALITY_SSOT.md`; SOURCE REVIEW GREEN does not equal ACTUAL-BROWSER GREEN; implementer cannot self-certify independent Safari audit GREEN.
 - **Shared public chrome** — before creating or modifying page-local Header, Footer, legal, support, privacy, or refund navigation, inspect `PublicShell` / `PublicHeaderContainer` / `PublicHeader` / `PublicFooter` ownership and reuse or update the shared owner. Duplicate shared chrome is prohibited unless an explicit route-specific contract requires it and the reason is stated before mutation.
 - **Cold-start acceptance** — while NEXT is `CONTROL-TOWER-COLD-START-ACCEPTANCE-RERUN`, mutation and Pair mapping are prohibited. Human approval is required after PASS to advance the execution state.
-- **Creator Revenue program** — when Creator Revenue semantics are actually in the task scope, read the Creator Revenue task-class authority from `M55_GIT_PREFLIGHT_MANIFEST.json` and reconstruct: R1 `FOUR_SURFACE_CREATOR_READINESS` **CLOSED GREEN** / no-replay; staged R1→R8 sequence; creator referral/ledger/dashboard/payout **NOT_IMPLEMENTED**; direct single-tier anti-MLM; frozen Creator economics and current provider/legal status. Do not force this read onto unrelated valid continuation lanes.
+- **Creator Revenue program** — when Creator Revenue semantics are actually in the task scope, read `docs/ssot/M55_CREATOR_REVENUE_E2C2E_SSOT.md` plus the Creator Revenue task-class authority from `M55_GIT_PREFLIGHT_MANIFEST.json` and reconstruct: R1 `FOUR_SURFACE_CREATOR_READINESS` **CLOSED GREEN** / no-replay; staged R1→R8 sequence; creator referral/ledger/dashboard/payout **NOT_IMPLEMENTED**; direct single-tier anti-MLM; frozen Creator economics and current provider/legal status. Do not force this read onto unrelated valid continuation lanes.
 
 ## Authority hierarchy (summary)
 
@@ -170,7 +170,8 @@ Subordinate copies must not silently override primary authority.
 ## Verification
 
 ```bash
-npm run verify:m55-git-first-preflight
+node scripts/verify-m55-git-first-preflight.mjs
+node scripts/verify-m55-git-first-hardening.mjs
 npm run verify:product-authority:bootstrap
 npm run verify:product-authority
 npm run test:product-authority
