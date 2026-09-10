@@ -34,6 +34,10 @@ async function cleanContext(browser: Browser): Promise<BrowserContext> {
   return context;
 }
 
+async function fillSelfNickname(page: Page) {
+  await page.getByPlaceholder('表示名').fill('テスト');
+}
+
 async function openSelfBirthIntake(page: Page): Promise<SelfDobFields> {
   await page.goto('/home');
   await page.getByTestId('m55-home-open-birth-intake').click();
@@ -117,6 +121,7 @@ test.describe('free-entry identity continuity — segmented DOB interaction', ()
     const page = await context.newPage();
     const fields = await openSelfBirthIntake(page);
 
+    await fillSelfNickname(page);
     await expectMonthParentIsoEcho(fields);
     await expect(fields.start).toBeEnabled();
 
@@ -128,6 +133,7 @@ test.describe('free-entry identity continuity — segmented DOB interaction', ()
     const page = await context.newPage();
     const fields = await openSelfBirthIntake(page);
 
+    await fillSelfNickname(page);
     await expectDayParentIsoEcho(fields);
     await expect(fields.start).toBeEnabled();
 
@@ -139,6 +145,7 @@ test.describe('free-entry identity continuity — segmented DOB interaction', ()
     const page = await context.newPage();
     const fields = await openSelfBirthIntake(page);
 
+    await fillSelfNickname(page);
     await expectIsolatedBlurNormalization(fields);
     await expect(fields.start).toBeEnabled();
 
@@ -150,10 +157,12 @@ test.describe('free-entry identity continuity — segmented DOB interaction', ()
     const page = await context.newPage();
     const fields = await openSelfBirthIntake(page);
 
+    await fillSelfNickname(page);
     await fields.year.fill('1984');
-    await fields.month.fill('2');
     await fields.day.fill('29');
-    await fields.day.blur();
+    await fillFirstDigit(fields.month, '2');
+    await expect(fields.month).toHaveValue('2');
+    await fields.month.blur();
     await expect(fields.month).toHaveValue('02');
     await expect(fields.day).toHaveValue('29');
     await expect(fields.start).toBeEnabled();
@@ -223,9 +232,10 @@ test.describe('free-entry identity continuity — segmented DOB interaction', ()
     const fields = await openPairSelfDob(page);
 
     await fields.year.fill('1984');
-    await fields.month.fill('2');
     await fields.day.fill('29');
-    await fields.day.blur();
+    await fillFirstDigit(fields.month, '2');
+    await expect(fields.month).toHaveValue('2');
+    await fields.month.blur();
     await expect(fields.month).toHaveValue('02');
     await expect(fields.day).toHaveValue('29');
 
@@ -240,12 +250,13 @@ test.describe('free-entry identity continuity — segmented DOB interaction', ()
     const context = await cleanContext(browser);
     const page = await context.newPage();
     const fields = await openPairSelfDob(page);
+    const pairDob = page.getByTestId('m55-pair-segmented-dob');
 
     await fields.year.fill('1984');
     await fillFirstDigit(fields.month, '2');
     await fillFirstDigit(fields.day, '30');
     await fields.day.blur();
-    await expect(page.getByRole('alert')).toBeVisible();
+    await expect(pairDob.getByRole('alert')).toBeVisible();
 
     await context.close();
   });
