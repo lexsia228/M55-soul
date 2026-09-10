@@ -1,11 +1,23 @@
 ---
-description: M55 control-tower boot — repo-as-memory, cold-start handoff, high-cost rerun prohibition.
+description: M55 control-tower boot — Git-first repo identity, repo-as-memory, cold-start handoff, high-cost rerun prohibition.
 alwaysApply: true
 ---
 
 # M55 Control Tower (always apply)
 
 **Do not treat `.cursorrules` or chat memory as authority. Read `AGENTS.md` first.**
+
+## Mandatory Stage 0 — Git-first task routing
+
+Before substantive M55 reasoning, review, or mutation, read:
+
+- `docs/ssot/M55_GIT_FIRST_ENTRYPOINT.md`
+- `docs/ssot/M55_GIT_PREFLIGHT_MANIFEST.json`
+- `docs/ssot/M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md`
+
+Classify the work unit by task/lane, establish the task-relevant Git identity, and then load only the relevant authority. All profiles require Git identity; profile choice changes depth, not whether Git is checked.
+
+If task-relevant Git identity cannot be established, use `GIT_PREFLIGHT_INCOMPLETE` and do not invent state or issue consequential GREEN/freeze/authorization.
 
 Executable state owner:
 
@@ -16,21 +28,22 @@ It is the sole executable CURRENT GATE / NEXT authority. `M55_CURRENT_STATE.md` 
 Before analysis or mutation:
 
 - read `AGENTS.md`;
-- read `docs/ssot/M55_EXECUTION_STATE.json`;
-- read the required SSOT/operations/evidence files from the AGENTS boot order;
-- run `npm run m55:context` after `git fetch origin` when local runtime exists;
+- complete the Git-first task routing above;
+- read `docs/ssot/M55_EXECUTION_STATE.json` when required by the selected profile;
+- read the required task-relevant SSOT/operations/evidence files from the AGENTS boot order and Git preflight manifest;
+- run `npm run m55:context` after `git fetch origin` when local runtime exists and the selected profile requires fresh main/global context;
 - if local runtime does not exist, declare `LOCAL_RUNTIME_UNAVAILABLE` and use fresh connected GitHub/Vercel evidence without inventing local facts;
 - preserve `GATE_LOCAL_UNPROVEN != HISTORICALLY_UNPROVEN`;
 - ledger search → invalidating dependency compare → otherwise **RERUN_PROHIBITED**;
 - do not replay completed development gates;
 - during `CONTROL-TOWER-COLD-START-ACCEPTANCE-RERUN`, mutation is prohibited and Pair mapping is not yet authorized.
 
-For user-visible work, also read:
+For user-visible work, read only the relevant lane authority, including as applicable:
 
 - `docs/ssot/M55_COMMERCIAL_QUALITY_CONTRACT.md`
 - `docs/ssot/M55_UX_BENCHMARK_STACK.md`
 - `docs/ssot/M55_SAFARI_MCP_AI_BROWSER_QUALITY_SSOT.md` when Safari MCP actual-browser evidence applies
-- `docs/ssot/M55_CREATOR_REVENUE_E2C2E_SSOT.md` while Creator Revenue program is active
+- `docs/ssot/M55_CREATOR_REVENUE_E2C2E_SSOT.md` only when Creator Revenue semantics are actually in the task scope
 
 Use the frozen surface mapping in `M55_UX_BENCHMARK_STACK.md`. Do not perform ad-hoc benchmark research absent a documented invalidator.
 
@@ -42,4 +55,4 @@ Fresh GPT acceptance contract:
 
 Safari MCP: Cursor implementer may prepare Safari evidence but **cannot** self-issue independent Safari audit GREEN or `INDEPENDENT_SAFARI_SSOT_REVIEW_GREEN`. SOURCE REVIEW GREEN does not equal ACTUAL-BROWSER GREEN.
 
-Any authority conflict or unexplained identity drift is STOP.
+Any authority conflict, unexplained identity drift, or incomplete task-relevant Git preflight is STOP.
