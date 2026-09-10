@@ -19,6 +19,7 @@ Machine truth: `lib/m55/contracts/m55CommercialFunnelContract.ts`
 | E+++ | `M55_CREATOR_REVENUE_E2C2E_SSOT.md` | Creator Revenue / E2C2E staged roadmap contract · anti-MLM · ledger lifecycle · Stripe boundary |
 | E+++a | `M55_CREATOR_AFFILIATE_STRIPE_TAX_LEGAL_SSOT.md` | Affiliate-first Creator relationship · Stripe money-flow · payout economics · Japan legal/tax fail-closed contract |
 | E+++b | `M55_CREATOR_AFFILIATE_BENCHMARK_TARGET_ARCHITECTURE_SSOT.md` | Frozen six-benchmark pattern map · M55-native affiliate control plane · Stripe money rail · REUSE/ADAPT/REJECT/DEFER authority |
+| E+++c | `M55_CREATOR_AFFILIATE_OPERATING_MODEL_SSOT.md` | Human-approved operating-model delta · attribution lock/window · eligible-product policy · Creator Console · liquidity reserve · legal-entity epoch · General User non-cash unlock |
 | E++++ | `M55_MULTI_AGENT_PARALLEL_OPERATING_MODEL_SSOT.md` | Human-approved parallel AI operating model · Mac/Windows cross-device topology · GitHub handoff · Cursor/Codex/Codex Replay/Grok roles · risk-weighted audit · fresh-chat recovery |
 | — | `M55_SAFARI_MCP_AI_BROWSER_QUALITY_SSOT.md` | Safari MCP canonical actual-browser observation adapter · subordinate to commercial quality contract |
 | — | `docs/runbooks/M55_SAFARI_MCP_LOCAL_READINESS_RUNBOOK.md` | Subordinate STP/MCP local readiness steps · not authority |
