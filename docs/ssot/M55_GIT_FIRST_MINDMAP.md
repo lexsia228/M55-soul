@@ -1,6 +1,6 @@
 # M55 Git-First Governance Mind Map
 
-Status: **HUMAN-READABLE MAP / 2026-09-10**
+Status: **HUMAN-READABLE MAP / v2 / 2026-09-11**
 
 ```text
 M55 AI WORK
@@ -10,7 +10,7 @@ M55 AI WORK
 |   +-- UIUX lane owner / implementer
 |   +-- Creator Revenue / legal / tax / Stripe / DB
 |   +-- Reviewer (Codex / Grok / ChatGPT)
-|   +-- Merge / sync / integration
+|   `-- Merge / sync / integration
 |
 +-- 1. GIT FIRST -- ALWAYS
 |   +-- Local available?
@@ -18,118 +18,132 @@ M55 AI WORK
 |   |   `-- NO  -> LOCAL_RUNTIME_UNAVAILABLE + fresh GitHub branch/PR/SHA
 |   `-- Never reason from chat memory alone
 |
-+-- 2. WHAT PART OF GIT/SSOT OWNS MY TASK?
++-- 2. LOAD UNIVERSAL ROUTING
+|   +-- Entrypoint
+|   +-- Manifest
+|   +-- Scope-aware preflight SSOT
+|   `-- Hardening SSOT
+|
++-- 3. WHAT OWNS MY TASK?
 |   +-- read task-class routing manifest
-|   +-- read only relevant SSOT/source/shared owner
-|   +-- check relevant open PR / stacked branch if newer Human authority may be there
+|   +-- read only relevant local authority
+|   +-- distinguish requiredUnmergedAuthority
+|   +-- fresh bounded open PR / stacked-branch discovery when required
 |   `-- search existing contract before inventing a new one
 |
-+-- 3. HARD TRIGGER?
-|   +-- docs/ssot/** ------------------------------+
-|   +-- lib/m55/contracts/**                       |
-|   +-- app/api/stripe/**                          |
-|   +-- checkout / webhook                         |
-|   +-- supabase / migration / RPC / RLS           |
-|   +-- money / rate / reward / tax / legal        |--> FORCE FULL_REPO_PREFLIGHT
-|   +-- identity / KYC / security                  |
-|   +-- ledger / attribution authority             |
-|   +-- AGENTS / Cursor rules / CI control         |
-|   `-- cross-lane ownership / EXECUTION_STATE ----+
++-- 4. HARD TRIGGER?
+|   +-- MACHINE PATH MATCH
+|   |   +-- hardTriggerPaths
+|   |   +-- semanticOwnerPaths
+|   |   `-- exact base/head diff ---------------------> FORCE FULL_REPO_PREFLIGHT
+|   |
+|   `-- SEMANTIC REVIEW
+|       +-- money / price / rate / reward
+|       +-- legal / tax / provider
+|       +-- identity / auth / KYC / security
+|       +-- DB / ledger / attribution
+|       +-- executable state / cross-lane ownership
+|       `-- detected semantic expansion -------------> FORCE FULL_REPO_PREFLIGHT
 |
-+-- 4. PROFILE
+|   NOTE: static path classifier is NOT complete semantic proof
+|
++-- 5. PROFILE
 |   +-- CONTINUATION_FAST_PATH
-|   |   +-- same lane
-|   |   +-- same mutation owner
-|   |   +-- same worktree/ref
-|   |   +-- same approved task family
-|   |   +-- own Git + own lane authority only
+|   |   +-- same active session OR valid CONTINUATION_HANDOFF
+|   |   +-- same lane / owner / workspace-ref / task
+|   |   +-- candidate SHA + mutable paths freshly re-observed
+|   |   +-- no machine or semantic hard trigger
 |   |   `-- Example: approved UIUX CSS/polish continuation
 |   |
 |   +-- PINNED_REVIEW_PREFLIGHT
-|   |   +-- exact PR / branch / SHA
+|   |   +-- exact remote PR / branch / SHA
 |   |   +-- exact diff/artifact
-|   |   +-- relevant lane authority
-|   |   `-- read-only
+|   |   +-- relevant authority
+|   |   `-- read-only; never invent local facts
 |   |
 |   `-- FULL_REPO_PREFLIGHT
 |       +-- fresh main
-|       +-- EXECUTION_STATE
+|       +-- EXECUTION_STATE when relevant
 |       +-- relevant SSOT
-|       +-- relevant unmerged authority
+|       +-- fresh relevant unmerged authority
 |       +-- CLOSED GREEN / no-replay
-|       +-- duplicate/supersession check
-|       `-- Example: Creator economics / legal / Stripe / DB / new SSOT
+|       `-- duplicate/supersession check
 |
-+-- 5. LANE LOCK BEFORE MUTATION
-|   +-- Worktree Registry is authority
-|   +-- fresh branch/worktree/HEAD/status
-|   +-- mutation owner matches
-|   +-- mutable path allowlist matches
++-- 6. LANE LOCK BEFORE MUTATION
+|   |   (procedural ownership guard; NOT atomic distributed mutex)
+|   +-- Worktree Registry + fresh Git are authority
+|   +-- one mutation owner
+|   +-- exact mutable-path allowlist
+|   +-- relevant overlap/open-PR collision check
 |   +-- optional .m55_lane_state.json = cache only
-|   `-- collision/unknown -> STOP
+|   `-- overlap/unknown -> MUTATION_OWNERSHIP_CONFLICT / STOP
 |
-+-- 6. WORK
++-- 7. WORK
 |   `-- execute only inside authorized semantic/path boundary
 |
-+-- 7. BEFORE WRITING
-|   +-- branch/worktree still correct?
-|   +-- HEAD changed?
++-- 8. BEFORE WRITING / BEFORE GREEN
+|   +-- branch/worktree/ref still correct?
+|   +-- HEAD/candidate moved?
 |   +-- dirty/staged paths expected?
 |   +-- hard trigger appeared?
-|   +-- another lane now owns a touched path?
-|   `-- if changed -> reclassify / FULL if needed
+|   +-- mutation ownership changed?
+|   +-- exact diff still inside scope?
+|   `-- if changed -> refresh / reclassify / STOP
 |
-+-- 8. SUBTASK ENDS
++-- 9. SUBTASK / SESSION BOUNDARY
 |   +-- CONTEXT REFRESH
-|   |   +-- identify next task again
-|   |   +-- recheck relevant Git
-|   |   `-- reselect FAST / REVIEW / FULL
-|   `-- New chat optional; never authority by itself
+|   +-- new chat does NOT invalidate CLOSED GREEN
+|   +-- new chat FAST requires durable CONTINUATION_HANDOFF
+|   `-- missing/stale/contradictory handoff -> FULL
 |
-+-- 9. BEFORE GREEN / COMMIT / PUSH / PR / MERGE
-|   +-- exact diff vs allowlist
-|   +-- relevant Git identity again
-|   +-- fresh main if integration depends on it
-|   +-- newer relevant authority?
-|   `-- fail closed if unresolved
++-- 10. EXTERNAL AUDIT RESULT
+|   +-- report is supporting evidence, not authority
+|   +-- pin exact candidate
+|   +-- retrieve exact acceptance condition
+|   +-- reproduction matches contract?
+|   |   +-- YES -> adjudicate finding
+|   |   `-- NO  -> NEEDS_FRESH_EVIDENCE / REJECT_FALSE_POSITIVE
+|   `-- preserve unrelated real findings separately
 |
-`-- 10. MACHINE ENFORCEMENT
-    +-- AGENTS.md entry
-    +-- Cursor alwaysApply
-    +-- machine-readable manifest
-    +-- static verifier
-    +-- GitHub Actions CI
-    `-- local hook = optional convenience, not sole protection
+`-- 11. MACHINE ENFORCEMENT
+    +-- manifest structural invariants
+    +-- Cursor alwaysApply=true verification
+    +-- negative policy tests
+    +-- exact changed-path classifier
+    +-- GitHub Actions on every PR + push main
+    +-- full-history checkout for base/head diff
+    `-- host required-check/ruleset REQUIRED for final tamper-resistant adoption
 ```
 
-## One-line operating rule
-
-**Every AI checks Git before M55 work; what changes is not whether Git is checked, but how deeply the AI must inspect the parts of Git/SSOT that own its task.**
-
-## UIUX example
+## Enforcement layers
 
 ```text
-UIUX AI continues approved polish
- -> Git-first: own worktree/branch/HEAD/status
- -> lane authority: Commercial Quality + UX/Visual + touched funnel contract
+KNOWN PATH RISK
+  -> MACHINE classifier
+  -> FULL declaration required in PR
+
+UNKNOWN SEMANTIC RISK
+  -> AI/Human semantic review
+  -> FULL when meaning enters protected family
+
+CI SELF-PROTECTION
+  -> repo structural/negative checks
+  -> PLUS host-side required merge check
+```
+
+The repository does not claim that static path matching understands all semantic meaning, or that a procedural Lane Lock is an atomic distributed mutex.
+
+## UIUX pause/resume live pilot
+
+```text
+PR #193 paused cleanly
+ -> later new AI session
+ -> reconstruct CONTINUATION_HANDOFF from durable Git/repo evidence
+ -> fresh candidate SHA / lane / owner / mutable paths
+ -> CLOSED GREEN remains closed
  -> no hard trigger
- -> FAST_PATH
- -> edit only allowlist
- -> exact-diff check
- -> continue
-```
-
-## Creator/Revenue example
-
-```text
-AI proposes affiliate commission/payout rule
- -> Git-first + fresh main
- -> money/reward hard trigger
- -> FULL
- -> Creator SSOT + legal/tax + Stripe + relevant open PR/stacked branch
- -> existing-rule search
- -> real delta only
- -> design/freeze only after pre-GREEN recheck
+ -> CONTINUATION_FAST_PATH
+ -> exact acceptance contract re-grounding for audit findings
 ```
 
 ## Safety principle
@@ -139,3 +153,5 @@ AI proposes affiliate commission/payout rule
 `FULL_PATH = DEEP, NOT BROAD`
 
 `GIT_FIRST = ALWAYS`
+
+`STATIC_PATH_CLASSIFIER_IS_NOT_COMPLETE_SEMANTIC_PROOF = TRUE`
