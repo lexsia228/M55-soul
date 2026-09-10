@@ -2,7 +2,13 @@
  * M55 content integrity — deterministic Japanese semantic corpus audit types.
  */
 
+import type { EditorialCopyContext } from '../m55/commercialUx/qualityControl/m55CopyRoleRegistry';
+import type { EditorialRiskFamily } from '../m55/commercialUx/qualityControl/m55EditorialCommercialPolicy';
+
 export type ContentIntegritySeverity = 'P0' | 'P1' | 'P2';
+
+/** Migration enforcement for new editorial risk categories on full corpus. */
+export type EditorialEnforcementMode = 'ACTIVE' | 'PENDING_PRODUCT_REMEDIATION';
 
 export type ContentIntegrityCategory =
   | 'unmatched_brackets'
@@ -40,7 +46,11 @@ export type ContentIntegrityCategory =
   | 'pair_premium_chapter_grammar'
   | 'pair_premium_boilerplate_signature'
   | 'static_paid_opening_barnum'
-  | 'paid_composition_contradiction';
+  | 'paid_composition_contradiction'
+  | 'recipient_misinterpretation_risk'
+  | 'mind_reading_risk'
+  | 'deterministic_claim_risk'
+  | 'editorial_language_risk';
 
 export type ContentIntegrityCorpusItem = {
   readonly itemId: string;
@@ -52,6 +62,8 @@ export type ContentIntegrityCorpusItem = {
   readonly shareTextJa?: string;
   readonly sourceOwner: string;
   readonly authoritySemanticText?: string;
+  /** Additive editorial overlay — does not replace governed copy identity. */
+  readonly editorial?: EditorialCopyContext;
 };
 
 export type ContentIntegrityFinding = {
@@ -62,6 +74,8 @@ export type ContentIntegrityFinding = {
   readonly deterministicEvidence: string;
   readonly currentText: string;
   readonly expectedText?: string;
+  readonly editorialRiskFamily?: EditorialRiskFamily;
+  readonly editorialEnforcement?: EditorialEnforcementMode;
 };
 
 export type ContentIntegrityAuditResult = {
@@ -69,6 +83,9 @@ export type ContentIntegrityAuditResult = {
   readonly brokenItemCount: number;
   readonly findings: readonly ContentIntegrityFinding[];
   readonly findingsBySeverity: Readonly<Record<ContentIntegritySeverity, number>>;
+  /** Findings generated but not fail-closed on full corpus until product remediation (Phase 1B). */
+  readonly shadowFindingsPendingRemediation: readonly ContentIntegrityFinding[];
+  readonly editorialEnforcementState: Readonly<Record<string, EditorialEnforcementMode>>;
 };
 
 /** Permanent regression fixture — Production observed 2026-08. */

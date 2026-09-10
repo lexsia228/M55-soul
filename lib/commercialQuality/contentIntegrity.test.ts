@@ -226,7 +226,7 @@ test('cross-profile share posts stay distinct for paired fixtures', () => {
   assert.doesNotThrow(() => assertCrossProfileShareDistinctness());
 });
 
-test('full corpus audit has zero P0 and P1 findings after systemic remediation', () => {
+test('full corpus audit has zero enforced P0 and P1 findings after systemic remediation', () => {
   const corpus = buildM55ContentIntegrityCorpus();
   assert.ok(corpus.length > 100, `corpus too small: ${corpus.length}`);
   const audit = runContentIntegrityAudit(corpus);
@@ -241,6 +241,27 @@ test('full corpus audit has zero P0 and P1 findings after systemic remediation',
     p1.length,
     0,
     p1.map((f) => `${f.findingId}: ${f.deterministicEvidence}`).join('\n'),
+  );
+});
+
+test('editorial migration shadow state is explicit — not silently GREEN', () => {
+  const corpus = buildM55ContentIntegrityCorpus();
+  const audit = runContentIntegrityAudit(corpus);
+  assert.equal(
+    audit.editorialEnforcementState.recipient_misinterpretation_risk,
+    'PENDING_PRODUCT_REMEDIATION',
+  );
+  const shadowRecipient = audit.shadowFindingsPendingRemediation.filter(
+    (f) => f.category === 'recipient_misinterpretation_risk',
+  );
+  assert.ok(
+    shadowRecipient.length >= 1,
+    'expected shadow recipient_misinterpretation_risk findings pending product remediation',
+  );
+  assert.equal(
+    audit.findings.some((f) => f.category === 'recipient_misinterpretation_risk'),
+    false,
+    'shadow findings must not be counted as enforced GREEN',
   );
 });
 

@@ -11,6 +11,7 @@ Machine truth: `lib/m55/contracts/m55CommercialFunnelContract.ts`
 | B | `M55_COMMERCIAL_FUNNEL_SSOT.md` | Commercial principles, psychology, free/paid boundary |
 | C | `M55_SELF_FUNNEL_CONTRACT.md`, `M55_PAIR_FUNNEL_CONTRACT.md` | Funnel flow contracts |
 | D | `M55_COPY_AND_CLAIMS.md`, `M55_VISUAL_SYSTEM.md` | Language and visual rules |
+| D+ | `M55_EDITORIAL_COMMERCIAL_AUTOMATION_SSOT.md` | Subordinate editorial automation policy — copy-role metadata, contextual language-risk, golden semantics, automation levels; **not** executable NEXT authority |
 | E | `M55_CURRENT_STATE.md`, `M55_WORKTREE_REGISTRY.md`, `M55_ROADMAP.md`, `M55_DECISION_LOG.md` | State, worktrees, sequence, decisions |
 | E+ | `M55_CONTROL_TOWER_OPERATIONS_MAP.md` | GitHub / Vercel / Clerk / Supabase / Stripe ops map · boot cross-reference |
 | E++ | `M55_HIGH_COST_EVIDENCE_LEDGER.md` | Closed high-cost test evidence · rerun prohibition · invalidation rules |

@@ -2533,6 +2533,58 @@ function checkEnforcedHozonbanAssertion(data) {
   }
 }
 
+const EDITORIAL_AUTOMATION_SSOT = 'docs/ssot/M55_EDITORIAL_COMMERCIAL_AUTOMATION_SSOT.md';
+
+const EDITORIAL_SSOT_SUBORDINATE_MARKERS = [
+  'M55_EXECUTION_STATE.json',
+  'M55_COMMERCIAL_QUALITY_CONTRACT.md',
+  'M55_COPY_AND_CLAIMS.md',
+  'M55_VISUAL_SYSTEM.md',
+  'M55_UX_BENCHMARK_STACK.md',
+];
+
+const EDITORIAL_SSOT_NON_AUTHORIZATION_MARKERS = [
+  'cannot authorize new product meaning',
+  'cannot replace Human commercial approval',
+  'cannot reselect UX benchmarks',
+  'cannot authorize Production merge',
+  'AI may not grant Human approval',
+];
+
+function checkEditorialCommercialAutomationSsot() {
+  if (!exists(EDITORIAL_AUTOMATION_SSOT)) {
+    fail(`missing required file: ${EDITORIAL_AUTOMATION_SSOT}`);
+    return;
+  }
+  const editorial = read(EDITORIAL_AUTOMATION_SSOT);
+  const agents = read('AGENTS.md');
+  const readme = read('docs/ssot/README.md');
+
+  if (!agents.includes('M55_EDITORIAL_COMMERCIAL_AUTOMATION_SSOT.md')) {
+    fail('AGENTS.md must list M55_EDITORIAL_COMMERCIAL_AUTOMATION_SSOT.md for editorial automation work');
+  }
+  if (!readme.includes('M55_EDITORIAL_COMMERCIAL_AUTOMATION_SSOT.md')) {
+    fail('docs/ssot/README.md must register M55_EDITORIAL_COMMERCIAL_AUTOMATION_SSOT.md');
+  }
+  if (!readme.includes('executable NEXT')) {
+    fail('docs/ssot/README.md must state editorial automation SSOT is not executable NEXT authority');
+  }
+
+  for (const marker of EDITORIAL_SSOT_SUBORDINATE_MARKERS) {
+    if (!editorial.includes(marker)) {
+      fail(`${EDITORIAL_AUTOMATION_SSOT} missing subordinate-authority marker: ${marker}`);
+    }
+  }
+  for (const marker of EDITORIAL_SSOT_NON_AUTHORIZATION_MARKERS) {
+    if (!editorial.includes(marker)) {
+      fail(`${EDITORIAL_AUTOMATION_SSOT} missing non-authorization marker: ${marker}`);
+    }
+  }
+  if (!editorial.includes('HUMAN-APPROVED FOUNDATION CONTRACT v1')) {
+    fail(`${EDITORIAL_AUTOMATION_SSOT} must declare HUMAN-APPROVED FOUNDATION CONTRACT v1 status`);
+  }
+}
+
 function main() {
   checkRequiredFiles();
   const data = loadContractFacts();
@@ -2542,6 +2594,7 @@ function main() {
   checkWorktreeRegistry();
   checkPostMergeHandoff();
   checkCommercialQualityContract();
+  checkEditorialCommercialAutomationSsot();
   checkAuthorityPackTransitionConsistency();
   checkDeferredNotEnforcedAsPass();
   checkEnforcedHozonbanAssertion(data);
