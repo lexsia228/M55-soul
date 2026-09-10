@@ -45,6 +45,30 @@ const baseManifest = {
 const exists = () => true;
 const clone = value => JSON.parse(JSON.stringify(value));
 
+const validWorkflow = `name: test
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+jobs:
+  verify:
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: legacy
+        run: node scripts/verify-m55-git-first-preflight.mjs
+      - name: legacy-hardening
+        run: node scripts/verify-m55-git-first-hardening.mjs
+      - name: structure
+        run: node scripts/verify-m55-git-first-structure.mjs
+      - name: negative
+        run: node --test scripts/m55-git-first-policy.test.mjs
+      - name: diff
+        run: node scripts/verify-m55-git-first-diff.mjs
+`;
+
 test('baseline manifest passes', () => {
   assert.deepEqual(validateManifest(baseManifest,{fileExists:exists}), []);
 });
@@ -104,13 +128,22 @@ test('Cursor alwaysApply false fails', () => {
   assert.ok(validateCursorRule(text,'cursor').some(x=>x.includes('alwaysApply')));
 });
 
+test('valid workflow passes structural validator', () => {
+  assert.deepEqual(validateWorkflow(validWorkflow), []);
+});
+
 test('workflow missing structural verifier fails', () => {
-  const workflow='pull_request:\npush:\n  branches:\n    - main\nfetch-depth: 0\nrun: node --test scripts/m55-git-first-policy.test.mjs\nrun: node scripts/verify-m55-git-first-diff.mjs';
+  const workflow = validWorkflow.replace('        run: node scripts/verify-m55-git-first-structure.mjs\n','');
+  assert.ok(validateWorkflow(workflow).some(x=>x.includes('verify-m55-git-first-structure')));
+});
+
+test('commented-out workflow command does not count', () => {
+  const workflow = validWorkflow.replace('        run: node scripts/verify-m55-git-first-structure.mjs','        # run: node scripts/verify-m55-git-first-structure.mjs');
   assert.ok(validateWorkflow(workflow).some(x=>x.includes('verify-m55-git-first-structure')));
 });
 
 test('workflow paths filter fails self-protection rule', () => {
-  const workflow='pull_request:\n  paths:\n    - AGENTS.md\npush:\n  branches:\n    - main\nfetch-depth: 0\nrun: node scripts/verify-m55-git-first-structure.mjs\nrun: node --test scripts/m55-git-first-policy.test.mjs\nrun: node scripts/verify-m55-git-first-diff.mjs';
+  const workflow = validWorkflow.replace('  pull_request:\n','  pull_request:\n    paths:\n      - AGENTS.md\n');
   assert.ok(validateWorkflow(workflow).some(x=>x.includes('paths filter')));
 });
 
