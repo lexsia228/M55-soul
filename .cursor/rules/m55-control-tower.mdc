@@ -22,7 +22,7 @@ Classify the work unit by task/lane, establish task-relevant Git identity, then 
 
 Known protected changed paths are machine-classified from the manifest. Semantic meaning still requires independent review: `STATIC_PATH_CLASSIFIER_IS_NOT_COMPLETE_SEMANTIC_PROOF = TRUE`.
 
-A new chat may use `CONTINUATION_FAST_PATH` only when a durable `CONTINUATION_HANDOFF` with all manifest-required fields can be freshly reconstructed and Git identity re-observed. A new chat does not invalidate CLOSED GREEN. Missing/stale handoff defaults FULL.
+A new chat may use `CONTINUATION_FAST_PATH` only when a durable `CONTINUATION_HANDOFF` with all manifest-required fields can be freshly reconstructed and Git identity re-observed. A new chat does not invalidate CLOSED GREEN. Missing, stale, contradictory, or unverifiable handoff defaults to `FULL_REPO_PREFLIGHT`.
 
 If task-relevant Git identity cannot be established, use `GIT_PREFLIGHT_INCOMPLETE` and do not invent state or issue consequential GREEN/freeze/authorization.
 
