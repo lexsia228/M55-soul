@@ -114,13 +114,14 @@ Use `docs/ssot/M55_GIT_PREFLIGHT_MANIFEST.json` to route the exact task-specific
 10. `docs/ssot/M55_CONTROL_TOWER_OPERATIONS_MAP.md`
 11. `docs/ssot/M55_HIGH_COST_EVIDENCE_LEDGER.md`
 12. relevant active-lane SSOT(s) selected by the manifest
-13. `docs/ssot/M55_COMMERCIAL_QUALITY_CONTRACT.md` — mandatory before user-visible implementation/review
-14. `docs/ssot/M55_UX_BENCHMARK_STACK.md` — mandatory before user-visible implementation/review
-15. `docs/ssot/M55_EDITORIAL_COMMERCIAL_AUTOMATION_SSOT.md` — mandatory for editorial automation / automated content construction work
-16. `docs/ssot/M55_SAFARI_MCP_AI_BROWSER_QUALITY_SSOT.md` — mandatory before Safari MCP actual-browser gate or ACTUAL-BROWSER GREEN claim
-17. `docs/ssot/M55_DECISION_LOG.md` when decision history is relevant
-18. `docs/ssot/M55_ROADMAP.md` when sequence/global integration is relevant
-19. `docs/ssot/M55_GPT_COLD_START_ACCEPTANCE.md` for handoff acceptance
+13. `docs/ssot/M55_COMMERCIAL_FUNNEL_SSOT.md`
+14. `docs/ssot/M55_COMMERCIAL_QUALITY_CONTRACT.md` — mandatory before user-visible implementation/review
+15. `docs/ssot/M55_UX_BENCHMARK_STACK.md` — mandatory before user-visible implementation/review
+16. `docs/ssot/M55_EDITORIAL_COMMERCIAL_AUTOMATION_SSOT.md` — mandatory for editorial automation / automated content construction work
+17. `docs/ssot/M55_SAFARI_MCP_AI_BROWSER_QUALITY_SSOT.md` — mandatory before Safari MCP actual-browser gate or ACTUAL-BROWSER GREEN claim
+18. `docs/ssot/M55_DECISION_LOG.md` when decision history is relevant
+19. `docs/ssot/M55_ROADMAP.md` when sequence/global integration is relevant
+20. `docs/ssot/M55_GPT_COLD_START_ACCEPTANCE.md` for handoff acceptance
 
 Machine-verifiable product facts: `lib/m55/contracts/m55CommercialFunnelContract.ts` — subordinate to Product Authority Pack for host/origin/worktree/production observation facts and subordinate to `M55_EXECUTION_STATE.json` for executable gate/NEXT.
 
