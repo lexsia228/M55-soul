@@ -1,15 +1,23 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "2.0.0",
   "status": "ACTIVE_HUMAN_APPROVED_GOVERNANCE_TARGET",
-  "purpose": "Route every M55 AI work unit through Git-first, task-relevant authority before substantive work.",
+  "purpose": "Route every M55 AI work unit through Git-first, task-relevant authority before substantive work, with machine-verifiable profile invariants and bounded changed-path escalation.",
   "universal": {
     "gitFirstRequired": true,
     "localRuntimeUnavailableToken": "LOCAL_RUNTIME_UNAVAILABLE",
     "unknownScopeProfile": "FULL_REPO_PREFLIGHT",
     "entrypoint": "docs/ssot/M55_GIT_FIRST_ENTRYPOINT.md",
     "profileAuthority": "docs/ssot/M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md",
+    "hardeningAuthority": "docs/ssot/M55_GIT_FIRST_HARDENING_SSOT.md",
+    "operationalFixtures": "docs/ssot/M55_GIT_FIRST_OPERATIONAL_FIXTURES.md",
     "globalAgentRules": "AGENTS.md",
-    "executionAuthority": "docs/ssot/M55_EXECUTION_STATE.json"
+    "executionAuthority": "docs/ssot/M55_EXECUTION_STATE.json",
+    "requiredReads": [
+      "docs/ssot/M55_GIT_FIRST_ENTRYPOINT.md",
+      "docs/ssot/M55_GIT_PREFLIGHT_MANIFEST.json",
+      "docs/ssot/M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md",
+      "docs/ssot/M55_GIT_FIRST_HARDENING_SSOT.md"
+    ]
   },
   "profiles": {
     "CONTINUATION_FAST_PATH": {
@@ -17,7 +25,8 @@
       "requiresFreshMainEveryWorkUnit": false,
       "requiresRelevantLaneAuthority": true,
       "requiresUnrelatedLaneAuthority": false,
-      "escalateOnSemanticExpansion": true
+      "escalateOnSemanticExpansion": true,
+      "requiresValidContinuationHandoffAcrossNewSession": true
     },
     "PINNED_REVIEW_PREFLIGHT": {
       "requiresGitIdentity": true,
@@ -36,6 +45,61 @@
       "requiresExistingContractSearch": true
     }
   },
+  "continuationHandoff": {
+    "enabled": true,
+    "token": "CONTINUATION_HANDOFF",
+    "requiredFields": [
+      "lane",
+      "owner",
+      "workspaceOrRef",
+      "authorizedTask",
+      "candidateSha",
+      "mutablePaths",
+      "observedAt"
+    ],
+    "newChatMayUseFastWhenValid": true,
+    "missingOrStaleHandoffDefaultsFull": true,
+    "newChatAloneIsNotInvalidation": true,
+    "mustReobserveGitIdentityBeforeResume": true,
+    "mustEscalateOnHardTriggerOrSemanticExpansion": true
+  },
+  "hardTriggerPaths": [
+    "docs/ssot/**",
+    ".product-authority/**",
+    "lib/m55/contracts/**",
+    "app/api/stripe/**",
+    "app/**/checkout/**",
+    "app/**/webhook/**",
+    "supabase/**",
+    ".github/workflows/**",
+    ".cursor/rules/**",
+    "AGENTS.md"
+  ],
+  "semanticOwnerPaths": [
+    "app/api/**",
+    "lib/m55/entitlement/**",
+    "lib/m55/identity/**",
+    "lib/m55/auth/**",
+    "lib/m55/payment/**",
+    "lib/m55/stripe/**",
+    "lib/m55/creator/**",
+    "lib/m55/ledger/**",
+    "lib/m55/contracts/**",
+    "supabase/**"
+  ],
+  "semanticTriggersRequireAiReview": [
+    "money movement",
+    "price/rate/reward definition",
+    "legal/tax meaning",
+    "identity/KYC",
+    "authorization/security",
+    "attribution authority",
+    "ledger authority",
+    "provider behavior",
+    "executable gate/NEXT",
+    "cross-lane ownership",
+    "new normative SSOT"
+  ],
   "taskClasses": {
     "UIUX_CONTINUATION": {
       "defaultProfile": "CONTINUATION_FAST_PATH",
@@ -96,7 +160,8 @@
       "defaultProfile": "FULL_REPO_PREFLIGHT",
       "requiredAuthority": [
         "docs/ssot/README.md",
-        "docs/ssot/M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md"
+        "docs/ssot/M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md",
+        "docs/ssot/M55_GIT_FIRST_HARDENING_SSOT.md"
       ],
       "requiresExistingContractSearch": true,
       "checkRelevantOpenPrOrStackedBranch": true
