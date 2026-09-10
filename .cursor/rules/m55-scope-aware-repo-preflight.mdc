@@ -1,0 +1,52 @@
+---
+description: M55 scope-aware repository preflight routing — full for consequential decisions, fast path for bounded continuation lanes.
+alwaysApply: true
+---
+
+# M55 Scope-Aware Repository Preflight
+
+Normative authority:
+
+`docs/ssot/M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md`
+
+Before consequential M55 reasoning or mutation, classify the task into exactly one profile:
+
+- `FULL_REPO_PREFLIGHT`
+- `CONTINUATION_FAST_PATH`
+- `PINNED_REVIEW_PREFLIGHT`
+
+## CONTINUATION_FAST_PATH
+
+Use for an already-authorized bounded continuation lane such as UIUX only when lane, mutation owner, worktree/ref, gate/task family, and mutable scope remain unchanged and no new architecture/economics/legal/tax/provider/DB/ledger/security/governance semantics enter scope.
+
+Do not force unrelated Creator Revenue, Stripe payout, Japan legal/tax, or global repo archaeology onto a valid UIUX continuation merely because those programs exist elsewhere.
+
+A fresh `origin/main` reconciliation is not required every turn. Require it before merge/sync integration, when touched-path/shared-authority drift is relevant, or when another escalation trigger occurs.
+
+## FULL_REPO_PREFLIGHT
+
+Escalate before new architecture/economics/reward/legal/tax/provider/security/DB/ledger/payout/SSOT/governance/roadmap decisions, cross-lane integration, unknown existing-contract coverage, or consequential new GREEN/freeze/authorization.
+
+Minimum full evidence is bounded to relevant authority: `AGENTS.md`, `M55_EXECUTION_STATE.json`, fresh remote main, SSOT index, relevant normative SSOTs, relevant unmerged PR/stacked authority, relevant CLOSED/no-replay evidence, and local identity only when local mutation is proposed.
+
+Search existing SSOT before creating a new contract. Chat memory alone is insufficient for consequential M55 architecture.
+
+## PINNED_REVIEW_PREFLIGHT
+
+For read-only independent review, pin exact PR/branch/commit, exact diff/artifact boundary, relevant lane authority, accepted baselines, and mutation prohibition. Do not load unrelated business/global SSOTs unless the diff touches them.
+
+## Escalation triggers
+
+Escalate FAST_PATH to FULL on any of:
+
+- new Human architecture/economic/reward decision;
+- legal/tax/provider/DB/ledger/security/governance semantics;
+- cross-lane authority collision;
+- relevant unmerged authority;
+- relevant main/authority drift;
+- unknown existing-contract coverage;
+- new consequential PLAN/DESIGN GREEN or freeze.
+
+A main SHA change by itself is not a global stop. Determine relevance to the lane first.
+
+One lane's FULL preflight must not globally block unrelated valid continuation lanes.
