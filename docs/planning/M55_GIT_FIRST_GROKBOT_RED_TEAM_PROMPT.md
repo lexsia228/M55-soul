@@ -16,13 +16,15 @@ Mandatory reading:
 - `docs/ssot/M55_GIT_PREFLIGHT_MANIFEST.json`
 - `docs/ssot/M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md`
 - `docs/ssot/M55_GIT_FIRST_HARDENING_SSOT.md`
+- `docs/ssot/M55_GIT_FIRST_HOST_ENFORCEMENT_SSOT.md`
 - `docs/ssot/M55_GIT_FIRST_OPERATIONAL_FIXTURES.md`
 - `docs/ssot/M55_GIT_FIRST_MINDMAP.md`
 - `docs/ssot/README.md`
 - relevant multi-agent/worktree authority
 - Cursor alwaysApply rules
 - policy/negative/diff/structural verifiers
-- GitHub Actions workflow
+- `.github/workflows/m55-git-first-preflight.yml`
+- `.github/workflows/m55-asset-index.yml`
 - exact PR diff
 
 Role: adversarial operational governance reviewer. Determine how another AI will actually misread, evade, over-apply or under-apply the system.
@@ -31,12 +33,13 @@ Important v2 boundary:
 - known protected paths have bounded machine changed-path enforcement;
 - unknown semantic meaning is not claimed to be completely statically detectable;
 - Lane Lock is explicitly procedural, not an atomic distributed mutex;
-- repo CI is explicitly not tamper-proof without host required-check enforcement.
+- repo CI is explicitly not tamper-proof without host required-check enforcement;
+- expected host configuration is recorded in `M55_GIT_FIRST_HOST_ENFORCEMENT_SSOT.md`, but the live GitHub state must still be checked independently.
 
 Do not score an explicitly bounded limitation as a contradiction merely because a stronger system is imaginable. Find places where actual wording/behavior still exceeds or conflicts with that boundary.
 
 Attack these operational failure modes:
-1. fresh AI misses Hardening despite following the mandatory entry;
+1. fresh AI misses Hardening or Host Enforcement despite following the mandatory entry;
 2. new chat incorrectly defaults FAST without durable continuation handoff;
 3. valid paused UIUX lane incorrectly gets chronic FULL or unrelated Creator/legal/provider reading;
 4. hard-trigger path is renamed/varied enough to escape machine matching;
@@ -55,13 +58,14 @@ Attack these operational failure modes:
 17. routine UIUX CSS becomes impractically ceremonial;
 18. Product Authority/global execution-state requirements conflict with scope-aware FAST;
 19. another ChatGPT/Codex/Grok cannot reconstruct hierarchy without this chat;
-20. host-side required-check is missing but the system still claims broad USABLE.
+20. host-side required-check is missing/weaker than the host SSOT but the system still claims broad USABLE;
+21. asset-index automation can directly push main, auto-approve, auto-merge, or suppress write failures despite the intended protected-main model.
 
 Perform all D1-D10 and F1-F8 from the external acceptance SSOT.
 
 For F1, inspect the governance behavior, not the product itself. The known real incident is: exact accepted month sequence was `1 -> 12`; an auditor used `2 -> 1 -> 21`. Determine whether v2 prevents such mismatched reproduction from becoming a blocker without throwing away unrelated real findings.
 
-Inspect same-head CI separately from GitHub host enforcement. If branch protection/ruleset/required check cannot be observed, report UNOBSERVABLE rather than assume.
+Inspect same-head CI separately from GitHub host enforcement. Compare live ruleset/required-check state to `M55_GIT_FIRST_HOST_ENFORCEMENT_SSOT.md`. If the live host state cannot be observed, report UNOBSERVABLE rather than assume.
 
 Required output: exactly the acceptance SSOT structure, including PINNED_AUTHORITY, RECONSTRUCTION_TEST, D1-D10, F1-F8, P0/P1/P2/P3, contradictions, bypasses, false-positive risk, other-AI comprehension, HOST_ENFORCEMENT, improvements, final classification and reason.
 
