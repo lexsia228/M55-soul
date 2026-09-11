@@ -151,6 +151,24 @@ export function validateWorkflow(text) {
   return failures;
 }
 
+export function validateAssetIndexWorkflow(text) {
+  const failures = [];
+  const activeLines = text.split(/\r?\n/).filter(line => !/^\s*#/.test(line));
+  const active = activeLines.join('\n');
+
+  if (!/^\s{6}contents:\s*write\s*$/m.test(active)) failures.push('asset-index workflow must scope contents: write to its job');
+  if (!/^\s{6}pull-requests:\s*write\s*$/m.test(active)) failures.push('asset-index workflow must scope pull-requests: write to its job');
+  if (!/gh pr create/.test(active)) failures.push('asset-index workflow must create a pull request');
+  if (!/--base main/.test(active)) failures.push('asset-index pull request must target main');
+  if (!/automation\/m55-asset-index-/.test(active)) failures.push('asset-index workflow must use the dedicated automation branch family');
+  if (/git push(?:\s+origin)?\s+main(?:\s|$)/m.test(active)) failures.push('asset-index workflow must not push directly to main');
+  if (/git push\s*\|\|\s*true/.test(active)) failures.push('asset-index workflow must not swallow push failures');
+  if (/gh pr merge/.test(active)) failures.push('asset-index workflow must not auto-merge its pull request');
+  if (/gh pr review[^\n]*--approve/.test(active)) failures.push('asset-index workflow must not auto-approve its pull request');
+
+  return failures;
+}
+
 function globToRegExp(glob) {
   const escaped = glob.replace(/[.+^${}()|[\]\\]/g, '\\$&')
     .replace(/\*\*/g, '___DOUBLE___')
