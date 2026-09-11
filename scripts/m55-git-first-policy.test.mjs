@@ -45,14 +45,17 @@ const baseManifest = {
 const exists = () => true;
 const clone = value => JSON.parse(JSON.stringify(value));
 
-const validWorkflow = `name: test
+const validWorkflow = `name: m55-git-first-preflight
 on:
   pull_request:
   push:
     branches:
       - main
+permissions:
+  contents: read
 jobs:
-  verify:
+  verify-git-first-preflight:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
@@ -162,7 +165,30 @@ test('commented-out workflow command does not count', () => {
 
 test('workflow paths filter fails self-protection rule', () => {
   const workflow = validWorkflow.replace('  pull_request:\n','  pull_request:\n    paths:\n      - AGENTS.md\n');
-  assert.ok(validateWorkflow(workflow).some(x=>x.includes('paths filter')));
+  assert.ok(validateWorkflow(workflow).some(x=>x.includes('paths/paths-ignore')));
+});
+
+test('workflow paths-ignore filter fails self-protection rule', () => {
+  const workflow = validWorkflow.replace('  pull_request:\n','  pull_request:\n    paths-ignore:\n      - docs/**\n');
+  assert.ok(validateWorkflow(workflow).some(x=>x.includes('paths/paths-ignore')));
+});
+
+test('workflow restrictive pull-request branch filter fails', () => {
+  const workflow = validWorkflow.replace('  pull_request:\n','  pull_request:\n    branches:\n      - release/**\n');
+  assert.ok(validateWorkflow(workflow).some(x=>x.includes('must not narrow paths or branches')));
+});
+
+test('no-op host-required job cannot spoof real validation elsewhere', () => {
+  const workflow = validWorkflow
+    .replace('  verify-git-first-preflight:\n', '  real-validation:\n')
+    .replace('jobs:\n  real-validation:', 'jobs:\n  verify-git-first-preflight:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo ok\n  real-validation:');
+  const failures = validateWorkflow(workflow);
+  assert.ok(failures.some(x=>x.includes('host-required job')));
+});
+
+test('host-required job cannot use job-level if', () => {
+  const workflow = validWorkflow.replace('    runs-on: ubuntu-latest\n', '    runs-on: ubuntu-latest\n    if: github.actor == \'trusted\'\n');
+  assert.ok(validateWorkflow(workflow).some(x=>x.includes('job-level if')));
 });
 
 test('asset-index PR routing baseline passes', () => {
@@ -174,8 +200,18 @@ test('asset-index direct main push fails', () => {
   assert.ok(validateAssetIndexWorkflow(workflow).some(x=>x.includes('directly to main')));
 });
 
+test('asset-index HEAD:main refspec push fails', () => {
+  const workflow = `${validAssetIndexWorkflow}\n      - name: unsafe\n        run: git push origin HEAD:main\n`;
+  assert.ok(validateAssetIndexWorkflow(workflow).some(x=>x.includes('directly to main')));
+});
+
+test('asset-index arbitrary push target fails', () => {
+  const workflow = validAssetIndexWorkflow.replace('git push origin "$BRANCH"','git push origin "$OTHER"');
+  assert.ok(validateAssetIndexWorkflow(workflow).some(x=>x.includes('dedicated automation branch variable')));
+});
+
 test('asset-index swallowed push failure fails', () => {
-  const workflow = validAssetIndexWorkflow.replace('git push origin "$BRANCH"','git push || true');
+  const workflow = validAssetIndexWorkflow.replace('git push origin "$BRANCH"','git push origin "$BRANCH" || true');
   assert.ok(validateAssetIndexWorkflow(workflow).some(x=>x.includes('swallow push failures')));
 });
 
@@ -184,8 +220,18 @@ test('asset-index auto-merge fails', () => {
   assert.ok(validateAssetIndexWorkflow(workflow).some(x=>x.includes('auto-merge')));
 });
 
+test('asset-index REST merge fails', () => {
+  const workflow = `${validAssetIndexWorkflow}\n      - name: unsafe merge\n        run: gh api -X PUT repos/x/y/pulls/1/merge\n`;
+  assert.ok(validateAssetIndexWorkflow(workflow).some(x=>x.includes('auto-merge')));
+});
+
 test('asset-index auto-approve fails', () => {
   const workflow = `${validAssetIndexWorkflow}\n      - name: unsafe approve\n        run: gh pr review --approve\n`;
+  assert.ok(validateAssetIndexWorkflow(workflow).some(x=>x.includes('auto-approve')));
+});
+
+test('asset-index REST approval fails', () => {
+  const workflow = `${validAssetIndexWorkflow}\n      - name: unsafe approve\n        run: gh api -X POST repos/x/y/pulls/1/reviews -f event=APPROVE\n`;
   assert.ok(validateAssetIndexWorkflow(workflow).some(x=>x.includes('auto-approve')));
 });
 
@@ -194,8 +240,18 @@ test('known hard-trigger changed path requires FULL', () => {
   assert.equal(result.requiresFull,true);
 });
 
-test('known semantic-owner path requires FULL', () => {
+test('known semantic-owner nested checkout path requires FULL', () => {
   const result=classifyChangedPaths(['app/foo/checkout/action.ts'],baseManifest);
+  assert.equal(result.requiresFull,true);
+});
+
+test('known semantic-owner root checkout path requires FULL', () => {
+  const result=classifyChangedPaths(['app/checkout/page.ts'],baseManifest);
+  assert.equal(result.requiresFull,true);
+});
+
+test('known semantic-owner root webhook path requires FULL', () => {
+  const result=classifyChangedPaths(['app/webhook/route.ts'],baseManifest);
   assert.equal(result.requiresFull,true);
 });
 
