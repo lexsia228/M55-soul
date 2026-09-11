@@ -13,6 +13,8 @@ Every M55 AI work unit starts with:
 4. `M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md`
 5. `M55_GIT_FIRST_HARDENING_SSOT.md`
 
+For consequential merge/adoption or governance-host verification, also read `M55_GIT_FIRST_HOST_ENFORCEMENT_SSOT.md` and freshly re-observe the live GitHub ruleset. The host SSOT records the intended/observed configuration but never replaces fresh host evidence.
+
 The AI identifies its task, verifies task-relevant Git identity, loads only the relevant authority, checks for an existing decision/contract, and only then performs substantive work. Continuation lanes use the fast path only from a valid same-session or durable `CONTINUATION_HANDOFF`; consequential/cross-lane/money/legal/provider/SSOT work uses full preflight.
 
 `M55_GIT_FIRST_OPERATIONAL_FIXTURES.md` contains real and synthetic adversarial regression cases. It is mandatory for governance/red-team work but not a per-task reading tax on ordinary bounded UIUX continuation.
@@ -25,6 +27,7 @@ The AI identifies its task, verifies task-relevant Git identity, loads only the 
 | A0-preflight | `M55_GIT_PREFLIGHT_MANIFEST.json` | Machine-readable task class/profile invariants, universal reads, changed-path triggers, continuation handoff |
 | A0-preflight | `M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md` | FULL / CONTINUATION_FAST_PATH / PINNED_REVIEW routing, unmerged-authority discovery and escalation rules |
 | A0-preflight | `M55_GIT_FIRST_HARDENING_SSOT.md` | Bounded machine path enforcement, semantic-review boundary, lane ownership guard, CI/adoption limitations |
+| A0-host | `M55_GIT_FIRST_HOST_ENFORCEMENT_SSOT.md` | Exact GitHub ruleset / required-check / Actions-permission / asset-index PR-routing configuration; fresh host observation still required |
 | A0-test | `M55_GIT_FIRST_OPERATIONAL_FIXTURES.md` | Real/synthetic adversarial regression cases; supporting test evidence, not product authority |
 | A | `lib/m55/contracts/m55CommercialFunnelContract.ts` | Prices, counts, status, availability, CTA flags |
 | B | `M55_COMMERCIAL_FUNNEL_SSOT.md` | Commercial principles, psychology, free/paid boundary |
@@ -73,7 +76,7 @@ npm run verify:m55-ssot
 node scripts/verify-m55-commercial-ssot.mjs
 ```
 
-The Git-first GitHub Actions workflow runs on every PR. Repo-contained CI is not claimed to be tamper-proof by itself; final governance `USABLE` requires proof of a host-side required merge check (or equivalent immutable external enforcement).
+The Git-first GitHub Actions workflow runs on every PR. Repo-contained CI is not claimed to be tamper-proof by itself; final governance `USABLE` requires proof of a host-side required merge check (or equivalent immutable external enforcement). Exact expected host configuration is recorded in `M55_GIT_FIRST_HOST_ENFORCEMENT_SSOT.md`, but acceptance always compares that record with fresh GitHub state.
 
 ## Subordinate / superseded authorities
 
