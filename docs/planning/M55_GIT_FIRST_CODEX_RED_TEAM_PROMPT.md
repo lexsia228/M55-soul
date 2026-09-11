@@ -16,6 +16,7 @@ Mandatory system files:
 - `docs/ssot/M55_GIT_PREFLIGHT_MANIFEST.json`
 - `docs/ssot/M55_SCOPE_AWARE_REPO_PREFLIGHT_SSOT.md`
 - `docs/ssot/M55_GIT_FIRST_HARDENING_SSOT.md`
+- `docs/ssot/M55_GIT_FIRST_HOST_ENFORCEMENT_SSOT.md`
 - `docs/ssot/M55_GIT_FIRST_OPERATIONAL_FIXTURES.md`
 - `docs/ssot/M55_GIT_FIRST_MINDMAP.md`
 - `docs/ssot/README.md`
@@ -27,6 +28,7 @@ Mandatory system files:
 - `scripts/verify-m55-git-first-diff.mjs`
 - legacy compatibility verifiers
 - `.github/workflows/m55-git-first-preflight.yml`
+- `.github/workflows/m55-asset-index.yml`
 
 Mission:
 Determine whether the ACTUAL v2 candidate is safe, internally consistent and practical enough for external acceptance. Do not reward prose. Attack implementation and claimed enforcement boundaries.
@@ -35,7 +37,8 @@ Important v2 boundary:
 - known protected changed paths are machine-classified from exact base/head diff;
 - semantic meaning outside known paths still requires AI/Human review and is NOT claimed as statically complete;
 - Lane Lock is a procedural ownership guard, NOT an atomic distributed mutex;
-- repo-contained CI is NOT claimed tamper-proof without host required-check enforcement.
+- repo-contained CI is NOT claimed tamper-proof without host required-check enforcement;
+- expected GitHub host configuration is recorded in `M55_GIT_FIRST_HOST_ENFORCEMENT_SSOT.md`, but consequential acceptance must still verify the live host state independently.
 
 Do not report those explicit limitations as defects merely because stronger mechanisms could exist. Instead identify contradictions, false claims, or bypasses relative to the stated boundary.
 
@@ -57,15 +60,16 @@ Mandatory attacks:
 15. Product Authority requirement or execution-state authority is weakened;
 16. lane collision is overclaimed as atomically prevented;
 17. PR contains unrelated runtime/provider/DB changes;
-18. host required-check/ruleset state is missing or unverifiable;
+18. host required-check/ruleset state is missing, stale, weaker than `M55_GIT_FIRST_HOST_ENFORCEMENT_SSOT.md`, or unverifiable;
 19. another fresh AI cannot reconstruct the system from repo alone;
-20. static verifier/tests themselves contain false-pass logic.
+20. static verifier/tests themselves contain false-pass logic;
+21. asset-index automation can still directly push main, auto-approve, auto-merge, or swallow write failures despite the host ruleset.
 
 Run/inspect all D1-D10 and F1-F8 from the acceptance SSOT. Safe local negative-fixture simulation is allowed only in an isolated disposable checkout and must not mutate the review candidate or push anything.
 
 For F1 specifically, verify the governance principle rather than re-testing the UI product: an auditor's `2 -> 1 -> 21` sequence cannot disprove an exact `1 -> 12` acceptance contract.
 
-Inspect same-head CI and separately inspect GitHub host enforcement (branch protection/ruleset/required checks) if accessible. CI GREEN alone is not acceptance.
+Inspect same-head CI and separately inspect GitHub host enforcement (ruleset/required checks) if accessible. Compare the live host state to `M55_GIT_FIRST_HOST_ENFORCEMENT_SSOT.md`. CI GREEN or the SSOT record alone is not acceptance.
 
 Required output: exactly the structure in `M55_GIT_FIRST_EXTERNAL_RED_TEAM_ACCEPTANCE_SSOT.md`, including D1-D10, F1-F8, P0-P3, host_required_check_state, contradictions, bypasses, false-positive risk, other-AI comprehension, HOST_ENFORCEMENT, improvements, final classification and reason.
 
