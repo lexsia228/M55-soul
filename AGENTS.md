@@ -67,6 +67,8 @@ If no invalidating dependency changed → **`RERUN_PROHIBITED`**. A new chat/ses
 
 **Risk-weighted audit depth:** do not run every agent on every change. Ordinary docs/editorial work may use normal CI + Control-Tower review; user-visible/product changes need the lane-required independent quality review; money/tax/provider/security/ledger/idempotency changes require the full independent audit stack defined by the multi-agent SSOT.
 
+**Operator/business-status rule:** read `docs/ssot/M55_OPERATOR_BUSINESS_STATUS_SSOT.md` before tax, Creator payout, Stripe/KYC, seller-identity, staffing/payroll, bookkeeping, invoice, or pre-revenue business-state analysis. Do not infer corporation, employee, salary-payer, revenue, invoice-registration, or business-start facts from generic wording. Re-review only on a registered trigger.
+
 Cursor bootstrap: `.cursor/rules/m55-control-tower.mdc` (always apply). **Do not use legacy `.cursorrules` as authority.**
 
 ## Read order
@@ -79,7 +81,8 @@ Cursor bootstrap: `.cursor/rules/m55-control-tower.mdc` (always apply). **Do not
 6. `docs/ssot/M55_WORKTREE_REGISTRY.md`
 7. `docs/ssot/M55_CONTROL_TOWER_OPERATIONS_MAP.md`
 8. `docs/ssot/M55_HIGH_COST_EVIDENCE_LEDGER.md`
-9. `docs/ssot/M55_CREATOR_REVENUE_E2C2E_SSOT.md` — **mandatory while Creator Revenue program is active**
+9. `docs/ssot/M55_OPERATOR_BUSINESS_STATUS_SSOT.md` — **mandatory for operator/tax/payroll/Stripe/KYC/seller-identity/pre-revenue questions**
+10. `docs/ssot/M55_CREATOR_REVENUE_E2C2E_SSOT.md` — **mandatory while Creator Revenue program is active**
 10. `docs/ssot/M55_COMMERCIAL_FUNNEL_SSOT.md`
 10. `docs/ssot/M55_COMMERCIAL_QUALITY_CONTRACT.md` — **mandatory before any user-visible implementation or review**
 11. `docs/ssot/M55_UX_BENCHMARK_STACK.md` — **mandatory before any user-visible implementation or review**
