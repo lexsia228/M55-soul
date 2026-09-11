@@ -39,6 +39,8 @@ export const REQUIRED_WORKFLOW_COMMANDS = [
   'node scripts/verify-m55-git-first-diff.mjs',
 ];
 
+export const HOST_REQUIRED_JOB_ID = 'verify-git-first-preflight';
+
 export function validateManifest(manifest, { fileExists = fs.existsSync } = {}) {
   const failures = [];
   if (!manifest || typeof manifest !== 'object' || Array.isArray(manifest)) {
@@ -128,53 +130,153 @@ export function validateCursorRule(text, label) {
   return failures;
 }
 
+function activeWorkflowText(text) {
+  return text.split(/\r?\n/).filter(line => !/^\s*#/.test(line)).join('\n');
+}
+
+function extractJobBlock(active, jobId) {
+  const lines = active.split('\n');
+  const jobsIndex = lines.findIndex(line => /^jobs:\s*$/.test(line));
+  if (jobsIndex < 0) return null;
+  const jobHeader = `  ${jobId}:`;
+  const start = lines.findIndex((line, index) => index > jobsIndex && line === jobHeader);
+  if (start < 0) return null;
+  const block = [lines[start]];
+  for (let i = start + 1; i < lines.length; i += 1) {
+    if (/^  [A-Za-z0-9_-]+:\s*$/.test(lines[i])) break;
+    block.push(lines[i]);
+  }
+  return block.join('\n');
+}
+
+function extractPullRequestEventBlock(active) {
+  const lines = active.split('\n');
+  const onIndex = lines.findIndex(line => /^on:\s*$/.test(line));
+  if (onIndex < 0) return null;
+  const start = lines.findIndex((line, index) => index > onIndex && /^  pull_request:\s*$/.test(line));
+  if (start < 0) return null;
+  const block = [lines[start]];
+  for (let i = start + 1; i < lines.length; i += 1) {
+    if (/^  [A-Za-z0-9_-]+:\s*$/.test(lines[i])) break;
+    block.push(lines[i]);
+  }
+  return block.join('\n');
+}
+
 export function validateWorkflow(text) {
   const failures = [];
-  const activeLines = text.split(/\r?\n/).filter(line => !/^\s*#/.test(line));
-  const active = activeLines.join('\n');
+  const active = activeWorkflowText(text);
 
   if (!/^on:\s*$/m.test(active)) failures.push('workflow missing active on: block');
   if (!/^\s{2}pull_request:\s*$/m.test(active)) failures.push('workflow missing active pull_request trigger');
   if (!/^\s{2}push:\s*$/m.test(active)) failures.push('workflow missing active push trigger');
   if (!/^\s{6}- main\s*$/m.test(active)) failures.push('workflow push trigger must include main');
-  if (!/^\s{6}- uses:\s*actions\/checkout@v4\s*$/m.test(active)) failures.push('workflow must use actions/checkout@v4');
-  if (!/^\s{10}fetch-depth:\s*0\s*$/m.test(active)) failures.push('workflow checkout must use fetch-depth: 0');
 
-  for (const command of REQUIRED_WORKFLOW_COMMANDS) {
-    const escaped = command.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    if (!new RegExp(`^\\s{8}run:\\s*${escaped}\\s*$`, 'm').test(active)) {
-      failures.push(`workflow missing active command: ${command}`);
+  const prEvent = extractPullRequestEventBlock(active);
+  if (prEvent) {
+    if (/^\s{4}(paths|paths-ignore|branches|branches-ignore):\s*$/m.test(prEvent)) {
+      failures.push('workflow pull_request trigger must not narrow paths or branches');
     }
   }
 
-  if (/^\s+paths:\s*$/m.test(active)) failures.push('workflow must not use a paths filter; Git-first self-protection must run on every PR');
+  if (/^\s+(paths|paths-ignore):\s*$/m.test(active)) {
+    failures.push('workflow must not use paths/paths-ignore filters; Git-first self-protection must run on every PR');
+  }
+
+  const requiredJob = extractJobBlock(active, HOST_REQUIRED_JOB_ID);
+  if (!requiredJob) {
+    failures.push(`workflow missing host-required job ${HOST_REQUIRED_JOB_ID}`);
+    return failures;
+  }
+  if (/^\s{4}if:\s*/m.test(requiredJob)) failures.push('host-required job must not have a job-level if condition');
+  if (/^\s{4}name:\s*(?!["']?verify-git-first-preflight["']?\s*$).+/m.test(requiredJob)) {
+    failures.push('host-required job must not override its check name');
+  }
+  if (!/^\s{6}- uses:\s*actions\/checkout@v4\s*$/m.test(requiredJob)) failures.push('host-required job must use actions/checkout@v4');
+  if (!/^\s{10}fetch-depth:\s*0\s*$/m.test(requiredJob)) failures.push('host-required job checkout must use fetch-depth: 0');
+
+  for (const command of REQUIRED_WORKFLOW_COMMANDS) {
+    const escaped = command.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    if (!new RegExp(`^\\s{8}run:\\s*${escaped}\\s*$`, 'm').test(requiredJob)) {
+      failures.push(`host-required job missing active command: ${command}`);
+    }
+  }
+
   return failures;
+}
+
+function shellMutationLines(active) {
+  return active.split('\n').map(line => line.trim()).filter(Boolean);
 }
 
 export function validateAssetIndexWorkflow(text) {
   const failures = [];
-  const activeLines = text.split(/\r?\n/).filter(line => !/^\s*#/.test(line));
-  const active = activeLines.join('\n');
+  const active = activeWorkflowText(text);
+  const lines = shellMutationLines(active);
 
   if (!/^\s{6}contents:\s*write\s*$/m.test(active)) failures.push('asset-index workflow must scope contents: write to its job');
   if (!/^\s{6}pull-requests:\s*write\s*$/m.test(active)) failures.push('asset-index workflow must scope pull-requests: write to its job');
   if (!/gh pr create/.test(active)) failures.push('asset-index workflow must create a pull request');
   if (!/--base main/.test(active)) failures.push('asset-index pull request must target main');
   if (!/automation\/m55-asset-index-/.test(active)) failures.push('asset-index workflow must use the dedicated automation branch family');
-  if (/git push(?:\s+origin)?\s+main(?:\s|$)/m.test(active)) failures.push('asset-index workflow must not push directly to main');
-  if (/git push\s*\|\|\s*true/.test(active)) failures.push('asset-index workflow must not swallow push failures');
-  if (/gh pr merge/.test(active)) failures.push('asset-index workflow must not auto-merge its pull request');
-  if (/gh pr review[^\n]*--approve/.test(active)) failures.push('asset-index workflow must not auto-approve its pull request');
 
-  return failures;
+  for (const line of lines) {
+    if (/\bgit\s+push\b/.test(line)) {
+      if (/\|\|\s*true\b/.test(line) || /continue-on-error\s*:\s*true/.test(active)) {
+        failures.push('asset-index workflow must not swallow push failures');
+      }
+      const normalized = line.replace(/["']/g, ' ');
+      if (/\b(?:refs\/heads\/)?main\b/.test(normalized) || /\bHEAD\s*:\s*(?:refs\/heads\/)?main\b/.test(normalized)) {
+        failures.push('asset-index workflow must not push directly to main by branch or refspec');
+      }
+      if (!/\$BRANCH|steps\.branch\.outputs\.name/.test(line) && !/--set-upstream\s+origin\s+"?\$BRANCH"?/.test(line)) {
+        failures.push('asset-index git push must target the dedicated automation branch variable');
+      }
+    }
+
+    if (/\bgh\s+pr\s+merge\b/.test(line) || /\bgh\s+api\b.*\/pulls\/[^\s/]+\/merge\b/.test(line) || /\bcurl\b.*\/pulls\/[^\s/]+\/merge\b/.test(line)) {
+      failures.push('asset-index workflow must not auto-merge its pull request');
+    }
+    if (/\bgh\s+pr\s+review\b.*--approve\b/.test(line) || /\bgh\s+api\b.*\/pulls\/[^\s/]+\/reviews\b/.test(line) || /\bcurl\b.*\/pulls\/[^\s/]+\/reviews\b/.test(line)) {
+      failures.push('asset-index workflow must not auto-approve its pull request');
+    }
+  }
+
+  if (/\bauto-merge\b|\bmerge_method\b|\bAPPROVE\b/.test(active)) {
+    failures.push('asset-index workflow must not contain auto-merge or approval API semantics');
+  }
+
+  return [...new Set(failures)];
 }
 
 function globToRegExp(glob) {
-  const escaped = glob.replace(/[.+^${}()|[\]\\]/g, '\\$&')
-    .replace(/\*\*/g, '___DOUBLE___')
-    .replace(/\*/g, '[^/]*')
-    .replace(/___DOUBLE___/g, '.*');
-  return new RegExp(`^${escaped}$`);
+  let out = '^';
+  for (let i = 0; i < glob.length; i += 1) {
+    const ch = glob[i];
+    if (ch === '*') {
+      if (glob[i + 1] === '*') {
+        const followedBySlash = glob[i + 2] === '/';
+        if (followedBySlash) {
+          out += '(?:[^/]+/)*';
+          i += 2;
+        } else {
+          out += '.*';
+          i += 1;
+        }
+      } else {
+        out += '[^/]*';
+      }
+      continue;
+    }
+    if (ch === '?') {
+      out += '[^/]';
+      continue;
+    }
+    if ('\\.^$+{}()|[]'.includes(ch)) out += `\\${ch}`;
+    else out += ch;
+  }
+  out += '$';
+  return new RegExp(out);
 }
 
 export function pathMatches(path, pattern) {
