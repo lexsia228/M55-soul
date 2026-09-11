@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { validateManifest, validateCursorRule, validateWorkflow, classifyChangedPaths } from './m55-git-first-policy.mjs';
+import { validateManifest, validateCursorRule, validateWorkflow, validateAssetIndexWorkflow, classifyChangedPaths } from './m55-git-first-policy.mjs';
 
 const baseManifest = {
   universal: {
@@ -67,6 +67,24 @@ jobs:
         run: node --test scripts/m55-git-first-policy.test.mjs
       - name: diff
         run: node scripts/verify-m55-git-first-diff.mjs
+`;
+
+const validAssetIndexWorkflow = `name: m55-asset-index
+on:
+  schedule:
+    - cron: '15 21 * * *'
+jobs:
+  build-index:
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: branch
+        run: echo automation/m55-asset-index-1
+      - name: push branch
+        run: git push origin "$BRANCH"
+      - name: create pull request
+        run: gh pr create --base main --head "$BRANCH"
 `;
 
 test('baseline manifest passes', () => {
@@ -145,6 +163,30 @@ test('commented-out workflow command does not count', () => {
 test('workflow paths filter fails self-protection rule', () => {
   const workflow = validWorkflow.replace('  pull_request:\n','  pull_request:\n    paths:\n      - AGENTS.md\n');
   assert.ok(validateWorkflow(workflow).some(x=>x.includes('paths filter')));
+});
+
+test('asset-index PR routing baseline passes', () => {
+  assert.deepEqual(validateAssetIndexWorkflow(validAssetIndexWorkflow), []);
+});
+
+test('asset-index direct main push fails', () => {
+  const workflow = `${validAssetIndexWorkflow}\n      - name: unsafe\n        run: git push origin main\n`;
+  assert.ok(validateAssetIndexWorkflow(workflow).some(x=>x.includes('directly to main')));
+});
+
+test('asset-index swallowed push failure fails', () => {
+  const workflow = validAssetIndexWorkflow.replace('git push origin "$BRANCH"','git push || true');
+  assert.ok(validateAssetIndexWorkflow(workflow).some(x=>x.includes('swallow push failures')));
+});
+
+test('asset-index auto-merge fails', () => {
+  const workflow = `${validAssetIndexWorkflow}\n      - name: unsafe merge\n        run: gh pr merge --merge\n`;
+  assert.ok(validateAssetIndexWorkflow(workflow).some(x=>x.includes('auto-merge')));
+});
+
+test('asset-index auto-approve fails', () => {
+  const workflow = `${validAssetIndexWorkflow}\n      - name: unsafe approve\n        run: gh pr review --approve\n`;
+  assert.ok(validateAssetIndexWorkflow(workflow).some(x=>x.includes('auto-approve')));
 });
 
 test('known hard-trigger changed path requires FULL', () => {
