@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
-import { validateManifest, validateCursorRule, validateWorkflow } from './m55-git-first-policy.mjs';
+import { validateManifest, validateCursorRule, validateWorkflow, validateAssetIndexWorkflow } from './m55-git-first-policy.mjs';
 
 const failures = [];
 const required = [
@@ -13,6 +13,7 @@ const required = [
   '.cursor/rules/m55-control-tower.mdc',
   '.cursor/rules/m55-scope-aware-repo-preflight.mdc',
   '.github/workflows/m55-git-first-preflight.yml',
+  '.github/workflows/m55-asset-index.yml',
   'scripts/m55-git-first-policy.mjs',
   'scripts/m55-git-first-policy.test.mjs',
   'scripts/verify-m55-git-first-diff.mjs',
@@ -33,6 +34,9 @@ for (const file of ['.cursor/rules/m55-control-tower.mdc','.cursor/rules/m55-sco
 }
 if (fs.existsSync('.github/workflows/m55-git-first-preflight.yml')) {
   failures.push(...validateWorkflow(fs.readFileSync('.github/workflows/m55-git-first-preflight.yml','utf8')));
+}
+if (fs.existsSync('.github/workflows/m55-asset-index.yml')) {
+  failures.push(...validateAssetIndexWorkflow(fs.readFileSync('.github/workflows/m55-asset-index.yml','utf8')));
 }
 
 const agents = fs.existsSync('AGENTS.md') ? fs.readFileSync('AGENTS.md','utf8') : '';
